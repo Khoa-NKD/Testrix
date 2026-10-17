@@ -2,78 +2,116 @@
 
 <div align="center">
 
+[![Website](https://img.shields.io/badge/Live_Website-tienganh--mrsngoc.vercel.app-2563EB?style=for-the-badge&logo=vercel&logoColor=white)](https://tienganh-mrsngoc.vercel.app)
 [![React](https://img.shields.io/badge/React-19.3.0-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
 [![Vite](https://img.shields.io/badge/Vite-8.0-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![TailwindCSS](https://img.shields.io/badge/TailwindCSS-v4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
-[![Deployment](https://img.shields.io/badge/Deploy-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com/)
-[![Zero-Auth](https://img.shields.io/badge/Auth-Zero--Auth%20(No%20Login)-10B981?style=for-the-badge)](https://github.com/Khoa-NKD/Testrix)
+[![Zero-Auth](https://img.shields.io/badge/Auth-Zero--Auth%20(No%20Login)-10B981?style=for-the-badge)](https://tienganh-mrsngoc.vercel.app)
 
-**Kho tài liệu luyện thi & ôn tập Tiếng Anh chất lượng cao dành cho học sinh THPT**  
+**Hệ thống Luyện thi & Ôn tập Tiếng Anh Trực tuyến Dành cho Học sinh THPT**  
 *Biên soạn & Giảng dạy bởi **Mrs. Hồ Thị Bích Ngọc** — Giáo viên trường THPT Nguyễn Dục, Phú Ninh, Đà Nẵng*
 
-[🌐 Xem Demo Trực Tuyến](#-triển-khai-nhanh-lên-vercel-1-click) • [✨ Tính Năng Nổi Bật](#-tính-năng-nổi-bật) • [🚀 Cài Đặt Nhanh](#-hướng-dẫn-cài-đặt--chạy-dự-án) • [📝 Thêm Đề Thi Mới](#-hướng-dẫn-thêm--quản-lý-đề-thi-mới) • [📞 Liên Hệ](#-thông-tin-liên-hệ--giáo-viên-phụ-trách)
+[🌐 Trải Nghiệm Website](https://tienganh-mrsngoc.vercel.app) • [✨ Tính Năng Nổi Bật](#-tính-năng-nổi-bật) • [🏗️ Kiến Trúc Hệ Thống](#-kiến-trúc-hệ-thống) • [🚀 Hướng Dẫn Cài Đặt](#-hướng-dẫn-cài-đặt--phát-triển) • [📝 Quản Lý Đề Thi](#-hướng-dẫn-thêm--quản-lý-đề-thi-mới) • [📞 Liên Hệ](#-thông-tin-liên-hệ--giáo-viên-phụ-trách)
 
 ---
 
 </div>
 
-## 📌 Giới Thiệu Dự Án
+## 📌 Giới Thiệu Chung
 
-**Testrix** là giải pháp phần mềm luyện thi và đánh giá năng lực trắc nghiệm trực tuyến thế hệ mới, được tối ưu hóa đặc biệt theo chương trình GDPT môn Tiếng Anh và quy chuẩn cấu trúc đề thi của Bộ Giáo dục & Đào tạo.
+**Testrix** là giải pháp phần mềm thi thử và ôn luyện trắc nghiệm trực tuyến thế hệ mới, được thiết kế chuyên sâu theo chuẩn cấu trúc đề thi tốt nghiệp THPT và kiểm tra định kỳ của Bộ Giáo dục & Đào tạo. 
 
-Được xây dựng với triết lý **Zero-Auth (Không cần đăng nhập / Không cần tạo tài khoản)**, học sinh chỉ cần truy cập vào đường link do giáo viên gửi là có thể lập tức bắt đầu làm bài, tự động lưu tiến độ, tra cứu đáp án và xem lời giải phân tích chi tiết.
+Dự án hoạt động trên nền tảng web hiện đại với triết lý **Zero-Auth (Không cần tài khoản)**:
+- Học sinh không cần đăng ký tài khoản hay ghi nhớ mật khẩu.
+- Nhấp vào link là có thể làm bài ngay lập tức trên mọi thiết bị (máy tính, iPad, điện thoại).
+- Tiến độ bài làm được tự động sao lưu theo thời gian thực (Auto-Save Local Draft).
+
+> [!TIP]
+> Website chính thức đang hoạt động tại: **[https://tienganh-mrsngoc.vercel.app](https://tienganh-mrsngoc.vercel.app)**.
 
 ---
 
 ## ✨ Tính Năng Nổi Bật
 
-### 1. 📋 Phòng Thi Chuẩn Cấu Trúc Bộ GD&ĐT (Split-View Layout)
-- **Chia phần thi rõ ràng**: Đề thi tự động phân nhóm logic theo từng chuyên đề:
-  - `I. TRỌNG ÂM (STRESS)`
-  - `II. TỪ VỰNG & NGỮ PHÁP (VOCABULARY AND GRAMMAR)`
-  - `III. ĐỌC HIỂU & ĐỌC ĐIỀN TỪ (READING PASSAGES)`
-  - `IV. VIẾT & SẮP XẾP CÂU (SENTENCE TRANSFORMATION)`
-- **Huy hiệu dải câu tự động**: Hiển thị rõ số lượng câu cho mỗi phần (ví dụ: `Câu 1 - Câu 5 (5 câu)`, `Câu 6 - Câu 21 (16 câu)`).
-- **Hộp bài đọc chuyên biệt**: Bài đọc hiểu hiển thị trang nhã trên khung giấy cổ điển, cuộn độc lập bên cạnh câu hỏi, giúp học sinh không phải lật trang tìm kiếm nội dung đoạn văn.
+### 1. 📋 Phòng Thi Bố Cục 2 Cột Chuẩn Bộ GD&ĐT (Split-View Layout)
+* **Phân chia chuyên đề tự động**: Đề thi được phân tách thành từng phần độc lập với tiêu đề rõ ràng:
+  * `I. TRỌNG ÂM (STRESS)`
+  * `II. TỪ VỰNG & NGỮ PHÁP (VOCABULARY AND GRAMMAR)`
+  * `III. ĐỌC HIỂU & ĐỌC ĐIỀN TỪ (READING PASSAGES)`
+  * `IV. VIẾT & SẮP XẾP CÂU (SENTENCE TRANSFORMATION)`
+* **Huy hiệu dải câu thông minh**: Hiển thị chính xác khoảng câu hỏi (ví dụ: `Câu 1 - Câu 5 (5 câu)`, `Câu 6 - Câu 21 (16 câu)`).
+* **Khung bài đọc cổ điển**: Đoạn văn đọc hiểu được đóng khung trang nhã, học sinh có thể vừa đọc bài văn vừa làm các câu hỏi trắc nghiệm liền kề mà không cần cuộn trang lên xuống liên tục.
 
 ### 2. 🎯 Phiếu Trả Lời Trắc Nghiệm Thông Minh (Smart Answer Sheet)
-- **Đếm tiến độ thời gian thực**: Theo dõi số câu đã hoàn thành trên tổng số câu của từng phần (ví dụ: `4/5`, `12/16`).
-- **Điều hướng mượt mà (Smooth-Scroll)**: Nhấp vào số câu bất kỳ trên phiếu trả lời để màn hình cuộn mượt đến ngay vị trí câu hỏi tương ứng.
-- **Đánh dấu câu hỏi cần xem lại**: Cờ tím (🟣 Purple Flag) giúp học sinh đánh dấu những câu đang phân vân để rà soát trước khi nộp.
-- **Màu sắc trạng thái trực quan**:
-  - 🟢 **Xanh lục**: Đã trả lời.
-  - 🟣 **Tím**: Đã đánh dấu cần xem lại.
-  - ⚪ **Trắng/Xám**: Chưa chọn đáp án.
+* **Tiến độ trực quan theo từng phần**: Đếm số câu đã hoàn thành theo thời gian thực (ví dụ: `5/5`, `12/16`).
+* **Điều hướng tức thì (Smooth Navigation)**: Nhấp vào số câu trên phiếu để màn hình cuộn mượt đến đúng vị trí câu hỏi đó.
+* **Cờ tím đánh dấu câu khó (🟣 Purple Flag)**: Đánh dấu các câu học sinh còn phân vân để dễ dàng quay lại rà soát trước khi nộp bài.
+* **Bảng màu trạng thái chuẩn xác**:
+  * 🟢 **Xanh lá**: Đã hoàn thành câu trả lời.
+  * 🟣 **Tím**: Cần xem lại trước khi nộp bài.
+  * ⚪ **Trắng/Xám**: Chưa chọn đáp án.
 
-### 3. 💡 Chấm Điểm Chuẩn Xác & Lời Giải Phân Tích Sư Phạm
-- Chấm điểm ngay lập tức sau khi nộp bài theo thang điểm 10 chuẩn.
-- Thống kê tỷ lệ chính xác, số câu đúng, câu sai, câu bỏ sót và tổng thời gian làm bài.
-- Hộp thoại **"💡 Lời giải chi tiết & Phương pháp giải"**: Giải thích rõ tại sao chọn đáp án đó, cung cấp từ vựng, ngữ pháp và cấu trúc câu liên quan.
-- **Bộ lọc linh hoạt khi xem lại**: Tất cả, Chỉ xem câu đúng, Chỉ xem câu sai, Chỉ xem câu chưa làm.
+### 3. 💡 Chấm Điểm Thang 10 & Lời Giải Phân Tích Sư Phạm
+* **Chấm điểm tức thì**: Hệ thống tính toán điểm số chuẩn xác ngay khi nhấn nộp bài.
+* **Phân tích số liệu toàn diện**: Thống kê số câu đúng, câu sai, câu bỏ sót và tổng thời gian làm bài.
+* **Hộp thoại giải thích chi tiết**: Cung cấp lý do chọn đáp án đúng, dịch nghĩa từ vựng, phân tích cấu trúc ngữ pháp và chỉ ra các bẫy thường gặp.
+* **Bộ lọc kết quả tiện lợi**: Lọc nhanh danh sách câu theo `Tất cả` | `Câu đúng` | `Câu sai` | `Chưa làm`.
 
-### 4. 🔒 Zero-Auth & Lưu Trữ Cục Bộ (Privacy & Zero Barrier)
-- Không bắt buộc học sinh phải đăng nhập hay đăng ký tài khoản.
-- **Tự động lưu nháp (Auto-Save)**: Tránh trường hợp rớt mạng, vô tình đóng trình duyệt hay bấm F5 tải lại trang.
-- **Trang Lịch Sử (History Page)**: Lưu giữ đầy đủ kết quả các lần thi trước để học sinh tự đánh giá sự tiến bộ của mình.
+### 4. 🔒 Bảo Mật & Lưu Trữ Cục Bộ (Zero-Auth Privacy)
+* **Tự động lưu nháp**: Không lo mất dữ liệu bài làm khi gặp sự cố mạng, vô tình tắt tab hoặc tải lại trang.
+* **Trang Lịch Sử Cá Nhân**: Lưu toàn bộ lịch sử các lần thi trước trên trình duyệt máy tính cá nhân để học sinh tự theo dõi sự tiến bộ.
+* **Làm lại bài thi**: Cho phép luyện tập lại nhiều lần để khắc sâu kiến thức.
 
-### 5. 📱 Thiết Kế Đáp Ứng Đa Nền Tảng (Fully Responsive)
-- Trải nghiệm mượt mà trên cả máy tính để bàn (Desktop), máy tính bảng (iPad/Tablet) và điện thoại di động (Smartphone) với Bottom Drawer vuốt mở phiếu trả lời tiện dụng.
+### 5. 📱 Tối Ưu Hóa Công Thái Học & Đa Nền Tảng (Responsive)
+* **Desktop & Laptop**: Giao diện 2 cột chia đôi màn hình khoa học, phiếu trả lời ghim cố định bên phải.
+* **Mobile & Tablet**: Phiếu trả lời dạng Bottom Drawer vuốt mở linh hoạt, nút nộp bài luôn nằm trong tầm tay.
 
 ---
 
-## 🛠️ Kiến Trúc Kỹ Thuật (Tech Stack)
+## 🏗️ Kiến Trúc Hệ Thống (Clean Architecture)
 
-| Hạng mục | Công nghệ sử dụng | Mục đích |
-| :--- | :--- | :--- |
-| **Giao diện (Frontend)** | [React 19](https://react.dev/) + [TypeScript 5](https://www.typescriptlang.org/) | Xây dựng Single Page App hiện đại, Type-safe tuyệt đối |
-| **Bộ biên dịch (Bundler)** | [Vite 8](https://vitejs.dev/) | Tốc độ khởi động siêu tốc, HMR tức thì, build < 350ms |
-| **Định tuyến (Routing)** | [React Router v7](https://reactrouter.com/) | Quản lý điều hướng SPA linh hoạt |
-| **Giao diện & CSS** | [TailwindCSS v4](https://tailwindcss.com/) | Utility-first CSS, tối ưu dung lượng CSS còn ~51 kB |
-| **Biểu tượng (Icons)** | [Lucide React](https://lucide.dev/) | Bộ icon vector sắc nét, đồng bộ |
-| **Hiệu ứng & Âm thanh** | `canvas-confetti` + Web Audio API | Tạo cảm giác hào hứng khi học sinh hoàn thành bài thi |
-| **Tầng lưu trữ dữ liệu** | HTML5 `localStorage` | Lưu trữ client-side nhanh, an toàn, không tốn chi phí database |
-| **Nền tảng triển khai** | [Vercel](https://vercel.com/) | Lưu trữ đám mây CDN toàn cầu, tự động build từ Git |
+Dự án áp dụng mô hình phân lớp rõ ràng nhằm đảm bảo hiệu năng cao và dễ dàng mở rộng:
+
+```mermaid
+graph TD
+    A[Người Dùng / Trình Duyệt Web] --> B[Giao Diện Người Dùng - Presentation Layer]
+    subgraph UI [Presentation Layer]
+        B1[HomePage.tsx]
+        B2[ExamPage.tsx - Split View]
+        B3[ReviewPage.tsx - Giải Thích Chi Tiết]
+        B4[HistoryPage.tsx - Bảng Điểm]
+    end
+    B --> UI
+    UI --> C[Tầng Xử Lý Nghiệp Vụ - Domain & Service Layer]
+    subgraph Domain [Business Logic Layer]
+        C1[exam-section-helper.ts - Phân Tích Phần Đề]
+        C2[examRepository.ts - Truy Xuất Đề Thi]
+        C3[sound.ts - Web Audio API Feedback]
+    end
+    C --> Domain
+    Domain --> D[Tầng Dữ Liệu - Data & Storage Layer]
+    subgraph Data [Data & Storage Layer]
+        D1[exams.json - Ngân Hàng Đề Thi]
+        D2[localStorage - Bản Nháp & Kết Quả]
+    end
+    D --> Data
+```
+
+---
+
+## 🛠️ Công Nghệ Phát Triển (Tech Stack)
+
+| Thành phần | Công nghệ | Phiên bản | Vai trò & Ưu điểm |
+| :--- | :--- | :--- | :--- |
+| **Giao diện** | [React](https://react.dev/) | 19.3.0 | UI Component thế hệ mới nhất, rendering siêu tốc |
+| **Biên dịch** | [Vite](https://vitejs.dev/) | 8.0 | HMR tức thì, Production build chỉ mất ~350ms |
+| **Ngôn ngữ** | [TypeScript](https://www.typescriptlang.org/) | 5.0 | Type Safety nghiêm ngặt, loại bỏ hoàn toàn lỗi runtime |
+| **Định tuyến** | [React Router](https://reactrouter.com/) | 7.18 | Single Page Application mượt mà, hỗ trợ deep-linking |
+| **Styling** | [TailwindCSS](https://tailwindcss.com/) | v4.0 | Utility CSS tinh gọn, bundle CSS tối ưu chỉ ~51 kB |
+| **Biểu tượng** | [Lucide React](https://lucide.dev/) | 1.59 | Bộ icon hiện đại, tải bất đồng bộ theo trang |
+| **Lưu trữ** | HTML5 `localStorage` | Chuẩn W3C | Lưu trữ dữ liệu client-side nhanh chóng, không tốn chi phí DB |
+| **Triển khai** | [Vercel](https://vercel.com/) | Cloud CDN | Tự động CI/CD từ GitHub, hạ tầng phân tán toàn cầu |
 
 ---
 
@@ -81,119 +119,121 @@
 
 ```bash
 Testrix/
-├── public/                      # Static assets, Favicon, robots.txt, _redirects
+├── public/                      # Static assets, Favicon, _redirects, robots.txt
 ├── src/
 │   ├── components/
 │   │   ├── common/              # Navbar, Footer, GradeTabs dùng chung toàn app
 │   │   └── exam/                # AnswerSheet, ExamHeader, ExamQuestionItem,
 │   │                            # ExamSectionView, ResultModal, SubmitConfirmModal
 │   ├── data/
-│   │   ├── examRepository.ts    # Service truy xuất & xử lý dữ liệu ngân hàng đề
-│   │   └── exams.json           # File JSON lưu trữ dữ liệu các bộ đề thi
+│   │   ├── examRepository.ts    # Service xử lý & lọc ngân hàng đề thi
+│   │   └── exams.json           # Tệp JSON chứa toàn bộ câu hỏi và đáp án
 │   ├── lib/
-│   │   ├── exam-section-helper.ts # Phân tích logic dải câu và nhóm phần thi tự động
-│   │   ├── local-storage.ts     # Tầng quản lý lưu nháp & lịch sử thi cử
-│   │   └── sound.ts             # Bộ tạo âm thanh thông báo Web Audio API
+│   │   ├── exam-section-helper.ts # Bộ giải mã và nhóm phần thi tự động
+│   │   ├── local-storage.ts     # Tầng quản lý lưu nháp & lịch sử điểm số
+│   │   └── sound.ts             # Âm thanh hiệu ứng Web Audio API
 │   ├── pages/
 │   │   ├── HomePage.tsx         # Trang chủ giới thiệu & danh sách đề thi
-│   │   ├── ExamPage.tsx         # Phòng thi trực tuyến chia 2 cột chuẩn
-│   │   ├── ReviewPage.tsx       # Trang xem lại chi tiết kết quả & lời giải bài thi
-│   │   └── HistoryPage.tsx      # Bảng thống kê lịch sử điểm số của học sinh
+│   │   ├── ExamPage.tsx         # Phòng thi trực tuyến 2 cột chuẩn Bộ GD
+│   │   ├── ReviewPage.tsx       # Trang xem lại chi tiết lời giải & đáp án
+│   │   └── HistoryPage.tsx      # Lịch sử và bảng thống kê kết quả làm bài
 │   ├── types/
-│   │   └── exam.ts              # Hệ thống kiểu dữ liệu TypeScript chuẩn hóa
-│   ├── App.tsx                  # Khởi tạo định tuyến (Router Provider)
-│   ├── main.tsx                 # Điểm gắn ứng dụng React vào DOM
+│   │   └── exam.ts              # Định nghĩa Typescript toàn diện cho đề thi
+│   ├── App.tsx                  # Khởi tạo định tuyến React Router
+│   ├── main.tsx                 # Điểm khởi động ứng dụng React
 │   └── index.css                # CSS Variables & Tailwind Tokens
 ├── scripts/
-│   ├── generate_sample_exam.js  # Script tự động trích xuất đề Word sang exams.json
-│   └── lib/                     # Các module bổ trợ đọc định dạng file .docx
-├── Exam/                        # Thư mục chứa các file đề thi gốc (Word .docx)
-├── index.html                   # Entry point HTML & thẻ Meta SEO
+│   ├── generate_sample_exam.js  # Kịch bản trích xuất đề Word sang exams.json
+│   └── lib/                     # Thư viện phân tích định dạng file .docx
+├── Exam/                        # Thư mục lưu trữ file đề thi gốc (Word .docx)
+├── index.html                   # HTML Entry Point & thẻ Meta SEO
 ├── vercel.json                  # Cấu hình Vercel rewrite cho Single Page Application
-├── vite.config.ts               # Cấu hình Vite & Path Alias (@/*)
+├── vite.config.ts               # Cấu hình Vite & Path Aliases (@/*)
 ├── tsconfig.json                # Cấu hình TypeScript Strict Mode
-└── package.json                 # Khai báo thư viện & các lệnh script thực thi
+└── package.json                 # Khai báo dependencies & scripts
 ```
 
 ---
 
-## 🚀 Hướng Dẫn Cài Đặt & Chạy Dự Án
+## 🚀 Hướng Dẫn Cài Đặt & Phát Triển
 
-### 1. Yêu cầu hệ thống
-- Đã cài đặt **Node.js** phiên bản 18 trở lên (Khuyến nghị Node.js LTS 20+).
-- Trình quản lý gói `npm` (hoặc `yarn`, `pnpm`).
+### 1. Chuẩn bị môi trường
+- Cài đặt **Node.js** (Khuyến nghị bản LTS 20 trở lên).
+- Trình quản lý gói `npm` (mặc định đi kèm Node.js).
 
-### 2. Các bước cài đặt
+### 2. Cài đặt các thư viện
 ```bash
-# 1. Clone repository về máy tính
+# Clone dự án về máy
 git clone https://github.com/Khoa-NKD/Testrix.git
 
-# 2. Di chuyển vào thư mục dự án
+# Di chuyển vào thư mục dự án
 cd Testrix
 
-# 3. Cài đặt các gói thư viện
+# Cài đặt toàn bộ dependencies
 npm install
 ```
 
-### 3. Khởi chạy môi trường phát triển (Development)
+### 3. Khởi chạy máy chủ phát triển (Dev Server)
 ```bash
 npm run dev
 ```
-Mở trình duyệt và truy cập vào đường dẫn: **`http://localhost:3000`**
+Mở trình duyệt truy cập: **`http://localhost:3000`**
 
-### 4. Đóng gói mã nguồn (Production Build)
+### 4. Đóng gói kiểm tra sản phẩm (Production Build)
 ```bash
 npm run build
 ```
-Để chạy thử bản build sau khi đóng gói:
+Xem trước bản build cục bộ:
 ```bash
 npm run preview
 ```
 
 ---
 
-## ☁️ Triển Khai Nhanh Lên Vercel (1-Click)
+## ☁️ Hướng Dẫn Triển Khai Lên Vercel
 
-Dự án đã được cấu hình tối ưu sẵn sàng triển khai trên Vercel:
+Hệ thống được tối ưu hóa để tự động triển khai (CI/CD) mỗi khi có commit mới vào nhánh `main`:
 
-1. Đăng nhập vào [Vercel](https://vercel.com/) và chọn **"Add New..." ➔ "Project"**.
-2. Chọn kho lưu trữ **`Khoa-NKD/Testrix`** từ GitHub và nhấn **Import**.
-3. **Cài đặt triển khai (Build and Output Settings)**:
+1. Truy cập [Vercel Dashboard](https://vercel.com/) ➔ Chọn **Add New... ➔ Project**.
+2. Chọn repository **`Khoa-NKD/Testrix`** ➔ Nhấn **Import**.
+3. **Cài đặt triển khai**:
    - **Framework Preset**: Chọn **Vite**.
-   - **Build and Output Settings**: **GIỮ NGUYÊN TẮT (KHÔNG CẦN BẬT)** các công tắc gạt vì Vercel đã tự động nhận diện chính xác:
-     - *Build Command*: `npm run build`
-     - *Output Directory*: `dist`
-     - *Install Command*: `npm install`
-4. Nhấn nút **Deploy**. Chỉ sau khoảng 30 - 45 giây, website của bạn sẽ hoạt động chính thức với đường link công khai (ví dụ: `https://testrix.vercel.app`).
-5. Bạn có thể gắn tên miền tùy chỉnh riêng (Custom Domain) trong phần **Settings ➔ Domains**.
+   - **Build and Output Settings**: Giữ nguyên trạng thái mặc định (TẮT tất cả nút gạt).
+4. Nhấn **Deploy**. Sau ~30 giây, website sẽ được xuất bản thành công!
+5. **Cài đặt Domain thương hiệu**:
+   - Vào mục **Settings ➔ Domains**.
+   - Thêm tên miền: `tienganh-mrsngoc.vercel.app`.
+   - Vercel tự động cấp chứng chỉ HTTPS an toàn tuyệt đối.
 
 ---
 
 ## 📝 Hướng Dẫn Thêm & Quản Lý Đề Thi Mới
 
-Khi muốn thêm đề thi mới cho học sinh:
+Khi cô Ngọc muốn thêm đề thi mới cho học sinh luyện tập:
 
-### Cách 1: Thêm trực tiếp vào `src/data/exams.json`
-Mỗi đề thi là một object trong mảng `exams` với cấu trúc chuẩn:
+### Cách 1: Thêm trực tiếp vào `src/data/exams.json` (Nhanh nhất)
+Mỗi đề thi là một phần tử trong mảng `exams`. Bạn chỉ cần thêm đối tượng mới theo cấu trúc chuẩn:
 ```json
 {
-  "id": "de-thi-giua-ky-2-lop-12",
-  "title": "Đề kiểm tra Giữa học kỳ 2 - Môn Tiếng Anh 12",
-  "description": "Đề thi thử 50 câu chuẩn format Bộ Giáo dục & Đào tạo...",
+  "id": "de-on-tap-tieng-anh-12-gk2",
+  "title": "Đề Ôn tập Giữa học kỳ 2 - Môn Tiếng Anh 12",
+  "description": "Đề thi chuẩn cấu trúc Bộ GD&ĐT gồm 50 câu trắc nghiệm...",
+  "subject": "Tiếng Anh",
+  "grade": "Lớp 12",
   "durationMinutes": 50,
   "totalQuestions": 50,
   "sections": [
     {
       "id": "sec-1",
       "title": "I. TRỌNG ÂM (STRESS)",
-      "instruction": "Mark the letter A, B, C, or D...",
+      "instruction": "Mark the letter A, B, C or D to indicate...",
       "questionIndices": [1, 2, 3, 4, 5]
     }
   ],
   "questions": [
     {
       "index": 1,
-      "text": "Mark the letter A, B, C, or D to indicate the word whose stress...",
+      "text": "Mark the letter A, B, C or D to indicate the word whose stress differs...",
       "options": ["A. economic", "B. historic", "C. electronic", "D. scientific"],
       "correctAnswer": "B",
       "explanation": "historic trọng âm rơi vào âm tiết thứ 2, các từ còn lại rơi vào âm tiết thứ 3."
@@ -202,37 +242,38 @@ Mỗi đề thi là một object trong mảng `exams` với cấu trúc chuẩn:
 }
 ```
 
-### Cách 2: Trích xuất từ file Word (.docx)
-1. Thêm file `.docx` vào thư mục `Exam/`.
+### Cách 2: Tự động trích xuất từ file Word (.docx)
+1. Đặt file Word đề thi vào thư mục [`Exam/`](file:///d:/Testrix/Exam/).
 2. Chạy kịch bản phân tích:
    ```bash
    node scripts/generate_sample_exam.js
    ```
-3. Đẩy thay đổi lên GitHub:
+3. Đẩy lên GitHub:
    ```bash
    git add .
-   git commit -m "feat: add new exam for grade 12"
+   git commit -m "feat: thêm đề thi mới cho học sinh khối 12"
    git push origin main
    ```
-   *Vercel sẽ tự động phát hiện và cập nhật đề mới lên trang web trong vòng 1 phút!*
+   *Vercel sẽ tự động build và cập nhật đề mới lên trang web trong vòng 1 phút!*
 
 ---
 
 ## 📞 Thông Tin Liên Hệ & Giáo Viên Phụ Trách
 
-Mọi thắc mắc về nội dung bài giảng, đề thi hoặc đăng ký khóa học Tiếng Anh xin vui lòng liên hệ:
+Mọi thắc mắc về nội dung bài giảng, tài liệu ôn thi hoặc đăng ký các khóa học Tiếng Anh xin vui lòng liên hệ:
 
-- **Giáo viên phụ trách:** **Mrs. Hồ Thị Bích Ngọc**
-- **Đơn vị công tác:** Giáo viên trường THPT Nguyễn Dục, Phú Ninh, Đà Nẵng
-- **Địa chỉ lớp học:** 54 Điện Biên Phủ, TP. Tam Kỳ, Tỉnh Quảng Nam
-- **Hotline / Zalo:** [0984 562 696](tel:0984562696)
-- **Email:** `bichngocthpt@gmail.com`
+* **Giáo viên phụ trách:** **Mrs. Hồ Thị Bích Ngọc**
+* **Đơn vị công tác:** Giáo viên trường THPT Nguyễn Dục, Phú Ninh, Đà Nẵng
+* **Địa chỉ lớp học:** 54 Điện Biên Phủ, TP. Tam Kỳ, Tỉnh Quảng Nam
+* **Hotline / Zalo:** [0984 562 696](tel:0984562696)
+* **Website học tập:** [https://tienganh-mrsngoc.vercel.app](https://tienganh-mrsngoc.vercel.app)
 
 ---
 
 <div align="center">
 
 **© 2026 Testrix.vn — Bản quyền thuộc về Lớp Tiếng Anh Mrs. Ngọc.**  
-*Xây dựng với tâm huyết vì sự tiến bộ của các thế hệ học sinh Việt Nam.*
+*Được phát triển với tâm huyết vì sự tiến bộ của các thế hệ học sinh Việt Nam.*
 
 </div>
+
