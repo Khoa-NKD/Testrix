@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "build:exams": "node scripts/build_exams_from_folder.cjs",
     "preview": "vite preview"
   },
   "dependencies": {

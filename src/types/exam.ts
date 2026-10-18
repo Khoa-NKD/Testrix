@@ -30,7 +30,9 @@ export interface Exam {
   id: string;
   title: string;
   description: string;
-  subject: string; // "Toán", "Vật Lý", "Hóa Học", "Tiếng Anh", "Sinh Học", "Lịch Sử", "Địa Lý", "GDCD", "Khác"
+  subject: string; // "Tiếng Anh", v.v.
+  category?: string; // "Ôn theo unit", "Ôn giữa kỳ 1", "Ôn cuối kỳ 1", "Ôn giữa kỳ 2", "Ôn cuối kỳ 2", "Ôn thi HSG", "Ôn thi Olympic", "Ôn thi Đại học"
+  categories?: string[];
   grade?: string; // "Lớp 10", "Lớp 11", "Lớp 12", "Đại Học"
   durationMinutes: number;
   totalQuestions: number;

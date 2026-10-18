@@ -19,21 +19,22 @@ import {
   CheckCircle2,
 } from "lucide-react";
 
-const SUBJECTS = [
+const CATEGORIES = [
   "Tất cả",
-  "Tiếng Anh",
-  "Toán",
-  "Vật Lý",
-  "Hóa Học",
-  "Sinh Học",
-  "Lịch Sử",
-  "Địa Lý",
+  "Ôn theo unit",
+  "Ôn giữa kỳ 1",
+  "Ôn cuối kỳ 1",
+  "Ôn giữa kỳ 2",
+  "Ôn cuối kỳ 2",
+  "Ôn thi HSG",
+  "Ôn thi Olympic",
+  "Ôn thi Đại học",
 ];
 
 export default function HomePage() {
   const [selectedGrade, setSelectedGrade] = useState<string>("Lớp 12");
-  const [selectedSubject, setSelectedSubject] = useState<string>("Tất cả");
-  const [searchQuery, setSearchQuery] = useState<string>("Tiếng Anh");
+  const [selectedCategory, setSelectedCategory] = useState<string>("Tất cả");
+  const [searchQuery, setSearchQuery] = useState<string>("");
 
   const exams = useMemo(() => getAllExams(), []);
   const recentAttempts = useMemo(() => getLocalAttempts().slice(0, 5), []);
@@ -41,16 +42,27 @@ export default function HomePage() {
   const filteredExams = useMemo(() => {
     return exams.filter((exam) => {
       const matchGrade = !selectedGrade || selectedGrade === "Tất cả" || exam.grade === selectedGrade;
-      const matchSubject =
-        selectedSubject === "Tất cả" || exam.subject.toLowerCase() === selectedSubject.toLowerCase();
+
+      const normCategory = selectedCategory.toLowerCase();
+      const matchCategory =
+        selectedCategory === "Tất cả" ||
+        (exam.categories && exam.categories.some((c) => c.toLowerCase() === normCategory)) ||
+        (exam.category && exam.category.toLowerCase() === normCategory) ||
+        (exam.tags && exam.tags.some((t) => t.toLowerCase() === normCategory)) ||
+        exam.title.toLowerCase().includes(normCategory);
+
+      const q = searchQuery.trim().toLowerCase();
       const matchQuery =
-        !searchQuery ||
-        exam.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        exam.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        exam.subject.toLowerCase().includes(searchQuery.toLowerCase());
-      return matchGrade && matchSubject && matchQuery;
+        !q ||
+        exam.title.toLowerCase().includes(q) ||
+        exam.description.toLowerCase().includes(q) ||
+        exam.subject.toLowerCase().includes(q) ||
+        (exam.category && exam.category.toLowerCase().includes(q)) ||
+        (exam.tags && exam.tags.some((t) => t.toLowerCase().includes(q)));
+
+      return matchGrade && matchCategory && matchQuery;
     });
-  }, [exams, selectedGrade, selectedSubject, searchQuery]);
+  }, [exams, selectedGrade, selectedCategory, searchQuery]);
 
   return (
     <div className="min-h-screen bg-[#f8fafc] flex flex-col text-slate-800">
@@ -144,7 +156,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Search & Subject Filters */}
+          {/* Search & Category Filters */}
           <div className="mt-8 pt-6 border-t border-slate-200/80 flex flex-col md:flex-row gap-3 items-stretch md:items-center">
             {/* Search Input */}
             <div className="relative flex-1">
@@ -153,26 +165,26 @@ export default function HomePage() {
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Tìm kiếm đề thi (VD: Tiếng Anh giữa kỳ 1, Lớp 12, Đọc hiểu...)"
+                placeholder="Tìm kiếm đề thi (VD: Unit 1, Unit 2, Giữa kỳ 1, Đọc hiểu, Trọng âm...)"
                 className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-[#ea580c]/20 focus:border-[#ea580c] bg-white text-sm"
               />
             </div>
 
-            {/* Subject Filter Pills */}
+            {/* Category Filter Pills */}
             <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-none py-1">
-              {SUBJECTS.map((sub) => {
-                const isActive = selectedSubject === sub;
+              {CATEGORIES.map((cat) => {
+                const isActive = selectedCategory === cat;
                 return (
                   <button
-                    key={sub}
-                    onClick={() => setSelectedSubject(sub)}
+                    key={cat}
+                    onClick={() => setSelectedCategory(cat)}
                     className={`px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${
                       isActive
                         ? "bg-[#ea580c] text-white shadow-xs"
                         : "bg-white border border-slate-200 text-slate-700 hover:bg-slate-50"
                     }`}
                   >
-                    {sub}
+                    {cat}
                   </button>
                 );
               })}
@@ -188,7 +200,7 @@ export default function HomePage() {
           <div className="flex items-center justify-between mb-5">
             <div>
               <h2 className="text-lg sm:text-xl font-bold text-slate-900 tracking-tight">
-                Kho Đề Thi Môn {selectedSubject === "Tất cả" ? "Tiếng Anh & Các Môn" : selectedSubject} ({filteredExams.length})
+                Kho Đề Thi {selectedCategory === "Tất cả" ? "Tiếng Anh & Các Chuyên Đề" : selectedCategory} ({filteredExams.length})
               </h2>
               <p className="text-xs text-slate-500">
                 Tài liệu ôn tập chính thức của Lớp Tiếng Anh Mrs. Ngọc • {selectedGrade}
@@ -207,7 +219,7 @@ export default function HomePage() {
                     {/* Top Badges */}
                     <div className="flex items-center justify-between gap-2 mb-3">
                       <span className="px-2.5 py-1 rounded-md bg-amber-50 text-amber-900 text-xs font-bold border border-amber-200">
-                        {exam.subject}
+                        {exam.category || exam.subject}
                       </span>
                       {exam.grade && (
                         <span className="px-2 py-0.5 rounded-md bg-slate-100 text-slate-600 text-xs font-semibold">
@@ -254,19 +266,19 @@ export default function HomePage() {
           ) : (
             <div className="bg-white rounded-2xl border border-slate-200 p-12 text-center max-w-md mx-auto">
               <BookOpen className="w-12 h-12 text-slate-300 mx-auto mb-3" />
-              <h3 className="font-bold text-slate-800 text-base mb-1">Không có đề thi phù hợp</h3>
+              <h3 className="font-bold text-slate-800 text-base mb-1">Chưa có đề thi cho chuyên đề này</h3>
               <p className="text-xs text-slate-500 mb-4">
-                Hãy thử chọn môn học hoặc khối lớp khác để tìm đề thi phù hợp nhé!
+                Chuyên đề này đang được Mrs. Ngọc biên soạn và cập nhật thêm trong các buổi học tới.
               </p>
               <button
                 onClick={() => {
-                  setSelectedSubject("Tất cả");
+                  setSelectedCategory("Tất cả");
                   setSelectedGrade("Tất cả");
                   setSearchQuery("");
                 }}
-                className="py-2 px-4 rounded-xl bg-[#ea580c] text-white font-semibold text-xs shadow-xs"
+                className="py-2 px-4 rounded-xl bg-[#ea580c] text-white font-semibold text-xs shadow-xs hover:bg-[#c2410c] cursor-pointer"
               >
-                Đặt lại bộ lọc
+                Xem tất cả đề thi
               </button>
             </div>
           )}
