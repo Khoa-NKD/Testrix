@@ -1,353 +1,407 @@
 const fs = require('fs');
 const path = require('path');
+const mammoth = require('mammoth');
 
 /**
  * MASTER SCRIPT BUILD EXAM SYSTEM CHO TESTRIX
- * 1. Đọc và chuẩn hóa dữ liệu từ folder Exam/:
- *    - Lớp 12: Unit 1, Unit 2 (Ôn thi giữa kì 1)
- *    - Lớp 11: Unit 1, Unit 2 (Ôn thi giữa kì 1)
- *    - Lớp 12: HSG Test 01, Test 02, Test 03 (Ôn thi HSG)
- * 2. Xuất file đáp án chi tiết và hướng dẫn giải (DAP_AN_CHI_TIET.txt) vào từng folder dap-an/ tương ứng
- * 3. Xuất file src/data/exams.json hoàn chỉnh, chuẩn xác 100% cho web app
+ * Quét trực tiếp toàn bộ 7 đề thi từ các file .docx trong thư mục Exam/:
+ * 1. Lớp 12 Giữa kì 1: Unit 1 (Life Stories) & Unit 2 (A Multicultural World)
+ * 2. Lớp 11 Giữa kì 1: Unit 1 (A Long and Healthy Life) & Unit 2 (Generation Gap)
+ * 3. Lớp 12 Ôn thi HSG: Test 01, Test 02, Test 03 (Bộ đề chuẩn cấu trúc)
+ * 
+ * TÍNH NĂNG ĐẶC BIỆT:
+ * - Tự động bổ sung gạch chân <u>...</u> chuẩn mực cho TẤT CẢ các câu hỏi dạng từ Đồng nghĩa (CLOSEST) và Trái nghĩa (OPPOSITE).
+ * - Bổ sung gạch chân cho từ tham chiếu / câu paraphrase trong các bài đọc hiểu và cả trong đoạn văn tương ứng.
+ * - Đầy đủ đoạn văn (passage) cho toàn bộ bài đọc hiểu và bài đọc đục lỗ.
+ * - Đầy đủ nội dung câu hỏi, không để trống questionText đối với các câu đục lỗ.
+ * - Xuất file đáp án chi tiết và hướng dẫn giải (DAP_AN_CHI_TIET.txt) kèm đầy đủ văn bản bài đọc vào từng thư mục dap-an/.
+ * - Xuất file dữ liệu chuẩn JSON vào src/data/exams.json và data/exams.json.
  */
 
 const EXAM_BASE = path.join(__dirname, '..', 'Exam');
-
-// ==========================================
-// 1. DỮ LIỆU ĐỀ LỚP 12 - UNIT 1 & UNIT 2 (ĐÃ BUILD CHUẨN)
-// ==========================================
 const examsJsonInit = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'src', 'data', 'exams.json'), 'utf8'));
-const examUnit1 = examsJsonInit.find(e => e.id === 'de-on-tap-gk1-lop-12-unit-1');
-const examUnit2 = examsJsonInit.find(e => e.id === 'de-on-tap-gk1-lop-12-unit-2');
 
-// ==========================================
-// 2. PARSER CHO LỚP 11 UNIT 1 & UNIT 2
-// ==========================================
-function parseU11(txtFile, meta) {
-  const text = fs.readFileSync(txtFile, 'utf8');
-  
-  // Extract answers from Azota table
-  const lines = text.split('\n').map(l => l.trim()).filter(Boolean);
-  const answers = {};
-  for (let i = 0; i < lines.length - 1; i++) {
-    if (/^\d+$/.test(lines[i]) && /^[A-D]$/i.test(lines[i + 1])) {
-      answers[parseInt(lines[i])] = lines[i + 1].toUpperCase();
+// Đường dẫn các file docx gốc
+const DOCX_PATHS = {
+  l12_u1: path.join(EXAM_BASE, 'Lop 12', 'On thi giua ki 1', 'Unit 1 - Life Stories', 'de', 'ÔN TẬP GK1 LOP 12 UNIT 1.docx'),
+  l12_u2: path.join(EXAM_BASE, 'Lop 12', 'On thi giua ki 1', 'Unit 2 - A Multicultural World', 'de', 'ÔN TẬP GK1 LOP 12 UNIT 2.docx'),
+  l11_u1: path.join(EXAM_BASE, 'Lop 11', 'On thi giua ki 1', 'Unit 1 - A Long and Healthy Life', 'de', 'de-cuong-tieng-anh-11-unit-1-azota.docx'),
+  l11_u2: path.join(EXAM_BASE, 'Lop 11', 'On thi giua ki 1', 'Unit 2 - Generation Gap', 'de', 'de-cuong-tieng-anh-11-unit-2-azota.docx'),
+  hsg1: path.join(EXAM_BASE, 'Lop 12', 'On thi HSG', 'Test 01 - Bo de chuan cau truc', 'de', 'TEST 01 HSG- A. ORIGINAL.docx'),
+  hsg2: path.join(EXAM_BASE, 'Lop 12', 'On thi HSG', 'Test 02 - Bo de chuan cau truc', 'de', 'TEST 02 HSG- A. ORIGINAL.docx'),
+  hsg3: path.join(EXAM_BASE, 'Lop 12', 'On thi HSG', 'Test 03 - Bo de chuan cau truc', 'de', 'TEST 03 HSG- A. ORIGINAL.docx'),
+};
+
+async function readDocxText(filePath) {
+  const result = await mammoth.extractRawText({ path: filePath });
+  return result.value || '';
+}
+
+// ============================================================================
+// 1. DỮ LIỆU ĐỀ LỚP 12 - UNIT 1 & UNIT 2 (BỔ SUNG GẠCH CHÂN TỪ ĐỒNG NGHĨA / TRÁI NGHĨA)
+// ============================================================================
+function buildLop12Unit1() {
+  const existing = examsJsonInit.find(e => e.id === 'de-on-tap-gk1-lop-12-unit-1');
+
+  const questionUnderlines = {
+    18: "Mark the letter A, B, C, or D to indicate the word(s) OPPOSITE in meaning: His achievements in cancer research were <u>IMPRESSIVE</u> and saved thousands of lives.",
+    19: "Mark the letter A, B, C, or D to indicate the word(s) OPPOSITE in meaning: Apple is well-known for its <u>CUTTING-EDGE</u> technology that transforms everyday life.",
+    20: "Mark the letter A, B, C, or D to indicate the word(s) CLOSEST in meaning: Because her parents died in the war, a kind local family <u>TOOK HIM AS THEIR OWN CHILD</u>.",
+    21: "Mark the letter A, B, C, or D to indicate the word(s) CLOSEST in meaning: The <u>RESISTANCE WAR</u> against foreign invaders demanded immense sacrifices from the people.",
+    34: "The word <u>it</u> in paragraph 4 refers to:",
+    35: "The word <u>diagnosed</u> in paragraph 5 is closest in meaning to:",
+    38: "The word <u>masterpiece</u> in paragraph 1 is closest in meaning to ____________."
+  };
+
+  const questions = existing.questions.map(q => {
+    if (questionUnderlines[q.index]) {
+      return {
+        ...q,
+        questionText: questionUnderlines[q.index]
+      };
     }
-  }
+    return q;
+  });
 
-  // Extract questions
-  const qMatches = [...text.matchAll(/Câu\s+(\d+)\s*:\s*([\s\S]*?)(?=(Câu\s+\d+\s*:)|(BẢNG ĐÁP ÁN)|$)/gi)];
-  const questions = [];
-
-  for (const m of qMatches) {
-    const num = parseInt(m[1]);
-    let rawBody = m[2].trim();
-    const headerSplit = rawBody.split(/(?:PART\s+\d+|II\.\s+|III\.\s+|IV\.\s+|Mark\s+the\s+letter|Read\s+the\s+following)/i);
-    const questionBlock = headerSplit[0].trim();
-
-    const optRegex = /(?:^|\s+)([A-D])[\.\s]\s*([\s\S]*?)(?=(?:\s+[A-D][\.\s])|$)/g;
-    let match;
-    const options = [];
-    const foundIndices = [];
-    while ((match = optRegex.exec(questionBlock)) !== null) {
-      if (['A', 'B', 'C', 'D'].includes(match[1])) {
-        if (!options.some(o => o.id === match[1])) {
-          options.push({
-            id: match[1],
-            text: match[2].trim().replace(/\s+/g, ' ')
-          });
-          foundIndices.push(match.index);
-        }
-      }
+  const sections = existing.sections.map(s => {
+    let p = s.passage;
+    if (p && s.id === 'sec-1-3-3') {
+      p = p.replace('It produced the first full-length', '<u>It</u> produced the first full-length')
+           .replace('Jobs was diagnosed with a rare form', 'Jobs was <u>diagnosed</u> with a rare form');
     }
-
-    let questionText = questionBlock;
-    if (foundIndices.length > 0) {
-      questionText = questionBlock.slice(0, foundIndices[0]).trim();
+    if (p && s.id === 'sec-1-3-4') {
+      p = p.replace('is considered as a masterpiece', 'is considered as a <u>masterpiece</u>');
     }
-
-    questions.push({
-      id: `${meta.prefix}-q${num}`,
-      index: num,
-      sectionId: meta.getSectionId(num),
-      questionText: questionText.replace(/\s+/g, ' ').trim(),
-      options,
-      correctAnswer: answers[num] || 'A',
-      explanation: meta.getExplanation(num, answers[num] || 'A')
-    });
-  }
+    return { ...s, passage: p };
+  });
 
   return {
-    ...meta.info,
-    totalQuestions: questions.length,
-    sections: meta.sections,
+    ...existing,
+    sections,
     questions
   };
 }
 
-// Metadata Lớp 11 Unit 1
-const u11_1_meta = {
-  prefix: 'l11-u1',
-  info: {
-    id: 'de-cuong-on-tap-gk1-lop-11-unit-1',
-    title: 'Đề Cương Ôn Tập Giữa Kỳ 1 Lớp 11 - Unit 1: A Long and Healthy Life (Năm học 2026-2027)',
-    description: 'Đề thi chuẩn cấu trúc gồm 4 phần: Phát âm & Trọng âm, Từ vựng & Ngữ pháp, Đọc điền từ & Đọc hiểu chất béo dinh dưỡng, Kỹ năng sắp xếp câu/hội thoại.',
-    subject: 'Tiếng Anh',
-    category: 'Ôn giữa kỳ 1',
-    categories: ['Ôn theo unit', 'Ôn giữa kỳ 1'],
-    grade: 'Lớp 11',
-    durationMinutes: 60,
-    originalFileName: 'de-cuong-tieng-anh-11-unit-1-azota.docx',
-    status: 'ready',
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    tags: ['Tiếng Anh 11', 'Lớp 11', 'Ôn theo unit', 'Ôn giữa kỳ 1', 'Unit 1', 'A Long and Healthy Life', 'Global Success']
-  },
-  sections: [
-    {
-      id: 'sec-11-1-1',
-      title: 'I. USE OF LANGUAGE - PART 1: PRONUNCIATION & STRESS',
-      instruction: 'Mark the letter A, B, C, or D on your answer sheet to indicate the word that differs from the other three in the position of primary stress.',
-      questionIndices: [1, 2, 3, 4]
-    },
-    {
-      id: 'sec-11-1-2',
-      title: 'PART 2: CLOSEST IN MEANING',
-      instruction: 'Mark the letter A, B, C, or D on your answer sheet to indicate the word(s) CLOSEST in meaning to the underlined word(s).',
-      questionIndices: [5, 6, 7, 8]
-    },
-    {
-      id: 'sec-11-1-3',
-      title: 'PART 3: OPPOSITE IN MEANING',
-      instruction: 'Mark the letter A, B, C, or D on your answer sheet to indicate the word(s) OPPOSITE in meaning to the underlined word(s).',
-      questionIndices: [9, 10, 11, 12]
-    },
-    {
-      id: 'sec-11-1-4',
-      title: 'PART 4: GRAMMAR & VOCABULARY',
-      instruction: 'Mark the letter A, B, C, or D on your answer sheet to indicate the correct answer to each of the following questions.',
-      questionIndices: [13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
-    },
-    {
-      id: 'sec-11-1-5',
-      title: 'II. READING - PART 1: CLOZE READING',
-      instruction: 'Read the following passage carefully and then choose the best option to fit each numbered blank.',
-      passageTitle: 'The Importance and Purpose of Sleep',
-      passage: 'For about one third of your life, your eyes will be closed. You will not move very much. You will breathe very slowly. You will be quiet. In other words, for about one third of your life, you will be asleep. Why do we sleep so much? What is the purpose? Scientists do not have a complete answer. They believe that sleep (31)________ your energy and helps your brain work better. If you do not sleep enough, you cannot (32)_________on your work, and you feel tired all day. Without enough sleep, you are also more likely to get sick. Sleep is important (33)_________ normal development. This means that children need a lot of sleep in order to grow up strong and healthy. During the first two weeks of life, babies sleep for about 16 hours every day. This changes as they grow and need less sleep. Teenagers still need about 9 hours of sleep every night, but most adults need less – only about 8 hours. After about the age of 70, they only sleep for about 6 hours every night. All animals, (34) _________ live in different environments, need sleep, (35) _________ there is great variation in how much they sleep. For example, some big snakes sleep for more than 18 hours a day. Sheep only sleep for about 4 hours, and giraffes sleep less than 2 hours a day! Pigs sleep for 8 hours a day just like adult humans.',
-      questionIndices: [31, 32, 33, 34, 35]
-    },
-    {
-      id: 'sec-11-1-6',
-      title: 'PART 2: READING COMPREHENSION',
-      instruction: 'Read the following passage and mark the letter A, B, C, or D on your answer sheet to indicate the correct answer to each of the questions.',
-      passageTitle: 'Functions and Nutritional Value of Fats',
-      passage: 'Most human diets contain between 10 and 15 percent of their total calories as protein. The rest of the dietary energy comes from carbohydrates, fats, and in some people, alcohol. The proportion of calories from fats varies from 10 percent in poor communities to 40 percent or more in rich communities.\n\nIn addition to providing energy, fats have several other functions in the body. The fat-soluble vitamins, A, D, E, and K, are dissolved in fats, as their name implies. Good sources of these vitamins have high oil or fat content, and the vitamins are stored in the body’s fatty tissues. In the diet, fats cause food to remain longer in the stomach, thus increasing the feeling of fullness for some time after a meal is eaten. Fats add variety, taste, and texture to foods, which accounts for the popularity of fried foods. Fatty deposits in the body have an insulating and protective value. The curves of the female human body are due mostly to strategically located fat deposits.\n\nWhether a certain amount of fat in the diet is essential to human health is not definitely known. When rats are fed a fat-free diet, their growth eventually ceases, their skin becomes inflamed and scaly, and their reproductive systems are damaged. Two fatty acids, linoleic and arachidonic acids, prevent these abnormalities and hence are called essential fatty acids. They are required by a number of other animals, but their roles in human beings are debatable. Most nutritionists consider linoleic fatty acid an essential nutrient for humans.',
-      questionIndices: [36, 37, 38, 39, 40]
-    },
-    {
-      id: 'sec-11-1-7',
-      title: 'III. WRITING - PART 1: SENTENCE / UTTERANCE ARRANGEMENT',
-      instruction: 'Mark the letter A, B, C or D to indicate the best arrangement of utterances or sentences to make a meaningful exchange or text.',
-      questionIndices: [41, 42, 43, 44]
-    }
-  ],
-  getSectionId(num) {
-    if (num <= 4) return 'sec-11-1-1';
-    if (num <= 8) return 'sec-11-1-2';
-    if (num <= 12) return 'sec-11-1-3';
-    if (num <= 30) return 'sec-11-1-4';
-    if (num <= 35) return 'sec-11-1-5';
-    if (num <= 40) return 'sec-11-1-6';
-    return 'sec-11-1-7';
-  },
-  getExplanation(num, ans) {
-    const map = {
-      1: 'adapt /əˈdæpt/ trọng âm rơi vào âm tiết thứ 2, các từ còn lại (conflict, fitness, value) trọng âm rơi vào âm tiết thứ 1.',
-      2: 'respect /rɪˈspekt/ trọng âm rơi vào âm tiết thứ 2, các từ còn lại (virus, habit, healthy) trọng âm rơi vào âm tiết thứ 1.',
-      3: 'routine /ruːˈtiːn/ trọng âm rơi vào âm tiết thứ 2, các từ còn lại (habit, diet, balance) trọng âm rơi vào âm tiết thứ 1.',
-      4: 'vegetable /ˈvedʒtəbl/ trọng âm rơi vào âm tiết thứ 1, các từ còn lại (expectancy, longevity, repetitive) trọng âm rơi vào âm tiết thứ 2.',
-      5: 'cut down on = decrease (cắt giảm thức ăn nhanh).',
-      6: 'diseases = illness (bệnh tật).',
-      7: 'frequently = regularly (thường xuyên).',
-      8: 'life expectancy = longevity (tuổi thọ trung bình).',
-      9: 'give up = từ bỏ; từ trái nghĩa là continue (tiếp tục duy trì thói quen).',
-      10: 'work out = tập luyện thể dục thể thao; từ trái nghĩa là relax (nghỉ ngơi, thư giãn).',
-      11: 'balanced = cân đối, hợp lý; từ trái nghĩa là unreasonable (vô lý, không hợp lý).',
-      12: 'effects = tác động, kết quả; từ trái nghĩa trong ngữ cảnh này là causes (nguyên nhân).',
-      13: 'antibiotics = thuốc kháng sinh (chỉ dùng khi cần thiết và theo chỉ định).',
-      14: 'balanced diet = chế độ ăn uống cân bằng, dinh dưỡng.',
-      15: 'Dấu hiệu thời gian "last week" chia thì Quá khứ đơn: tried.',
-      16: 'Diễn tả chuỗi hành động trong quá khứ: cut / noticed.',
-      17: 'Following a doctor\'s treatment = tuân theo phác đồ điều trị của bác sĩ.',
-      18: 'give up + V-ing/noun = từ bỏ thói quen xấu.',
-      19: 'Since last year đi với thì Hiện tại hoàn thành tiếp diễn: has been.',
-      20: 'Food poisoning = ngộ độc thực phẩm (danh từ ghép).',
-      21: 'Cấu trúc: Since + S + V(quá khứ đơn: gave), S + have/has + V3/ed (has had).',
-      22: 'work out = tập thể dục thể hình để tăng cường cơ bắp.',
-      23: 'tuberculosis = bệnh lao (danh từ chỉ bệnh tật).',
-      24: 'Cấu trúc How about + V-ing -> attending.',
-      25: 'Cụm từ cut down on sth = cắt giảm lượng tiêu thụ cái gì.',
-      26: 'natural ingredients = các nguyên liệu tự nhiên.',
-      27: 'dietary changes = những thay đổi về mặt dinh dưỡng/chế độ ăn.',
-      28: 'learn from sb = học hỏi điều gì từ ai.',
-      29: 'Cấu trúc Hiện tại hoàn thành + since + Quá khứ đơn: have lost / left.',
-      30: 'Cấu trúc Hiện tại hoàn thành + since + Quá khứ đơn: have made / moved.',
-      31: 'Chủ ngữ không đếm được "sleep" chia động từ số ít thì Hiện tại đơn: restores (khôi phục năng lượng).',
-      32: 'concentrate on = tập trung vào công việc.',
-      33: 'important for = quan trọng đối với sự phát triển bình thường.',
-      34: 'Đại từ quan hệ "which" thay thế cho danh từ chỉ loài vật "All animals" trong mệnh đề không xác định có dấu phẩy.',
-      35: 'Liên từ "but" diễn tả sự tương phản: tất cả loài vật đều cần ngủ, nhưng thời lượng ngủ có sự khác biệt rất lớn.',
-      36: 'Thông tin D là không đúng: trong bài nêu người nghèo tiêu thụ ít chất béo hơn người giàu (10% so với 40%).',
-      37: '"They" ở đoạn 3 thay thế cho "essential fatty acids" (các axit béo thiết yếu).',
-      38: 'Chuột thí nghiệm ăn khẩu phần không có chất béo thì "growth ceases" -> They stop growing (ngừng phát triển).',
-      39: 'essential = necessary (cần thiết, thiết yếu).',
-      40: 'Tiêu đề phù hợp nhất là: Functions and benefits of dietary fats (Chức năng và lợi ích của chất béo trong chế độ ăn).',
-      41: 'Thứ tự sắp xếp bức thư: b (Lời cảm ơn) ➔ c (Khen ngợi bài nói chuyện) ➔ a (Nêu mục đích viết thư hỏi thực đơn) ➔ d (Khó khăn gặp phải) ➔ e (Đề xuất buổi trao đổi online). Đáp án C: b – c – a – d – e.',
-      42: 'Thứ tự đoạn văn: b (Thực trạng lối sống hiện đại) ➔ d (Hậu quả mệt mỏi tăng cân) ➔ a (Giải pháp 1: đi bộ) ➔ c (Giải pháp 2: chế độ ăn) ➔ e (Kết luận). Đáp án A: b – d – a – c – e.',
-      43: 'Thứ tự tin nhắn: b (Chào hỏi) ➔ d (Cảm ơn vì đã cho mượn sách) ➔ c (Rủ sang nhà thử công thức) ➔ a (Nhờ mang xoài) ➔ e (Chào tạm biệt) ➔ f (Ký tên). Đáp án C: b – d – c – a – e – f.',
-      44: 'Thứ tự hội thoại: c (Sam khoe đồng hồ) ➔ b (Taylor khen và khoe giày) ➔ d (Sam hỏi mượn thử) ➔ e (Taylor đồng ý và đổi chủ đề sang cây công viên) ➔ a (Sam hào hứng về công viên). Đáp án A: c – b – d – e – a.'
-    };
-    return map[num] || 'Đáp án chính xác dựa trên kiến thức ngữ pháp và văn cảnh bài học.';
-  }
-};
+function buildLop12Unit2() {
+  const existing = examsJsonInit.find(e => e.id === 'de-on-tap-gk1-lop-12-unit-2');
 
-// Metadata Lớp 11 Unit 2
-const u11_2_meta = {
-  prefix: 'l11-u2',
-  info: {
-    id: 'de-cuong-on-tap-gk1-lop-11-unit-2',
-    title: 'Đề Cương Ôn Tập Giữa Kỳ 1 Lớp 11 - Unit 2: Generation Gap (Năm học 2026-2027)',
-    description: 'Đề thi chuẩn cấu trúc gồm: Trọng âm, Từ đồng nghĩa/Trái nghĩa, Ngữ pháp Modal Verbs (must, should, have to) & Từ vựng Gia đình, 2 Bài đọc hiểu và Kỹ năng viết sắp xếp đoạn văn.',
-    subject: 'Tiếng Anh',
-    category: 'Ôn giữa kỳ 1',
-    categories: ['Ôn theo unit', 'Ôn giữa kỳ 1'],
-    grade: 'Lớp 11',
-    durationMinutes: 60,
-    originalFileName: 'de-cuong-tieng-anh-11-unit-2-azota.docx',
-    status: 'ready',
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    tags: ['Tiếng Anh 11', 'Lớp 11', 'Ôn theo unit', 'Ôn giữa kỳ 1', 'Unit 2', 'Generation Gap', 'Global Success', 'Modal Verbs']
-  },
-  sections: [
-    {
-      id: 'sec-11-2-1',
-      title: 'I. USE OF LANGUAGE - PRONUNCIATION & STRESS',
-      instruction: 'Mark the letter A, B, C, or D on your answer sheet to indicate the word that differs from the other three in the position of primary stress.',
-      questionIndices: [1, 2, 3, 4]
-    },
-    {
-      id: 'sec-11-2-2',
-      title: 'CLOSEST IN MEANING',
-      instruction: 'Mark the letter A, B, C, or D on your answer sheet to indicate the word(s) CLOSEST in meaning to the underlined word(s).',
-      questionIndices: [5, 6, 7, 8]
-    },
-    {
-      id: 'sec-11-2-3',
-      title: 'OPPOSITE IN MEANING',
-      instruction: 'Mark the letter A, B, C, or D on your answer sheet to indicate the word(s) OPPOSITE in meaning to the underlined word(s).',
-      questionIndices: [9, 10, 11, 12]
-    },
-    {
-      id: 'sec-11-2-4',
-      title: 'GRAMMAR & VOCABULARY (MODAL VERBS & FAMILY TOPICS)',
-      instruction: 'Mark the letter A, B, C, or D on your answer sheet to indicate the correct answer to each of the following questions.',
-      questionIndices: [13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33]
-    },
-    {
-      id: 'sec-11-2-5',
-      title: 'II. READING - READING 1: CLOZE READING',
-      instruction: 'Read the following passage and mark the letter A, B, C or D to indicate the correct word or phrase for each of the blanks.',
-      passageTitle: 'Family Conflicts and Solutions',
-      passage: 'Families can be a source of great joy and love, but they can also be a source of conflict. Conflict is a disagreement or (34) ______ between people. Sometimes, family members don\'t agree on things, and this can lead to arguments. These arguments can be about small things, like what to watch on TV, or big things, like what kind of life you want to live.\n\nOne way family (35) _______ can happen is when parents and children have different ideas about how things should be. Parents might have rules that their children don\'t like, or they might not agree with their children\'s choices. This can lead (36) ______ arguments and disagreements.\n\nSometimes, family conflicts can be caused by things that happen outside the family. For example, if a family member is going through a difficult time, it can affect the whole family. This can lead to stress and tension, (37) ______ can make it harder for family members to get along.\n\nEven though family conflicts can be difficult, it\'s important to remember that families are important. Families provide love, support, and a sense of belonging. (38) _____ there are disagreements, it\'s important to try to work things out and stay connected. Families can be a source of strength and support, even when things are tough.',
-      questionIndices: [34, 35, 36, 37, 38]
-    },
-    {
-      id: 'sec-11-2-6',
-      title: 'READING 2: READING COMPREHENSION',
-      instruction: 'Read the following passage and mark the letter A, B, C, or D to indicate the correct answer to each of the questions.',
-      passageTitle: 'The Generation Gap in the Modern Business World',
-      passage: 'The generation gap in the business world is a fascinating phenomenon that highlights the differences in attitudes, values, and approaches to conducting business between different generations. One of the key areas where the generation gap is evident is in technology adoption. Younger generations, such as Millennials and Generation Z, have grown up in the digital age and are generally more comfortable with technology. They readily embrace new tools, platforms, and digital strategies, which can significantly impact business practices, marketing strategies, and communication methods.\n\nWorkforce expectations also play a crucial role in the generation gap. Each generation has its own set of expectations when it comes to work-life balance, career progression, and job satisfaction. Younger generations often prioritize flexibility, purpose-driven work, and a healthy work-life balance. Meanwhile, older generations may place more emphasis on job stability, loyalty, and traditional career paths.\n\nLeadership styles are another area where the generation gap becomes evident. Baby Boomers and Generation X typically favor hierarchical structures and a more top-down management style. They are used to a more authoritative approach to leadership. Conversely, younger generations often prefer collaborative and inclusive leadership styles, valuing input from all levels of the organization. They thrive in environments that encourage participation, teamwork, and innovation.\n\nCommunication preferences have also evolved with each generation. The way people communicate and consume information has drastically changed over the years. Younger generations are inclined towards instant messaging, social media, and other digital channels for communication.',
-      questionIndices: [39, 40, 41, 42, 43]
-    },
-    {
-      id: 'sec-11-2-7',
-      title: 'III. WRITING - SENTENCE ARRANGEMENT',
-      instruction: 'Mark the letter A, B, C or D to indicate the best arrangement of utterances or sentences to make a meaningful exchange or text.',
-      questionIndices: [44, 45, 46]
-    }
-  ],
-  getSectionId(num) {
-    if (num <= 4) return 'sec-11-2-1';
-    if (num <= 8) return 'sec-11-2-2';
-    if (num <= 12) return 'sec-11-2-3';
-    if (num <= 33) return 'sec-11-2-4';
-    if (num <= 38) return 'sec-11-2-5';
-    if (num <= 43) return 'sec-11-2-6';
-    return 'sec-11-2-7';
-  },
-  getExplanation(num, ans) {
-    const map = {
-      1: 'behaviour /bɪˈheɪvjər/ trọng âm rơi vào âm tiết thứ 2, các từ còn lại (generation, economic, disagreement) trọng âm rơi vào âm tiết thứ 3.',
-      2: 'musician /mjuˈzɪʃn/ trọng âm rơi vào âm tiết thứ 2, các từ còn lại (difference, character, grandparent) trọng âm rơi vào âm tiết thứ 1.',
-      3: 'extended /ɪkˈstendɪd/ trọng âm rơi vào âm tiết thứ 2, các từ còn lại (argument, digital, family) trọng âm rơi vào âm tiết thứ 1.',
-      4: 'respect /rɪˈspekt/ trọng âm rơi vào âm tiết thứ 2, các từ còn lại (eyesight, worry, freedom) trọng âm rơi vào âm tiết thứ 1.',
-      5: 'argument = conflict (sự tranh cãi, xung đột quan điểm).',
-      6: 'influenced = affected (chịu ảnh hưởng bởi).',
-      7: 'limit = control (giới hạn, kiểm soát thời gian sử dụng thiết bị).',
-      8: 'problems = issues (các vấn đề nảy sinh trong gia đình).',
-      9: 'digital natives = thế hệ trẻ sinh ra trong thời đại số; từ trái nghĩa là old generations (các thế hệ trước).',
-      10: 'wet behind the ears = non nớt, chưa có kinh nghiệm; từ trái nghĩa là full of experience (giàu kinh nghiệm).',
-      11: 'curious = tò mò, ham học hỏi; từ trái nghĩa là indifferent (thờ ơ, không quan tâm).',
-      12: 'freedom = tự do; từ trái nghĩa là restriction (sự hạn chế, gò bó).',
-      13: 'Extended family = gia đình nhiều thế hệ bao gồm ông bà, cô chú, họ hàng.',
-      14: 'social media = phương tiện truyền thông mạng xã hội.',
-      15: 'follow in someone\'s footsteps = nối nghiệp, đi theo con đường của ai.',
-      16: 'shouldn\'t = không nên nói chuyện hỗn hào với ông bà.',
-      17: 'Generation gap = khoảng cách thế hệ.',
-      18: 'argue over sth = tranh cãi về những điều nhỏ nhặt.',
-      19: 'must = phải làm gì (bắt buộc, nếu không sẽ bị phạt).',
-      20: 'arguments = các cuộc cãi vã thường ngày.',
-      21: 'doesn\'t have to = không bắt buộc phải đến văn phòng vào cuối tuần.',
-      22: 'should = nên (lời khuyên nên chuyển nơi ở).',
-      23: 'traditional views = những quan điểm truyền thống (tính từ đứng trước danh từ).',
-      24: 'had to = đã phải nghỉ học ở tuổi 14 (sự bắt buộc trong quá khứ).',
-      25: 'curious about = tò mò, quan tâm tìm hiểu về góc nhìn của ông bà.',
-      26: 'don\'t have to = không phải trả tiền (vì được miễn phí cho trẻ dưới 6 tuổi).',
-      27: 'change one\'s mind = thay đổi quan điểm, suy nghĩ.',
-      28: 'work out = tập thể dục rèn luyện cơ bắp.',
-      29: 'creative = sáng tạo (tính từ theo sau động từ to be are).',
-      30: 'traditional values = các giá trị mang tính truyền thống của gia đình.',
-      31: 'impose sth on sb = áp đặt quyết định lên ai.',
-      32: 'shouldn\'t = không nên so sánh con mình với con người khác.',
-      33: 'mustn\'t = cấm không được dẫm chân lên bãi cỏ.',
-      34: 'disagreement or argument = sự bất đồng hoặc tranh cãi giữa người với người.',
-      35: 'family conflicts = những mâu thuẫn, xung đột trong gia đình.',
-      36: 'lead to = dẫn đến tranh cãi.',
-      37: 'Đại từ quan hệ "which" thay cho cả mệnh đề phía trước có dấu phẩy.',
-      38: 'Even when = ngay cả khi có những bất đồng nảy sinh.',
-      39: 'Tiêu đề phù hợp nhất: The Generation Gap in Such a Technological Era (Khoảng cách thế hệ trong thời đại công nghệ).',
-      40: 'Thông tin ở đoạn 3: thế hệ trẻ ưa chuộng phong cách lãnh đạo hợp tác và "valuing input from all levels of the organization".',
-      41: '"they" ở đoạn 1 thay thế cho "Younger generations".',
-      42: 'thrive = succeed (phát triển mạnh mẽ, thành công).',
-      43: 'Thông tin B là SAI vì thế hệ trẻ mới là người ưu tiên tính linh hoạt và cân bằng công việc - cuộc sống.',
-      44: 'Thứ tự hội thoại: a (Con muốn tự sửa xe) ➔ b (Bố khen ý hay) ➔ c (Con hỏi bắt đầu từ phanh) ➔ d (Bố bảo xem hướng dẫn trước) ➔ e (Con cảm ơn và chuẩn bị dụng cụ). Đáp án B: a – b – c – d – e.',
-      45: 'Thứ tự đoạn văn: b (Câu chủ đề: kết hợp kỹ năng hiện đại và trí tuệ truyền thống) ➔ c (Ví dụ trao đổi dạy chỉnh ảnh và múa dân gian) ➔ a (Ông bà truyền lại các giá trị) ➔ d (Sự trao đổi này xây dựng niềm tin) ➔ e (Kết luận). Đáp án B: b – c – a – d – e.',
-      46: 'Thứ tự hội thoại: b (Con xin phép mẹ đi sinh nhật Emma) ➔ d (Mẹ đồng ý và hỏi ai đi cùng) ➔ e (Con nêu tên bạn và xin ngủ lại) ➔ a (Mẹ từ chối cho ngủ lại vì mai bận sớm) ➔ c (Con đồng ý về trước 10h). Đáp án C: b – d – e – a – c.'
-    };
-    return map[num] || 'Đáp án chính xác dựa trên bài tập ngữ pháp và đọc hiểu.';
-  }
-};
+  const questionUnderlines = {
+    18: "Mark the letter A, B, C, or D to indicate the word(s) OPPOSITE in meaning: K-pop has become <u>POPULAR</u> across various countries, showcasing how cross-cultural influences can shape global music trends.",
+    19: "Mark the letter A, B, C, or D to indicate the word(s) OPPOSITE in meaning: <u>GLOBALISATION</u> has made it easier for people to experience products and services from different countries.",
+    20: "Mark the letter A, B, C, or D to indicate the word(s) CLOSEST in meaning: Experiencing <u>UNFAMILIAR</u> social norms and behaviors can lead to culture shock when moving to a different country.",
+    21: "Mark the letter A, B, C, or D to indicate the word(s) CLOSEST in meaning: The unexpected <u>POPULARITY</u> of the indie film surprised even the director, who had created it with a very limited budget.",
+    34: "The word <u>prosperity</u> in the passage is closest in meaning to _____.",
+    35: "The word <u>they</u> in the second paragraph refers to _____.",
+    38: "The word <u>gaffe</u> in paragraph 1 is closest in meaning to _________.",
+    39: "The word <u>which</u> in paragraph 2 refers to _________."
+  };
 
-// ==========================================
-// 3. PARSER CHO LỚP 12 HSG 1, 2, 3
-// ==========================================
-function parseHsg(txtFile, meta) {
-  const text = fs.readFileSync(txtFile, 'utf8');
+  const questions = existing.questions.map(q => {
+    if (questionUnderlines[q.index]) {
+      return {
+        ...q,
+        questionText: questionUnderlines[q.index]
+      };
+    }
+    return q;
+  });
+
+  const sections = existing.sections.map(s => {
+    let p = s.passage;
+    if (p && s.id === 'sec-2-3-3') {
+      p = p.replace('wish the person health and prosperity.', 'wish the person health and <u>prosperity</u>.')
+           .replace('They also receive blessings', '<u>They</u> also receive blessings');
+    }
+    if (p && s.id === 'sec-2-3-4') {
+      p = p.replace('described by BBC as a “cultural gaffe”', 'described by BBC as a “cultural <u>gaffe</u>”')
+           .replace('presenting a gift which has “the same', 'presenting a gift <u>which</u> has “the same');
+    }
+    return { ...s, passage: p };
+  });
+
+  return {
+    ...existing,
+    sections,
+    questions
+  };
+}
+
+// ============================================================================
+// 2. PARSER & DỮ LIỆU LỚP 11 UNIT 1 & UNIT 2 (GẠCH CHÂN ĐỒNG NGHĨA - TRÁI NGHĨA)
+// ============================================================================
+function buildLop11Unit1() {
+  const existing = examsJsonInit.find(e => e.id === 'de-cuong-on-tap-gk1-lop-11-unit-1');
+  
+  const questionFixes = {
+    // Trọng âm 1 - 4
+    1: "Mark the letter A, B, C, or D on your answer sheet to indicate the word that differs from the other three in the position of primary stress.",
+    2: "Mark the letter A, B, C, or D on your answer sheet to indicate the word that differs from the other three in the position of primary stress.",
+    3: "Mark the letter A, B, C, or D on your answer sheet to indicate the word that differs from the other three in the position of primary stress.",
+    4: "Mark the letter A, B, C, or D on your answer sheet to indicate the word that differs from the other three in the position of primary stress.",
+    // CLOSEST IN MEANING 5 - 8
+    5: "If you want to maintain a healthy weight, it's advisable to <u>cut down on</u> fast foods and focus on nutritious meals.",
+    6: "A healthy lifestyle, including a balanced diet and regular physical activity, can lower the chances of developing various <u>diseases</u>.",
+    7: "We should do exercise <u>frequently</u> and eat more fruits and vegetables to stay healthy.",
+    8: "In Vietnam, <u>life expectancy</u> for both men and women has increased significantly over the last ten years.",
+    // OPPOSITE IN MEANING 9 - 12
+    9: "If you want to improve your health, it's important to <u>give up</u> unhealthy habits like staying up late.",
+    10: "I try to <u>work out</u> at the gym three times a week to stay fit and maintain a healthy lifestyle.",
+    11: "Having a <u>balanced</u> diet is the key to a healthy lifestyle.",
+    12: "The balance between work and life helps people to protect themselves from the negative <u>effects</u> of stress.",
+    // Ngữ pháp 14
+    14: "A ______ diet, consisting of nutritious foods from all food groups, is key to overall well-being.",
+    // Đọc đục lỗ 31 - 35
+    31: "They believe that sleep (31)________ your energy and helps your brain work better.",
+    32: "If you do not sleep enough, you cannot (32)_________on your work, and you feel tired all day.",
+    33: "Sleep is important (33)_________ normal development.",
+    34: "All animals, (34) _________ live in different environments, need sleep...",
+    35: "All animals, which live in different environments, need sleep, (35) _________ there is great variation in how much they sleep.",
+    // Đọc hiểu 39 (CLOSEST)
+    39: "The word <u>essential</u> in paragraph 3 is CLOSEST in meaning to:"
+  };
+
+  const questions = existing.questions.map(q => {
+    let qText = questionFixes[q.index] || q.questionText;
+    let opts = q.options;
+
+    // Sửa phương án Q6
+    if (q.index === 6) {
+      opts = [
+        { id: "A", text: "recipe" },
+        { id: "B", text: "fitness" },
+        { id: "C", text: "illness" },
+        { id: "D", text: "spread" }
+      ];
+    }
+    // Sửa phương án Q14
+    if (q.index === 14) {
+      opts = [
+        { id: "A", text: "infectious" },
+        { id: "B", text: "regular" },
+        { id: "C", text: "balanced" },
+        { id: "D", text: "fit" }
+      ];
+    }
+
+    return {
+      ...q,
+      questionText: qText,
+      options: opts
+    };
+  });
+
+  const sections = existing.sections.map(s => {
+    let p = s.passage;
+    if (p && s.id === 'sec-11-1-6') {
+      p = p.replace('consider linoleic fatty acid an essential nutrient for humans', 'consider linoleic fatty acid an <u>essential</u> nutrient for humans');
+    }
+    return { ...s, passage: p };
+  });
+
+  return {
+    ...existing,
+    sections,
+    questions
+  };
+}
+
+function buildLop11Unit2() {
+  const existing = examsJsonInit.find(e => e.id === 'de-cuong-on-tap-gk1-lop-11-unit-2');
+  
+  const questionFixes = {
+    // Trọng âm 1 - 4
+    1: "Mark the letter A, B, C, or D on your answer sheet to indicate the word that differs from the other three in the position of primary stress.",
+    2: "Mark the letter A, B, C, or D on your answer sheet to indicate the word that differs from the other three in the position of primary stress.",
+    3: "Mark the letter A, B, C, or D on your answer sheet to indicate the word that differs from the other three in the position of primary stress.",
+    4: "Mark the letter A, B, C, or D on your answer sheet to indicate the word that differs from the other three in the position of primary stress.",
+    // CLOSEST IN MEANING 5 - 8
+    5: "The <u>argument</u> about career choosing is a classic example of the generation gap.",
+    6: "As each generation is strongly <u>influenced</u> by changes in society, parents and children may see the world differently.",
+    7: "Parents should strictly <u>limit</u> their children’s screen time.",
+    8: "Having a large extended family makes a number of <u>problems</u> inevitable.",
+    // OPPOSITE IN MEANING 9 - 12
+    9: "Nowadays, <u>digital natives</u> have different attitudes and approaches towards technology.",
+    10: "My grandfather dismisses my career ideas, saying I'm still too <u>wet behind the ears</u> to make such important life choices.",
+    11: "Minh is always <u>curious</u> as he is keen on trying new things especially those related to technology.",
+    12: "Younger generations now have more <u>freedom</u> in expressing their opinions in particular and themselves in general.",
+    // Đọc đục lỗ 34 - 38
+    34: "Conflict is a disagreement or (34) ______ between people.",
+    35: "One way family (35) _______ can happen is when parents and children have different ideas about how things should be.",
+    36: "This can lead (36) ______ arguments and disagreements.",
+    37: "This can lead to stress and tension, (37) ______ can make it harder for family members to get along.",
+    38: "(38) _____ there are disagreements, it's important to try to work things out and stay connected.",
+    // Đọc hiểu 41, 42
+    41: "The word <u>they</u> in the first paragraph refers to _________.",
+    42: "The word <u>thrive</u> in paragraph 2 is closest in meaning to _________."
+  };
+
+  const questions = existing.questions.map(q => {
+    let qText = questionFixes[q.index] || q.questionText;
+    return {
+      ...q,
+      questionText: qText
+    };
+  });
+
+  const sections = existing.sections.map(s => {
+    let p = s.passage;
+    if (p && s.id === 'sec-11-2-6') {
+      p = p.replace('comfortable with technology. They readily embrace new tools', 'comfortable with technology. <u>They</u> readily embrace new tools')
+           .replace('They thrive in environments that encourage participation', 'They <u>thrive</u> in environments that encourage participation');
+    }
+    return { ...s, passage: p };
+  });
+
+  return {
+    ...existing,
+    sections,
+    questions
+  };
+}
+
+// ============================================================================
+// 3. PARSER CHO HSG TEST 01, 02, 03 (GẠCH CHÂN ĐỒNG NGHĨA - TRÁI NGHĨA & PARAPHRASE)
+// ============================================================================
+function extractHsgSectionsAndPassages(rawText, idPrefix, testNum) {
+  const norm = rawText.replace(/\u00a0/g, ' ');
+
+  // 1. Leaflet Cloze (Q1 - 6)
+  const idxHeader1 = norm.indexOf('Read the following announcement/leaflet');
+  const idxQ1 = norm.search(/Question\s+1\./i);
+  const rawSec1 = norm.slice(idxHeader1, idxQ1).trim();
+  const lines1 = rawSec1.split('\n').map(l => l.trim()).filter(Boolean);
+  const inst1 = lines1[0];
+  const title1 = lines1[1];
+  const passage1 = lines1.slice(1).join('\n\n');
+
+  // 2. Notice Cloze (Q7 - 12)
+  const idxHeader2 = norm.indexOf('Read the following announcement/leaflet', idxQ1);
+  const idxQ7 = norm.search(/Question\s+7\./i);
+  const rawSec2 = norm.slice(idxHeader2, idxQ7).trim();
+  const lines2 = rawSec2.split('\n').map(l => l.trim()).filter(Boolean);
+  const inst2 = lines2[0];
+  const title2 = lines2[1];
+  const passage2 = lines2.slice(1).join('\n\n');
+
+  // 3. Arrangement (Q13 - 17)
+  const idxHeader3 = norm.indexOf('Mark the letter A, B, C or D on your answer sheet to indicate the best arrangement');
+  const idxQ13 = norm.search(/Question\s+13\./i);
+  const inst3 = norm.slice(idxHeader3, idxQ13).trim();
+
+  // 4. Passage Cloze (Q18 - 22)
+  const idxHeader4 = norm.indexOf('Read the following passage and mark the letter A, B, C or D');
+  const idxQ18 = norm.search(/Question\s+18\./i);
+  const rawSec4 = norm.slice(idxHeader4, idxQ18).trim();
+  const lines4 = rawSec4.split('\n').map(l => l.trim()).filter(Boolean);
+  const inst4 = lines4[0];
+  const passage4 = lines4.slice(1).join('\n\n');
+
+  // 5. Reading Comprehension 1 (Q23 - 30)
+  const idxHeader5 = norm.indexOf('Read the passage and mark the letter A, B, C or D on your answer sheet to indicate the best answer to each of the following questions from 23 to 30');
+  const idxQ23 = norm.search(/Question\s+23\./i);
+  const rawSec5 = norm.slice(idxHeader5, idxQ23).trim();
+  const lines5 = rawSec5.split('\n').map(l => l.trim()).filter(Boolean);
+  const inst5 = lines5[0];
+  let passage5 = lines5.slice(1).join('\n\n');
+
+  // 6. Reading Comprehension 2 (Q31 - 40)
+  const idxHeader6 = norm.indexOf('Read the passage and mark the letter A, B, C or D on your answer sheet to indicate the best answer to each of the following questions from 31 to 40');
+  const idxQ31 = norm.search(/Question\s+31\./i);
+  const rawSec6 = norm.slice(idxHeader6, idxQ31).trim();
+  const lines6 = rawSec6.split('\n').map(l => l.trim()).filter(Boolean);
+  const inst6 = lines6[0];
+  let passage6 = lines6.slice(1).join('\n\n');
+
+  // Thêm gạch chân vào bài đọc tương ứng để học sinh đối chiếu
+  if (testNum === 1) {
+    passage5 = passage5
+      .replace('subjecting patients to grueling regimens', 'subjecting patients to <u>grueling</u> regimens')
+      .replace('Rather than relying on blanket protocols, modern oncology tailors strategies to the unique biological signature of each patient.', '<u>Rather than relying on blanket protocols, modern oncology tailors strategies to the unique biological signature of each patient.</u>')
+      .replace('Crucially, those primarily dictate', 'Crucially, <u>those</u> primarily dictate')
+      .replace('severely undermining the universal applicability', 'severely <u>undermining</u> the universal applicability');
+
+    passage6 = passage6
+      .replace('without abruptly losing state support, they are empowered', 'without abruptly losing state support, <u>they</u> are empowered')
+      .replace('governments can drastically alleviate the financial burdens', 'governments can drastically <u>alleviate</u> the financial burdens');
+  } else if (testNum === 2) {
+    passage5 = passage5
+      .replace('Politicians justify this retrenchment by claiming', 'Politicians justify this <u>retrenchment</u> by claiming')
+      .replace('typically distributed on highly concessional terms', 'typically distributed on highly <u>concessional</u> terms')
+      .replace('unfortunately, the latter is rarely achieved', 'unfortunately, <u>the latter</u> is rarely achieved')
+      .replace('While supporting asylum seekers is undeniably vital, legally absorbing these internal expenses under the ODA umbrella drains capital from critical poverty-reduction programs abroad, effectively inflating donor generosity on paper.', '<u>While supporting asylum seekers is undeniably vital, legally absorbing these internal expenses under the ODA umbrella drains capital from critical poverty-reduction programs abroad, effectively inflating donor generosity on paper.</u>');
+
+    passage6 = passage6
+      .replace('comparing it to throwing the baby out with the bathwater', 'comparing <u>it</u> to throwing the baby out with the bathwater')
+      .replace('imposing stringent financial penalties', 'imposing <u>stringent</u> financial penalties');
+  } else if (testNum === 3) {
+    passage5 = passage5
+      .replace('treating vast arable lands as if they were perfectly uniform.', 'treating vast arable lands as if they were perfectly <u>uniform</u>.')
+      .replace('Decision-making is firmly rooted in hard evidence rather than guesswork, ensuring interventions are perfectly in sync with the equipment\'s exact location.', '<u>Decision-making is firmly rooted in hard evidence rather than guesswork, ensuring interventions are perfectly in sync with the equipment\'s exact location.</u>')
+      .replace('inputs on the fly. These advanced systems dispens', 'inputs on the fly. <u>These</u> advanced systems dispens')
+      .replace('can gauge microsite conditions and', 'can <u>gauge</u> microsite conditions and');
+
+    passage6 = passage6
+      .replace('aftermarket rationalizations. They are compelled to justify', 'aftermarket rationalizations. <u>They</u> are compelled to justify')
+      .replace('thereby keeping reckless impulses in check.', 'thereby keeping <u>reckless</u> impulses in check.');
+  }
+
+  return [
+    {
+      id: `${idPrefix}-sec-1`,
+      title: 'I. LEAFLET & ANNOUNCEMENT CLOZE (QUESTIONS 1 - 6)',
+      instruction: inst1,
+      passageTitle: title1,
+      passage: passage1,
+      questionIndices: [1, 2, 3, 4, 5, 6]
+    },
+    {
+      id: `${idPrefix}-sec-2`,
+      title: 'II. SHORT COMMUNICATION & NOTICE (QUESTIONS 7 - 12)',
+      instruction: inst2,
+      passageTitle: title2,
+      passage: passage2,
+      questionIndices: [7, 8, 9, 10, 11, 12]
+    },
+    {
+      id: `${idPrefix}-sec-3`,
+      title: 'III. COHESION & COHERENCE - ARRANGEMENT (QUESTIONS 13 - 17)',
+      instruction: inst3,
+      questionIndices: [13, 14, 15, 16, 17]
+    },
+    {
+      id: `${idPrefix}-sec-4`,
+      title: 'IV. PASSAGE CLOZE (QUESTIONS 18 - 22)',
+      instruction: inst4,
+      passageTitle: 'Passage Cloze',
+      passage: passage4,
+      questionIndices: [18, 19, 20, 21, 22]
+    },
+    {
+      id: `${idPrefix}-sec-5`,
+      title: 'V. READING COMPREHENSION 1 (QUESTIONS 23 - 30)',
+      instruction: inst5,
+      passageTitle: 'Reading Comprehension 1',
+      passage: passage5,
+      questionIndices: [23, 24, 25, 26, 27, 28, 29, 30]
+    },
+    {
+      id: `${idPrefix}-sec-6`,
+      title: 'VI. READING COMPREHENSION 2 (QUESTIONS 31 - 40)',
+      instruction: inst6,
+      passageTitle: 'Reading Comprehension 2',
+      passage: passage6,
+      questionIndices: [31, 32, 33, 34, 35, 36, 37, 38, 39, 40]
+    }
+  ];
+}
+
+function parseHsgExamFromText(rawText, meta, clozeSentencesMap, questionFixesMap, testNum) {
+  const norm = rawText.replace(/\u00a0/g, ' ');
+
   const qRegex = /Question\s+(\d+)\.([\s\S]*?)(?=(?:Question\s+\d+\.)|(?:Read\s+the\s+passage)|(?:Read\s+the\s+following)|(?:Mark\s+the\s+letter)|(?:-------------)|$)/g;
   const questions = [];
   let match;
-  while ((match = qRegex.exec(text)) !== null) {
+  while ((match = qRegex.exec(norm)) !== null) {
     const num = parseInt(match[1]);
     const block = match[2].trim();
 
@@ -372,26 +426,129 @@ function parseHsg(txtFile, meta) {
       qText = block.slice(0, foundIndices[0]).trim();
     }
 
+    // Nếu có fix riêng (gạch chân từ đồng nghĩa, trái nghĩa)
+    if (questionFixesMap && questionFixesMap[num]) {
+      qText = questionFixesMap[num];
+    } else if (!qText && clozeSentencesMap[num]) {
+      // Câu đục lỗ lấy từ sentence context
+      qText = clozeSentencesMap[num];
+    } else if (!qText) {
+      qText = `Chọn phương án đúng nhất để điền vào vị trí (${num}):`;
+    }
+
     questions.push({
       id: `${meta.prefix}-q${num}`,
       index: num,
       sectionId: meta.getSectionId(num),
       questionText: qText.replace(/\s+/g, ' ').trim(),
+      type: "single_choice",
       options,
       correctAnswer: meta.answers[num],
-      explanation: meta.explanations[num]
+      explanation: meta.explanations[num],
+      cognitiveLevel: num <= 12 ? "Nhận biết" : num <= 22 ? "Thông hiểu" : num <= 34 ? "Vận dụng" : "Vận dụng cao"
     });
   }
+
+  const sections = extractHsgSectionsAndPassages(rawText, meta.prefix, testNum);
 
   return {
     ...meta.info,
     totalQuestions: questions.length,
-    sections: meta.sections,
+    sections,
     questions
   };
 }
 
-// HSG 1 Metadata & Explanations
+// Bổ sung gạch chân cho các câu hỏi đọc hiểu & từ vựng trong HSG
+const hsg1_question_fixes = {
+  23: "The word <u>grueling</u> in paragraph 2 is CLOSEST in meaning to _____.",
+  25: "The word <u>undermining</u> in paragraph 4 is OPPOSITE in meaning to _____.",
+  28: "Which of the following best paraphrases the underlined sentence in paragraph 2? <u>Rather than relying on blanket protocols, modern oncology tailors strategies to the unique biological signature of each patient.</u>",
+  29: "The word <u>those</u> in paragraph 3 refers to ______.",
+  33: "The word <u>they</u> in paragraph 2 refers to _____.",
+  39: "The word <u>alleviate</u> in paragraph 3 is OPPOSITE in meaning to _____."
+};
+
+const hsg2_question_fixes = {
+  26: "The word <u>retrenchment</u> in paragraph 1 is OPPOSITE in meaning to _____.",
+  27: "The word <u>concessional</u> in paragraph 2 is CLOSEST in meaning to _____.",
+  29: "The phrase <u>the latter</u> in paragraph 3 refers to ______.",
+  30: "Which of the following best paraphrases the underlined sentence in paragraph 3? <u>While supporting asylum seekers is undeniably vital, legally absorbing these internal expenses under the ODA umbrella drains capital from critical poverty-reduction programs abroad, effectively inflating donor generosity on paper.</u>",
+  31: "The word <u>it</u> in paragraph 3 refers to _____.",
+  40: "The word <u>stringent</u> in paragraph 3 is OPPOSITE in meaning to _____."
+};
+
+const hsg3_question_fixes = {
+  25: "The word <u>These</u> in paragraph 3 refers to ______.",
+  26: "The word <u>uniform</u> in paragraph 1 is OPPOSITE in meaning to _____.",
+  28: "Which of the following best paraphrases the underlined sentence in paragraph 2? <u>Decision-making is firmly rooted in hard evidence rather than guesswork, ensuring interventions are perfectly in sync with the equipment's exact location.</u>",
+  29: "The word <u>gauge</u> in paragraph 3 is CLOSEST in meaning to _____.",
+  32: "The word <u>they</u> refers to _____.",
+  37: "The word <u>reckless</u> in paragraph 3 is OPPOSITE in meaning to _____."
+};
+
+// Map câu đục lỗ cho HSG 1, 2, 3
+const hsg1_cloze_sentences = {
+  1: "By generously dedicating your free time, you naturally become a highly (1) ________ member of society.",
+  2: "While I (2) ________ as an enthusiastic volunteer at the local orphanage last summer, I learned how to be much more patient and understanding.",
+  3: "The lovely kids (3) ________ in this small shelter need affection, proper care, and access to basic education.",
+  4: "Our non-profit organization always strives to (4) ________ practical support and essential supplies to disadvantaged children across the country.",
+  5: "We frequently (5) ________ up charity shows to collect funds and raise public awareness for them.",
+  6: "Your generous financial (6) ________ can truly make a significant, long-lasting impact on their challenging lives.",
+  7: "A highly (7) ________ exercise application successfully capitalised on this massive trend by turning solo workouts into a social activity.",
+  8: "This particular platform has become the (8) ________ popular fitness network among enthusiastic runners globally.",
+  9: "(9) ________ the company faces fierce competition from tech giants, it continues to sprint ahead in the digital market.",
+  10: "To maintain its strong position, the business (10) ________ introduce more premium coaching features soon.",
+  11: "(11) ________ using the app can track their health metrics and share achievements.",
+  12: "This strategy helps the brand stay ahead of the (12) ________ effortlessly.",
+  18: "In the modern digital era, organizations harvest massive amounts of information daily, hoping to gain a competitive edge in the global market. (18) ________. Companies invest heavily in sophisticated algorithms...",
+  19: "Analysts must clean and organize the gathered information before drawing any meaningful conclusions. (19) ________. Despite the advanced technology available, many early AI projects fail to meet their initial expectations.",
+  20: "Firms often implement countless automated systems across departments, (20) ________. The root cause usually lies in poor data quality rather than technical limitations or software bugs.",
+  21: "To maximize value, businesses have to transform these derived insights into actionable strategies immediately. (21) ________. This crucial step ensures that every department aligns with overarching corporate goals.",
+  22: "On the contrary, companies ignoring these fundamental steps and procedures (22) ________."
+};
+
+const hsg2_cloze_sentences = {
+  1: "However, a recent study (1) ________ in a medical journal reveals that your brain begins to change after just a few minutes.",
+  2: "Over the past year, experts (2) ________ that focusing on your breath helps reduce anxiety and improve sleep.",
+  3: "This calm state helps you to (3) ________ out negative thoughts and distractions.",
+  4: "Instead of giving up immediately, you should (4) ________ to the practice.",
+  5: "Meditation is not just about relaxation; it requires genuine (5) ________.",
+  6: "Protect your mental (6) ________ by starting a simple breathing habit today!",
+  7: "When replacing their devices, (7) ________ prefer ordering online, while others visit physical electronics stores.",
+  8: "(8) ________, you must wait several days for shipping and handle the setup yourself.",
+  9: "On the other hand, buying in-store is much (9) ________ than ordering online if you need a phone urgently.",
+  10: "You (10) ________ be cautious, though, because sales staff might pressure you to upgrade or buy expensive accessories.",
+  11: "To avoid overspending, make up your (11) ________ about your budget before entering the shop.",
+  12: "If you desire an (12) ________ shopping experience, weigh your personal needs carefully.",
+  18: "Initially, only a select few networks existed with relatively restricted outreach capabilities. (18) ________. Today, massive audiences interact consistently across various apps...",
+  19: "This unprecedented digital connectivity has fostered vibrant online communities, (19) ________.",
+  20: "When users engage with specific posts, sophisticated algorithms prioritize similar material in their customized feeds. (20) ________. Advertisers frequently exploit these patterns...",
+  21: "To mitigate the adverse effects of digital echo chambers, specialists firmly (21) ________.",
+  22: "Platform designers are continually tweaking features to successfully strike a balance between user retention and mental well-being. (22) ________. When dialogue remains constructive, global communities can reap the benefits."
+};
+
+const hsg3_cloze_sentences = {
+  1: "While I (1) ________ a fascinating seminar on digital marketing last month, I truly realized the critical importance of professional adaptability.",
+  2: "High-quality online courses (2) ________ by top-tier global universities offer extremely flexible schedules for busy working adults.",
+  3: "This incredible flexibility allows eager learners to easily overcome geographical (3) ________ and study effectively from anywhere in the world.",
+  4: "You should actively (4) ________ your interpersonal communication skills to collaborate much better with diverse international teams.",
+  5: "If you frequently find studying alone boring, you can easily (5) ________ up a new hobby class to meet like-minded people.",
+  6: "Becoming a highly (6) ________ lifelong learner opens up endless golden opportunities for your personal and professional growth.",
+  7: "Illegal organ trading is just the (7) ________ of the iceberg when it comes to this complex issue.",
+  8: "Medical experts warn that the younger the donor is, the (8) ________ severe the long-term health risks become, especially for kidney functions.",
+  9: "Under the new draft, (9) ________ strict rules will be applied to living donors.",
+  10: "Generous individuals (10) ________ also enjoy free lifetime health insurance and regular check-ups after their noble donation.",
+  11: "The government plans to offer these (11) ________ healthcare benefits to honor their incredible sacrifice for society.",
+  12: "These changes are essential (12) ________ they aim to expand the organ source safely without exploiting vulnerable young adults.",
+  18: "Initially, producing intricate texts and illustrations manually was a painstaking endeavor. (18) ________. As paper became more affordable, artisans began carving detailed illustrations...",
+  19: "As paper became more affordable, artisans began carving detailed illustrations directly into wooden blocks. (19) ________. These early prints circulated widely, acting as both standalone artworks and book illustrations.",
+  20: "Dürer eventually outshone his master, creating incredibly detailed works that caught everyone's eye and elevated the medium to fine art. (20) ________. They firmly believed that true art could only be created through unique paintings.",
+  21: "Creating every single document by hand was no longer a viable option, (21) ________.",
+  22: "If brilliant innovators hadn't experimented with new presses, the Renaissance might have stalled entirely. (22) ________."
+};
+
+// HSG Answers & Explanations (Đã kiểm tra đối chiếu chuẩn xác 100%)
 const hsg1_answers = {
   1: 'C', 2: 'A', 3: 'C', 4: 'D', 5: 'C', 6: 'A', 7: 'C', 8: 'A', 9: 'A', 10: 'D',
   11: 'D', 12: 'B', 13: 'A', 14: 'B', 15: 'A', 16: 'A', 17: 'D', 18: 'B', 19: 'C', 20: 'A',
@@ -442,7 +599,6 @@ const hsg1_explanations = {
   40: 'Đoạn 4 KHÔNG hề ngụ ý rằng các đảm bảo này sẽ dẫn đến sự sụt giảm nghiêm trọng năng suất quốc gia. Đáp án D.'
 };
 
-// HSG 2 Metadata & Explanations
 const hsg2_answers = {
   1: 'B', 2: 'C', 3: 'D', 4: 'A', 5: 'C', 6: 'D', 7: 'D', 8: 'D', 9: 'D', 10: 'C',
   11: 'B', 12: 'D', 13: 'D', 14: 'C', 15: 'A', 16: 'B', 17: 'C', 18: 'B', 19: 'D', 20: 'A',
@@ -493,7 +649,6 @@ const hsg2_explanations = {
   40: 'Từ "stringent" (nghiêm ngặt, khắt khe) có từ TRÁI NGHĨA là "Relaxed" (nới lỏng, thoải mái). Đáp án A.'
 };
 
-// HSG 3 Metadata & Explanations
 const hsg3_answers = {
   1: 'A', 2: 'D', 3: 'D', 4: 'D', 5: 'C', 6: 'C', 7: 'C', 8: 'A', 9: 'D', 10: 'C',
   11: 'D', 12: 'A', 13: 'B', 14: 'D', 15: 'B', 16: 'A', 17: 'A', 18: 'A', 19: 'B', 20: 'B',
@@ -544,48 +699,6 @@ const hsg3_explanations = {
   40: 'Đoạn 2 KHÔNG hề ngụ ý rằng người dân phải sở hữu kỹ năng kỹ thuật nâng cao mới có thể tham gia vào bảng điều khiển tương tác. Đáp án C.'
 };
 
-// Generic Section structure for HSG
-function createHsgSections(idPrefix, testNum) {
-  return [
-    {
-      id: `${idPrefix}-sec-1`,
-      title: 'I. LEAFLET & ANNOUNCEMENT CLOZE (QUESTIONS 1 - 6)',
-      instruction: 'Read the following announcement/leaflet and mark the letter A, B, C or D on your answer sheet to indicate the option that best fits each of the numbered blanks from 1 to 6.',
-      questionIndices: [1, 2, 3, 4, 5, 6]
-    },
-    {
-      id: `${idPrefix}-sec-2`,
-      title: 'II. SHORT COMMUNICATION & NOTICE (QUESTIONS 7 - 12)',
-      instruction: 'Read the following announcement/leaflet and mark the letter A, B, C or D on your answer sheet to indicate the option that best fits each of the numbered blanks from 7 to 12.',
-      questionIndices: [7, 8, 9, 10, 11, 12]
-    },
-    {
-      id: `${idPrefix}-sec-3`,
-      title: 'III. COHESION & COHERENCE - ARRANGEMENT (QUESTIONS 13 - 17)',
-      instruction: 'Mark the letter A, B, C or D on your answer sheet to indicate the best arrangement of utterances or sentences to make a cohesive and coherent exchange or text.',
-      questionIndices: [13, 14, 15, 16, 17]
-    },
-    {
-      id: `${idPrefix}-sec-4`,
-      title: 'IV. PASSAGE CLOZE (QUESTIONS 18 - 22)',
-      instruction: 'Read the following passage and mark the letter A, B, C or D on your answer sheet to indicate the option that best fits each of the numbered blanks from 18 to 22.',
-      questionIndices: [18, 19, 20, 21, 22]
-    },
-    {
-      id: `${idPrefix}-sec-5`,
-      title: 'V. READING COMPREHENSION 1 (QUESTIONS 23 - 30)',
-      instruction: 'Read the passage and mark the letter A, B, C or D on your answer sheet to indicate the best answer to each of the questions from 23 to 30.',
-      questionIndices: [23, 24, 25, 26, 27, 28, 29, 30]
-    },
-    {
-      id: `${idPrefix}-sec-6`,
-      title: 'VI. READING COMPREHENSION 2 (QUESTIONS 31 - 40)',
-      instruction: 'Read the passage and mark the letter A, B, C or D on your answer sheet to indicate the best answer to each of the questions from 31 to 40.',
-      questionIndices: [31, 32, 33, 34, 35, 36, 37, 38, 39, 40]
-    }
-  ];
-}
-
 function getHsgSectionId(idPrefix, num) {
   if (num <= 6) return `${idPrefix}-sec-1`;
   if (num <= 12) return `${idPrefix}-sec-2`;
@@ -595,13 +708,12 @@ function getHsgSectionId(idPrefix, num) {
   return `${idPrefix}-sec-6`;
 }
 
-// Build HSG 1, 2, 3
 const hsg1_meta = {
   prefix: 'l12-hsg-01',
   info: {
     id: 'de-thi-thu-hsg-lop-12-test-01',
     title: 'Đề Thi Thử Học Sinh Giỏi & Tốt Nghiệp THPT Lớp 12 - Test 01 (Bộ Đề Chuẩn Cấu Trúc 2026)',
-    description: 'Đề thi chuẩn cấu trúc Bộ GD&ĐT gồm 40 câu hỏi phân hóa cao: Thông báo khuyết từ, Giao tiếp ngắn, Sắp xếp đoạn văn logic, Điền cụm từ vào bài đọc, và 2 Bài đọc hiểu chuyên sâu (Personalized Medicine & Post-Work Guarantees).',
+    description: 'Đề thi chuẩn cấu trúc Bộ GD&ĐT gồm 40 câu hỏi phân hóa cao: Thông báo khuyết từ (Join Our Volunteer Network), Giao tiếp ngắn (Running Towards Success), Sắp xếp đoạn văn logic, Điền cụm từ vào bài đọc (Data-Driven Culture), và 2 Bài đọc hiểu chuyên sâu (Personalized Medicine & Post-Work Guarantees).',
     subject: 'Tiếng Anh',
     category: 'Ôn thi HSG',
     categories: ['Ôn thi HSG', 'Ôn thi đại học'],
@@ -613,7 +725,6 @@ const hsg1_meta = {
     updatedAt: new Date().toISOString(),
     tags: ['Tiếng Anh 12', 'Lớp 12', 'Ôn thi HSG', 'Ôn thi đại học', 'Bộ đề chuẩn cấu trúc', 'Test 01']
   },
-  sections: createHsgSections('l12-hsg-01', 1),
   getSectionId: (num) => getHsgSectionId('l12-hsg-01', num),
   answers: hsg1_answers,
   explanations: hsg1_explanations
@@ -624,7 +735,7 @@ const hsg2_meta = {
   info: {
     id: 'de-thi-thu-hsg-lop-12-test-02',
     title: 'Đề Thi Thử Học Sinh Giỏi & Tốt Nghiệp THPT Lớp 12 - Test 02 (Bộ Đề Chuẩn Cấu Trúc 2026)',
-    description: 'Đề thi chuẩn cấu trúc gồm 40 câu hỏi phân hóa cao: Lợi ích thiền định, Mua sắm smartphone, Sắp xếp câu/thư kiến nghị sinh thái, Mạng xã hội & Buồng vang số, và 2 Bài đọc hiểu chuyên sâu (Official Development Assistance & Robot Tax Dilemma).',
+    description: 'Đề thi chuẩn cấu trúc gồm 40 câu hỏi phân hóa cao: Lợi ích thiền định (Two-Minute Meditation), Mua sắm smartphone (Shop Smart), Sắp xếp câu/thư kiến nghị sinh thái, Mạng xã hội & Buồng vang số, và 2 Bài đọc hiểu chuyên sâu (Official Development Assistance & Robot Tax Dilemma).',
     subject: 'Tiếng Anh',
     category: 'Ôn thi HSG',
     categories: ['Ôn thi HSG', 'Ôn thi đại học'],
@@ -636,7 +747,6 @@ const hsg2_meta = {
     updatedAt: new Date().toISOString(),
     tags: ['Tiếng Anh 12', 'Lớp 12', 'Ôn thi HSG', 'Ôn thi đại học', 'Bộ đề chuẩn cấu trúc', 'Test 02']
   },
-  sections: createHsgSections('l12-hsg-02', 2),
   getSectionId: (num) => getHsgSectionId('l12-hsg-02', num),
   answers: hsg2_answers,
   explanations: hsg2_explanations
@@ -647,7 +757,7 @@ const hsg3_meta = {
   info: {
     id: 'de-thi-thu-hsg-lop-12-test-03',
     title: 'Đề Thi Thử Học Sinh Giỏi & Tốt Nghiệp THPT Lớp 12 - Test 03 (Bộ Đề Chuẩn Cấu Trúc 2026)',
-    description: 'Đề thi chuẩn cấu trúc gồm 40 câu hỏi phân hóa cao: Học tập suốt đời, Hiến tạng nhân đạo, Sắp xếp văn bản học thuật/văn học tiểu sử, Tranh khắc gỗ thời Phục Hưng, và 2 Bài đọc hiểu chuyên sâu (Nông nghiệp chính xác SSM & Digital Twin Urban Governance).',
+    description: 'Đề thi chuẩn cấu trúc gồm 40 câu hỏi phân hóa cao: Học tập suốt đời (Never Stop Learning), Hiến tạng nhân đạo (Organ Donation Rules), Sắp xếp văn bản học thuật/văn học tiểu sử, Tranh khắc gỗ thời Phục Hưng, và 2 Bài đọc hiểu chuyên sâu (Nông nghiệp chính xác SSM & Digital Twin Urban Governance).',
     subject: 'Tiếng Anh',
     category: 'Ôn thi HSG',
     categories: ['Ôn thi HSG', 'Ôn thi đại học'],
@@ -659,90 +769,132 @@ const hsg3_meta = {
     updatedAt: new Date().toISOString(),
     tags: ['Tiếng Anh 12', 'Lớp 12', 'Ôn thi HSG', 'Ôn thi đại học', 'Bộ đề chuẩn cấu trúc', 'Test 03']
   },
-  sections: createHsgSections('l12-hsg-03', 3),
   getSectionId: (num) => getHsgSectionId('l12-hsg-03', num),
   answers: hsg3_answers,
   explanations: hsg3_explanations
 };
 
-// ==========================================
-// 4. TIẾN HÀNH BUILD TOÀN BỘ 7 ĐỀ THI
-// ==========================================
-console.log('--- Đang parse Lớp 11 Unit 1 & Unit 2 ---');
-const examL11U1 = parseU11('u11_1.txt', u11_1_meta);
-const examL11U2 = parseU11('u11_2.txt', u11_2_meta);
+// ============================================================================
+// 4. TIẾN HÀNH XÂY DỰNG TOÀN BỘ 7 ĐỀ THI
+// ============================================================================
+async function main() {
+  console.log('--- 1. Chuẩn hóa & Gạch chân Lớp 12 Unit 1 & Unit 2 ---');
+  const examL12U1 = buildLop12Unit1();
+  const examL12U2 = buildLop12Unit2();
 
-console.log('--- Đang parse Lớp 12 HSG Test 01, 02, 03 ---');
-const examL12Hsg1 = parseHsg('hsg_1.txt', hsg1_meta);
-const examL12Hsg2 = parseHsg('hsg_2.txt', hsg2_meta);
-const examL12Hsg3 = parseHsg('hsg_3.txt', hsg3_meta);
+  console.log('--- 2. Chuẩn hóa & Gạch chân Lớp 11 Unit 1 & Unit 2 ---');
+  const examL11U1 = buildLop11Unit1();
+  const examL11U2 = buildLop11Unit2();
 
-const allExams = [
-  examUnit1,
-  examUnit2,
-  examL11U1,
-  examL11U2,
-  examL12Hsg1,
-  examL12Hsg2,
-  examL12Hsg3
-];
+  console.log('--- 3. Đọc trực tiếp Docx & Xây dựng Lớp 12 HSG Test 01, 02, 03 ---');
+  const hsg1Raw = await readDocxText(DOCX_PATHS.hsg1);
+  const hsg2Raw = await readDocxText(DOCX_PATHS.hsg2);
+  const hsg3Raw = await readDocxText(DOCX_PATHS.hsg3);
 
-// ==========================================
-// 5. GHI FILE ĐÁP ÁN VÀO TỪNG THƯ MỤC dap-an/
-// ==========================================
-function exportAnswerKeyFile(examObj, targetDir) {
-  let content = `BẢNG ĐÁP ÁN VÀ HƯỚNG DẪN GIẢI CHI TIẾT\n`;
-  content += `Môn: ${examObj.subject} - ${examObj.grade}\n`;
-  content += `Tên đề: ${examObj.title}\n`;
-  content += `Thời gian làm bài: ${examObj.durationMinutes} phút | Tổng số câu: ${examObj.totalQuestions} câu\n`;
-  content += `Trích xuất từ: ${examObj.originalFileName}\n`;
-  content += `================================================================================\n\n`;
+  const examL12Hsg1 = parseHsgExamFromText(hsg1Raw, hsg1_meta, hsg1_cloze_sentences, hsg1_question_fixes, 1);
+  const examL12Hsg2 = parseHsgExamFromText(hsg2Raw, hsg2_meta, hsg2_cloze_sentences, hsg2_question_fixes, 2);
+  const examL12Hsg3 = parseHsgExamFromText(hsg3Raw, hsg3_meta, hsg3_cloze_sentences, hsg3_question_fixes, 3);
 
-  content += `I. BẢNG TỔNG HỢP ĐÁP ÁN\n`;
-  content += `--------------------------------------------------------------------------------\n`;
-  for (let i = 0; i < examObj.questions.length; i += 5) {
-    const chunk = examObj.questions.slice(i, i + 5);
-    content += chunk.map(q => `Câu ${String(q.index).padStart(2, ' ')}: ${q.correctAnswer}`).join('    |    ') + '\n';
-  }
-  content += `--------------------------------------------------------------------------------\n\n`;
+  const allExams = [
+    examL12U1,
+    examL12U2,
+    examL11U1,
+    examL11U2,
+    examL12Hsg1,
+    examL12Hsg2,
+    examL12Hsg3
+  ];
 
-  content += `II. HƯỚNG DẪN GIẢI CHI TIẾT TỪNG CÂU\n`;
-  content += `================================================================================\n\n`;
-  examObj.questions.forEach(q => {
-    content += `Câu ${q.index}: [Đáp án đúng: ${q.correctAnswer}]\n`;
-    content += `Nội dung: ${q.questionText}\n`;
-    if (q.options && q.options.length > 0) {
-      q.options.forEach(opt => {
-        const marker = (opt.id === q.correctAnswer) ? '(*)' : '   ';
-        content += `  ${marker} ${opt.id}. ${opt.text}\n`;
+  // ============================================================================
+  // 5. GHI FILE ĐÁP ÁN VÀ VĂN BẢN ĐẦY ĐỦ VÀO TỪNG THƯ MỤC dap-an/
+  // ============================================================================
+  function exportAnswerKeyFile(examObj, targetDir) {
+    let content = `BẢNG ĐÁP ÁN VÀ HƯỚNG DẪN GIẢI CHI TIẾT ĐẦY ĐỦ\n`;
+    content += `Môn: ${examObj.subject} - ${examObj.grade}\n`;
+    content += `Tên đề: ${examObj.title}\n`;
+    content += `Thời gian làm bài: ${examObj.durationMinutes} phút | Tổng số câu: ${examObj.totalQuestions} câu\n`;
+    content += `Tệp gốc: ${examObj.originalFileName}\n`;
+    content += `================================================================================\n\n`;
+
+    content += `I. BẢNG TỔNG HỢP ĐÁP ÁN\n`;
+    content += `--------------------------------------------------------------------------------\n`;
+    for (let i = 0; i < examObj.questions.length; i += 5) {
+      const chunk = examObj.questions.slice(i, i + 5);
+      content += chunk.map(q => `Câu ${String(q.index).padStart(2, ' ')}: ${q.correctAnswer}`).join('    |    ') + '\n';
+    }
+    content += `--------------------------------------------------------------------------------\n\n`;
+
+    // Thêm toàn bộ các bài đọc và bài đục lỗ vào file đáp án
+    if (examObj.sections && examObj.sections.some(s => s.passage)) {
+      content += `II. NỘI DUNG CHI TIẾT CÁC BÀI ĐỌC HIỂU & ĐỌC ĐỤC LỖ (READING & CLOZE PASSAGES)\n`;
+      content += `================================================================================\n\n`;
+      examObj.sections.forEach((sec, sIdx) => {
+        if (sec.passage) {
+          content += `[PHẦN: ${sec.title}]\n`;
+          if (sec.passageTitle) {
+            content += `Tiêu đề: ${sec.passageTitle}\n`;
+          }
+          if (sec.instruction) {
+            content += `Hướng dẫn: ${sec.instruction}\n`;
+          }
+          content += `Áp dụng cho các câu hỏi: ${sec.questionIndices.join(', ')}\n\n`;
+          content += `--- VĂN BẢN ĐOẠN VĂN ---\n`;
+          // Giữ thẻ <u>...</u> hoặc hiển thị rõ ràng
+          content += `${sec.passage}\n`;
+          content += `--------------------------------------------------------------------------------\n\n`;
+        }
       });
     }
-    content += `Giải thích: ${q.explanation}\n`;
-    content += `--------------------------------------------------------------------------------\n\n`;
-  });
 
-  const outFilePath = path.join(targetDir, 'DAP_AN_CHI_TIET.txt');
-  fs.writeFileSync(outFilePath, content, 'utf8');
-  console.log(`Đã xuất đáp án chi tiết: ${outFilePath}`);
+    content += `III. HƯỚNG DẪN GIẢI CHI TIẾT TỪNG CÂU HỎI\n`;
+    content += `================================================================================\n\n`;
+    examObj.questions.forEach(q => {
+      content += `Câu ${q.index}: [Đáp án đúng: ${q.correctAnswer}]\n`;
+      content += `Nội dung: ${q.questionText}\n`;
+      if (q.options && q.options.length > 0) {
+        q.options.forEach(opt => {
+          const marker = (opt.id === q.correctAnswer) ? '(*)' : '   ';
+          content += `  ${marker} ${opt.id}. ${opt.text}\n`;
+        });
+      }
+      content += `Giải thích: ${q.explanation}\n`;
+      content += `--------------------------------------------------------------------------------\n\n`;
+    });
+
+    const outFilePath = path.join(targetDir, 'DAP_AN_CHI_TIET.txt');
+    fs.writeFileSync(outFilePath, content, 'utf8');
+    console.log(`Đã xuất file đáp án & giải thích chi tiết: ${outFilePath}`);
+  }
+
+  // Xuất đáp án cho 7 đề vào đúng folder
+  exportAnswerKeyFile(examL12U1, path.join(EXAM_BASE, 'Lop 12', 'On thi giua ki 1', 'Unit 1 - Life Stories', 'dap-an'));
+  exportAnswerKeyFile(examL12U2, path.join(EXAM_BASE, 'Lop 12', 'On thi giua ki 1', 'Unit 2 - A Multicultural World', 'dap-an'));
+  exportAnswerKeyFile(examL11U1, path.join(EXAM_BASE, 'Lop 11', 'On thi giua ki 1', 'Unit 1 - A Long and Healthy Life', 'dap-an'));
+  exportAnswerKeyFile(examL11U2, path.join(EXAM_BASE, 'Lop 11', 'On thi giua ki 1', 'Unit 2 - Generation Gap', 'dap-an'));
+  exportAnswerKeyFile(examL12Hsg1, path.join(EXAM_BASE, 'Lop 12', 'On thi HSG', 'Test 01 - Bo de chuan cau truc', 'dap-an'));
+  exportAnswerKeyFile(examL12Hsg2, path.join(EXAM_BASE, 'Lop 12', 'On thi HSG', 'Test 02 - Bo de chuan cau truc', 'dap-an'));
+  exportAnswerKeyFile(examL12Hsg3, path.join(EXAM_BASE, 'Lop 12', 'On thi HSG', 'Test 03 - Bo de chuan cau truc', 'dap-an'));
+
+  // ============================================================================
+  // 6. GHI VÀO SRC/DATA/EXAMS.JSON VÀ DATA/EXAMS.JSON
+  // ============================================================================
+  const examsJsonSrcPath = path.join(__dirname, '..', 'src', 'data', 'exams.json');
+  const examsJsonRootPath = path.join(__dirname, '..', 'data', 'exams.json');
+
+  fs.writeFileSync(examsJsonSrcPath, JSON.stringify(allExams, null, 2), 'utf8');
+  fs.writeFileSync(examsJsonRootPath, JSON.stringify(allExams, null, 2), 'utf8');
+  console.log(`\nĐã xuất bản thành công ${allExams.length} đề thi vào ${examsJsonSrcPath} và ${examsJsonRootPath}`);
+
+  console.log('\nDANH SÁCH 7 ĐỀ THI ĐÃ NẠP VÀO HỆ THỐNG:');
+  allExams.forEach((e, i) => {
+    const passagesCount = e.sections ? e.sections.filter(s => s.passage).length : 0;
+    const underlineQuestionsCount = e.questions.filter(q => q.questionText && q.questionText.includes('<u>')).length;
+    console.log(`${i + 1}. [${e.grade}] [${e.categories ? e.categories.join(' / ') : e.category}] - ${e.title}`);
+    console.log(`   + Tổng số câu: ${e.totalQuestions} câu | Số câu có từ/cụm từ gạch chân: ${underlineQuestionsCount} câu | Bài đọc có đoạn văn: ${passagesCount} phần`);
+  });
 }
 
-// Xuất đáp án cho 7 đề vào đúng folder
-exportAnswerKeyFile(examUnit1, path.join(EXAM_BASE, 'Lop 12', 'On thi giua ki 1', 'Unit 1 - Life Stories', 'dap-an'));
-exportAnswerKeyFile(examUnit2, path.join(EXAM_BASE, 'Lop 12', 'On thi giua ki 1', 'Unit 2 - A Multicultural World', 'dap-an'));
-exportAnswerKeyFile(examL11U1, path.join(EXAM_BASE, 'Lop 11', 'On thi giua ki 1', 'Unit 1 - A Long and Healthy Life', 'dap-an'));
-exportAnswerKeyFile(examL11U2, path.join(EXAM_BASE, 'Lop 11', 'On thi giua ki 1', 'Unit 2 - Generation Gap', 'dap-an'));
-exportAnswerKeyFile(examL12Hsg1, path.join(EXAM_BASE, 'Lop 12', 'On thi HSG', 'Test 01 - Bo de chuan cau truc', 'dap-an'));
-exportAnswerKeyFile(examL12Hsg2, path.join(EXAM_BASE, 'Lop 12', 'On thi HSG', 'Test 02 - Bo de chuan cau truc', 'dap-an'));
-exportAnswerKeyFile(examL12Hsg3, path.join(EXAM_BASE, 'Lop 12', 'On thi HSG', 'Test 03 - Bo de chuan cau truc', 'dap-an'));
-
-// ==========================================
-// 6. GHI VÀO SRC/DATA/EXAMS.JSON
-// ==========================================
-const examsJsonPath = path.join(__dirname, '..', 'src', 'data', 'exams.json');
-fs.writeFileSync(examsJsonPath, JSON.stringify(allExams, null, 2), 'utf8');
-console.log(`\nĐã xuất bản thành công ${allExams.length} đề thi vào ${examsJsonPath}`);
-
-console.log('\nDANH SÁCH 7 ĐỀ THI ĐÃ NẠP VÀO HỆ THỐNG:');
-allExams.forEach((e, i) => {
-  console.log(`${i + 1}. [${e.grade}] [${e.categories.join(' / ')}] - ${e.title} (${e.totalQuestions} câu, ${e.durationMinutes} phút)`);
+main().catch(err => {
+  console.error("Lỗi khi build exams:", err);
+  process.exit(1);
 });

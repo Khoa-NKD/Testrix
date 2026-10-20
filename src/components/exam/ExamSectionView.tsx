@@ -1,6 +1,7 @@
 import React from "react";
 import { ExamSection } from "@/types/exam";
 import { BookOpen } from "lucide-react";
+import FormattedText from "@/components/common/FormattedText";
 
 interface ExamSectionViewProps {
   section: ExamSection;
@@ -44,7 +45,7 @@ export default function ExamSectionView({ section, rangeText }: ExamSectionViewP
             </div>
           )}
           <div className="text-slate-800 text-sm sm:text-base leading-relaxed whitespace-pre-line font-serif">
-            {section.passage}
+            <FormattedText text={section.passage} />
           </div>
         </div>
       )}

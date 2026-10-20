@@ -1,8 +1,8 @@
-BẢNG ĐÁP ÁN VÀ HƯỚNG DẪN GIẢI CHI TIẾT
+BẢNG ĐÁP ÁN VÀ HƯỚNG DẪN GIẢI CHI TIẾT ĐẦY ĐỦ
 Môn: Tiếng Anh - Lớp 12
 Tên đề: Đề Thi Thử Học Sinh Giỏi & Tốt Nghiệp THPT Lớp 12 - Test 03 (Bộ Đề Chuẩn Cấu Trúc 2026)
 Thời gian làm bài: 50 phút | Tổng số câu: 40 câu
-Trích xuất từ: TEST 03 HSG- A. ORIGINAL.docx
+Tệp gốc: TEST 03 HSG- A. ORIGINAL.docx
 ================================================================================
 
 I. BẢNG TỔNG HỢP ĐÁP ÁN
@@ -17,11 +17,107 @@ Câu 31: D    |    Câu 32: B    |    Câu 33: D    |    Câu 34: D    |    Câu
 Câu 36: A    |    Câu 37: B    |    Câu 38: B    |    Câu 39: A    |    Câu 40: C
 --------------------------------------------------------------------------------
 
-II. HƯỚNG DẪN GIẢI CHI TIẾT TỪNG CÂU
+II. NỘI DUNG CHI TIẾT CÁC BÀI ĐỌC HIỂU & ĐỌC ĐỤC LỖ (READING & CLOZE PASSAGES)
+================================================================================
+
+[PHẦN: I. LEAFLET & ANNOUNCEMENT CLOZE (QUESTIONS 1 - 6)]
+Tiêu đề: Never Stop Learning
+Hướng dẫn: Read the following announcement/leaflet and mark the letter A, B, C or D on your answer sheet to indicate the option that best fits each of the numbered blanks from 1 to 6.
+Áp dụng cho các câu hỏi: 1, 2, 3, 4, 5, 6
+
+--- VĂN BẢN ĐOẠN VĂN ---
+Never Stop Learning
+
+The modern job market constantly requires ambitious professionals to continuously upgrade their practical knowledge. While I (1) ________ a fascinating seminar on digital marketing last month, I truly realized the critical importance of professional adaptability.
+
+High-quality online courses (2) ________ by top-tier global universities offer extremely flexible schedules for busy working adults. This incredible flexibility allows eager learners to easily overcome geographical (3) ________ and study effectively from anywhere in the world.
+
+You should actively (4) ________ your interpersonal communication skills to collaborate much better with diverse international teams. If you frequently find studying alone boring, you can easily (5) ________ up a new hobby class to meet like-minded people.
+
+Becoming a highly (6) ________ lifelong learner opens up endless golden opportunities for your personal and professional growth. Register for our premium courses today and unlock your full hidden potential!
+
+(Adapted from David Lee, Education Today)
+--------------------------------------------------------------------------------
+
+[PHẦN: II. SHORT COMMUNICATION & NOTICE (QUESTIONS 7 - 12)]
+Tiêu đề: Proposed Organ Donation Rules: Protecting the Youth
+Hướng dẫn: Read the following announcement/leaflet and mark the letter A, B, C or D on your answer sheet to indicate the option that best fits each of the numbered blanks from 7 to 12.
+Áp dụng cho các câu hỏi: 7, 8, 9, 10, 11, 12
+
+--- VĂN BẢN ĐOẠN VĂN ---
+Proposed Organ Donation Rules: Protecting the Youth
+
+The Ministry of Health has recently proposed new regulations on living organ donations. Illegal organ trading is just the (7) ________ of the iceberg when it comes to this complex issue.
+
+Medical experts warn that the younger the donor is, the (8) ________ severe the long-term health risks become, especially for kidney functions.
+
+Under the new draft, (9) ________ strict rules will be applied to living donors. Individuals aged 18 to 24 are restricted to donating only to direct family members.
+
+Generous individuals (10) ________ also enjoy free lifetime health insurance and regular check-ups after their noble donation.
+
+The government plans to offer these (11) ________ healthcare benefits to honor their incredible sacrifice for society.
+
+These changes are essential (12) ________ they aim to expand the organ source safely without exploiting vulnerable young adults.
+
+Read the full legal draft online to understand these crucial medical policies!
+
+(Adapted from Như Loan - VTC News)
+--------------------------------------------------------------------------------
+
+[PHẦN: IV. PASSAGE CLOZE (QUESTIONS 18 - 22)]
+Tiêu đề: Passage Cloze
+Hướng dẫn: Read the following passage and mark the letter A, B, C or D on your answer sheet to indicate the option that best fits each of the numbered blanks from 18 to 22.
+Áp dụng cho các câu hỏi: 18, 19, 20, 21, 22
+
+--- VĂN BẢN ĐOẠN VĂN ---
+Woodcut printing emerged as a groundbreaking technique in fifteenth-century Europe, bringing vivid images to the general public. Initially, producing intricate texts and illustrations manually was a painstaking endeavor. (18) ________. As paper became more affordable, artisans began carving detailed illustrations directly into wooden blocks. (19) ________. These early prints circulated widely, acting as both standalone artworks and compelling book illustrations.
+
+The overall quality of these early woodcuts fluctuated significantly over the subsequent decades. Michael Wolgemut played a vital role in reviving the medium when artistic standards began to slip. His bustling workshop produced remarkable pieces, setting a high benchmark for apprentices like Albrecht Dürer. Dürer eventually outshone his master, creating incredibly detailed works that caught everyone's eye and elevated the medium to fine art. (20) ________. They firmly believed that true art could only be created through unique, irreproducible paintings.
+
+By the late fifteenth century, the public demand for visual and written materials skyrocketed across Europe. Creating every single document by hand was no longer a viable option, (21) ________. Imagine if society had simply ignored these printing advancements; knowledge would have remained tightly confined to the wealthy. If brilliant innovators hadn't experimented with new presses, the Renaissance might have stalled entirely. (22) ________.
+
+(Adapted from "The Art Book: Big Ideas Simply Explained", DK)
+--------------------------------------------------------------------------------
+
+[PHẦN: V. READING COMPREHENSION 1 (QUESTIONS 23 - 30)]
+Tiêu đề: Reading Comprehension 1
+Hướng dẫn: Read the passage and mark the letter A, B, C or D on your answer sheet to indicate the best answer to each of the following questions from 23 to 30.
+Áp dụng cho các câu hỏi: 23, 24, 25, 26, 27, 28, 29, 30
+
+--- VĂN BẢN ĐOẠN VĂN ---
+Historically, mechanized farming relied on a one-size-fits-all approach, treating vast arable lands as if they were perfectly <u>uniform</u>. Farmers applied fertilizers based on a hypothetical average, inevitably leading to misallocations. This blanket strategy took a heavy toll on ecological integrity through chemical runoff, while also burning a hole in their pockets due to wasted resources. In stark contrast, site-specific crop management (SSM) recognizes the inherent variations throughout every field, addressing each sector as a unique micro-environment with distinct requirements.
+
+To pull this off, modern agricultural practices marry pinpoint satellite navigation with rigorous ground-level assessments. Agronomists gather precise data on soil chemistry and moisture levels, blending these insights with remote signals captured by drones. This wealth of information translates into detailed management-zone maps serving as blueprints for tractors. Consequently, application rates seamlessly fluctuate the moment machinery crosses invisible borders. <u>Decision-making is firmly rooted in hard evidence rather than guesswork, ensuring interventions are perfectly in sync with the equipment's exact location.</u>
+
+Pushing the envelope further, the latest wave of precision technology can <u>gauge</u> microsite conditions and tweak chemical inputs on the fly. <u>These</u> advanced systems dispense with the need for pre-existing maps, as sensing and treatment occur simultaneously. By embedding sophisticated sensors directly onto farming implements, the machinery translates raw perception into immediate physical action without pausing for offline analysis. Such innovations replace outdated assumptions with real-time feedback, allowing agricultural prescriptions to evolve continuously alongside the crop's actual biological signals.
+
+Ironically, this high-tech revolution brings back an intimate sensibility once characteristic of small-scale traditional farming, where cultivators knew every furrow. While early mechanization drastically cut labor costs, it severely compromised input efficiency. Today, as agrochemical prices skyrocket and environmental impacts are brought to light, producers eagerly embrace variable-rate systems to tighten their belts and mitigate ecological harm. Ultimately, the underlying ethos is highly pragmatic: treating natural diversity as a fundamental principle, thereby empowering technology to revive meticulous agricultural care on an industrial scale.
+
+(Adapted from https://www.nifa.usda.gov/grants/programs/precision-geospatial-sensor-technologies-programs/precision-agriculture-crop-production)
+--------------------------------------------------------------------------------
+
+[PHẦN: VI. READING COMPREHENSION 2 (QUESTIONS 31 - 40)]
+Tiêu đề: Reading Comprehension 2
+Hướng dẫn: Read the passage and mark the letter A, B, C or D on your answer sheet to indicate the best answer to each of the following questions from 31 to 40.
+Áp dụng cho các câu hỏi: 31, 32, 33, 34, 35, 36, 37, 38, 39, 40
+
+--- VĂN BẢN ĐOẠN VĂN ---
+Urban administration fundamentally requires balancing finite resources against fluctuating demands, often resulting in opaque trade-offs. To untangle this knot, municipal authorities are increasingly bringing digital twins into play – dynamic, virtual replicas of physical infrastructure. When configured properly, these simulations do not merely predict maintenance needs; they allow stakeholders to weigh up policy outcomes before a single brick is laid. From this macro perspective, city planners can deduce the most equitable resource distribution. [I]
+
+However, the efficacy of these virtual models hinges on active civic engagement, giving rise to the 'Digital Twin Citizen'. Rather than treating residents as passive data points, this paradigm incorporates their lived experiences to ground-truth simulations. [II] By throwing light on potential bottlenecks and distributive impacts, interactive dashboards enable communities to scrutinize proposed interventions. Consequently, anomalies such as traffic snarl-ups or power surges are ironed out long before they escalate into full-blown crises. [III]
+
+The implications for public accountability are profound. If a city’s digital twin ingests real-time sensor data and overlays it with public feedback, administrators can no longer rely on gut feeling or aftermarket rationalizations. <u>They</u> are compelled to justify their decisions with empirical evidence, thereby keeping <u>reckless</u> impulses in check. For example, when running flood evacuation drills or retiming traffic lights, the integration of community input guarantees that the models reflect on-the-ground realities rather than abstract assumptions. [IV]
+
+Therefore, it stands to reason that when evidence-based planning goes hand in hand with public deliberation, mutual trust inevitably thickens. Cities that open their digital doors to residents effectively co-produce governance, allowing locals to flag blind spots and call the shots on pressing investments. By making the mechanics of urban management completely transparent, this approach ensures that decisions are debated in the cold light of day, ultimately transforming a technological marvel into a cornerstone of civic stability.
+
+(Adapted from GovPilot, “The Rise of Digital Twins: How Cities Are Creating Virtual Models for Real-World Impact”)
+--------------------------------------------------------------------------------
+
+III. HƯỚNG DẪN GIẢI CHI TIẾT TỪNG CÂU HỎI
 ================================================================================
 
 Câu 1: [Đáp án đúng: A]
-Nội dung: 
+Nội dung: While I (1) ________ a fascinating seminar on digital marketing last month, I truly realized the critical importance of professional adaptability.
   (*) A. was attending
       B. have attended
       C. attended
@@ -30,7 +126,7 @@ Giải thích: Hành động đang diễn ra trong quá khứ ("last month"): "W
 --------------------------------------------------------------------------------
 
 Câu 2: [Đáp án đúng: D]
-Nội dung: 
+Nội dung: High-quality online courses (2) ________ by top-tier global universities offer extremely flexible schedules for busy working adults.
       A. provide
       B. providing
       C. to provide
@@ -39,7 +135,7 @@ Giải thích: Rút gọn mệnh đề quan hệ dạng bị động (which are 
 --------------------------------------------------------------------------------
 
 Câu 3: [Đáp án đúng: D]
-Nội dung: 
+Nội dung: This incredible flexibility allows eager learners to easily overcome geographical (3) ________ and study effectively from anywhere in the world.
       A. benefits
       B. solutions
       C. advantages
@@ -48,7 +144,7 @@ Giải thích: Cụm danh từ: "overcome geographical barriers" (vượt qua c�
 --------------------------------------------------------------------------------
 
 Câu 4: [Đáp án đúng: D]
-Nội dung: 
+Nội dung: You should actively (4) ________ your interpersonal communication skills to collaborate much better with diverse international teams.
       A. decrease
       B. damage
       C. ignore
@@ -57,7 +153,7 @@ Giải thích: Động từ mang nghĩa nâng cao, cải thiện: "improve your 
 --------------------------------------------------------------------------------
 
 Câu 5: [Đáp án đúng: C]
-Nội dung: 
+Nội dung: If you frequently find studying alone boring, you can easily (5) ________ up a new hobby class to meet like-minded people.
       A. set
       B. find
   (*) C. take
@@ -66,7 +162,7 @@ Giải thích: Cụm động từ "take up" có nghĩa là bắt đầu tham gia
 --------------------------------------------------------------------------------
 
 Câu 6: [Đáp án đúng: C]
-Nội dung: 
+Nội dung: Becoming a highly (6) ________ lifelong learner opens up endless golden opportunities for your personal and professional growth.
       A. successfully
       B. succeed
   (*) C. successful
@@ -75,7 +171,7 @@ Giải thích: Cần tính từ bổ nghĩa cho danh từ "learner": "highly suc
 --------------------------------------------------------------------------------
 
 Câu 7: [Đáp án đúng: C]
-Nội dung: 
+Nội dung: Illegal organ trading is just the (7) ________ of the iceberg when it comes to this complex issue.
       A. summit
       B. top
   (*) C. tip
@@ -84,7 +180,7 @@ Giải thích: Thành ngữ cố định: "tip of the iceberg" (phần nổi c�
 --------------------------------------------------------------------------------
 
 Câu 8: [Đáp án đúng: A]
-Nội dung: 
+Nội dung: Medical experts warn that the younger the donor is, the (8) ________ severe the long-term health risks become, especially for kidney functions.
   (*) A. more
       B. most
       C. much
@@ -93,7 +189,7 @@ Giải thích: Cấu trúc so sánh kép: "the younger the donor is, the more se
 --------------------------------------------------------------------------------
 
 Câu 9: [Đáp án đúng: D]
-Nội dung: 
+Nội dung: Under the new draft, (9) ________ strict rules will be applied to living donors.
       A. much
       B. one
       C. each
@@ -102,7 +198,7 @@ Giải thích: Đi với danh từ số nhiều đếm được "strict rules": 
 --------------------------------------------------------------------------------
 
 Câu 10: [Đáp án đúng: C]
-Nội dung: 
+Nội dung: Generous individuals (10) ________ also enjoy free lifetime health insurance and regular check-ups after their noble donation.
       A. need
       B. ought
   (*) C. can
@@ -111,7 +207,7 @@ Giải thích: Động từ khuyết thiếu diễn đạt quyền lợi có th�
 --------------------------------------------------------------------------------
 
 Câu 11: [Đáp án đúng: D]
-Nội dung: 
+Nội dung: The government plans to offer these (11) ________ healthcare benefits to honor their incredible sacrifice for society.
       A. mean
       B. selfish
       C. awful
@@ -120,7 +216,7 @@ Giải thích: Tính từ miêu tả chế độ phúc lợi hào phóng, chu đ
 --------------------------------------------------------------------------------
 
 Câu 12: [Đáp án đúng: A]
-Nội dung: 
+Nội dung: These changes are essential (12) ________ they aim to expand the organ source safely without exploiting vulnerable young adults.
   (*) A. since
       B. although
       C. despite
@@ -174,7 +270,7 @@ Giải thích: Trật tự hội thoại về nghề hát Opera: c (Levi đọc 
 --------------------------------------------------------------------------------
 
 Câu 18: [Đáp án đúng: A]
-Nội dung: 
+Nội dung: Initially, producing intricate texts and illustrations manually was a painstaking endeavor. (18) ________. As paper became more affordable, artisans began carving detailed illustrations...
   (*) A. It is fascinating to examine how this craft evolved
       B. That fascinating to examining how does this craft evolve
       C. Examining how this craft evolved is of fascinated
@@ -183,7 +279,7 @@ Giải thích: Cấu trúc chuẩn chủ ngữ giả định: "It is fascinating
 --------------------------------------------------------------------------------
 
 Câu 19: [Đáp án đúng: B]
-Nội dung: 
+Nội dung: As paper became more affordable, artisans began carving detailed illustrations directly into wooden blocks. (19) ________. These early prints circulated widely, acting as both standalone artworks and book illustrations.
       A. Thrived the dedicated artists whom committed their time on this profession
   (*) B. The dedicated artists who committed their time to this profession thrived
       C. Committing their time into this profession, the dedicated artists who thrive
@@ -192,7 +288,7 @@ Giải thích: Cấu trúc câu hoàn chỉnh SVO với mệnh đề quan hệ: 
 --------------------------------------------------------------------------------
 
 Câu 20: [Đáp án đúng: B]
-Nội dung: 
+Nội dung: Dürer eventually outshone his master, creating incredibly detailed works that caught everyone's eye and elevated the medium to fine art. (20) ________. They firmly believed that true art could only be created through unique paintings.
       A. However, it was these prints that traditional elite cheap novelties dismissed initially
   (*) B. However, the traditional elite initially dismissed these prints as cheap novelties
       C. However, these cheap novelties initially dismissed the traditional elite as prints
@@ -201,7 +297,7 @@ Giải thích: Mệnh đề đối lập chuẩn ngữ pháp: "However, the trad
 --------------------------------------------------------------------------------
 
 Câu 21: [Đáp án đúng: C]
-Nội dung: 
+Nội dung: Creating every single document by hand was no longer a viable option, (21) ________.
       A. because we embracing instead mechanical reproduction for meet this need
       B. so instead mechanical reproduction was embraced by us to met this need
   (*) C. so we instead embraced mechanical reproduction to meet this need
@@ -210,7 +306,7 @@ Giải thích: Mệnh đề nguyên nhân kết quả chuẩn ngữ pháp: "so w
 --------------------------------------------------------------------------------
 
 Câu 22: [Đáp án đúng: A]
-Nội dung: 
+Nội dung: If brilliant innovators hadn't experimented with new presses, the Renaissance might have stalled entirely. (22) ________.
   (*) A. Therefore, this technological leap successfully democratized education across the continent
       B. Democratized education across the continent, therefore, successfully this technological leap
       C. Because of this technological leap democratizing education successful across the continent
@@ -237,7 +333,7 @@ Giải thích: Ở đoạn 3 tác giả mô tả công nghệ thế hệ mới g
 --------------------------------------------------------------------------------
 
 Câu 25: [Đáp án đúng: C]
-Nội dung: The word These in paragraph 3 refers to ______.
+Nội dung: The word <u>These</u> in paragraph 3 refers to ______.
       A. Microsite soil conditions
       B. Chemical agricultural inputs
   (*) C. Advanced precision technologies
@@ -246,7 +342,7 @@ Giải thích: Từ "These" ở đoạn 3 thay thế cho các hệ thống công
 --------------------------------------------------------------------------------
 
 Câu 26: [Đáp án đúng: D]
-Nội dung: The word uniform in paragraph 1 is OPPOSITE in meaning to _____.
+Nội dung: The word <u>uniform</u> in paragraph 1 is OPPOSITE in meaning to _____.
       A. Invariable
       B. Standardized
       C. Symmetrical
@@ -264,7 +360,7 @@ Giải thích: Tác giả KHÔNG đồng ý với nhận định A vì đoạn 4
 --------------------------------------------------------------------------------
 
 Câu 28: [Đáp án đúng: C]
-Nội dung: Which of the following best paraphrases the underlined sentence in paragraph 2? Question. Decision-making is firmly rooted in hard evidence rather than guesswork, ensuring interventions are perfectly in sync with the equipment's exact location.
+Nội dung: Which of the following best paraphrases the underlined sentence in paragraph 2? <u>Decision-making is firmly rooted in hard evidence rather than guesswork, ensuring interventions are perfectly in sync with the equipment's exact location.</u>
       A. Empirical evidence suggests that modern farming equipment operates independently without requiring specific locational sync
       B. Farmers rely heavily on intuition to decide where machinery should be placed, reducing the need for hard evidence
   (*) C. Agricultural actions are dictated by precise empirical data, aligning chemical treatments exactly with the machinery's physical position
@@ -273,7 +369,7 @@ Giải thích: Câu gạch chân khẳng định: Việc ra quyết định dự
 --------------------------------------------------------------------------------
 
 Câu 29: [Đáp án đúng: C]
-Nội dung: The word gauge in paragraph 3 is CLOSEST in meaning to _____.
+Nội dung: The word <u>gauge</u> in paragraph 3 is CLOSEST in meaning to _____.
       A. Trigger
       B. Overlook
   (*) C. Evaluate
@@ -300,7 +396,7 @@ Giải thích: Thông tin D đúng theo đoạn 3: Việc tích hợp phản h�
 --------------------------------------------------------------------------------
 
 Câu 32: [Đáp án đúng: B]
-Nội dung: The word they refers to _____.
+Nội dung: The word <u>they</u> refers to _____.
       A. Inhabitants
   (*) B. Administrators
       C. Simulations
@@ -345,7 +441,7 @@ Giải thích: Tiêu đề phù hợp và giàu tính học thuật nhất: Virt
 --------------------------------------------------------------------------------
 
 Câu 37: [Đáp án đúng: B]
-Nội dung: The word reckless in paragraph 3 is OPPOSITE in meaning to _____.
+Nội dung: The word <u>reckless</u> in paragraph 3 is OPPOSITE in meaning to _____.
       A. Erratic
   (*) B. Prudent
       C. Brazen

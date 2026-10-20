@@ -2,6 +2,8 @@ import React from "react";
 import { Question } from "@/types/exam";
 import { Bookmark, Sparkles, Check, X } from "lucide-react";
 
+import FormattedText from "@/components/common/FormattedText";
+
 interface ExamQuestionItemProps {
   question: Question;
   questionNumber: number;
@@ -107,7 +109,7 @@ export default function ExamQuestionItem({
 
       {/* Question Content */}
       <div className="text-slate-800 text-base sm:text-lg font-medium leading-relaxed mb-5 select-text">
-        {question.questionText}
+        <FormattedText text={question.questionText} />
       </div>
 
       {/* Options List */}
