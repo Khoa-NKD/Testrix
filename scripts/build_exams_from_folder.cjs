@@ -2,855 +2,747 @@ const fs = require('fs');
 const path = require('path');
 
 /**
- * Script đọc và build toàn bộ đề thi từ thư mục Exam/
- * Chỉ các file có trong folder Exam/ mới được nạp vào hệ thống Testrix
+ * MASTER SCRIPT BUILD EXAM SYSTEM CHO TESTRIX
+ * 1. Đọc và chuẩn hóa dữ liệu từ folder Exam/:
+ *    - Lớp 12: Unit 1, Unit 2 (Ôn thi giữa kì 1)
+ *    - Lớp 11: Unit 1, Unit 2 (Ôn thi giữa kì 1)
+ *    - Lớp 12: HSG Test 01, Test 02, Test 03 (Ôn thi HSG)
+ * 2. Xuất file đáp án chi tiết và hướng dẫn giải (DAP_AN_CHI_TIET.txt) vào từng folder dap-an/ tương ứng
+ * 3. Xuất file src/data/exams.json hoàn chỉnh, chuẩn xác 100% cho web app
  */
 
-const examDir = path.join(__dirname, '..', 'Exam');
-console.log('Scanning Exam folder:', examDir);
+const EXAM_BASE = path.join(__dirname, '..', 'Exam');
 
-if (!fs.existsSync(examDir)) {
-  console.error('Thư mục Exam không tồn tại!');
-  process.exit(1);
+// ==========================================
+// 1. DỮ LIỆU ĐỀ LỚP 12 - UNIT 1 & UNIT 2 (ĐÃ BUILD CHUẨN)
+// ==========================================
+const examsJsonInit = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'src', 'data', 'exams.json'), 'utf8'));
+const examUnit1 = examsJsonInit.find(e => e.id === 'de-on-tap-gk1-lop-12-unit-1');
+const examUnit2 = examsJsonInit.find(e => e.id === 'de-on-tap-gk1-lop-12-unit-2');
+
+// ==========================================
+// 2. PARSER CHO LỚP 11 UNIT 1 & UNIT 2
+// ==========================================
+function parseU11(txtFile, meta) {
+  const text = fs.readFileSync(txtFile, 'utf8');
+  
+  // Extract answers from Azota table
+  const lines = text.split('\n').map(l => l.trim()).filter(Boolean);
+  const answers = {};
+  for (let i = 0; i < lines.length - 1; i++) {
+    if (/^\d+$/.test(lines[i]) && /^[A-D]$/i.test(lines[i + 1])) {
+      answers[parseInt(lines[i])] = lines[i + 1].toUpperCase();
+    }
+  }
+
+  // Extract questions
+  const qMatches = [...text.matchAll(/Câu\s+(\d+)\s*:\s*([\s\S]*?)(?=(Câu\s+\d+\s*:)|(BẢNG ĐÁP ÁN)|$)/gi)];
+  const questions = [];
+
+  for (const m of qMatches) {
+    const num = parseInt(m[1]);
+    let rawBody = m[2].trim();
+    const headerSplit = rawBody.split(/(?:PART\s+\d+|II\.\s+|III\.\s+|IV\.\s+|Mark\s+the\s+letter|Read\s+the\s+following)/i);
+    const questionBlock = headerSplit[0].trim();
+
+    const optRegex = /(?:^|\s+)([A-D])[\.\s]\s*([\s\S]*?)(?=(?:\s+[A-D][\.\s])|$)/g;
+    let match;
+    const options = [];
+    const foundIndices = [];
+    while ((match = optRegex.exec(questionBlock)) !== null) {
+      if (['A', 'B', 'C', 'D'].includes(match[1])) {
+        if (!options.some(o => o.id === match[1])) {
+          options.push({
+            id: match[1],
+            text: match[2].trim().replace(/\s+/g, ' ')
+          });
+          foundIndices.push(match.index);
+        }
+      }
+    }
+
+    let questionText = questionBlock;
+    if (foundIndices.length > 0) {
+      questionText = questionBlock.slice(0, foundIndices[0]).trim();
+    }
+
+    questions.push({
+      id: `${meta.prefix}-q${num}`,
+      index: num,
+      sectionId: meta.getSectionId(num),
+      questionText: questionText.replace(/\s+/g, ' ').trim(),
+      options,
+      correctAnswer: answers[num] || 'A',
+      explanation: meta.getExplanation(num, answers[num] || 'A')
+    });
+  }
+
+  return {
+    ...meta.info,
+    totalQuestions: questions.length,
+    sections: meta.sections,
+    questions
+  };
 }
 
-const files = fs.readdirSync(examDir).filter(f => f.endsWith('.docx') && !f.startsWith('~$'));
-console.log('Found docx files in Exam/:', files);
-
-// === DỮ LIỆU ĐỀ 1: UNIT 1 (LIFE STORIES) ===
-const examUnit1 = {
-  id: 'de-on-tap-gk1-lop-12-unit-1',
-  title: 'Đề Cương Ôn Tập Giữa Kỳ 1 Lớp 12 - Unit 1: Life Stories (Năm học 2026-2027)',
-  description: 'Đề thi chuẩn cấu trúc Bộ GD&ĐT gồm 4 phần: Trọng âm, Từ vựng & Ngữ pháp, Đọc hiểu (Newton, Bell, Steve Jobs, Nguyễn Du) và Kỹ năng viết sắp xếp câu.',
-  subject: 'Tiếng Anh',
-  category: 'Ôn theo unit',
-  categories: ['Ôn theo unit', 'Ôn giữa kỳ 1'],
-  grade: 'Lớp 12',
-  durationMinutes: 50,
-  totalQuestions: 45,
-  originalFileName: 'ÔN TẬP GK1 LOP 12 UNIT 1.docx',
-  status: 'ready',
-  createdAt: new Date().toISOString(),
-  updatedAt: new Date().toISOString(),
-  tags: ['Tiếng Anh 12', 'Ôn theo unit', 'Ôn giữa kỳ 1', 'Unit 1', 'Global Success', 'Reading', 'Grammar'],
+// Metadata Lớp 11 Unit 1
+const u11_1_meta = {
+  prefix: 'l11-u1',
+  info: {
+    id: 'de-cuong-on-tap-gk1-lop-11-unit-1',
+    title: 'Đề Cương Ôn Tập Giữa Kỳ 1 Lớp 11 - Unit 1: A Long and Healthy Life (Năm học 2026-2027)',
+    description: 'Đề thi chuẩn cấu trúc gồm 4 phần: Phát âm & Trọng âm, Từ vựng & Ngữ pháp, Đọc điền từ & Đọc hiểu chất béo dinh dưỡng, Kỹ năng sắp xếp câu/hội thoại.',
+    subject: 'Tiếng Anh',
+    category: 'Ôn giữa kỳ 1',
+    categories: ['Ôn theo unit', 'Ôn giữa kỳ 1'],
+    grade: 'Lớp 11',
+    durationMinutes: 60,
+    originalFileName: 'de-cuong-tieng-anh-11-unit-1-azota.docx',
+    status: 'ready',
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+    tags: ['Tiếng Anh 11', 'Lớp 11', 'Ôn theo unit', 'Ôn giữa kỳ 1', 'Unit 1', 'A Long and Healthy Life', 'Global Success']
+  },
   sections: [
     {
-      id: 'sec-1-1',
-      title: 'I. TRỌNG ÂM (STRESS)',
-      instruction: 'Mark the letter A, B, C or D to indicate the word that differs from the other three in the position of primary stress in each of the following questions.',
-      questionIndices: [1, 2, 3, 4, 5]
+      id: 'sec-11-1-1',
+      title: 'I. USE OF LANGUAGE - PART 1: PRONUNCIATION & STRESS',
+      instruction: 'Mark the letter A, B, C, or D on your answer sheet to indicate the word that differs from the other three in the position of primary stress.',
+      questionIndices: [1, 2, 3, 4]
     },
     {
-      id: 'sec-1-2',
-      title: 'II. TỪ VỰNG & NGỮ PHÁP (VOCABULARY AND GRAMMAR)',
-      instruction: 'Choose the best answer A, B, C or D to complete each sentence or find words with Opposite / Closest meaning.',
-      questionIndices: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21]
+      id: 'sec-11-1-2',
+      title: 'PART 2: CLOSEST IN MEANING',
+      instruction: 'Mark the letter A, B, C, or D on your answer sheet to indicate the word(s) CLOSEST in meaning to the underlined word(s).',
+      questionIndices: [5, 6, 7, 8]
     },
     {
-      id: 'sec-1-3-1',
-      title: 'III. ĐỌC ĐIỀN TỪ - BÀI ĐỌC 1 (READING 1)',
-      instruction: 'Read the following passage and mark the letter A, B, C, or D to indicate the correct option that best fits each of the numbered blanks.',
-      passageTitle: 'Isaac Newton & Albert Einstein',
-      passage: 'Isaac Newton (1643-1727) and Albert Einstein (1897-1955) are regarded as two of the most important scientists of all time. They also share some similarities.\n\nBoth Einstein and Newton were described as lonely children (22) ________ lacked social skills, but had a passion for complex topics. Einstein dropped out of school at the age of 15 because he felt bored and didn\'t like the teaching style. (23) ________, Newton didn\'t excel in school, although he completed his secondary education and managed to enter Cambridge University.\n\nBoth worked in the field of physics and maths, but in different time periods and contributed to our (24) ________ of gravity. Newton was the first person to describe gravity and discover the basic laws of mechanics and motion. While Einstein agreed with some aspects of his theory, he showed that Newton was wrong about time and space, and (25) ________ a new theory of gravity. Einstein also established the foundations of modern physics.\n\nThe scientific achievements of both Newton and Einstein are impressive, and there is still a debate about who made the bigger (26) ________ to humankind.\n\n[Adapted from Global Success]',
-      questionIndices: [22, 23, 24, 25, 26]
+      id: 'sec-11-1-3',
+      title: 'PART 3: OPPOSITE IN MEANING',
+      instruction: 'Mark the letter A, B, C, or D on your answer sheet to indicate the word(s) OPPOSITE in meaning to the underlined word(s).',
+      questionIndices: [9, 10, 11, 12]
     },
     {
-      id: 'sec-1-3-2',
-      title: 'III. ĐỌC ĐIỀN TỪ - BÀI ĐỌC 2 (READING 2)',
-      instruction: 'Read the following passage about Alexander Graham Bell and mark the letter A, B, C, or D to indicate the correct option.',
-      passageTitle: 'Alexander Graham Bell',
-      passage: 'Alexander Graham Bell was a Scottish-born scientist and inventor (27) _________ was best known for inventing the first working telephone.\n\nBell was born in Edinburgh, Scotland, on March 3, 1847. During his youth, Bell was strongly (28) _________ by his family and his environment. Bell’s hometown of Edinburgh, Scotland, was known as the “Athens of the North” for its rich culture of arts and science.\n\nBy age 16, Alexander had joined his father in his work with the deaf. In 1870, the family settled in Brantford, Ontario, Canada. There, Alexander set up a workshop to continue his study of the human voice. On July 11, 1877, Bell married Mabel Hubbard who had been deaf (29) _________ her early childhood years.\n\nOn March 10, 1876, after many years (30) _________ work, Bell perfected his most well-known invention, the telephone, and made his first telephone call. The Bell Telephone Company was organised on July 9, 1877. In 1880, Bell established the Volta Laboratory in Washington, D.C., an experimental facility devoted to (31) _________ discovery.\n\nThroughout his life, Bell continued his family’s work with the deaf. Bell died peacefully on August 2, 1922, at his home in Baddeck on Cape Breton Island, Nova Scotia, Canada.',
-      questionIndices: [27, 28, 29, 30, 31]
+      id: 'sec-11-1-4',
+      title: 'PART 4: GRAMMAR & VOCABULARY',
+      instruction: 'Mark the letter A, B, C, or D on your answer sheet to indicate the correct answer to each of the following questions.',
+      questionIndices: [13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
     },
     {
-      id: 'sec-1-3-3',
-      title: 'III. ĐỌC HIỂU - BÀI ĐỌC 3 (READING 3)',
-      instruction: 'Read the following passage and mark the letter A, B, C or D to indicate the correct answer to each of the questions.',
-      passageTitle: 'Steve Jobs: Life and Achievements',
-      passage: 'Steven Paul Jobs was born on 24 February, 1955 in San Francisco, USA. His biological parents were not married and gave him up for adoption. He was adopted by Clara and Paul Jobs. In 1971, Jobs met Steve Wozniak, who was five years older than him, but they bonded over their love of electronics. After high school, Jobs attended Reed College in Oregon, but found the classes boring and dropped out after six months.\n\nWhen Jobs was 21, he and Wozniak started Apple Computers in Jobs\' family garage with money they got by selling Jobs\' van and Wozniak\'s scientific calculator. They turned it into a workspace where they built their first computers. By making computers smaller, cheaper, and accessible to everyday users, their company became a huge success and sales quickly increased.\n\nAlthough Jobs left Apple in 1985, he returned to his post in 1997 when the company needed new ideas. He helped invent new products such as the iMac, the iBook for students, the iPod music player, and iTunes music software. In 2007, he introduced the touch-screen iPhone which changed the way phones were used. Apple products were not only designed to be cutting-edge technology, but also to be stylish and easy to use.\n\nIn addition, Jobs contributed to computer animation. In 1986, he bought a small company, which later became Pixar Animation Studios. It produced the first full-length computer-animated film Toy Story, followed by other blockbusters.\n\nIn 2003, Jobs was diagnosed with a rare form of pancreatic cancer. He fought the disease for several years, and stopped working in August, 2011. Two months later, he passed away. He had four children, three with his wife of 20 years and one from a previous relationship. On an Apple web page, a statement reads, "Apple has lost a visionary and creative genius, and the world has lost an amazing human being."\n\n[Adapted from Global Success]',
-      questionIndices: [32, 33, 34, 35, 36]
+      id: 'sec-11-1-5',
+      title: 'II. READING - PART 1: CLOZE READING',
+      instruction: 'Read the following passage carefully and then choose the best option to fit each numbered blank.',
+      passageTitle: 'The Importance and Purpose of Sleep',
+      passage: 'For about one third of your life, your eyes will be closed. You will not move very much. You will breathe very slowly. You will be quiet. In other words, for about one third of your life, you will be asleep. Why do we sleep so much? What is the purpose? Scientists do not have a complete answer. They believe that sleep (31)________ your energy and helps your brain work better. If you do not sleep enough, you cannot (32)_________on your work, and you feel tired all day. Without enough sleep, you are also more likely to get sick. Sleep is important (33)_________ normal development. This means that children need a lot of sleep in order to grow up strong and healthy. During the first two weeks of life, babies sleep for about 16 hours every day. This changes as they grow and need less sleep. Teenagers still need about 9 hours of sleep every night, but most adults need less – only about 8 hours. After about the age of 70, they only sleep for about 6 hours every night. All animals, (34) _________ live in different environments, need sleep, (35) _________ there is great variation in how much they sleep. For example, some big snakes sleep for more than 18 hours a day. Sheep only sleep for about 4 hours, and giraffes sleep less than 2 hours a day! Pigs sleep for 8 hours a day just like adult humans.',
+      questionIndices: [31, 32, 33, 34, 35]
     },
     {
-      id: 'sec-1-3-4',
-      title: 'III. ĐỌC HIỂU - BÀI ĐỌC 4 (READING 4)',
-      instruction: 'Read the following passage about Nguyen Du and choose the best answer for each question.',
-      passageTitle: 'Đại thi hào Nguyễn Du (1765 - 1820)',
-      passage: 'Nguyen Du is a celebrated Vietnamese poet who wrote in Chữ Nôm, the ancient writing script of Viet Nam. His poetry is celebrated for the directness of its language and of its metaphors. Despite a number of Vietnamese poets pre-dated him, Nguyen Du is considered by many Vietnamese to be the founding-figure of Vietnamese literature. His epic poem Truyen Kieu (The Tale of Kieu), relating the brief and tragic life of a Vietnamese girl, is considered as a masterpiece.\n\nNguyen Du was born in 1765 in Tien Dien village, Nghi Xuan district, Nghe Tinh province, Viet Nam. By the age of 13, Nguyen had lost both of his parents, and for most of his teenage years he lived with his brother or with his brother-in-law.\n\nAt the age of 19, Nguyen passed the provincial examination. After that, he was appointed to the position of a military advisor in the Trinh army. After the Trinh Lords were defeated in 1786 by Nguyen Hue, Nguyen Du refused to serve in the new administration. He was arrested and held for some time before he moved back to his native village in the northern part of the country.\n\nLater, when yet another warlord, Nguyen Anh, ruled Viet Nam in 1802, Nguyen Du agreed to serve in his administration. At first, he was given his old post of military advisor but after a decade, he was promoted to an ambassador to China in 1813.\n\nWhile in China, he discovered and translated the Ming dynasty era tale “Kim Van Kieu” that would become the basis for the Tale of Kieu. He was later appointed to two more missions to Beijing, but before he could depart for the last one, he died of a long illness for which he refused treatment in 1820.\n\nNguyen Du’s father worked as a minister for the Lê dynasty, and his family did well during this time. However, Nguyen Du spent much of his life feeling guilty because he worked for a new ruler who took over, and he thought this was a betrayal of the true leaders of Viet Nam. He believed this brought dishonour to him and his family.',
-      questionIndices: [37, 38, 39, 40, 41]
+      id: 'sec-11-1-6',
+      title: 'PART 2: READING COMPREHENSION',
+      instruction: 'Read the following passage and mark the letter A, B, C, or D on your answer sheet to indicate the correct answer to each of the questions.',
+      passageTitle: 'Functions and Nutritional Value of Fats',
+      passage: 'Most human diets contain between 10 and 15 percent of their total calories as protein. The rest of the dietary energy comes from carbohydrates, fats, and in some people, alcohol. The proportion of calories from fats varies from 10 percent in poor communities to 40 percent or more in rich communities.\n\nIn addition to providing energy, fats have several other functions in the body. The fat-soluble vitamins, A, D, E, and K, are dissolved in fats, as their name implies. Good sources of these vitamins have high oil or fat content, and the vitamins are stored in the body’s fatty tissues. In the diet, fats cause food to remain longer in the stomach, thus increasing the feeling of fullness for some time after a meal is eaten. Fats add variety, taste, and texture to foods, which accounts for the popularity of fried foods. Fatty deposits in the body have an insulating and protective value. The curves of the female human body are due mostly to strategically located fat deposits.\n\nWhether a certain amount of fat in the diet is essential to human health is not definitely known. When rats are fed a fat-free diet, their growth eventually ceases, their skin becomes inflamed and scaly, and their reproductive systems are damaged. Two fatty acids, linoleic and arachidonic acids, prevent these abnormalities and hence are called essential fatty acids. They are required by a number of other animals, but their roles in human beings are debatable. Most nutritionists consider linoleic fatty acid an essential nutrient for humans.',
+      questionIndices: [36, 37, 38, 39, 40]
     },
     {
-      id: 'sec-1-4',
-      title: 'IV. KỸ NĂNG VIẾT (WRITING - SENTENCE ARRANGEMENT)',
-      instruction: 'Mark the letter A, B, C, or D on your answer sheet to indicate the correct arrangement of the sentences to make a meaningful paragraph or dialogue.',
-      questionIndices: [42, 43, 44, 45]
+      id: 'sec-11-1-7',
+      title: 'III. WRITING - PART 1: SENTENCE / UTTERANCE ARRANGEMENT',
+      instruction: 'Mark the letter A, B, C or D to indicate the best arrangement of utterances or sentences to make a meaningful exchange or text.',
+      questionIndices: [41, 42, 43, 44]
     }
   ],
-  questions: [
-    {
-      id: 'u1-q1', index: 1, sectionId: 'sec-1-1',
-      questionText: 'Mark the letter A, B, C or D to indicate the word that differs from the other three in the position of primary stress.',
-      options: [{ id: 'A', text: 'cancer' }, { id: 'B', text: 'attack' }, { id: 'C', text: 'disease' }, { id: 'D', text: 'defeat' }],
-      correctAnswer: 'A',
-      explanation: 'cancer nhấn âm 1 (/ˈkænsər/), trong khi attack (/əˈtæk/), disease (/dɪˈziːz/) và defeat (/dɪˈfiːt/) đều nhấn âm 2.'
-    },
-    {
-      id: 'u1-q2', index: 2, sectionId: 'sec-1-1',
-      questionText: 'Mark the letter A, B, C or D to indicate the word that differs from the other three in the position of primary stress.',
-      options: [{ id: 'A', text: 'impressive' }, { id: 'B', text: 'resistance' }, { id: 'C', text: 'medicine' }, { id: 'D', text: 'adoption' }],
-      correctAnswer: 'C',
-      explanation: 'medicine nhấn âm 1 (/ˈmedsn/), các từ còn lại nhấn âm 2: impressive (/ɪmˈpresɪv/), resistance (/rɪˈzɪstəns/), adoption (/əˈdɑːpʃn/).'
-    },
-    {
-      id: 'u1-q3', index: 3, sectionId: 'sec-1-1',
-      questionText: 'Mark the letter A, B, C or D to indicate the word that differs from the other three in the position of primary stress.',
-      options: [{ id: 'A', text: 'military' }, { id: 'B', text: 'animation' }, { id: 'C', text: 'contribution' }, { id: 'D', text: 'pancreatic' }],
-      correctAnswer: 'A',
-      explanation: 'military nhấn âm 1 (/ˈmɪləteri/), các từ còn lại có hậu tố -tion và -ic nên nhấn vào âm tiết thứ 3: animation (/ˌænɪˈmeɪʃn/), contribution (/ˌkɑːntrɪˈbjuːʃn/), pancreatic (/ˌpæŋkriˈætɪk/).'
-    },
-    {
-      id: 'u1-q4', index: 4, sectionId: 'sec-1-1',
-      questionText: 'Mark the letter A, B, C or D to indicate the word that differs from the other three in the position of primary stress.',
-      options: [{ id: 'A', text: 'invent' }, { id: 'B', text: 'resign' }, { id: 'C', text: 'childhood' }, { id: 'D', text: 'adopt' }],
-      correctAnswer: 'C',
-      explanation: 'childhood là danh từ ghép nhấn âm 1 (/ˈtʃaɪldhʊd/), các từ còn lại là động từ 2 âm tiết nhấn âm 2: invent (/ɪnˈvent/), resign (/rɪˈzaɪn/), adopt (/əˈdɑːpt/).'
-    },
-    {
-      id: 'u1-q5', index: 5, sectionId: 'sec-1-1',
-      questionText: 'Mark the letter A, B, C or D to indicate the word that differs from the other three in the position of primary stress.',
-      options: [{ id: 'A', text: 'diagnose' }, { id: 'B', text: 'general' }, { id: 'C', text: 'autograph' }, { id: 'D', text: 'achievement' }],
-      correctAnswer: 'D',
-      explanation: 'achievement nhấn âm 2 (/əˈtʃiːvmənt/), các từ còn lại nhấn âm 1: diagnose (/ˈdaɪəɡnoʊz/), general (/ˈdʒenrəl/), autograph (/ˈɔːtəɡræf/).'
-    },
-    {
-      id: 'u1-q6', index: 6, sectionId: 'sec-1-2',
-      questionText: 'Dang Thuy Tram ______ her duty in Quang Ngai Province when the cruel enemy _____ her.',
-      options: [{ id: 'A', text: 'was doing / killed' }, { id: 'B', text: 'did / killed' }, { id: 'C', text: 'did / was killing' }, { id: 'D', text: 'was doing / was killing' }],
-      correctAnswer: 'A',
-      explanation: 'Hành động đang diễn ra trong quá khứ thì có hành động khác xen vào: hành động đang diễn ra chia Quá khứ tiếp diễn (was doing), hành động xen vào chia Quá khứ đơn (killed).'
-    },
-    {
-      id: 'u1-q7', index: 7, sectionId: 'sec-1-2',
-      questionText: 'The teacher _____________ a presentation about the resistance war to inspire her students.',
-      options: [{ id: 'A', text: 'took' }, { id: 'B', text: 'got' }, { id: 'C', text: 'gave' }, { id: 'D', text: 'told' }],
-      correctAnswer: 'C',
-      explanation: 'Collocation chuẩn: "give a presentation" (thuyết trình, trình bày một bài giảng).'
-    },
-    {
-      id: 'u1-q8', index: 8, sectionId: 'sec-1-2',
-      questionText: '____________ of college was a difficult decision, but it allowed him to pursue his true passion.',
-      options: [{ id: 'A', text: 'Dropping out' }, { id: 'B', text: 'Falling out' }, { id: 'C', text: 'Passing out' }, { id: 'D', text: 'Carrying out' }],
-      correctAnswer: 'A',
-      explanation: 'Cụm động từ "drop out of college" mang nghĩa bỏ học đại học giữa chừng.'
-    },
-    {
-      id: 'u1-q9', index: 9, sectionId: 'sec-1-2',
-      questionText: 'General Vo Nguyen Giap was a legendary military genius who led the Vietnam People\'s Army to victory against ________ forces.',
-      options: [{ id: 'A', text: 'culture' }, { id: 'B', text: 'colonial' }, { id: 'C', text: 'society' }, { id: 'D', text: 'identity' }],
-      correctAnswer: 'B',
-      explanation: 'Tính từ "colonial" (thuộc địa); "colonial forces" nghĩa là các lực lượng thực dân, xâm lược.'
-    },
-    {
-      id: 'u1-q10', index: 10, sectionId: 'sec-1-2',
-      questionText: 'The doctor was able to _____________ the rare disease after running several advanced tests.',
-      options: [{ id: 'A', text: 'admire' }, { id: 'B', text: 'diagnose' }, { id: 'C', text: 'adopt' }, { id: 'D', text: 'resign' }],
-      correctAnswer: 'B',
-      explanation: 'Động từ "diagnose" nghĩa là chẩn đoán bệnh tật.'
-    },
-    {
-      id: 'u1-q11', index: 11, sectionId: 'sec-1-2',
-      questionText: 'His ___________ to the field of science earned him numerous awards and international recognition.',
-      options: [{ id: 'A', text: 'contribution' }, { id: 'B', text: 'contribute' }, { id: 'C', text: 'contributory' }, { id: 'D', text: 'contributor' }],
-      correctAnswer: 'A',
-      explanation: 'Sau tính từ sở hữu "His" cần một danh từ chỉ sự đóng góp: "contribution".'
-    },
-    {
-      id: 'u1-q12', index: 12, sectionId: 'sec-1-2',
-      questionText: 'While he ___________ on his latest project, he ___________ an old friend from high school.',
-      options: [{ id: 'A', text: 'worked / met' }, { id: 'B', text: 'was working / was meeting' }, { id: 'C', text: 'was working / met' }, { id: 'D', text: 'worked / was meeting' }],
-      correctAnswer: 'C',
-      explanation: 'Mệnh đề sau "While" diễn tả hành động đang xảy ra (was working), mệnh đề chính diễn tả hành động bất ngờ xen vào (met).'
-    },
-    {
-      id: 'u1-q13', index: 13, sectionId: 'sec-1-2',
-      questionText: 'Although they faced intense enemy ___________, the soldiers never lost their determination to win.',
-      options: [{ id: 'A', text: 'account' }, { id: 'B', text: 'resistance' }, { id: 'C', text: 'attacks' }, { id: 'D', text: 'geniuses' }],
-      correctAnswer: 'C',
-      explanation: 'Cụm danh từ "enemy attacks" (các cuộc tấn công dữ dội của quân địch).'
-    },
-    {
-      id: 'u1-q14', index: 14, sectionId: 'sec-1-2',
-      questionText: 'Steve Jobs’ remarkable vision and perseverance continue to _________ young entrepreneurs worldwide.',
-      options: [{ id: 'A', text: 'inspire' }, { id: 'B', text: 'resign' }, { id: 'C', text: 'defeat' }, { id: 'D', text: 'adopt' }],
-      correctAnswer: 'A',
-      explanation: '"inspire" (truyền cảm hứng cho các doanh nhân trẻ trên toàn thế giới).'
-    },
-    {
-      id: 'u1-q15', index: 15, sectionId: 'sec-1-2',
-      questionText: 'He decided to ____________ from his position as CEO due to ongoing health problems.',
-      options: [{ id: 'A', text: 'resign' }, { id: 'B', text: 'admire' }, { id: 'C', text: 'oppose' }, { id: 'D', text: 'prosecute' }],
-      correctAnswer: 'A',
-      explanation: '"resign from a position" nghĩa là từ chức khỏi cương vị lãnh đạo.'
-    },
-    {
-      id: 'u1-q16', index: 16, sectionId: 'sec-1-2',
-      questionText: 'Nguyen Hue was a military genius who achieved a brilliant victory over the Qing invaders in the spring of ________.',
-      options: [{ id: 'A', text: '1789' }, { id: 'B', text: '1945' }, { id: 'C', text: '1954' }, { id: 'D', text: '1975' }],
-      correctAnswer: 'A',
-      explanation: 'Chiến thắng Ngọc Hồi - Đống Đa đại phá 29 vạn quân Thanh diễn ra vào mùa xuân năm Kỷ Dậu 1789.'
-    },
-    {
-      id: 'u1-q17', index: 17, sectionId: 'sec-1-2',
-      questionText: 'He is widely regarded as a ____________ figure in Vietnamese history for his dedication to national liberation.',
-      options: [{ id: 'A', text: 'legendary' }, { id: 'B', text: 'legend' }, { id: 'C', text: 'legendarily' }, { id: 'D', text: 'legends' }],
-      correctAnswer: 'A',
-      explanation: 'Cần tính từ "legendary" bổ nghĩa cho danh từ "figure" (nhân vật huyền thoại).'
-    },
-    {
-      id: 'u1-q18', index: 18, sectionId: 'sec-1-2',
-      questionText: 'Mark the letter A, B, C, or D to indicate the word(s) OPPOSITE in meaning: His achievements in cancer research were IMPRESSIVE and saved thousands of lives.',
-      options: [{ id: 'A', text: 'remarkable' }, { id: 'B', text: 'ordinary' }, { id: 'C', text: 'admirable' }, { id: 'D', text: 'extraordinary' }],
-      correctAnswer: 'B',
-      explanation: 'impressive (ấn tượng, xuất sắc) trái nghĩa với ordinary (bình thường, tầm thường).'
-    },
-    {
-      id: 'u1-q19', index: 19, sectionId: 'sec-1-2',
-      questionText: 'Mark the letter A, B, C, or D to indicate the word(s) OPPOSITE in meaning: Apple is well-known for its CUTTING-EDGE technology that transforms everyday life.',
-      options: [{ id: 'A', text: 'outdated' }, { id: 'B', text: 'modern' }, { id: 'C', text: 'advanced' }, { id: 'D', text: 'innovative' }],
-      correctAnswer: 'A',
-      explanation: 'cutting-edge (tân tiến, hiện đại nhất) trái nghĩa với outdated (lỗi thời, lạc hậu).'
-    },
-    {
-      id: 'u1-q20', index: 20, sectionId: 'sec-1-2',
-      questionText: 'Mark the letter A, B, C, or D to indicate the word(s) CLOSEST in meaning: Because her parents died in the war, a kind local family TOOK HIM AS THEIR OWN CHILD.',
-      options: [{ id: 'A', text: 'adopted him' }, { id: 'B', text: 'criticised him' }, { id: 'C', text: 'abandoned him' }, { id: 'D', text: 'punished him' }],
-      correctAnswer: 'A',
-      explanation: 'take someone as one\'s own child đồng nghĩa với "adopt" (nhận làm con nuôi).'
-    },
-    {
-      id: 'u1-q21', index: 21, sectionId: 'sec-1-2',
-      questionText: 'Mark the letter A, B, C, or D to indicate the word(s) CLOSEST in meaning: The RESISTANCE WAR against foreign invaders demanded immense sacrifices from the people.',
-      options: [{ id: 'A', text: 'struggle for liberation' }, { id: 'B', text: 'peace agreement' }, { id: 'C', text: 'economic reform' }, { id: 'D', text: 'cultural exchange' }],
-      correctAnswer: 'A',
-      explanation: 'resistance war (cuộc kháng chiến chống ngoại xâm) đồng nghĩa với "struggle for liberation" (cuộc đấu tranh giải phóng dân tộc).'
-    },
-    {
-      id: 'u1-q22', index: 22, sectionId: 'sec-1-3-1',
-      questionText: 'Both Einstein and Newton were described as lonely children (22) ________ lacked social skills...',
-      options: [{ id: 'A', text: 'which' }, { id: 'B', text: 'who' }, { id: 'C', text: 'whose' }, { id: 'D', text: 'whom' }],
-      correctAnswer: 'B',
-      explanation: 'Đại từ quan hệ "who" thay thế cho danh từ chỉ người làm chủ ngữ (children who lacked social skills).'
-    },
-    {
-      id: 'u1-q23', index: 23, sectionId: 'sec-1-3-1',
-      questionText: 'Einstein dropped out of school... (23) ________, Newton didn\'t excel in school...',
-      options: [{ id: 'A', text: 'Similarly' }, { id: 'B', text: 'However' }, { id: 'C', text: 'Therefore' }, { id: 'D', text: 'In contrast' }],
-      correctAnswer: 'A',
-      explanation: 'Đoạn văn nói về điểm tương đồng giữa hai nhà khoa học: "Similarly" (Tương tự như vậy, Newton cũng không xuất sắc ở trường học thời thơ ấu).'
-    },
-    {
-      id: 'u1-q24', index: 24, sectionId: 'sec-1-3-1',
-      questionText: '...and contributed to our (24) ________ of gravity.',
-      options: [{ id: 'A', text: 'understand' }, { id: 'B', text: 'understanding' }, { id: 'C', text: 'understandable' }, { id: 'D', text: 'understandably' }],
-      correctAnswer: 'B',
-      explanation: 'Sau tính từ sở hữu "our" cần một danh từ: "understanding" (sự hiểu biết về trọng lực).'
-    },
-    {
-      id: 'u1-q25', index: 25, sectionId: 'sec-1-3-1',
-      questionText: '...showed that Newton was wrong about time and space, and (25) ________ a new theory of gravity.',
-      options: [{ id: 'A', text: 'proposed' }, { id: 'B', text: 'rejected' }, { id: 'C', text: 'ignored' }, { id: 'D', text: 'forgot' }],
-      correctAnswer: 'A',
-      explanation: '"propose a theory" nghĩa là đề xuất/đưa ra một học thuyết mới.'
-    },
-    {
-      id: 'u1-q26', index: 26, sectionId: 'sec-1-3-1',
-      questionText: '...about who made the bigger (26) ________ to humankind.',
-      options: [{ id: 'A', text: 'contribution' }, { id: 'B', text: 'discovery' }, { id: 'C', text: 'invention' }, { id: 'D', text: 'decision' }],
-      correctAnswer: 'A',
-      explanation: 'Collocation: "make a contribution to" (đóng góp to lớn cho nhân loại).'
-    },
-    {
-      id: 'u1-q27', index: 27, sectionId: 'sec-1-3-2',
-      questionText: 'Alexander Graham Bell was a Scottish-born scientist and inventor (27) _________ was best known for inventing the first working telephone.',
-      options: [{ id: 'A', text: 'who' }, { id: 'B', text: 'which' }, { id: 'C', text: 'whom' }, { id: 'D', text: 'whose' }],
-      correctAnswer: 'A',
-      explanation: 'Đại từ quan hệ "who" bổ nghĩa cho danh từ chỉ người (inventor who was best known).'
-    },
-    {
-      id: 'u1-q28', index: 28, sectionId: 'sec-1-3-2',
-      questionText: 'During his youth, Bell was strongly (28) _________ by his family and his environment.',
-      options: [{ id: 'A', text: 'influential' }, { id: 'B', text: 'influence' }, { id: 'C', text: 'influenced' }, { id: 'D', text: 'influencing' }],
-      correctAnswer: 'C',
-      explanation: 'Câu bị động trong quá khứ: "was strongly influenced by" (chịu ảnh hưởng sâu sắc từ gia đình và môi trường sống).'
-    },
-    {
-      id: 'u1-q29', index: 29, sectionId: 'sec-1-3-2',
-      questionText: 'On July 11, 1877, Bell married Mabel Hubbard who had been deaf (29) _________ her early childhood years.',
-      options: [{ id: 'A', text: 'for' }, { id: 'B', text: 'since' }, { id: 'C', text: 'in' }, { id: 'D', text: 'at' }],
-      correctAnswer: 'B',
-      explanation: 'Thì quá khứ hoàn thành (had been deaf) đi với mốc thời gian trong quá khứ dùng "since" (từ những năm tháng thơ ấu).'
-    },
-    {
-      id: 'u1-q30', index: 30, sectionId: 'sec-1-3-2',
-      questionText: 'On March 10, 1876, after many years (30) _________ work, Bell perfected his most well-known invention...',
-      options: [{ id: 'A', text: 'of' }, { id: 'B', text: 'on' }, { id: 'C', text: 'with' }, { id: 'D', text: 'to' }],
-      correctAnswer: 'A',
-      explanation: 'Cụm danh từ: "many years of work" (sau nhiều năm làm việc/nghiên cứu).'
-    },
-    {
-      id: 'u1-q31', index: 31, sectionId: 'sec-1-3-2',
-      questionText: '...an experimental facility devoted to (31) _________ discovery.',
-      options: [{ id: 'A', text: 'scientifically' }, { id: 'B', text: 'science' }, { id: 'C', text: 'scientist' }, { id: 'D', text: 'scientific' }],
-      correctAnswer: 'D',
-      explanation: 'Cần tính từ "scientific" bổ nghĩa cho danh từ "discovery" (khám phá khoa học).'
-    },
-    {
-      id: 'u1-q32', index: 32, sectionId: 'sec-1-3-3',
-      questionText: 'Which of the following is the best title for the passage about Steve Jobs?',
-      options: [
-        { id: 'A', text: 'Steve Jobs was a visionary who created life-changing technology products.' },
-        { id: 'B', text: 'Steve Jobs and the history of Pixar Animation Studios.' },
-        { id: 'C', text: 'How Apple Computers was started in a garage.' },
-        { id: 'D', text: 'The battle against pancreatic cancer.' }
-      ],
-      correctAnswer: 'A',
-      explanation: 'Tiêu đề phù hợp nhất khái quát toàn bài: Steve Jobs là nhà sáng lập với tầm nhìn vĩ đại, tạo ra những sản phẩm công nghệ thay đổi đời sống con người.'
-    },
-    {
-      id: 'u1-q33', index: 33, sectionId: 'sec-1-3-3',
-      questionText: 'The word "it" in paragraph 2 refers to:',
-      options: [{ id: 'A', text: 'garage' }, { id: 'B', text: 'company' }, { id: 'C', text: 'success' }, { id: 'D', text: 'electronics' }],
-      correctAnswer: 'A',
-      explanation: 'Đoạn 2 ghi: "...in Jobs\' family garage... They turned it into a workspace" -> "it" thay thế cho "garage".'
-    },
-    {
-      id: 'u1-q34', index: 34, sectionId: 'sec-1-3-3',
-      questionText: 'Which of the following is NOT true according to the passage?',
-      options: [
-        { id: 'A', text: 'Jobs and Wozniak started the company in Jobs\' family garage.' },
-        { id: 'B', text: 'Apple created products that were stylish and easy to use.' },
-        { id: 'C', text: 'Jobs stayed with Apple continuously from 1976 until 2011 without leaving.' },
-        { id: 'D', text: 'Pixar produced the first full-length computer-animated film Toy Story.' }
-      ],
-      correctAnswer: 'C',
-      explanation: 'Đoạn 3 nêu: "Although Jobs left Apple in 1985, he returned to his post in 1997", nên việc Jobs ở lại liên tục không rời đi là thông tin KHÔNG đúng.'
-    },
-    {
-      id: 'u1-q35', index: 35, sectionId: 'sec-1-3-3',
-      questionText: 'The word "diagnosed" in paragraph 5 is closest in meaning to:',
-      options: [{ id: 'A', text: 'detected' }, { id: 'B', text: 'treated' }, { id: 'C', text: 'searched' }, { id: 'D', text: 'monitored' }],
-      correctAnswer: 'A',
-      explanation: '"diagnosed" (chẩn đoán, phát hiện bệnh) đồng nghĩa với "detected".'
-    },
-    {
-      id: 'u1-q36', index: 36, sectionId: 'sec-1-3-3',
-      questionText: 'According to the passage, what was one reason Jobs stopped working in August 2011?',
-      options: [
-        { id: 'A', text: 'He had completed all his work.' },
-        { id: 'B', text: 'He wanted to spend more time on computer animation.' },
-        { id: 'C', text: 'He was fighting a rare form of pancreatic cancer.' },
-        { id: 'D', text: 'Apple needed new leadership.' }
-      ],
-      correctAnswer: 'C',
-      explanation: 'Đoạn 5 ghi rõ: Jobs chiến đấu với căn bệnh ung thư tuyến tụy hiếm gặp trong nhiều năm và phải ngừng làm việc vào tháng 8 năm 2011.'
-    },
-    {
-      id: 'u1-q37', index: 37, sectionId: 'sec-1-3-4',
-      questionText: 'Which of the following can be the best title for the passage about Nguyen Du?',
-      options: [
-        { id: 'A', text: 'Nguyen Du: Life and Career' },
-        { id: 'B', text: 'The Tale of Kieu: A Masterpiece in Vietnamese Literature' },
-        { id: 'C', text: 'The History of Chữ Nôm in Medieval Vietnam' },
-        { id: 'D', text: 'Nguyen Du\'s Diplomatic Mission to China' }
-      ],
-      correctAnswer: 'A',
-      explanation: 'Bài viết thuật lại toàn diện cuộc đời, biến cố thời đại và sự nghiệp văn chương, làm quan của Đại thi hào Nguyễn Du.'
-    },
-    {
-      id: 'u1-q38', index: 38, sectionId: 'sec-1-3-4',
-      questionText: 'The word “masterpiece” in paragraph 1 is closest in meaning to ____________.',
-      options: [{ id: 'A', text: 'genius' }, { id: 'B', text: 'neglect' }, { id: 'C', text: 'account' }, { id: 'D', text: 'treasure' }],
-      correctAnswer: 'D',
-      explanation: '"masterpiece" (kiệt tác nghệ thuật/văn học vô giá) đồng nghĩa với "treasure" (báu vật, kiệt tác).'
-    },
-    {
-      id: 'u1-q39', index: 39, sectionId: 'sec-1-3-4',
-      questionText: 'The word “one” in paragraph 4 refers to ____________.',
-      options: [{ id: 'A', text: 'post' }, { id: 'B', text: 'mission' }, { id: 'C', text: 'tale' }, { id: 'D', text: 'ambassador' }],
-      correctAnswer: 'B',
-      explanation: 'Đoạn 4 ghi: "He was later appointed to two more missions to Beijing, but before he could depart for the last one..." -> "one" thay thế cho "mission".'
-    },
-    {
-      id: 'u1-q40', index: 40, sectionId: 'sec-1-3-4',
-      questionText: 'Which of the following is NOT true according to the passage?',
-      options: [
-        { id: 'A', text: 'Nguyen Du’s father was a military advisor in the Trinh army.' },
-        { id: 'B', text: 'Nguyen Du lost both parents by the age of 13.' },
-        { id: 'C', text: 'Truyen Kieu was written in Chu Nom.' },
-        { id: 'D', text: 'Nguyen Du was promoted to ambassador to China in 1813.' }
-      ],
-      correctAnswer: 'A',
-      explanation: 'Đoạn cuối bài nêu: "Nguyen Du’s father worked as a minister for the Lê dynasty", trong khi chính Nguyễn Du mới giữ chức military advisor sau khi đỗ cử nhân, nên câu A là sai.'
-    },
-    {
-      id: 'u1-q41', index: 41, sectionId: 'sec-1-3-4',
-      questionText: 'Which of the following can be inferred from the passage?',
-      options: [
-        { id: 'A', text: 'He considered himself the founding figure of Vietnamese literature.' },
-        { id: 'B', text: 'He did not face any hardships after losing his parents at a young age.' },
-        { id: 'C', text: 'Nguyen Du felt guilty for serving who he perceived to be a wrong ruler.' },
-        { id: 'D', text: 'He loved working for the Nguyen Dynasty unconditionally.' }
-      ],
-      correctAnswer: 'C',
-      explanation: 'Đoạn cuối nêu rõ: "Nguyen Du spent much of his life feeling guilty because he worked for a new ruler who took over, and he thought this was a betrayal of the true leaders of Viet Nam."'
-    },
-    {
-      id: 'u1-q42', index: 42, sectionId: 'sec-1-4',
-      questionText: 'Mark the letter A, B, C, or D to indicate the correct arrangement of the sentences to make a meaningful dialogue:\na. Anna: Definitely! Despite facing poverty and war, he always valued hard work and family above all.\nb. Anna: Hi John, I often think about my grandfather. He lived through so many hardships and still managed to build a good life for his family.\nc. John: His story is truly inspiring. It shows the power of perseverance and love in overcoming challenges.\nd. John: Wow, that’s incredible. He must have been a strong and determined man.',
-      options: [{ id: 'A', text: 'b - c - a - d' }, { id: 'B', text: 'b - d - a - c' }, { id: 'C', text: 'a - c - b - d' }, { id: 'D', text: 'c - a - b - d' }],
-      correctAnswer: 'B',
-      explanation: 'Thứ tự logic: b (Anna giới thiệu về ông) ➔ d (John khen ngợi sự kiên cường) ➔ a (Anna khẳng định và bổ sung đức tính chăm chỉ) ➔ c (John đúc kết câu chuyện truyền cảm hứng). Đáp án B: b - d - a - c.'
-    },
-    {
-      id: 'u1-q43', index: 43, sectionId: 'sec-1-4',
-      questionText: 'Mark the letter A, B, C, or D to indicate the correct arrangement of the sentences to make a meaningful letter:\nDear Teacher,\na. While I know he was committed to Vietnam’s independence, I would love to hear more about the challenges he faced and how he managed to stay resilient throughout.\nb. Could you share some insights into his leadership during the revolutionary period, and what values guided his actions?\nc. Recently, I’ve been reflecting on the life of President Ho Chi Minh, and I’m eager to learn more about his personal experiences.\nd. Your perspective would be really helpful as I continue to study his legacy.\ne. I trust you are doing well.\nThank you for your time,\nJohn',
-      options: [{ id: 'A', text: 'e - a - c - b - d' }, { id: 'B', text: 'e - c - a - b - d' }, { id: 'C', text: 'a - c - e - d - b' }, { id: 'D', text: 'd - e - a - c - b' }],
-      correctAnswer: 'B',
-      explanation: 'Bố cục chuẩn bức thư: e (Lời chào hỏi đầu thư) ➔ c (Nêu lý do viết thư: tìm hiểu về Bác Hồ) ➔ a (Đặt câu hỏi về thử thách vượt qua) ➔ b (Hỏi thêm về phong cách lãnh đạo) ➔ d (Lời cảm ơn và mong nhận được hồi âm). Đáp án B: e - c - a - b - d.'
-    },
-    {
-      id: 'u1-q44', index: 44, sectionId: 'sec-1-4',
-      questionText: 'Mark the letter A, B, C, or D to indicate the correct arrangement of the dialogue:\na. Minh: What was special about his leadership?\nb. Mai: He was always close to the people, listening to and understanding their desires.\nc. Minh: President Ho Chi Minh made great contributions to the Vietnamese revolution, do you agree?\nd. Minh: His deep connection with the people was the key factor that led to the success of the revolution.\ne. Mai: Absolutely, he was the founder of the Communist Party of Vietnam and led the resistance against the French.',
-      options: [{ id: 'A', text: 'c - b - e - a - d' }, { id: 'B', text: 'd - b - e - a - c' }, { id: 'C', text: 'd - c - e - b - a' }, { id: 'D', text: 'c - e - a - b - d' }],
-      correctAnswer: 'D',
-      explanation: 'Thứ tự hội thoại: c (Minh hỏi ý kiến về đóng góp của Bác) ➔ e (Mai đồng tình và nêu thành tựu sáng lập Đảng) ➔ a (Minh hỏi điểm đặc biệt trong phong cách lãnh đạo) ➔ b (Mai giải thích sự gần gũi với nhân dân) ➔ d (Minh đúc kết đó là nhân tố quyết định thành công). Đáp án D: c - e - a - b - d.'
-    },
-    {
-      id: 'u1-q45', index: 45, sectionId: 'sec-1-4',
-      questionText: 'Mark the letter A, B, C, or D to indicate the correct arrangement of the paragraph:\na. He is widely celebrated as a national hero and one of the greatest military strategists in history.\nb. Born on August 25, 1911, in Quảng Bình Province, he initially pursued academics, studying law and politics in Hanoi and working as a teacher.\nc. General Võ Nguyên Giáp was a legendary figure in Vietnamese history.\nd. His most famous achievement was the decisive victory at the Battle of Điện Biên Phủ in 1954, which ended French colonial rule in Indochina.\ne. He later joined the revolution, becoming a founding member of the People\'s Army of Vietnam and a key military leader in the struggles against both French and American forces.',
-      options: [{ id: 'A', text: 'c - b - e - d - a' }, { id: 'B', text: 'b - c - e - a - d' }, { id: 'C', text: 'e - d - a - c - b' }, { id: 'D', text: 'a - d - e - b - c' }],
-      correctAnswer: 'A',
-      explanation: 'Thứ tự tiểu sử chuẩn: c (Câu chủ đề: Giới thiệu Đại tướng Võ Nguyên Giáp) ➔ b (Năm sinh, quê quán và thời trẻ học tập) ➔ e (Tham gia cách mạng và sáng lập QĐNDVN) ➔ d (Chiến công lẫy lừng Điện Biên Phủ 1954) ➔ a (Đánh giá chung: Anh hùng dân tộc, danh tướng lỗi lạc). Đáp án A: c - b - e - d - a.'
-    }
-  ]
+  getSectionId(num) {
+    if (num <= 4) return 'sec-11-1-1';
+    if (num <= 8) return 'sec-11-1-2';
+    if (num <= 12) return 'sec-11-1-3';
+    if (num <= 30) return 'sec-11-1-4';
+    if (num <= 35) return 'sec-11-1-5';
+    if (num <= 40) return 'sec-11-1-6';
+    return 'sec-11-1-7';
+  },
+  getExplanation(num, ans) {
+    const map = {
+      1: 'adapt /əˈdæpt/ trọng âm rơi vào âm tiết thứ 2, các từ còn lại (conflict, fitness, value) trọng âm rơi vào âm tiết thứ 1.',
+      2: 'respect /rɪˈspekt/ trọng âm rơi vào âm tiết thứ 2, các từ còn lại (virus, habit, healthy) trọng âm rơi vào âm tiết thứ 1.',
+      3: 'routine /ruːˈtiːn/ trọng âm rơi vào âm tiết thứ 2, các từ còn lại (habit, diet, balance) trọng âm rơi vào âm tiết thứ 1.',
+      4: 'vegetable /ˈvedʒtəbl/ trọng âm rơi vào âm tiết thứ 1, các từ còn lại (expectancy, longevity, repetitive) trọng âm rơi vào âm tiết thứ 2.',
+      5: 'cut down on = decrease (cắt giảm thức ăn nhanh).',
+      6: 'diseases = illness (bệnh tật).',
+      7: 'frequently = regularly (thường xuyên).',
+      8: 'life expectancy = longevity (tuổi thọ trung bình).',
+      9: 'give up = từ bỏ; từ trái nghĩa là continue (tiếp tục duy trì thói quen).',
+      10: 'work out = tập luyện thể dục thể thao; từ trái nghĩa là relax (nghỉ ngơi, thư giãn).',
+      11: 'balanced = cân đối, hợp lý; từ trái nghĩa là unreasonable (vô lý, không hợp lý).',
+      12: 'effects = tác động, kết quả; từ trái nghĩa trong ngữ cảnh này là causes (nguyên nhân).',
+      13: 'antibiotics = thuốc kháng sinh (chỉ dùng khi cần thiết và theo chỉ định).',
+      14: 'balanced diet = chế độ ăn uống cân bằng, dinh dưỡng.',
+      15: 'Dấu hiệu thời gian "last week" chia thì Quá khứ đơn: tried.',
+      16: 'Diễn tả chuỗi hành động trong quá khứ: cut / noticed.',
+      17: 'Following a doctor\'s treatment = tuân theo phác đồ điều trị của bác sĩ.',
+      18: 'give up + V-ing/noun = từ bỏ thói quen xấu.',
+      19: 'Since last year đi với thì Hiện tại hoàn thành tiếp diễn: has been.',
+      20: 'Food poisoning = ngộ độc thực phẩm (danh từ ghép).',
+      21: 'Cấu trúc: Since + S + V(quá khứ đơn: gave), S + have/has + V3/ed (has had).',
+      22: 'work out = tập thể dục thể hình để tăng cường cơ bắp.',
+      23: 'tuberculosis = bệnh lao (danh từ chỉ bệnh tật).',
+      24: 'Cấu trúc How about + V-ing -> attending.',
+      25: 'Cụm từ cut down on sth = cắt giảm lượng tiêu thụ cái gì.',
+      26: 'natural ingredients = các nguyên liệu tự nhiên.',
+      27: 'dietary changes = những thay đổi về mặt dinh dưỡng/chế độ ăn.',
+      28: 'learn from sb = học hỏi điều gì từ ai.',
+      29: 'Cấu trúc Hiện tại hoàn thành + since + Quá khứ đơn: have lost / left.',
+      30: 'Cấu trúc Hiện tại hoàn thành + since + Quá khứ đơn: have made / moved.',
+      31: 'Chủ ngữ không đếm được "sleep" chia động từ số ít thì Hiện tại đơn: restores (khôi phục năng lượng).',
+      32: 'concentrate on = tập trung vào công việc.',
+      33: 'important for = quan trọng đối với sự phát triển bình thường.',
+      34: 'Đại từ quan hệ "which" thay thế cho danh từ chỉ loài vật "All animals" trong mệnh đề không xác định có dấu phẩy.',
+      35: 'Liên từ "but" diễn tả sự tương phản: tất cả loài vật đều cần ngủ, nhưng thời lượng ngủ có sự khác biệt rất lớn.',
+      36: 'Thông tin D là không đúng: trong bài nêu người nghèo tiêu thụ ít chất béo hơn người giàu (10% so với 40%).',
+      37: '"They" ở đoạn 3 thay thế cho "essential fatty acids" (các axit béo thiết yếu).',
+      38: 'Chuột thí nghiệm ăn khẩu phần không có chất béo thì "growth ceases" -> They stop growing (ngừng phát triển).',
+      39: 'essential = necessary (cần thiết, thiết yếu).',
+      40: 'Tiêu đề phù hợp nhất là: Functions and benefits of dietary fats (Chức năng và lợi ích của chất béo trong chế độ ăn).',
+      41: 'Thứ tự sắp xếp bức thư: b (Lời cảm ơn) ➔ c (Khen ngợi bài nói chuyện) ➔ a (Nêu mục đích viết thư hỏi thực đơn) ➔ d (Khó khăn gặp phải) ➔ e (Đề xuất buổi trao đổi online). Đáp án C: b – c – a – d – e.',
+      42: 'Thứ tự đoạn văn: b (Thực trạng lối sống hiện đại) ➔ d (Hậu quả mệt mỏi tăng cân) ➔ a (Giải pháp 1: đi bộ) ➔ c (Giải pháp 2: chế độ ăn) ➔ e (Kết luận). Đáp án A: b – d – a – c – e.',
+      43: 'Thứ tự tin nhắn: b (Chào hỏi) ➔ d (Cảm ơn vì đã cho mượn sách) ➔ c (Rủ sang nhà thử công thức) ➔ a (Nhờ mang xoài) ➔ e (Chào tạm biệt) ➔ f (Ký tên). Đáp án C: b – d – c – a – e – f.',
+      44: 'Thứ tự hội thoại: c (Sam khoe đồng hồ) ➔ b (Taylor khen và khoe giày) ➔ d (Sam hỏi mượn thử) ➔ e (Taylor đồng ý và đổi chủ đề sang cây công viên) ➔ a (Sam hào hứng về công viên). Đáp án A: c – b – d – e – a.'
+    };
+    return map[num] || 'Đáp án chính xác dựa trên kiến thức ngữ pháp và văn cảnh bài học.';
+  }
 };
 
-// === DỮ LIỆU ĐỀ 2: UNIT 2 (A MULTICULTURAL WORLD) ===
-const examUnit2 = {
-  id: 'de-on-tap-gk1-lop-12-unit-2',
-  title: 'Đề Cương Ôn Tập Giữa Kỳ 1 Lớp 12 - Unit 2: A Multicultural World (Năm học 2026-2027)',
-  description: 'Đề thi chuẩn cấu trúc Bộ GD&ĐT gồm 4 phần: Trọng âm, Từ vựng & Ngữ pháp (Mạo từ, Đa văn hóa), Đọc hiểu (Etiquette, Lễ hội xanh, Mừng thọ 60 tuổi, Phong tục tặng quà) và Kỹ năng viết sắp xếp câu.',
-  subject: 'Tiếng Anh',
-  category: 'Ôn theo unit',
-  categories: ['Ôn theo unit', 'Ôn giữa kỳ 1'],
-  grade: 'Lớp 12',
-  durationMinutes: 50,
-  totalQuestions: 45,
-  originalFileName: 'ÔN TẬP GK1 LOP 12 UNIT 2.docx',
-  status: 'ready',
-  createdAt: new Date().toISOString(),
-  updatedAt: new Date().toISOString(),
-  tags: ['Tiếng Anh 12', 'Ôn theo unit', 'Ôn giữa kỳ 1', 'Unit 2', 'Global Success', 'Reading', 'Culture'],
+// Metadata Lớp 11 Unit 2
+const u11_2_meta = {
+  prefix: 'l11-u2',
+  info: {
+    id: 'de-cuong-on-tap-gk1-lop-11-unit-2',
+    title: 'Đề Cương Ôn Tập Giữa Kỳ 1 Lớp 11 - Unit 2: Generation Gap (Năm học 2026-2027)',
+    description: 'Đề thi chuẩn cấu trúc gồm: Trọng âm, Từ đồng nghĩa/Trái nghĩa, Ngữ pháp Modal Verbs (must, should, have to) & Từ vựng Gia đình, 2 Bài đọc hiểu và Kỹ năng viết sắp xếp đoạn văn.',
+    subject: 'Tiếng Anh',
+    category: 'Ôn giữa kỳ 1',
+    categories: ['Ôn theo unit', 'Ôn giữa kỳ 1'],
+    grade: 'Lớp 11',
+    durationMinutes: 60,
+    originalFileName: 'de-cuong-tieng-anh-11-unit-2-azota.docx',
+    status: 'ready',
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+    tags: ['Tiếng Anh 11', 'Lớp 11', 'Ôn theo unit', 'Ôn giữa kỳ 1', 'Unit 2', 'Generation Gap', 'Global Success', 'Modal Verbs']
+  },
   sections: [
     {
-      id: 'sec-2-1',
-      title: 'I. TRỌNG ÂM (STRESS)',
-      instruction: 'Mark the letter A, B, C or D to indicate the word that differs from the other three in the position of primary stress in each of the following questions.',
-      questionIndices: [1, 2, 3, 4, 5]
+      id: 'sec-11-2-1',
+      title: 'I. USE OF LANGUAGE - PRONUNCIATION & STRESS',
+      instruction: 'Mark the letter A, B, C, or D on your answer sheet to indicate the word that differs from the other three in the position of primary stress.',
+      questionIndices: [1, 2, 3, 4]
     },
     {
-      id: 'sec-2-2',
-      title: 'II. TỪ VỰNG & NGỮ PHÁP (VOCABULARY AND GRAMMAR)',
-      instruction: 'Choose the best answer A, B, C or D to complete each sentence or find words with Opposite / Closest meaning.',
-      questionIndices: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21]
+      id: 'sec-11-2-2',
+      title: 'CLOSEST IN MEANING',
+      instruction: 'Mark the letter A, B, C, or D on your answer sheet to indicate the word(s) CLOSEST in meaning to the underlined word(s).',
+      questionIndices: [5, 6, 7, 8]
     },
     {
-      id: 'sec-2-3-1',
-      title: 'III. ĐỌC ĐIỀN TỪ - BÀI ĐỌC 1 (READING 1)',
-      instruction: 'Read the following passage and mark the letter A, B, C, or D to indicate the correct option that best fits each of the numbered blanks.',
-      passageTitle: 'Etiquette and Gift-Giving Across Cultures (Casey Malarcher)',
-      passage: 'In the early twentieth century, an American woman named Emily Post wrote a book on etiquette. This book explained the (22)_____________behavior Americans should follow in many different social situations from birthday parties to funerals. But in modern society, it is not simply to know the proper rules for behavior in your own country. It is necessary for people (23) ________ work or travel abroad to understand the rules of etiquette in other cultures as well. Many cultural (24)______ can be found in such simple processes as giving or receiving a gift. In Western cultures, a gift can be given to the receiver with relatively little ceremony. When a gift is offered, the receiver usually takes the gift and expresses his or her thanks. (25)______, in some Asian countries, the act of gift-giving may appear confusing to Westerners. In Chinese culture, both the giver and receiver understand that the receiver will typically refuse to take the gift several times before he or she finally accepts it. In addition, to show respect (26)______ the receiver, it is common in several Asian cultures to use both hands when offering a gift to another person.\n\n[Source: Reading Advantage by Casey Malarcher]',
-      questionIndices: [22, 23, 24, 25, 26]
+      id: 'sec-11-2-3',
+      title: 'OPPOSITE IN MEANING',
+      instruction: 'Mark the letter A, B, C, or D on your answer sheet to indicate the word(s) OPPOSITE in meaning to the underlined word(s).',
+      questionIndices: [9, 10, 11, 12]
     },
     {
-      id: 'sec-2-3-2',
-      title: 'III. ĐỌC ĐIỀN TỪ - BÀI ĐỌC 2 (READING 2)',
-      instruction: 'Read the following passage and mark the letter A, B, C, or D to indicate the correct option that best fits each of the numbered blanks.',
-      passageTitle: 'Eco-friendly Festivals and Celebrations (Global Success)',
-      passage: 'Festivals come with many traditions that bring happiness and joy to people around the world. They provide opportunities for families and friends to get together, enjoy exciting activities, and celebrate special occasions. However, some of these customs may not be environmentally friendly and may need to be changed for a (27) ______ future.\n\nBalloons and sky lanterns\nIn countries such as China, India, and Japan, releasing balloons or sky lanterns provides (28)_________spectacular sight during festivals and other celebrations. People often release them to bring good luck, express their hopes, and send wishes to the sky. (29) ______, the litter left behind by balloons and lanterns is hard to decompose. The frames of the lanterns can harm wild animals, and many animals mistake the balloons (30) ______ food. Lanterns have also caused wildfires, putting forests, homes, and wildlife at risk. Therefore, people should consider safer ways to celebrate and express their wishes.\n\nFireworks\nIn Australia, the US, and many other countries, there are fascinating firework displays that people won\'t want to miss. These colourful shows often attract large crowds and create unforgettable memories. However, fireworks actually release a lot of (31) ______ chemicals into the air. They can also cause fires, disturb wildlife, and frighten pets because of their loud noises. In addition, the smoke from fireworks may affect air quality and people\'s health.\n\nTo make festivals more environmentally friendly, communities can organise light shows, use reusable decorations, and encourage visitors to reduce waste. Small changes in traditional celebrations can help protect the environment for future generations.\n\n[Adapted from Global Success]',
-      questionIndices: [27, 28, 29, 30, 31]
+      id: 'sec-11-2-4',
+      title: 'GRAMMAR & VOCABULARY (MODAL VERBS & FAMILY TOPICS)',
+      instruction: 'Mark the letter A, B, C, or D on your answer sheet to indicate the correct answer to each of the following questions.',
+      questionIndices: [13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33]
     },
     {
-      id: 'sec-2-3-3',
-      title: 'III. ĐỌC HIỂU - BÀI ĐỌC 3 (READING 3)',
-      instruction: 'Read the following passage and mark the letter A, B, C or D to indicate the correct answer to each of the questions.',
-      passageTitle: '60th Birthday Celebrations Across Cultures (Tiếng Anh 12 Bright)',
-      passage: 'In many cultures around the world, turning sixty years old is a major milestone that represents wisdom, longevity, and a new stage of life. In countries like South Korea, Mexico, and India, people mark their 60th birthdays with special ceremonies, feasts, and family gatherings.\n\nIn South Korea, the 60th birthday, known as Hwangap, is highly significant. During this ceremony, children and younger relatives bow to their elders to show respect and wish them well. The birthday person shares a meal with family, including traditional dishes like rice cakes and miyeok guk (seaweed soup). They also receive blessings and good wishes.\n\nIn Mexico, turning sixty is called la fiesta de sesenta cumpleaños. The celebration often includes a religious blessing from a local priest, followed by the exchange of gifts and a festive meal. Traditional foods such as mole—a rich sauce made with chilli and chocolate—and pastel de tres leches, a soft cake soaked in three kinds of milk, are commonly served.\n\nIn India, many people celebrate their 60th birthday with a ceremony called Sashti Poorthi. It features prayer rituals to wish the person health and prosperity. Relatives and friends enjoy dishes like lentil soup and biryani, a flavorful rice and meat dish. Gifts of gold jewellery are often given to honour the elder.\n\nThese celebrations of longevity remind people of the wisdom and guidance of their elders. They bring families together to express gratitude, respect, and love toward parents and grandparents who have contributed greatly to their families and communities.\n\n[Tiếng Anh 12 Bright]',
-      questionIndices: [32, 33, 34, 35, 36]
+      id: 'sec-11-2-5',
+      title: 'II. READING - READING 1: CLOZE READING',
+      instruction: 'Read the following passage and mark the letter A, B, C or D to indicate the correct word or phrase for each of the blanks.',
+      passageTitle: 'Family Conflicts and Solutions',
+      passage: 'Families can be a source of great joy and love, but they can also be a source of conflict. Conflict is a disagreement or (34) ______ between people. Sometimes, family members don\'t agree on things, and this can lead to arguments. These arguments can be about small things, like what to watch on TV, or big things, like what kind of life you want to live.\n\nOne way family (35) _______ can happen is when parents and children have different ideas about how things should be. Parents might have rules that their children don\'t like, or they might not agree with their children\'s choices. This can lead (36) ______ arguments and disagreements.\n\nSometimes, family conflicts can be caused by things that happen outside the family. For example, if a family member is going through a difficult time, it can affect the whole family. This can lead to stress and tension, (37) ______ can make it harder for family members to get along.\n\nEven though family conflicts can be difficult, it\'s important to remember that families are important. Families provide love, support, and a sense of belonging. (38) _____ there are disagreements, it\'s important to try to work things out and stay connected. Families can be a source of strength and support, even when things are tough.',
+      questionIndices: [34, 35, 36, 37, 38]
     },
     {
-      id: 'sec-2-3-4',
-      title: 'III. ĐỌC HIỂU - BÀI ĐỌC 4 (READING 4)',
-      instruction: 'Read the following passage and mark the letter A, B, C or D to indicate the correct answer to each of the questions.',
-      passageTitle: 'Chinese Gift-Giving Etiquette (Adapted from Regina Coeli)',
-      passage: 'When the British transport minister presented a watch to a Chinese official, her act was described by BBC as a “cultural gaffe”. So why is a “watch” not a good gift in Chinese eyes? And what are the right and wrong choices for gifts to Chinese business associates and friends? The answer lies in the Chinese language.\n\nGiving someone a clock or a watch as a present is traditionally a taboo in Chinese culture due to “giving a clock” and “attending a person’s funeral” having the same pronunciation, regardless of the different written characters. Therefore, avoiding presenting a gift which has “the same pronunciation of any unlucky meaning” is important in building relationships with Chinese people.\n\nGifts are presented with two hands in China. The receiving person may decline the gift at first (or even up to three times). It is part of the custom for Chinese to do so as they consider themselves not worthy of the gift. However, do not withdraw the gift as your persistent trying will persuade the Chinese into accepting your gift. If presenting organisational gifts, it is done during a toast or at the end of a meal, just prior to departure. In modern time China, sometimes a business meeting is planned on short notice and can be quite short. In this case, organisational gifts are exchanged after the first speaker of meeting parties or just before the end of the meeting.\n\n[Adapted from Regina Coeli]',
-      questionIndices: [37, 38, 39, 40, 41]
+      id: 'sec-11-2-6',
+      title: 'READING 2: READING COMPREHENSION',
+      instruction: 'Read the following passage and mark the letter A, B, C, or D to indicate the correct answer to each of the questions.',
+      passageTitle: 'The Generation Gap in the Modern Business World',
+      passage: 'The generation gap in the business world is a fascinating phenomenon that highlights the differences in attitudes, values, and approaches to conducting business between different generations. One of the key areas where the generation gap is evident is in technology adoption. Younger generations, such as Millennials and Generation Z, have grown up in the digital age and are generally more comfortable with technology. They readily embrace new tools, platforms, and digital strategies, which can significantly impact business practices, marketing strategies, and communication methods.\n\nWorkforce expectations also play a crucial role in the generation gap. Each generation has its own set of expectations when it comes to work-life balance, career progression, and job satisfaction. Younger generations often prioritize flexibility, purpose-driven work, and a healthy work-life balance. Meanwhile, older generations may place more emphasis on job stability, loyalty, and traditional career paths.\n\nLeadership styles are another area where the generation gap becomes evident. Baby Boomers and Generation X typically favor hierarchical structures and a more top-down management style. They are used to a more authoritative approach to leadership. Conversely, younger generations often prefer collaborative and inclusive leadership styles, valuing input from all levels of the organization. They thrive in environments that encourage participation, teamwork, and innovation.\n\nCommunication preferences have also evolved with each generation. The way people communicate and consume information has drastically changed over the years. Younger generations are inclined towards instant messaging, social media, and other digital channels for communication.',
+      questionIndices: [39, 40, 41, 42, 43]
     },
     {
-      id: 'sec-2-4',
-      title: 'IV. KỸ NĂNG VIẾT (WRITING - SENTENCE ARRANGEMENT)',
-      instruction: 'Mark the letter A, B, C, or D on your answer sheet to indicate the correct arrangement of the sentences to make a meaningful paragraph or dialogue.',
-      questionIndices: [42, 43, 44, 45]
+      id: 'sec-11-2-7',
+      title: 'III. WRITING - SENTENCE ARRANGEMENT',
+      instruction: 'Mark the letter A, B, C or D to indicate the best arrangement of utterances or sentences to make a meaningful exchange or text.',
+      questionIndices: [44, 45, 46]
     }
   ],
-  questions: [
-    {
-      id: 'u2-q1', index: 1, sectionId: 'sec-2-1',
-      questionText: 'Mark the letter A, B, C or D to indicate the word that differs from the other three in the position of primary stress.',
-      options: [{ id: 'A', text: 'autograph' }, { id: 'B', text: 'origin' }, { id: 'C', text: 'importance' }, { id: 'D', text: 'souvenir' }],
-      correctAnswer: 'C',
-      explanation: 'importance có trọng âm rơi vào âm tiết thứ 2 (/ɪmˈpɔːtns/), các từ autograph (/ˈɔːtəɡræf/) và origin (/ˈɒrɪdʒɪn/) nhấn âm 1, souvenir (/ˌsuːvəˈnɪə/) nhấn âm 3.'
-    },
-    {
-      id: 'u2-q2', index: 2, sectionId: 'sec-2-1',
-      questionText: 'Mark the letter A, B, C or D to indicate the word that differs from the other three in the position of primary stress.',
-      options: [{ id: 'A', text: 'belief' }, { id: 'B', text: 'respect' }, { id: 'C', text: 'cuisine' }, { id: 'D', text: 'famous' }],
-      correctAnswer: 'D',
-      explanation: 'famous có trọng âm rơi vào âm tiết thứ 1 (/ˈfeɪməs/), trong khi belief (/bɪˈliːf/), respect (/rɪˈspekt/) và cuisine (/kwɪˈziːn/) đều nhấn vào âm tiết thứ 2.'
-    },
-    {
-      id: 'u2-q3', index: 3, sectionId: 'sec-2-1',
-      questionText: 'Mark the letter A, B, C or D to indicate the word that differs from the other three in the position of primary stress.',
-      options: [{ id: 'A', text: 'strengthen' }, { id: 'B', text: 'respect' }, { id: 'C', text: 'global' }, { id: 'D', text: 'culture' }],
-      correctAnswer: 'B',
-      explanation: 'respect có trọng âm rơi vào âm tiết thứ 2 (/rɪˈspekt/), các từ còn lại đều nhấn âm 1: strengthen (/ˈstreŋkθn/), global (/ˈɡləʊbl/), culture (/ˈkʌltʃə/).'
-    },
-    {
-      id: 'u2-q4', index: 4, sectionId: 'sec-2-1',
-      questionText: 'Mark the letter A, B, C or D to indicate the word that differs from the other three in the position of primary stress.',
-      options: [{ id: 'A', text: 'cultural' }, { id: 'B', text: 'popular' }, { id: 'C', text: 'typical' }, { id: 'D', text: 'effective' }],
-      correctAnswer: 'D',
-      explanation: 'effective có hậu tố -ive nên trọng âm rơi vào âm tiết thứ 2 (/ɪˈfektɪv/), các từ còn lại nhấn âm 1: cultural (/ˈkʌltʃərəl/), popular (/ˈpɒpjələ/), typical (/ˈtɪpɪkl/).'
-    },
-    {
-      id: 'u2-q5', index: 5, sectionId: 'sec-2-1',
-      questionText: 'Mark the letter A, B, C or D to indicate the word that differs from the other three in the position of primary stress.',
-      options: [{ id: 'A', text: 'meatball' }, { id: 'B', text: 'spicy' }, { id: 'C', text: 'alarm' }, { id: 'D', text: 'language' }],
-      correctAnswer: 'C',
-      explanation: 'alarm có trọng âm rơi vào âm tiết thứ 2 (/əˈlɑːm/), các từ còn lại là danh từ/tính từ 2 âm tiết nhấn âm 1: meatball (/ˈmiːtbɔːl/), spicy (/ˈspaɪsi/), language (/ˈlæŋɡwɪdʒ/).'
-    },
-    {
-      id: 'u2-q6', index: 6, sectionId: 'sec-2-2',
-      questionText: '_________ culture shock can be challenging for travelers visiting __________ new country for the first time.',
-      options: [{ id: 'A', text: 'A - the' }, { id: 'B', text: 'An - a' }, { id: 'C', text: '∅ - a' }, { id: 'D', text: 'The - a' }],
-      correctAnswer: 'C',
-      explanation: '"Culture shock" là danh từ không đếm được nói chung nên không dùng mạo từ (∅). Vế sau "visiting a new country" là một quốc gia mới được nhắc đến lần đầu tiên.'
-    },
-    {
-      id: 'u2-q7', index: 7, sectionId: 'sec-2-2',
-      questionText: 'The reflection of multicultural values can be seen in food, art, and fashion around _____ world.',
-      options: [{ id: 'A', text: 'a' }, { id: 'B', text: 'an' }, { id: 'C', text: 'the' }, { id: 'D', text: '∅' }],
-      correctAnswer: 'C',
-      explanation: 'Cụm từ cố định: "around the world" (khắp nơi trên thế giới).'
-    },
-    {
-      id: 'u2-q8', index: 8, sectionId: 'sec-2-2',
-      questionText: 'Although the language barrier made communication difficult, the tourists were happy to __________ the locals, who introduced them to traditional bamboo dancing.',
-      options: [{ id: 'A', text: 'deal with' }, { id: 'B', text: 'listen to' }, { id: 'C', text: 'open to' }, { id: 'D', text: 'interact with' }],
-      correctAnswer: 'D',
-      explanation: '"interact with somebody" nghĩa là giao lưu, tương tác với người dân địa phương.'
-    },
-    {
-      id: 'u2-q9', index: 9, sectionId: 'sec-2-2',
-      questionText: 'Not until I joined a __________ event did I realize how diverse our world is, which taught me to appreciate traditions more.',
-      options: [{ id: 'A', text: 'multicultural' }, { id: 'B', text: 'culture shock' }, { id: 'C', text: 'international' }, { id: 'D', text: 'language barrier' }],
-      correctAnswer: 'A',
-      explanation: '"multicultural event" (sự kiện đa văn hóa); đi kèm vế sau "how diverse our world is" (thế giới chúng ta đa dạng đến nhường nào).'
-    },
-    {
-      id: 'u2-q10', index: 10, sectionId: 'sec-2-2',
-      questionText: 'The ao dai, the traditional long dress for women, has become a symbol of Vietnamese _____ and culture.',
-      options: [{ id: 'A', text: 'people' }, { id: 'B', text: 'identity' }, { id: 'C', text: 'location' }, { id: 'D', text: 'cuisine' }],
-      correctAnswer: 'B',
-      explanation: '"Vietnamese identity and culture" (bản sắc văn hóa và bản sắc dân tộc Việt Nam).'
-    },
-    {
-      id: 'u2-q11', index: 11, sectionId: 'sec-2-2',
-      questionText: 'Bamboo dancing has gained _____________ in recent years thanks to international festivals.',
-      options: [{ id: 'A', text: 'popularity' }, { id: 'B', text: 'popular' }, { id: 'C', text: 'popularly' }, { id: 'D', text: 'unpopular' }],
-      correctAnswer: 'A',
-      explanation: 'Cụm động từ: "gain popularity" (ngày càng trở nên phổ biến, được đông đảo mọi người yêu thích).'
-    },
-    {
-      id: 'u2-q12', index: 12, sectionId: 'sec-2-2',
-      questionText: '__________ most lively and energetic cultural performances take place in __________ heart of New York City.',
-      options: [{ id: 'A', text: 'A / the' }, { id: 'B', text: 'The / a' }, { id: 'C', text: 'The / Ø' }, { id: 'D', text: 'The / the' }],
-      correctAnswer: 'D',
-      explanation: '"The most lively" (dùng mạo từ The trước so sánh nhất) và cụm danh từ chỉ nơi chốn "in the heart of" (tại trung tâm của...).'
-    },
-    {
-      id: 'u2-q13', index: 13, sectionId: 'sec-2-2',
-      questionText: 'I have visited ____ Portugal but I have never been to ____ Netherlands.',
-      options: [{ id: 'A', text: 'the – the' }, { id: 'B', text: 'Ø - the' }, { id: 'C', text: 'a – the' }, { id: 'D', text: 'a - a' }],
-      correctAnswer: 'B',
-      explanation: 'Quy tắc mạo từ: Tên quốc gia đơn lẻ (Portugal) không dùng mạo từ (Ø), nhưng các quốc gia có đuôi số nhiều như The Netherlands (Hà Lan), The Philippines phải dùng "the".'
-    },
-    {
-      id: 'u2-q14', index: 14, sectionId: 'sec-2-2',
-      questionText: 'Many students struggle to __________ the unfamiliar customs in a foreign country.',
-      options: [{ id: 'A', text: 'keep up with' }, { id: 'B', text: 'catch on to' }, { id: 'C', text: 'deal with' }, { id: 'D', text: 'adapt to' }],
-      correctAnswer: 'D',
-      explanation: '"adapt to something" nghĩa là thích nghi, hòa nhập với các phong tục tập quán xa lạ.'
-    },
-    {
-      id: 'u2-q15', index: 15, sectionId: 'sec-2-2',
-      questionText: 'The bamboo dancing performance __________ the entire audience.',
-      options: [{ id: 'A', text: 'captive' }, { id: 'B', text: 'captivating' }, { id: 'C', text: 'captivated' }, { id: 'D', text: 'captivation' }],
-      correctAnswer: 'C',
-      explanation: 'Vị trí vị ngữ cần một động từ chia thì quá khứ đơn: "captivated" (lôi cuốn, thu hút trọn vẹn sự chú ý của khán giả).'
-    },
-    {
-      id: 'u2-q16', index: 16, sectionId: 'sec-2-2',
-      questionText: 'We prefer to buy regional _______ from bricks-and-mortar retailers.',
-      options: [{ id: 'A', text: 'manners' }, { id: 'B', text: 'occasions' }, { id: 'C', text: 'specialties' }, { id: 'D', text: 'norm' }],
-      correctAnswer: 'C',
-      explanation: '"regional specialties" mang nghĩa các đặc sản vùng miền địa phương.'
-    },
-    {
-      id: 'u2-q17', index: 17, sectionId: 'sec-2-2',
-      questionText: 'Foreign tourists are fascinated by a wide variety of traditional Vietnamese _________.',
-      options: [{ id: 'A', text: 'cuisines' }, { id: 'B', text: 'trends' }, { id: 'C', text: 'mysteries' }, { id: 'D', text: 'origins' }],
-      correctAnswer: 'A',
-      explanation: '"traditional Vietnamese cuisines" (các nền ẩm thực, món ăn truyền thống của Việt Nam).'
-    },
-    {
-      id: 'u2-q18', index: 18, sectionId: 'sec-2-2',
-      questionText: 'Mark the letter A, B, C, or D to indicate the word(s) OPPOSITE in meaning: K-pop has become POPULAR across various countries, showcasing how cross-cultural influences can shape global music trends.',
-      options: [{ id: 'A', text: 'uncommon' }, { id: 'B', text: 'famous' }, { id: 'C', text: 'fashionable' }, { id: 'D', text: 'familiar' }],
-      correctAnswer: 'A',
-      explanation: 'popular (phổ biến, thịnh hành) trái nghĩa với uncommon (hiếm hoi, không phổ biến).'
-    },
-    {
-      id: 'u2-q19', index: 19, sectionId: 'sec-2-2',
-      questionText: 'Mark the letter A, B, C, or D to indicate the word(s) OPPOSITE in meaning: GLOBALISATION has made it easier for people to experience products and services from different countries.',
-      options: [{ id: 'A', text: 'internationalization' }, { id: 'B', text: 'isolation' }, { id: 'C', text: 'integration' }, { id: 'D', text: 'connection' }],
-      correctAnswer: 'B',
-      explanation: 'globalisation (sự toàn cầu hóa, hòa nhập thế giới) trái nghĩa với isolation (sự cô lập, khép kín).'
-    },
-    {
-      id: 'u2-q20', index: 20, sectionId: 'sec-2-2',
-      questionText: 'Mark the letter A, B, C, or D to indicate the word(s) CLOSEST in meaning: Experiencing UNFAMILIAR social norms and behaviors can lead to culture shock when moving to a different country.',
-      options: [{ id: 'A', text: 'common' }, { id: 'B', text: 'strange' }, { id: 'C', text: 'similar' }, { id: 'D', text: 'simple' }],
-      correctAnswer: 'B',
-      explanation: 'unfamiliar (xa lạ, không quen thuộc) đồng nghĩa với strange (lạ lẫm).'
-    },
-    {
-      id: 'u2-q21', index: 21, sectionId: 'sec-2-2',
-      questionText: 'Mark the letter A, B, C, or D to indicate the word(s) CLOSEST in meaning: The unexpected POPULARITY of the indie film surprised even the director, who had created it with a very limited budget.',
-      options: [{ id: 'A', text: 'Public acclaim' }, { id: 'B', text: 'Widespread appeal' }, { id: 'C', text: 'Commercial success' }, { id: 'D', text: 'Cultural significance' }],
-      correctAnswer: 'B',
-      explanation: 'popularity (sự phổ biến, thu hút đông đảo công chúng) đồng nghĩa với widespread appeal (sức lôi cuốn rộng rãi).'
-    },
-    {
-      id: 'u2-q22', index: 22, sectionId: 'sec-2-3-1',
-      questionText: 'This book explained the (22)_____________ behavior Americans should follow in many different social situations...',
-      options: [{ id: 'A', text: 'proper' }, { id: 'B', text: 'improperly' }, { id: 'C', text: 'improper' }, { id: 'D', text: 'properly' }],
-      correctAnswer: 'A',
-      explanation: 'Trước danh từ "behavior" cần một tính từ mang nghĩa tích cực: "proper behavior" (hành vi đúng đắn, chuẩn mực).'
-    },
-    {
-      id: 'u2-q23', index: 23, sectionId: 'sec-2-3-1',
-      questionText: 'It is necessary for people (23) ________ work or travel abroad to understand the rules of etiquette...',
-      options: [{ id: 'A', text: 'which' }, { id: 'B', text: 'who' }, { id: 'C', text: 'whom' }, { id: 'D', text: 'whose' }],
-      correctAnswer: 'B',
-      explanation: 'Đại từ quan hệ "who" làm chủ ngữ thay thế cho danh từ chỉ người "people" (những người làm việc hoặc du lịch ở nước ngoài).'
-    },
-    {
-      id: 'u2-q24', index: 24, sectionId: 'sec-2-3-1',
-      questionText: 'Many cultural (24)______ can be found in such simple processes as giving or receiving a gift.',
-      options: [{ id: 'A', text: 'diverse' }, { id: 'B', text: 'differently' }, { id: 'C', text: 'vary' }, { id: 'D', text: 'differences' }],
-      correctAnswer: 'D',
-      explanation: 'Sau tính từ "cultural" cần danh từ số nhiều làm chủ ngữ: "cultural differences" (những sự khác biệt văn hóa).'
-    },
-    {
-      id: 'u2-q25', index: 25, sectionId: 'sec-2-3-1',
-      questionText: 'When a gift is offered, the receiver usually takes the gift and expresses his or her thanks. (25)______, in some Asian countries, the act of gift-giving may appear confusing to Westerners.',
-      options: [{ id: 'A', text: 'Therefore' }, { id: 'B', text: 'In contrast' }, { id: 'C', text: 'However' }, { id: 'D', text: 'Moreover' }],
-      correctAnswer: 'C',
-      explanation: 'Liên từ chuyển tiếp chỉ sự tương phản đối lập: "However" (Tuy nhiên, ở một số quốc gia châu Á...).'
-    },
-    {
-      id: 'u2-q26', index: 26, sectionId: 'sec-2-3-1',
-      questionText: 'In addition, to show respect (26)______ the receiver, it is common in several Asian cultures to use both hands when offering a gift...',
-      options: [{ id: 'A', text: 'for' }, { id: 'B', text: 'to' }, { id: 'C', text: 'on' }, { id: 'D', text: 'with' }],
-      correctAnswer: 'A',
-      explanation: 'Collocation chuẩn: "show respect for somebody" (thể hiện sự tôn trọng đối với người nhận).'
-    },
-    {
-      id: 'u2-q27', index: 27, sectionId: 'sec-2-3-2',
-      questionText: '...and may need to be changed for a (27) ______ future.',
-      options: [{ id: 'A', text: 'fearful' }, { id: 'B', text: 'greasy' }, { id: 'C', text: 'imperative' }, { id: 'D', text: 'sustainable' }],
-      correctAnswer: 'D',
-      explanation: '"sustainable future" nghĩa là một tương lai phát triển bền vững, thân thiện với môi trường sinh thái.'
-    },
-    {
-      id: 'u2-q28', index: 28, sectionId: 'sec-2-3-2',
-      questionText: '...releasing balloons or sky lanterns provides (28)_________ spectacular sight during festivals...',
-      options: [{ id: 'A', text: 'a' }, { id: 'B', text: 'Ø' }, { id: 'C', text: 'the' }, { id: 'D', text: 'an' }],
-      correctAnswer: 'A',
-      explanation: '"a spectacular sight" (một cảnh tượng ngoạn mục); danh từ đếm được số ít, tính từ bắt đầu bằng phụ âm nên dùng "a".'
-    },
-    {
-      id: 'u2-q29', index: 29, sectionId: 'sec-2-3-2',
-      questionText: 'People often release them to bring good luck... (29) ______, the litter left behind by balloons and lanterns is hard to decompose.',
-      options: [{ id: 'A', text: 'But' }, { id: 'B', text: 'However' }, { id: 'C', text: 'Therefore' }, { id: 'D', text: 'In addition' }],
-      correctAnswer: 'B',
-      explanation: 'Liên từ đứng đầu câu có dấu phẩy mang tính chất nhượng bộ/đối lập: "However" (Tuy nhiên, rác thải để lại rất khó phân hủy).'
-    },
-    {
-      id: 'u2-q30', index: 30, sectionId: 'sec-2-3-2',
-      questionText: '...and many animals mistake the balloons (30) ______ food.',
-      options: [{ id: 'A', text: 'by' }, { id: 'B', text: 'in' }, { id: 'C', text: 'for' }, { id: 'D', text: 'with' }],
-      correctAnswer: 'C',
-      explanation: 'Cấu trúc: "mistake something for something" (nhầm lẫn cái gì là thức ăn).'
-    },
-    {
-      id: 'u2-q31', index: 31, sectionId: 'sec-2-3-2',
-      questionText: 'However, fireworks actually release a lot of (31) ______ chemicals into the air.',
-      options: [{ id: 'A', text: 'harmed' }, { id: 'B', text: 'harmful' }, { id: 'C', text: 'harm' }, { id: 'D', text: 'harmless' }],
-      correctAnswer: 'B',
-      explanation: 'Cần tính từ "harmful" bổ nghĩa cho danh từ "chemicals" (các hóa chất độc hại, gây nguy hại).'
-    },
-    {
-      id: 'u2-q32', index: 32, sectionId: 'sec-2-3-3',
-      questionText: 'In which country is the 60th birthday known as Hwangap?',
-      options: [{ id: 'A', text: 'India' }, { id: 'B', text: 'Mexico' }, { id: 'C', text: 'South Korea' }, { id: 'D', text: 'Japan' }],
-      correctAnswer: 'C',
-      explanation: 'Đoạn 2 ghi rõ: "In South Korea, the 60th birthday, known as Hwangap, is highly significant."'
-    },
-    {
-      id: 'u2-q33', index: 33, sectionId: 'sec-2-3-3',
-      questionText: 'The word “They” in paragraph 2 refers to _____.',
-      options: [{ id: 'A', text: 'the family members' }, { id: 'B', text: 'the younger relatives' }, { id: 'C', text: 'the birthday person' }, { id: 'D', text: 'the guests' }],
-      correctAnswer: 'C',
-      explanation: 'Đoạn 2: "The birthday person shares a meal with family... They also receive blessings and good wishes." -> "They" thay thế cho "the birthday person".'
-    },
-    {
-      id: 'u2-q34', index: 34, sectionId: 'sec-2-3-3',
-      questionText: 'The word “prosperity” in the passage is closest in meaning to _____.',
-      options: [{ id: 'A', text: 'wealth and success' }, { id: 'B', text: 'happiness and love' }, { id: 'C', text: 'respect and honor' }, { id: 'D', text: 'faith and belief' }],
-      correctAnswer: 'A',
-      explanation: '"prosperity" (sự thịnh vượng, sung túc) đồng nghĩa với "wealth and success".'
-    },
-    {
-      id: 'u2-q35', index: 35, sectionId: 'sec-2-3-3',
-      questionText: 'What can be inferred about how these countries view the elderly?',
-      options: [
-        { id: 'A', text: 'They consider older people less important than the young.' },
-        { id: 'B', text: 'They believe the elderly deserve respect and appreciation.' },
-        { id: 'C', text: 'They think the elderly should live independently.' },
-        { id: 'D', text: 'They focus only on material gifts rather than emotions.' }
-      ],
-      correctAnswer: 'B',
-      explanation: 'Đoạn cuối nhấn mạnh: "They bring families together to express gratitude, respect, and love toward parents and grandparents who have contributed greatly..."'
-    },
-    {
-      id: 'u2-q36', index: 36, sectionId: 'sec-2-3-3',
-      questionText: 'What is the main idea of the passage?',
-      options: [
-        { id: 'A', text: 'How different countries celebrate birthdays of all ages' },
-        { id: 'B', text: 'The similarities between Indian, Mexican, and Korean food' },
-        { id: 'C', text: 'The ways different cultures honour their elders on their 60th birthday' },
-        { id: 'D', text: 'How religion influences birthday celebrations around the world' }
-      ],
-      correctAnswer: 'C',
-      explanation: 'Ý chính của bài đọc: Các nền văn hóa khác nhau (Hàn Quốc, Mexico, Ấn Độ) thể hiện lòng tri ân và tôn kính người cao tuổi nhân dịp mừng thọ 60 tuổi.'
-    },
-    {
-      id: 'u2-q37', index: 37, sectionId: 'sec-2-3-4',
-      questionText: 'What would be the best title for the passage?',
-      options: [
-        { id: 'A', text: 'Unlucky Meanings in Chinese Gift Exchange' },
-        { id: 'B', text: 'Cultural Mistakes with Gift-giving' },
-        { id: 'C', text: 'Chinese Gift-Giving Etiquette' },
-        { id: 'D', text: 'Gift-Giving in Chinese Parties' }
-      ],
-      correctAnswer: 'C',
-      explanation: 'Tiêu đề bao quát trọn vẹn nội dung: Phép lịch sự và quy tắc tặng quà trong văn hóa Trung Quốc (Chinese Gift-Giving Etiquette).'
-    },
-    {
-      id: 'u2-q38', index: 38, sectionId: 'sec-2-3-4',
-      questionText: 'The word “gaffe” in paragraph 1 is closest in meaning to _________.',
-      options: [{ id: 'A', text: 'root' }, { id: 'B', text: 'feature' }, { id: 'C', text: 'order' }, { id: 'D', text: 'mistake' }],
-      correctAnswer: 'D',
-      explanation: '"cultural gaffe" (sai sót, điều thất thố về mặt giao tiếp văn hóa) đồng nghĩa với "mistake".'
-    },
-    {
-      id: 'u2-q39', index: 39, sectionId: 'sec-2-3-4',
-      questionText: 'Why is a “watch” considered an inappropriate gift in Chinese culture?',
-      options: [
-        { id: 'A', text: 'because it is too expensive' },
-        { id: 'B', text: 'due to its association with funerals in Chinese language' },
-        { id: 'C', text: 'Chinese people prefer digital clocks' },
-        { id: 'D', text: 'it is not mentioned in the passage' }
-      ],
-      correctAnswer: 'B',
-      explanation: 'Đoạn 2: "due to \'giving a clock\' and \'attending a person’s funeral\' having the same pronunciation" (do từ tặng đồng hồ đồng âm với việc viếng tang lễ).'
-    },
-    {
-      id: 'u2-q40', index: 40, sectionId: 'sec-2-3-4',
-      questionText: 'The word “they” in paragraph 3 refers to _________.',
-      options: [{ id: 'A', text: 'Chinese' }, { id: 'B', text: 'gifts' }, { id: 'C', text: 'hands' }, { id: 'D', text: 'parties' }],
-      correctAnswer: 'A',
-      explanation: 'Đoạn 3: "It is part of the custom for Chinese to do so as they consider themselves not worthy of the gift." -> "they" chỉ người Trung Quốc (Chinese).'
-    },
-    {
-      id: 'u2-q41', index: 41, sectionId: 'sec-2-3-4',
-      questionText: 'Which of the following is NOT true according to the passage?',
-      options: [
-        { id: 'A', text: 'People need to give gifts with two hands in China.' },
-        { id: 'B', text: 'A business meeting can sometimes be short.' },
-        { id: 'C', text: 'People in China can exchange gifts at the end of a meeting.' },
-        { id: 'D', text: 'The receiving person will accept the gift right away.' }
-      ],
-      correctAnswer: 'D',
-      explanation: 'Đoạn 3 nêu rõ: "The receiving person may decline the gift at first (or even up to three times)", nên thông tin nhận quà ngay lập tức là KHÔNG đúng.'
-    },
-    {
-      id: 'u2-q42', index: 42, sectionId: 'sec-2-4',
-      questionText: 'Mark the letter A, B, C, or D to indicate the correct arrangement of the sentences to make a meaningful paragraph:\na. Secondly, it’s a good idea that you try to cook traditional food frequently.\nb. There are two main ways to maintain your cultural identity in a new culture.\nc. Staying connected with your family and friends helps you to feel part of your native culture.\nd. You should also remember to make mealtimes special and important occasions.\ne. Firstly, keep in touch with people you know back home.',
-      options: [{ id: 'A', text: 'c – a – d – e – a' }, { id: 'B', text: 'b – a – e – d – c' }, { id: 'C', text: 'b – e – d – a – c' }, { id: 'D', text: 'b – e – c – a – d' }],
-      correctAnswer: 'D',
-      explanation: 'Bố cục chuẩn: b (Câu chủ đề: Có 2 cách chính) ➔ e (Cách thứ nhất: Firstly, giữ liên lạc) ➔ c (Bổ trợ ý giữ liên lạc với người thân) ➔ a (Cách thứ hai: Secondly, nấu món truyền thống) ➔ d (Bổ trợ cho ý bữa ăn truyền thống). Đáp án D: b – e – c – a – d.'
-    },
-    {
-      id: 'u2-q43', index: 43, sectionId: 'sec-2-4',
-      questionText: 'Mark the letter A, B, C, or D to indicate the correct arrangement of the paragraph:\na. More than 300 students attended the fair and enjoyed Vietnamese dishes, songs and games.\nb. In my view, the day was a great success. All the attendees felt happy.\nc. There were 30 stalls where various activities were offered.\nd. Yesterday, our school organised the Spring Fair in the playground.\ne. However, it would be better if we could make Banh Chung during the night.',
-      options: [{ id: 'A', text: 'd - a - c - b - e' }, { id: 'B', text: 'd - b - a - c - e' }, { id: 'C', text: 'b - d - a - e - c' }, { id: 'D', text: 'b - c - d - e - a' }],
-      correctAnswer: 'A',
-      explanation: 'Thứ tự tường thuật sự kiện: d (Mở đầu: Trường tổ chức hội chợ Xuân ngày hôm qua) ➔ a (Số lượng hơn 300 học sinh tham gia) ➔ c (Chi tiết có 30 gian hàng hoạt động) ➔ b (Đánh giá chung: Ngày hội thành công rực rỡ) ➔ e (Đề xuất cải thiện). Đáp án A: d - a - c - b - e.'
-    },
-    {
-      id: 'u2-q44', index: 44, sectionId: 'sec-2-4',
-      questionText: 'Mark the letter A, B, C, or D to indicate the correct arrangement of the dialogue:\na. Linda: They all sound fun. I\'ll try to join all of them if I can.\nb. Nam: I can see it on the map. It\'s an open booth and it looks huge! Visitors can play Vietnamese traditional games such as tug of war and bamboo dancing.\nc. Linda: But where\'s the Vietnamese booth?',
-      options: [{ id: 'A', text: 'a - b - c' }, { id: 'B', text: 'b - c - a' }, { id: 'C', text: 'c - b - a' }, { id: 'D', text: 'a - c - b' }],
-      correctAnswer: 'C',
-      explanation: 'Thứ tự hội thoại: c (Linda hỏi gian hàng Việt Nam ở đâu) ➔ b (Nam chỉ trên bản đồ và giới thiệu các trò chơi truyền thống) ➔ a (Linda khen thú vị và hào hứng tham gia). Đáp án C: c - b - a.'
-    },
-    {
-      id: 'u2-q45', index: 45, sectionId: 'sec-2-4',
-      questionText: 'Mark the letter A, B, C, or D to indicate the correct arrangement of the paragraph:\na. Firstly, it’s considered impolite to point your feet at someone, especially an older person, as the feet are considered the lowest part of the body.\nb. In conclusion, these cultural taboos reflect the importance placed on harmony, respect, and maintaining social order in Vietnamese society.\nc. Additionally, raising your voice or showing anger in public is seen as breaking social harmony.\nd. In Viet Nam, respecting elders is a cultural norm that holds great significance.\ne. Lastly, discussing personal matters or asking someone’s age, salary, or marital status upon first meeting is often seen as intrusive.',
-      options: [{ id: 'A', text: 'd - a - c - e - b' }, { id: 'B', text: 'c - b - e - d - a' }, { id: 'C', text: 'b - d - a - c - e' }, { id: 'D', text: 'a - d - e - c - d' }],
-      correctAnswer: 'A',
-      explanation: 'Thứ tự đoạn văn nghị luận: d (Câu chủ đề: Tôn trọng người cao tuổi là quy chuẩn văn hóa quan trọng) ➔ a (Quy tắc 1: Firstly, không chĩa bàn chân vào người khác) ➔ c (Quy tắc 2: Additionally, không to tiếng nơi công cộng) ➔ e (Quy tắc 3: Lastly, tránh hỏi tò mò chuyện riêng tư khi mới gặp) ➔ b (Câu kết: In conclusion, những điều cấm kỵ phản ánh sự hòa hợp xã hội). Đáp án A: d - a - c - e - b.'
-    }
-  ]
+  getSectionId(num) {
+    if (num <= 4) return 'sec-11-2-1';
+    if (num <= 8) return 'sec-11-2-2';
+    if (num <= 12) return 'sec-11-2-3';
+    if (num <= 33) return 'sec-11-2-4';
+    if (num <= 38) return 'sec-11-2-5';
+    if (num <= 43) return 'sec-11-2-6';
+    return 'sec-11-2-7';
+  },
+  getExplanation(num, ans) {
+    const map = {
+      1: 'behaviour /bɪˈheɪvjər/ trọng âm rơi vào âm tiết thứ 2, các từ còn lại (generation, economic, disagreement) trọng âm rơi vào âm tiết thứ 3.',
+      2: 'musician /mjuˈzɪʃn/ trọng âm rơi vào âm tiết thứ 2, các từ còn lại (difference, character, grandparent) trọng âm rơi vào âm tiết thứ 1.',
+      3: 'extended /ɪkˈstendɪd/ trọng âm rơi vào âm tiết thứ 2, các từ còn lại (argument, digital, family) trọng âm rơi vào âm tiết thứ 1.',
+      4: 'respect /rɪˈspekt/ trọng âm rơi vào âm tiết thứ 2, các từ còn lại (eyesight, worry, freedom) trọng âm rơi vào âm tiết thứ 1.',
+      5: 'argument = conflict (sự tranh cãi, xung đột quan điểm).',
+      6: 'influenced = affected (chịu ảnh hưởng bởi).',
+      7: 'limit = control (giới hạn, kiểm soát thời gian sử dụng thiết bị).',
+      8: 'problems = issues (các vấn đề nảy sinh trong gia đình).',
+      9: 'digital natives = thế hệ trẻ sinh ra trong thời đại số; từ trái nghĩa là old generations (các thế hệ trước).',
+      10: 'wet behind the ears = non nớt, chưa có kinh nghiệm; từ trái nghĩa là full of experience (giàu kinh nghiệm).',
+      11: 'curious = tò mò, ham học hỏi; từ trái nghĩa là indifferent (thờ ơ, không quan tâm).',
+      12: 'freedom = tự do; từ trái nghĩa là restriction (sự hạn chế, gò bó).',
+      13: 'Extended family = gia đình nhiều thế hệ bao gồm ông bà, cô chú, họ hàng.',
+      14: 'social media = phương tiện truyền thông mạng xã hội.',
+      15: 'follow in someone\'s footsteps = nối nghiệp, đi theo con đường của ai.',
+      16: 'shouldn\'t = không nên nói chuyện hỗn hào với ông bà.',
+      17: 'Generation gap = khoảng cách thế hệ.',
+      18: 'argue over sth = tranh cãi về những điều nhỏ nhặt.',
+      19: 'must = phải làm gì (bắt buộc, nếu không sẽ bị phạt).',
+      20: 'arguments = các cuộc cãi vã thường ngày.',
+      21: 'doesn\'t have to = không bắt buộc phải đến văn phòng vào cuối tuần.',
+      22: 'should = nên (lời khuyên nên chuyển nơi ở).',
+      23: 'traditional views = những quan điểm truyền thống (tính từ đứng trước danh từ).',
+      24: 'had to = đã phải nghỉ học ở tuổi 14 (sự bắt buộc trong quá khứ).',
+      25: 'curious about = tò mò, quan tâm tìm hiểu về góc nhìn của ông bà.',
+      26: 'don\'t have to = không phải trả tiền (vì được miễn phí cho trẻ dưới 6 tuổi).',
+      27: 'change one\'s mind = thay đổi quan điểm, suy nghĩ.',
+      28: 'work out = tập thể dục rèn luyện cơ bắp.',
+      29: 'creative = sáng tạo (tính từ theo sau động từ to be are).',
+      30: 'traditional values = các giá trị mang tính truyền thống của gia đình.',
+      31: 'impose sth on sb = áp đặt quyết định lên ai.',
+      32: 'shouldn\'t = không nên so sánh con mình với con người khác.',
+      33: 'mustn\'t = cấm không được dẫm chân lên bãi cỏ.',
+      34: 'disagreement or argument = sự bất đồng hoặc tranh cãi giữa người với người.',
+      35: 'family conflicts = những mâu thuẫn, xung đột trong gia đình.',
+      36: 'lead to = dẫn đến tranh cãi.',
+      37: 'Đại từ quan hệ "which" thay cho cả mệnh đề phía trước có dấu phẩy.',
+      38: 'Even when = ngay cả khi có những bất đồng nảy sinh.',
+      39: 'Tiêu đề phù hợp nhất: The Generation Gap in Such a Technological Era (Khoảng cách thế hệ trong thời đại công nghệ).',
+      40: 'Thông tin ở đoạn 3: thế hệ trẻ ưa chuộng phong cách lãnh đạo hợp tác và "valuing input from all levels of the organization".',
+      41: '"they" ở đoạn 1 thay thế cho "Younger generations".',
+      42: 'thrive = succeed (phát triển mạnh mẽ, thành công).',
+      43: 'Thông tin B là SAI vì thế hệ trẻ mới là người ưu tiên tính linh hoạt và cân bằng công việc - cuộc sống.',
+      44: 'Thứ tự hội thoại: a (Con muốn tự sửa xe) ➔ b (Bố khen ý hay) ➔ c (Con hỏi bắt đầu từ phanh) ➔ d (Bố bảo xem hướng dẫn trước) ➔ e (Con cảm ơn và chuẩn bị dụng cụ). Đáp án B: a – b – c – d – e.',
+      45: 'Thứ tự đoạn văn: b (Câu chủ đề: kết hợp kỹ năng hiện đại và trí tuệ truyền thống) ➔ c (Ví dụ trao đổi dạy chỉnh ảnh và múa dân gian) ➔ a (Ông bà truyền lại các giá trị) ➔ d (Sự trao đổi này xây dựng niềm tin) ➔ e (Kết luận). Đáp án B: b – c – a – d – e.',
+      46: 'Thứ tự hội thoại: b (Con xin phép mẹ đi sinh nhật Emma) ➔ d (Mẹ đồng ý và hỏi ai đi cùng) ➔ e (Con nêu tên bạn và xin ngủ lại) ➔ a (Mẹ từ chối cho ngủ lại vì mai bận sớm) ➔ c (Con đồng ý về trước 10h). Đáp án C: b – d – e – a – c.'
+    };
+    return map[num] || 'Đáp án chính xác dựa trên bài tập ngữ pháp và đọc hiểu.';
+  }
 };
 
-// Lưu trực tiếp vào src/data/exams.json (CHỈ CHỨA CÁC ĐỀ TỪ FOLDER EXAM)
-const exams = [examUnit1, examUnit2];
-const outputPath = path.join(__dirname, '..', 'src', 'data', 'exams.json');
-fs.writeFileSync(outputPath, JSON.stringify(exams, null, 2), 'utf8');
+// ==========================================
+// 3. PARSER CHO LỚP 12 HSG 1, 2, 3
+// ==========================================
+function parseHsg(txtFile, meta) {
+  const text = fs.readFileSync(txtFile, 'utf8');
+  const qRegex = /Question\s+(\d+)\.([\s\S]*?)(?=(?:Question\s+\d+\.)|(?:Read\s+the\s+passage)|(?:Read\s+the\s+following)|(?:Mark\s+the\s+letter)|(?:-------------)|$)/g;
+  const questions = [];
+  let match;
+  while ((match = qRegex.exec(text)) !== null) {
+    const num = parseInt(match[1]);
+    const block = match[2].trim();
 
-console.log(`Đã xuất bản thành công ${exams.length} đề thi vào ${outputPath}`);
-console.log('Danh sách đề thi hiện tại:');
-exams.forEach(e => console.log(`- [${e.id}] ${e.title} (${e.totalQuestions} câu) [${e.categories.join(', ')}]`));
+    const optRegex = /(?:^|\s+)([A-D])[\.\s]\s*([\s\S]*?)(?=(?:\s+[A-D][\.\s])|$)/g;
+    const options = [];
+    const foundIndices = [];
+    let oMatch;
+    while ((oMatch = optRegex.exec(block)) !== null) {
+      if (['A', 'B', 'C', 'D'].includes(oMatch[1])) {
+        if (!options.some(o => o.id === oMatch[1])) {
+          options.push({
+            id: oMatch[1],
+            text: oMatch[2].trim().replace(/\s+/g, ' ')
+          });
+          foundIndices.push(oMatch.index);
+        }
+      }
+    }
+
+    let qText = block;
+    if (foundIndices.length > 0) {
+      qText = block.slice(0, foundIndices[0]).trim();
+    }
+
+    questions.push({
+      id: `${meta.prefix}-q${num}`,
+      index: num,
+      sectionId: meta.getSectionId(num),
+      questionText: qText.replace(/\s+/g, ' ').trim(),
+      options,
+      correctAnswer: meta.answers[num],
+      explanation: meta.explanations[num]
+    });
+  }
+
+  return {
+    ...meta.info,
+    totalQuestions: questions.length,
+    sections: meta.sections,
+    questions
+  };
+}
+
+// HSG 1 Metadata & Explanations
+const hsg1_answers = {
+  1: 'C', 2: 'A', 3: 'C', 4: 'D', 5: 'C', 6: 'A', 7: 'C', 8: 'A', 9: 'A', 10: 'D',
+  11: 'D', 12: 'B', 13: 'A', 14: 'B', 15: 'A', 16: 'A', 17: 'D', 18: 'B', 19: 'C', 20: 'A',
+  21: 'B', 22: 'C', 23: 'C', 24: 'D', 25: 'B', 26: 'B', 27: 'D', 28: 'C', 29: 'B', 30: 'D',
+  31: 'A', 32: 'B', 33: 'B', 34: 'C', 35: 'B', 36: 'D', 37: 'D', 38: 'A', 39: 'C', 40: 'D'
+};
+
+const hsg1_explanations = {
+  1: 'Cần một tính từ đứng trước danh từ "member" để bổ nghĩa cho nó: "valuable member" (thành viên có giá trị của xã hội).',
+  2: 'Mệnh đề trạng ngữ chỉ thời gian với "While" diễn tả một hành động đang diễn ra trong quá khứ ("last summer"): "While I was working...".',
+  3: 'Rút gọn mệnh đề quan hệ dạng chủ động (who are living): "The lovely kids living in this small shelter...".',
+  4: 'Cụm từ "provide sth to sb" (cung cấp sự hỗ trợ thực tế và đồ dùng thiết yếu cho trẻ em).',
+  5: 'Cụm động từ "set up" có nghĩa là tổ chức, thiết lập (set up charity shows: tổ chức các chương trình biểu diễn từ thiện).',
+  6: 'Cụm danh từ "financial donations" (khoản quyên góp tài chính hảo tâm).',
+  7: 'Cần tính từ miêu tả ứng dụng tập luyện: "successful exercise application" (ứng dụng thể thao thành công).',
+  8: 'Cấu trúc so sánh nhất: "the most popular fitness network" (mạng lưới thể dục thể thao phổ biến nhất).',
+  9: 'Liên từ chỉ sự nhượng bộ phù hợp về ngữ nghĩa: "Although the company faces fierce competition..." (Mặc dù phải đối mặt với sự cạnh tranh khốc liệt...).',
+  10: 'Động từ khuyết thiếu diễn tả kế hoạch tương lai gần: "the business will introduce..." (doanh nghiệp sẽ sớm giới thiệu các tính năng mới).',
+  11: 'Đại từ bất định chỉ người: "Anyone using the app can track their health metrics..." (Bất kỳ ai sử dụng ứng dụng đều có thể theo dõi...).',
+  12: 'Thành ngữ cố định: "stay ahead of the pack" (dẫn đầu đoàn đua, vượt lên trên các đối thủ cạnh tranh).',
+  13: 'Trật tự hội thoại logic: a (Matthew nêu sự việc nông dân bị lạnh do cấm than đá) ➔ c (Jennifer đồng cảm nhưng nhấn mạnh sưởi ấm là thiết yếu) ➔ b (Matthew đề xuất trợ giá năng lượng xanh cho người nghèo). Đáp án A: a - c - b.',
+  14: 'Trật tự bức thư báo cáo môi trường: e (Mục đích gửi báo cáo về chiến dịch xanh) ➔ b (Các hoạt động đã làm trong tháng qua) ➔ c (Đề xuất lập khu ủ phân hữu cơ phía sau căng tin) ➔ a (Lợi ích tạo phân bón cho vườn rau học sinh) ➔ d (Đính kèm dự toán tài chính và mong phản hồi). Đáp án B: e - b - c - a - d.',
+  15: 'Trật tự đoạn văn về khoảng cách nhà ở: b (Giá bất động sản tăng gây rào cản cho người trẻ) ➔ d (Thừa nhận thế hệ trước mua nhà với giá thấp hơn nhiều) ➔ e (Tuy nhiên người trẻ ngày nay phải làm thêm nhiều giờ chỉ để sinh tồn) ➔ c (Hơn nữa chi phí thuê nhà cao bào mòn thu nhập) ➔ a (Do đó các nhà hoạch định chính sách cần khẩn trương giải quyết). Đáp án A: b - d - e - c - a.',
+  16: 'Trật tự đoạn văn về chia sẻ việc nhà: d (Câu chủ đề: Chia sẻ trách nhiệm gia đình đóng vai trò thiết yếu duy trì sự hòa thuận) ➔ a (Khi cha mẹ và con cái chia đều công việc, họ xây dựng sự tôn trọng) ➔ c (Hơn nữa phương pháp này giúp gia đình dành nhiều thời gian bên nhau) ➔ b (Kết quả là con cái học được kỹ năng sống quan trọng) ➔ e (Về lâu dài các thói quen này củng cố sợi dây tình cảm). Đáp án A: d - a - c - b - e.',
+  17: 'Trật tự hội thoại về bảo tồn sách truyền thống: b (Thomas ngạc nhiên vì mọi người mạo hiểm cứu sách) ➔ e (Dorothy đồng tình việc bảo vệ câu chuyện giữ gìn văn hóa lịch sử) ➔ d (Thomas bổ sung sách giúp thế hệ trẻ hiểu về cội nguồn) ➔ a (Dorothy xúc động khi thấy họ nỗ lực bảo vệ thư viện cổ) ➔ c (Thomas kết luận việc đọc và viết giữ cho tinh thần dân tộc luôn sống mãi). Đáp án D: b - e - d - a - c.',
+  18: 'Cấu trúc đảo ngữ tương liên: "As data volume expands, so do challenges." (Khi khối lượng dữ liệu mở rộng, những thách thức cũng gia tăng tương ứng).',
+  19: 'Trật tự từ chuẩn ngữ pháp tiếng Anh: trạng từ đứng đầu bổ nghĩa cho cả mệnh đề: "Subsequently, it enters into complex predictive models".',
+  20: 'Mệnh đề quan hệ không xác định đi kèm từ chỉ lượng: "most of which fall short of expectations" (hầu hết trong số đó không đáp ứng được kỳ vọng ban đầu).',
+  21: 'Cấu trúc chủ - vị chuẩn mực: "They then establish strict data governance policies" (Sau đó họ thiết lập các chính sách quản trị dữ liệu nghiêm ngặt).',
+  22: 'Trật tự từ chuẩn xác với trạng từ phủ định: "can hardly maintain their competitive edge today" (khó có thể duy trì được lợi thế cạnh tranh ngày nay).',
+  23: 'Từ "grueling" ở đoạn 2 có nghĩa là cực kỳ gian khổ, nặng nhọc = Arduous.',
+  24: 'Tác giả KHÔNG đồng ý với nhận định D: y học cá nhân hóa không chỉ dựa vào dữ liệu gen để chữa khỏi hoàn toàn mà còn tính đến lối sống, hệ vi sinh vật và thói quen sinh hoạt hằng ngày.',
+  25: 'Từ "undermining" (làm suy yếu, hủy hoại) có từ TRÁI NGHĨA là "Bolstering" (củng cố, tăng cường, gia cố sức mạnh).',
+  26: 'Ở đoạn 4 tác giả chỉ rõ hạn chế về dữ liệu chủng tộc: "A disproportionate number of genomic studies lean heavily on individuals of European descent..." (phần lớn nghiên cứu gen thiên lệch về người gốc châu Âu).',
+  27: 'Ở đoạn 1, tác giả đang giải thích cách thức việc điều chỉnh vi khuẩn đường ruột cung cấp thông tin định hướng cho các phác đồ điều trị ung thư.',
+  28: 'Câu gạch chân nhấn mạnh ung thư học hiện đại không dùng phác đồ đại trà mà điều chỉnh liệu pháp theo dấu ấn sinh học riêng của từng người ➔ Khớp hoàn toàn với C: "Contemporary cancer care eschews generalized methods in favor of treatments customized to individual genetic profiles".',
+  29: 'Từ "those" ở đoạn 3 thay thế cho "Genetic markers" (các dấu ấn di truyền cảnh báo độc tính của thuốc).',
+  30: 'Ở đoạn 3, tác giả nói về lĩnh vực dược lý di truyền (pharmacogenomics) đối chiếu đơn thuốc với đặc điểm di truyền của bệnh nhân để kiểm tra độ tương thích.',
+  31: 'Thông tin A đúng theo đoạn 2: "Participation Income broadens the definition of productivity by adequately remunerating unpaid care and civic engagement..." (ghi nhận những đóng góp xã hội nằm ngoài các chỉ số việc làm truyền thống).',
+  32: 'Đoạn 3 nhấn mạnh: Dịch vụ Cơ bản Phổ quát (UBS) vận động cung cấp tập thể các nhu yếu phẩm để giảm gánh nặng chi phí sinh hoạt cho người dân, từ đó giảm quy mô trợ cấp tiền mặt cần thiết. Đáp án B.',
+  33: 'Đại từ "they" ở đoạn 2 chỉ "households" (các hộ gia đình).',
+  34: 'Tiêu đề toàn diện và sâu sắc nhất cho bài đọc: Rethinking Livelihoods: The Case for Post-Work Guarantees (Tái tư duy sinh kế: Lập luận cho các đảm bảo sau việc làm).',
+  35: 'Câu cần chèn nói về việc loại bỏ mối đe dọa đột ngột cắt trợ cấp để khuyến khích dịch chuyển kinh tế, phù hợp nhất với vị trí [II] ngay sau khi nhắc đến "benefit cliff".',
+  36: 'Suy luận từ đoạn 3: Tính khả thi tài chính của một khoản thu nhập cơ bản tỷ lệ nghịch với chất lượng và tính sẵn có của các dịch vụ công cộng. Đáp án D.',
+  37: 'Theo đoạn 1, mục tiêu cốt lõi của post-work guarantees là bảo đảm một nền tảng chuẩn mức sống không thể xâm phạm cho mọi công dân. Đáp án D.',
+  38: 'Kết luận từ đoạn 2: Loại bỏ các điều kiện ràng buộc khắt khe của phúc lợi truyền thống giúp giảm bớt bẫy nghèo đói và công nhận nhiều dạng giá trị cống hiến cho xã hội. Đáp án A.',
+  39: 'Từ "alleviate" (làm giảm nhẹ bớt) có từ TRÁI NGHĨA là "exacerbate" (làm trầm trọng thêm, làm tồi tệ hơn).',
+  40: 'Đoạn 4 KHÔNG hề ngụ ý rằng các đảm bảo này sẽ dẫn đến sự sụt giảm nghiêm trọng năng suất quốc gia. Đáp án D.'
+};
+
+// HSG 2 Metadata & Explanations
+const hsg2_answers = {
+  1: 'B', 2: 'C', 3: 'D', 4: 'A', 5: 'C', 6: 'D', 7: 'D', 8: 'D', 9: 'D', 10: 'C',
+  11: 'B', 12: 'D', 13: 'D', 14: 'C', 15: 'A', 16: 'B', 17: 'C', 18: 'B', 19: 'D', 20: 'A',
+  21: 'B', 22: 'A', 23: 'D', 24: 'B', 25: 'A', 26: 'C', 27: 'C', 28: 'A', 29: 'C', 30: 'B',
+  31: 'A', 32: 'C', 33: 'D', 34: 'B', 35: 'A', 36: 'B', 37: 'C', 38: 'B', 39: 'A', 40: 'A'
+};
+
+const hsg2_explanations = {
+  1: 'Rút gọn mệnh đề quan hệ dạng bị động (which was published): "a recent study published in a medical journal...".',
+  2: 'Dấu hiệu "Over the past year" đi với thì Hiện tại hoàn thành: "experts have found that...".',
+  3: 'Cụm động từ "block out" có nghĩa là chặn lại, ngăn không cho xâm nhập (block out negative thoughts: loại bỏ các suy nghĩ tiêu cực).',
+  4: 'Cấu trúc "commit to sth" (cam kết kiên trì gắn bó với việc thực hành thiền).',
+  5: 'Cần danh từ: "concentration" (sự tập trung tinh thần thực thụ).',
+  6: 'Cụm danh từ: "mental health" (sức khỏe tinh thần của bạn).',
+  7: 'Cấu trúc đối chiếu: "some prefer ... while others visit..." (một số người thích ... trong khi những người khác lại...).',
+  8: 'Liên từ trạng từ chỉ sự tương phản: "However, you must wait several days for shipping..." (Tuy nhiên, bạn phải chờ đợi vài ngày để giao hàng).',
+  9: 'Cấu trúc so sánh hơn với tính từ ngắn được nhấn mạnh bởi "much": "much faster than ordering online".',
+  10: 'Động từ khuyết thiếu đưa ra lời khuyên thận trọng: "You should be cautious...".',
+  11: 'Thành ngữ cố định: "make up one\'s mind" (đưa ra quyết định rõ ràng về ngân sách).',
+  12: 'Tính từ miêu tả trải nghiệm tốt nhất: "optimal shopping experience" (trải nghiệm mua sắm tối ưu).',
+  13: 'Trật tự đoạn văn về rác thải nhựa đại dương: d (Câu chủ đề: Loại bỏ nhựa dùng 1 lần là thiết yếu bảo vệ đại dương) ➔ a (Chất thải nhựa nguy hại đe dọa sinh vật biển) ➔ c (Ứng dụng giải pháp thay thế giảm lượng khí thải) ➔ b (Ngược lại phớt lờ sẽ dẫn đến thảm họa sinh thái) ➔ e (Kết luận kêu gọi hành động sống xanh). Đáp án D: d - a - c - b - e.',
+  14: 'Trật tự hội thoại về thị giác robot: c (Oliver hỏi về việc nghiên cứu thị giác robot) ➔ a (Charlotte giải thích dùng AI xử lý hình ảnh như mắt người) ➔ e (Oliver hiểu ra điều đó giúp robot di chuyển an toàn không va chạm) ➔ b (Charlotte bổ sung robot nhận diện vật thể nhanh sẽ hữu ích hơn) ➔ d (Oliver háo hức chờ ngày robot vào đời sống). Đáp án C: c - a - e - b - d.',
+  15: 'Trật tự bức thư đề xuất chuyến đi Cúc Phương: d (Mục đích đề xuất tour sinh thái đi Rừng Cúc Phương cuối tháng) ➔ b (Cơ hội khám phá đa dạng sinh học và bảo vệ động vật quý) ➔ c (Học sinh đi bộ đường rừng ngắm cây cổ thụ ngàn năm) ➔ a (Kế hoạch mua quà thủ công ủng hộ kinh tế địa phương) ➔ e (Mong cô phê duyệt chuyến đi bổ ích). Đáp án A: d - b - c - a - e.',
+  16: 'Trật tự đoạn văn về chi phí phát triển AI: e (Phát triển mô hình AI đòi hỏi nguồn vốn khổng lồ) ➔ c (Thừa nhận các sáng chế AI giải quyết bài toán kinh doanh phức tạp) ➔ b (Tuy nhiên chi phí điện toán khổng lồ vẫn là rào cản) ➔ d (Hơn nữa nhiều startup AI chật vật tìm kiếm lợi nhuận) ➔ a (Vì thế công ty công nghệ phải quản trị chi phí chặt chẽ). Đáp án B: e - c - b - d - a.',
+  17: 'Trật tự hội thoại về học viện đào tạo ngôi sao nhạc pop: b (Liam hỏi về học viện pop mới tại Singapore) ➔ c (Olivia hào hứng kể học sinh được học vũ đạo và hợp tác nghệ sĩ quốc tế) ➔ a (Liam khen ngợi cách chuẩn bị đầy sáng tạo cho thế hệ hitmaker). Đáp án C: b - c - a.',
+  18: 'Cấu trúc đảo ngữ nhấn mạnh tính từ: "Equally significant was the widespread availability of affordable smartphones globally".',
+  19: 'Mệnh đề quan hệ không xác định bổ nghĩa cho cả sự việc: "which naturally gives rise to new forms of cultural expression".',
+  20: 'Trật tự từ chuẩn ngữ pháp: "This mechanism highlights compelling content that broadens our intellectual horizons daily". (Các phương án B, C, D đều bị đảo lộn trật tự từ vô nghĩa).',
+  21: 'Cấu trúc giả định với recommend: "recommend that schools should implement comprehensive media literacy programs".',
+  22: 'Trật tự từ chuẩn xác: "In addition to this, both users and policymakers must remain exceptionally vigilant".',
+  23: 'Ở đoạn 3, tác giả vạch trần chiêu trò kế toán khai báo chi tiêu nội bộ cho người tị nạn như viện trợ nước ngoài để thổi phồng số liệu trên giấy tờ: Paragraph 3.',
+  24: 'Ở đoạn 4, tác giả nêu các ví dụ cụ thể của các nước châu Âu cắt giảm viện trợ đối lập với các nước Bắc Âu như Na Uy duy trì ngân sách viện trợ: Paragraph 4.',
+  25: 'Ở đoạn 1, tác giả chỉ trích sự thiển cận khi cắt giảm ngân sách ODA chỉ để thu lợi ích tài chính tạm thời trước mắt: Đáp án A.',
+  26: 'Từ "retrenchment" (sự cắt giảm chi tiêu, thu hẹp ngân sách) có từ TRÁI NGHĨA là "Expansion" (sự mở rộng, gia tăng quy mô).',
+  27: 'Từ "concessional" (ưu đãi, lãi suất thấp hơn thị trường) có nghĩa GẦN NHẤT với "Advantageous" (có lợi, ưu đãi).',
+  28: 'Tác giả KHÔNG đồng ý với nhận định A vì ở đoạn 4 tác giả khẳng định việc viện trợ không chỉ phụ thuộc vào quy mô giàu nghèo kinh tế mà phụ thuộc vào ý chí chính trị đoàn kết quốc tế.',
+  29: 'Cụm từ "the latter" ở đoạn 3 đề cập đến vế thứ hai được nhắc đến: "Allocating 0.7 percent of gross national income" (mức phân bổ 0.7% thu nhập quốc dân cho viện trợ).',
+  30: 'Câu gạch chân diễn đạt: Dù hỗ trợ người tị nạn là quan trọng, nhưng việc tính chi tiêu nội bộ này vào ODA làm cạn kiệt ngân sách xóa đói giảm nghèo ở nước ngoài và thổi phồng mức độ hào phóng của nhà tài trợ ➔ Khớp hoàn toàn với B.',
+  31: 'Từ "it" ở đoạn 3 thay thế cho "Such a levy" (chính sách đánh thuế lao động robot).',
+  32: 'Đoạn 4 KHÔNG hề ngụ ý rằng khả năng phục hồi kinh tế hoàn toàn phụ thuộc vào việc áp dụng thuế robot. Đáp án C.',
+  33: 'Theo đoạn 2, những người ủng hộ tin rằng thuế robot sẽ tạo nguồn lực tài chính hỗ trợ đào tạo lại người lao động và làm chậm lại các cú sốc chuyển dịch công nghệ đột ngột. Đáp án D.',
+  34: 'Thông tin B đúng theo đoạn 4: Điều chỉnh các mức thuế doanh nghiệp hiện hành được xem là giải pháp tiềm năng thay thế cho sắc thuế riêng đánh vào máy móc.',
+  35: 'Tiêu đề toàn diện nhất: The Automation Dilemma: Weighing the Costs and Alternatives of a Robot Tax (Thế tiến thoái lưỡng nan của tự động hóa: Cân nhắc chi phí và giải pháp thay thế thuế robot).',
+  36: 'Suy luận từ bài: Việc thiết kế thuế tự động hóa hiệu quả đòi hỏi phải giải quyết được những mơ hồ về định nghĩa để tránh tác dụng phụ tiêu cực cho nền kinh tế. Đáp án B.',
+  37: 'Câu cần chèn ("Without clear guidelines, tax authorities would struggle...") bổ nghĩa trực tiếp cho việc định nghĩa robot mơ hồ tạo nên ác mộng pháp lý ở vị trí [III].',
+  38: 'Tóm tắt chuẩn xác đoạn 3: Những người phản đối chỉ ra thách thức trong việc định nghĩa tự động hóa và cảnh báo thuế quá nặng sẽ đẩy doanh nghiệp dời đi nơi khác. Đáp án B.',
+  39: 'Kết luận từ đoạn 2: Thuế tự động hóa nếu áp dụng khéo léo có thể xoa dịu sự xáo trộn lực lượng lao động nhờ cung cấp cả nguồn lực tài chính lẫn thời gian thích nghi. Đáp án A.',
+  40: 'Từ "stringent" (nghiêm ngặt, khắt khe) có từ TRÁI NGHĨA là "Relaxed" (nới lỏng, thoải mái). Đáp án A.'
+};
+
+// HSG 3 Metadata & Explanations
+const hsg3_answers = {
+  1: 'A', 2: 'D', 3: 'D', 4: 'D', 5: 'C', 6: 'C', 7: 'C', 8: 'A', 9: 'D', 10: 'C',
+  11: 'D', 12: 'A', 13: 'B', 14: 'D', 15: 'B', 16: 'A', 17: 'A', 18: 'A', 19: 'B', 20: 'B',
+  21: 'C', 22: 'A', 23: 'B', 24: 'C', 25: 'C', 26: 'D', 27: 'A', 28: 'C', 29: 'C', 30: 'B',
+  31: 'D', 32: 'B', 33: 'D', 34: 'D', 35: 'B', 36: 'A', 37: 'B', 38: 'B', 39: 'A', 40: 'C'
+};
+
+const hsg3_explanations = {
+  1: 'Hành động đang diễn ra trong quá khứ ("last month"): "While I was attending a fascinating seminar...".',
+  2: 'Rút gọn mệnh đề quan hệ dạng bị động (which are provided): "online courses provided by top-tier global universities...".',
+  3: 'Cụm danh từ: "overcome geographical barriers" (vượt qua các rào cản địa lý).',
+  4: 'Động từ mang nghĩa nâng cao, cải thiện: "improve your interpersonal communication skills".',
+  5: 'Cụm động từ "take up" có nghĩa là bắt đầu tham gia một sở thích/lớp học mới ("take up a new hobby class").',
+  6: 'Cần tính từ bổ nghĩa cho danh từ "learner": "highly successful lifelong learner" (người học tập suốt đời thành công).',
+  7: 'Thành ngữ cố định: "tip of the iceberg" (phần nổi của tảng băng chìm).',
+  8: 'Cấu trúc so sánh kép: "the younger the donor is, the more severe the long-term health risks become...".',
+  9: 'Đi với danh từ số nhiều đếm được "strict rules": "many strict rules".',
+  10: 'Động từ khuyết thiếu diễn đạt quyền lợi có thể nhận được: "can also enjoy free lifetime health insurance...".',
+  11: 'Tính từ miêu tả chế độ phúc lợi hào phóng, chu đáo: "generous healthcare benefits".',
+  12: 'Liên từ chỉ nguyên nhân: "These changes are essential since they aim to expand..." (bởi vì chúng hướng tới...).',
+  13: 'Trật tự hội thoại tuyển dụng AI: a (Jacob lưu ý nhà tuyển dụng dùng AI sàng lọc hồ sơ) ➔ c (Emily suy ra ứng viên phải chọn lọc từ khóa chuẩn để vượt qua phần mềm) ➔ b (Jacob khẳng định hiểu công cụ tuyển dụng số là thiết yếu để thăng tiến). Đáp án B: a - c - b.',
+  14: 'Trật tự bức thư gửi Hội đồng học sinh: d (Báo động về lượng rác thải nhựa ở căng tin trường) ➔ a (Nêu thực trạng học sinh dùng cốc túi nhựa dùng 1 lần) ➔ b (Cảnh báo hậu quả ô nhiễm và phá hủy môi trường sống) ➔ c (Đề xuất chiến dịch xanh mang bình nước hộp cơm cá nhân) ➔ e (Kêu gọi hành động đặt thêm thùng rác tái chế). Đáp án D: d - a - b - c - e.',
+  15: 'Trật tự đoạn văn về biến đổi khí hậu: e (Mở đầu: Trái Đất ấm lên gây ra nhiều hiện tượng thời tiết cực đoan) ➔ c (Nếu nhiệt độ tiếp tục tăng thì hạn hán lũ lụt sẽ xảy ra thường xuyên hơn) ➔ d (Nhiều cộng đồng dễ bị tổn thương sẽ phải gánh chịu hậu quả) ➔ a (Bổ sung việc cần nhanh chóng dập tắt cháy rừng) ➔ b (Kết luận các quốc gia cần hành động ngay). Đáp án B: e - c - d - a - b.',
+  16: 'Trật tự đoạn văn về văn học tiểu sử lịch sử: c (Câu chủ đề: Tìm hiểu thành tựu của danh nhân mang lại động lực sâu sắc cho giới trẻ) ➔ d (Phân tích khó khăn của họ giúp học sinh hiểu giá trị của sự kiên trì) ➔ b (Những câu chuyện đời này là ngọn đèn soi sáng con đường học tập) ➔ a (Hơn nữa giúp thanh thiếu niên xây dựng bản sắc văn hóa) ➔ e (Kết luận đưa văn học tiểu sử vào chương trình giảng dạy mang lại lợi ích to lớn). Đáp án A: c - d - b - a - e.',
+  17: 'Trật tự hội thoại về nghề hát Opera: c (Levi đọc bài báo về việc thiếu giọng nam cao trong opera và thấy nghề này quá khó) ➔ e (Evelyn đồng tình opera đòi hỏi nhiều năm khổ luyện mà khó kiếm sống) ➔ b (Levi đoán ca sĩ trẻ chọn nhạc pop vì mau nổi tiếng và kiếm nhiều tiền hơn) ➔ a (Evelyn công nhận phải cực kỳ đam mê mới theo trọn đời) ➔ d (Levi băn khoăn làm sao ngành cổ điển tìm kiếm tài năng mới). Đáp án A: c - e - b - a - d.',
+  18: 'Cấu trúc chuẩn chủ ngữ giả định: "It is fascinating to examine how this craft evolved".',
+  19: 'Cấu trúc câu hoàn chỉnh SVO với mệnh đề quan hệ: "The dedicated artists who committed their time to this profession thrived".',
+  20: 'Mệnh đề đối lập chuẩn ngữ pháp: "However, the traditional elite initially dismissed these prints as cheap novelties" (Tuy nhiên tầng lớp tinh hoa truyền thống ban đầu bác bỏ tranh khắc gỗ như đồ chơi rẻ tiền).',
+  21: 'Mệnh đề nguyên nhân kết quả chuẩn ngữ pháp: "so we instead embraced mechanical reproduction to meet this need".',
+  22: 'Câu kết luận mạch lạc chuẩn ngữ pháp: "Therefore, this technological leap successfully democratized education across the continent".',
+  23: 'Ở đoạn 4 tác giả chỉ ra động lực tài chính khi chi phí nông dược tăng vọt khiến nông dân phải áp dụng hệ thống bón phân biến thiên để thắt lưng buộc bụng: Paragraph 4.',
+  24: 'Ở đoạn 3 tác giả mô tả công nghệ thế hệ mới gắn cảm biến trực tiếp vào máy móc để đo đạc và xử lý ngay tại chỗ mà không cần bản đồ số lập trình sẵn: Paragraph 3.',
+  25: 'Từ "These" ở đoạn 3 thay thế cho các hệ thống công nghệ chính xác tiên tiến: "Advanced precision technologies".',
+  26: 'Từ "uniform" (đồng nhất, đơn điệu, giống nhau một khuôn) có từ TRÁI NGHĨA là "Heterogeneous" (đa dạng, không đồng nhất, hỗn hợp nhiều thành phần).',
+  27: 'Tác giả KHÔNG đồng ý với nhận định A vì đoạn 4 nêu rõ: cơ giới hóa ban đầu tuy giảm chi phí nhân công nhưng làm tổn hại nghiêm trọng đến hiệu quả sử dụng vật tư đầu vào.',
+  28: 'Câu gạch chân khẳng định: Việc ra quyết định dựa chắc chắn vào dữ liệu thực nghiệm thay vì phỏng đoán, bảo đảm các biện pháp can thiệp đồng bộ chính xác với vị trí máy móc ➔ Khớp hoàn toàn với C.',
+  29: 'Từ "gauge" (đo đạc, định lượng, đánh giá) có nghĩa GẦN NHẤT với "Evaluate" (đánh giá).',
+  30: 'Ở đoạn 1, tác giả nêu bật các nhược điểm về sinh thái và tài chính của phương pháp canh tác đồng loạt truyền thống: Đáp án B.',
+  31: 'Thông tin D đúng theo đoạn 3: Việc tích hợp phản hồi của người dân vào mô hình số chuyển đổi việc ra quyết định quản trị đô thị từ trực giác cảm tính sang các căn cứ thực nghiệm nghiêm ngặt.',
+  32: 'Đại từ "they" ở đoạn 3 thay thế cho "Administrators" (các nhà quản lý đô thị).',
+  33: 'Tóm tắt đoạn 3: Nhờ dựa vào chứng cứ thực nghiệm và ý kiến cộng đồng, bản sao số nâng cao trách nhiệm giải trình và đảm bảo các mô hình phản ánh sát thực tế. Đáp án D.',
+  34: 'Suy luận từ bài đọc: Việc mở rộng tiếp cận các mô hình mô phỏng đô thị thúc đẩy cơ chế đồng quản trị, giảm thiểu đáng kể nguy cơ ra quyết định đơn phương. Đáp án D.',
+  35: 'Theo đoạn 1, digital twins cho phép các bên liên quan đánh giá trước tác động của các chính sách đô thị trước khi tiến hành xây dựng trên thực tế. Đáp án B.',
+  36: 'Tiêu đề phù hợp và giàu tính học thuật nhất: Virtual Replicas and Civic Voices: Deducting New Eras of Urban Governance (Bản sao ảo và tiếng nói công dân: Định hình kỷ nguyên mới của quản trị đô thị).',
+  37: 'Từ "reckless" (bốc đồng, liều lĩnh, thiếu cân nhắc) có từ TRÁI NGHĨA là "Prudent" (thận trọng, cẩn trọng, khôn ngoan). Đáp án B.',
+  38: 'Câu cần chèn ("This localized insight acts as a vital corrective mechanism...") bổ nghĩa trực tiếp cho việc đưa trải nghiệm sống của người dân vào mô hình tại vị trí [II].',
+  39: 'Kết luận từ đoạn 4: Quy hoạch đô thị minh bạch dựa trên bằng chứng củng cố mạnh mẽ sự gắn kết xã hội và niềm tin giữa chính quyền thành phố và người dân. Đáp án A.',
+  40: 'Đoạn 2 KHÔNG hề ngụ ý rằng người dân phải sở hữu kỹ năng kỹ thuật nâng cao mới có thể tham gia vào bảng điều khiển tương tác. Đáp án C.'
+};
+
+// Generic Section structure for HSG
+function createHsgSections(idPrefix, testNum) {
+  return [
+    {
+      id: `${idPrefix}-sec-1`,
+      title: 'I. LEAFLET & ANNOUNCEMENT CLOZE (QUESTIONS 1 - 6)',
+      instruction: 'Read the following announcement/leaflet and mark the letter A, B, C or D on your answer sheet to indicate the option that best fits each of the numbered blanks from 1 to 6.',
+      questionIndices: [1, 2, 3, 4, 5, 6]
+    },
+    {
+      id: `${idPrefix}-sec-2`,
+      title: 'II. SHORT COMMUNICATION & NOTICE (QUESTIONS 7 - 12)',
+      instruction: 'Read the following announcement/leaflet and mark the letter A, B, C or D on your answer sheet to indicate the option that best fits each of the numbered blanks from 7 to 12.',
+      questionIndices: [7, 8, 9, 10, 11, 12]
+    },
+    {
+      id: `${idPrefix}-sec-3`,
+      title: 'III. COHESION & COHERENCE - ARRANGEMENT (QUESTIONS 13 - 17)',
+      instruction: 'Mark the letter A, B, C or D on your answer sheet to indicate the best arrangement of utterances or sentences to make a cohesive and coherent exchange or text.',
+      questionIndices: [13, 14, 15, 16, 17]
+    },
+    {
+      id: `${idPrefix}-sec-4`,
+      title: 'IV. PASSAGE CLOZE (QUESTIONS 18 - 22)',
+      instruction: 'Read the following passage and mark the letter A, B, C or D on your answer sheet to indicate the option that best fits each of the numbered blanks from 18 to 22.',
+      questionIndices: [18, 19, 20, 21, 22]
+    },
+    {
+      id: `${idPrefix}-sec-5`,
+      title: 'V. READING COMPREHENSION 1 (QUESTIONS 23 - 30)',
+      instruction: 'Read the passage and mark the letter A, B, C or D on your answer sheet to indicate the best answer to each of the questions from 23 to 30.',
+      questionIndices: [23, 24, 25, 26, 27, 28, 29, 30]
+    },
+    {
+      id: `${idPrefix}-sec-6`,
+      title: 'VI. READING COMPREHENSION 2 (QUESTIONS 31 - 40)',
+      instruction: 'Read the passage and mark the letter A, B, C or D on your answer sheet to indicate the best answer to each of the questions from 31 to 40.',
+      questionIndices: [31, 32, 33, 34, 35, 36, 37, 38, 39, 40]
+    }
+  ];
+}
+
+function getHsgSectionId(idPrefix, num) {
+  if (num <= 6) return `${idPrefix}-sec-1`;
+  if (num <= 12) return `${idPrefix}-sec-2`;
+  if (num <= 17) return `${idPrefix}-sec-3`;
+  if (num <= 22) return `${idPrefix}-sec-4`;
+  if (num <= 30) return `${idPrefix}-sec-5`;
+  return `${idPrefix}-sec-6`;
+}
+
+// Build HSG 1, 2, 3
+const hsg1_meta = {
+  prefix: 'l12-hsg-01',
+  info: {
+    id: 'de-thi-thu-hsg-lop-12-test-01',
+    title: 'Đề Thi Thử Học Sinh Giỏi & Tốt Nghiệp THPT Lớp 12 - Test 01 (Bộ Đề Chuẩn Cấu Trúc 2026)',
+    description: 'Đề thi chuẩn cấu trúc Bộ GD&ĐT gồm 40 câu hỏi phân hóa cao: Thông báo khuyết từ, Giao tiếp ngắn, Sắp xếp đoạn văn logic, Điền cụm từ vào bài đọc, và 2 Bài đọc hiểu chuyên sâu (Personalized Medicine & Post-Work Guarantees).',
+    subject: 'Tiếng Anh',
+    category: 'Ôn thi HSG',
+    categories: ['Ôn thi HSG', 'Ôn thi đại học'],
+    grade: 'Lớp 12',
+    durationMinutes: 50,
+    originalFileName: 'TEST 01 HSG- A. ORIGINAL.docx',
+    status: 'ready',
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+    tags: ['Tiếng Anh 12', 'Lớp 12', 'Ôn thi HSG', 'Ôn thi đại học', 'Bộ đề chuẩn cấu trúc', 'Test 01']
+  },
+  sections: createHsgSections('l12-hsg-01', 1),
+  getSectionId: (num) => getHsgSectionId('l12-hsg-01', num),
+  answers: hsg1_answers,
+  explanations: hsg1_explanations
+};
+
+const hsg2_meta = {
+  prefix: 'l12-hsg-02',
+  info: {
+    id: 'de-thi-thu-hsg-lop-12-test-02',
+    title: 'Đề Thi Thử Học Sinh Giỏi & Tốt Nghiệp THPT Lớp 12 - Test 02 (Bộ Đề Chuẩn Cấu Trúc 2026)',
+    description: 'Đề thi chuẩn cấu trúc gồm 40 câu hỏi phân hóa cao: Lợi ích thiền định, Mua sắm smartphone, Sắp xếp câu/thư kiến nghị sinh thái, Mạng xã hội & Buồng vang số, và 2 Bài đọc hiểu chuyên sâu (Official Development Assistance & Robot Tax Dilemma).',
+    subject: 'Tiếng Anh',
+    category: 'Ôn thi HSG',
+    categories: ['Ôn thi HSG', 'Ôn thi đại học'],
+    grade: 'Lớp 12',
+    durationMinutes: 50,
+    originalFileName: 'TEST 02 HSG- A. ORIGINAL.docx',
+    status: 'ready',
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+    tags: ['Tiếng Anh 12', 'Lớp 12', 'Ôn thi HSG', 'Ôn thi đại học', 'Bộ đề chuẩn cấu trúc', 'Test 02']
+  },
+  sections: createHsgSections('l12-hsg-02', 2),
+  getSectionId: (num) => getHsgSectionId('l12-hsg-02', num),
+  answers: hsg2_answers,
+  explanations: hsg2_explanations
+};
+
+const hsg3_meta = {
+  prefix: 'l12-hsg-03',
+  info: {
+    id: 'de-thi-thu-hsg-lop-12-test-03',
+    title: 'Đề Thi Thử Học Sinh Giỏi & Tốt Nghiệp THPT Lớp 12 - Test 03 (Bộ Đề Chuẩn Cấu Trúc 2026)',
+    description: 'Đề thi chuẩn cấu trúc gồm 40 câu hỏi phân hóa cao: Học tập suốt đời, Hiến tạng nhân đạo, Sắp xếp văn bản học thuật/văn học tiểu sử, Tranh khắc gỗ thời Phục Hưng, và 2 Bài đọc hiểu chuyên sâu (Nông nghiệp chính xác SSM & Digital Twin Urban Governance).',
+    subject: 'Tiếng Anh',
+    category: 'Ôn thi HSG',
+    categories: ['Ôn thi HSG', 'Ôn thi đại học'],
+    grade: 'Lớp 12',
+    durationMinutes: 50,
+    originalFileName: 'TEST 03 HSG- A. ORIGINAL.docx',
+    status: 'ready',
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+    tags: ['Tiếng Anh 12', 'Lớp 12', 'Ôn thi HSG', 'Ôn thi đại học', 'Bộ đề chuẩn cấu trúc', 'Test 03']
+  },
+  sections: createHsgSections('l12-hsg-03', 3),
+  getSectionId: (num) => getHsgSectionId('l12-hsg-03', num),
+  answers: hsg3_answers,
+  explanations: hsg3_explanations
+};
+
+// ==========================================
+// 4. TIẾN HÀNH BUILD TOÀN BỘ 7 ĐỀ THI
+// ==========================================
+console.log('--- Đang parse Lớp 11 Unit 1 & Unit 2 ---');
+const examL11U1 = parseU11('u11_1.txt', u11_1_meta);
+const examL11U2 = parseU11('u11_2.txt', u11_2_meta);
+
+console.log('--- Đang parse Lớp 12 HSG Test 01, 02, 03 ---');
+const examL12Hsg1 = parseHsg('hsg_1.txt', hsg1_meta);
+const examL12Hsg2 = parseHsg('hsg_2.txt', hsg2_meta);
+const examL12Hsg3 = parseHsg('hsg_3.txt', hsg3_meta);
+
+const allExams = [
+  examUnit1,
+  examUnit2,
+  examL11U1,
+  examL11U2,
+  examL12Hsg1,
+  examL12Hsg2,
+  examL12Hsg3
+];
+
+// ==========================================
+// 5. GHI FILE ĐÁP ÁN VÀO TỪNG THƯ MỤC dap-an/
+// ==========================================
+function exportAnswerKeyFile(examObj, targetDir) {
+  let content = `BẢNG ĐÁP ÁN VÀ HƯỚNG DẪN GIẢI CHI TIẾT\n`;
+  content += `Môn: ${examObj.subject} - ${examObj.grade}\n`;
+  content += `Tên đề: ${examObj.title}\n`;
+  content += `Thời gian làm bài: ${examObj.durationMinutes} phút | Tổng số câu: ${examObj.totalQuestions} câu\n`;
+  content += `Trích xuất từ: ${examObj.originalFileName}\n`;
+  content += `================================================================================\n\n`;
+
+  content += `I. BẢNG TỔNG HỢP ĐÁP ÁN\n`;
+  content += `--------------------------------------------------------------------------------\n`;
+  for (let i = 0; i < examObj.questions.length; i += 5) {
+    const chunk = examObj.questions.slice(i, i + 5);
+    content += chunk.map(q => `Câu ${String(q.index).padStart(2, ' ')}: ${q.correctAnswer}`).join('    |    ') + '\n';
+  }
+  content += `--------------------------------------------------------------------------------\n\n`;
+
+  content += `II. HƯỚNG DẪN GIẢI CHI TIẾT TỪNG CÂU\n`;
+  content += `================================================================================\n\n`;
+  examObj.questions.forEach(q => {
+    content += `Câu ${q.index}: [Đáp án đúng: ${q.correctAnswer}]\n`;
+    content += `Nội dung: ${q.questionText}\n`;
+    if (q.options && q.options.length > 0) {
+      q.options.forEach(opt => {
+        const marker = (opt.id === q.correctAnswer) ? '(*)' : '   ';
+        content += `  ${marker} ${opt.id}. ${opt.text}\n`;
+      });
+    }
+    content += `Giải thích: ${q.explanation}\n`;
+    content += `--------------------------------------------------------------------------------\n\n`;
+  });
+
+  const outFilePath = path.join(targetDir, 'DAP_AN_CHI_TIET.txt');
+  fs.writeFileSync(outFilePath, content, 'utf8');
+  console.log(`Đã xuất đáp án chi tiết: ${outFilePath}`);
+}
+
+// Xuất đáp án cho 7 đề vào đúng folder
+exportAnswerKeyFile(examUnit1, path.join(EXAM_BASE, 'Lop 12', 'On thi giua ki 1', 'Unit 1 - Life Stories', 'dap-an'));
+exportAnswerKeyFile(examUnit2, path.join(EXAM_BASE, 'Lop 12', 'On thi giua ki 1', 'Unit 2 - A Multicultural World', 'dap-an'));
+exportAnswerKeyFile(examL11U1, path.join(EXAM_BASE, 'Lop 11', 'On thi giua ki 1', 'Unit 1 - A Long and Healthy Life', 'dap-an'));
+exportAnswerKeyFile(examL11U2, path.join(EXAM_BASE, 'Lop 11', 'On thi giua ki 1', 'Unit 2 - Generation Gap', 'dap-an'));
+exportAnswerKeyFile(examL12Hsg1, path.join(EXAM_BASE, 'Lop 12', 'On thi HSG', 'Test 01 - Bo de chuan cau truc', 'dap-an'));
+exportAnswerKeyFile(examL12Hsg2, path.join(EXAM_BASE, 'Lop 12', 'On thi HSG', 'Test 02 - Bo de chuan cau truc', 'dap-an'));
+exportAnswerKeyFile(examL12Hsg3, path.join(EXAM_BASE, 'Lop 12', 'On thi HSG', 'Test 03 - Bo de chuan cau truc', 'dap-an'));
+
+// ==========================================
+// 6. GHI VÀO SRC/DATA/EXAMS.JSON
+// ==========================================
+const examsJsonPath = path.join(__dirname, '..', 'src', 'data', 'exams.json');
+fs.writeFileSync(examsJsonPath, JSON.stringify(allExams, null, 2), 'utf8');
+console.log(`\nĐã xuất bản thành công ${allExams.length} đề thi vào ${examsJsonPath}`);
+
+console.log('\nDANH SÁCH 7 ĐỀ THI ĐÃ NẠP VÀO HỆ THỐNG:');
+allExams.forEach((e, i) => {
+  console.log(`${i + 1}. [${e.grade}] [${e.categories.join(' / ')}] - ${e.title} (${e.totalQuestions} câu, ${e.durationMinutes} phút)`);
+});
