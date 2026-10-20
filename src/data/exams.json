@@ -94,7 +94,7 @@
         "title": "III. ĐỌC HIỂU - BÀI ĐỌC 3 (READING 3)",
         "instruction": "Read the following passage and mark the letter A, B, C or D to indicate the correct answer to each of the questions.",
         "passageTitle": "Steve Jobs: Life and Achievements",
-        "passage": "Steven Paul Jobs was born on 24 February, 1955 in San Francisco, USA. His biological parents were not married and gave him up for adoption. He was adopted by Clara and Paul Jobs. In 1971, Jobs met Steve Wozniak, who was five years older than him, but they bonded over their love of electronics. After high school, Jobs attended Reed College in Oregon, but found the classes boring and dropped out after six months.\n\nWhen Jobs was 21, he and Wozniak started Apple Computers in Jobs' family garage with money they got by selling Jobs' van and Wozniak's scientific calculator. They turned it into a workspace where they built their first computers. By making computers smaller, cheaper, and accessible to everyday users, their company became a huge success and sales quickly increased.\n\nAlthough Jobs left Apple in 1985, he returned to his post in 1997 when the company needed new ideas. He helped invent new products such as the iMac, the iBook for students, the iPod music player, and iTunes music software. In 2007, he introduced the touch-screen iPhone which changed the way phones were used. Apple products were not only designed to be cutting-edge technology, but also to be stylish and easy to use.\n\nIn addition, Jobs contributed to computer animation. In 1986, he bought a small company, which later became Pixar Animation Studios. It produced the first full-length computer-animated film Toy Story, followed by other blockbusters.\n\nIn 2003, Jobs was diagnosed with a rare form of pancreatic cancer. He fought the disease for several years, and stopped working in August, 2011. Two months later, he passed away. He had four children, three with his wife of 20 years and one from a previous relationship. On an Apple web page, a statement reads, \"Apple has lost a visionary and creative genius, and the world has lost an amazing human being.\"\n\n[Adapted from Global Success]",
+        "passage": "Steven Paul Jobs was born on 24 February, 1955 in San Francisco, USA. His biological parents were not married and gave him up for adoption. He was adopted by Clara and Paul Jobs. In 1971, Jobs met Steve Wozniak, who was five years older than him, but they bonded over their love of electronics. After high school, Jobs attended Reed College in Oregon, but found the classes boring and dropped out after six months.\n\nWhen Jobs was 21, he and Wozniak started Apple Computers in Jobs' family garage with money they got by selling Jobs' van and Wozniak's scientific calculator. They turned it into a workspace where they built their first computers. By making computers smaller, cheaper, and accessible to everyday users, their company became a huge success and sales quickly increased.\n\nAlthough Jobs left Apple in 1985, he returned to his post in 1997 when the company needed new ideas. He helped invent new products such as the iMac, the iBook for students, the iPod music player, and iTunes music software. In 2007, he introduced the touch-screen iPhone which changed the way phones were used. Apple products were not only designed to be cutting-edge technology, but also to be stylish and easy to use.\n\nIn addition, Jobs contributed to computer animation. In 1986, he bought a small company, which later became Pixar Animation Studios. <u>It</u> produced the first full-length computer-animated film Toy Story, followed by other blockbusters.\n\nIn 2003, Jobs was <u>diagnosed</u> with a rare form of pancreatic cancer. He fought the disease for several years, and stopped working in August, 2011. Two months later, he passed away. He had four children, three with his wife of 20 years and one from a previous relationship. On an Apple web page, a statement reads, \"Apple has lost a visionary and creative genius, and the world has lost an amazing human being.\"\n\n[Adapted from Global Success]",
         "questionIndices": [
           32,
           33,
@@ -108,7 +108,7 @@
         "title": "III. ĐỌC HIỂU - BÀI ĐỌC 4 (READING 4)",
         "instruction": "Read the following passage about Nguyen Du and choose the best answer for each question.",
         "passageTitle": "Đại thi hào Nguyễn Du (1765 - 1820)",
-        "passage": "Nguyen Du is a celebrated Vietnamese poet who wrote in Chữ Nôm, the ancient writing script of Viet Nam. His poetry is celebrated for the directness of its language and of its metaphors. Despite a number of Vietnamese poets pre-dated him, Nguyen Du is considered by many Vietnamese to be the founding-figure of Vietnamese literature. His epic poem Truyen Kieu (The Tale of Kieu), relating the brief and tragic life of a Vietnamese girl, is considered as a masterpiece.\n\nNguyen Du was born in 1765 in Tien Dien village, Nghi Xuan district, Nghe Tinh province, Viet Nam. By the age of 13, Nguyen had lost both of his parents, and for most of his teenage years he lived with his brother or with his brother-in-law.\n\nAt the age of 19, Nguyen passed the provincial examination. After that, he was appointed to the position of a military advisor in the Trinh army. After the Trinh Lords were defeated in 1786 by Nguyen Hue, Nguyen Du refused to serve in the new administration. He was arrested and held for some time before he moved back to his native village in the northern part of the country.\n\nLater, when yet another warlord, Nguyen Anh, ruled Viet Nam in 1802, Nguyen Du agreed to serve in his administration. At first, he was given his old post of military advisor but after a decade, he was promoted to an ambassador to China in 1813.\n\nWhile in China, he discovered and translated the Ming dynasty era tale “Kim Van Kieu” that would become the basis for the Tale of Kieu. He was later appointed to two more missions to Beijing, but before he could depart for the last one, he died of a long illness for which he refused treatment in 1820.\n\nNguyen Du’s father worked as a minister for the Lê dynasty, and his family did well during this time. However, Nguyen Du spent much of his life feeling guilty because he worked for a new ruler who took over, and he thought this was a betrayal of the true leaders of Viet Nam. He believed this brought dishonour to him and his family.",
+        "passage": "Nguyen Du is a celebrated Vietnamese poet who wrote in Chữ Nôm, the ancient writing script of Viet Nam. His poetry is celebrated for the directness of its language and of its metaphors. Despite a number of Vietnamese poets pre-dated him, Nguyen Du is considered by many Vietnamese to be the founding-figure of Vietnamese literature. His epic poem Truyen Kieu (The Tale of Kieu), relating the brief and tragic life of a Vietnamese girl, is considered as a <u>masterpiece</u>.\n\nNguyen Du was born in 1765 in Tien Dien village, Nghi Xuan district, Nghe Tinh province, Viet Nam. By the age of 13, Nguyen had lost both of his parents, and for most of his teenage years he lived with his brother or with his brother-in-law.\n\nAt the age of 19, Nguyen passed the provincial examination. After that, he was appointed to the position of a military advisor in the Trinh army. After the Trinh Lords were defeated in 1786 by Nguyen Hue, Nguyen Du refused to serve in the new administration. He was arrested and held for some time before he moved back to his native village in the northern part of the country.\n\nLater, when yet another warlord, Nguyen Anh, ruled Viet Nam in 1802, Nguyen Du agreed to serve in his administration. At first, he was given his old post of military advisor but after a decade, he was promoted to an ambassador to China in 1813.\n\nWhile in China, he discovered and translated the Ming dynasty era tale “Kim Van Kieu” that would become the basis for the Tale of Kieu. He was later appointed to two more missions to Beijing, but before he could depart for the last one, he died of a long illness for which he refused treatment in 1820.\n\nNguyen Du’s father worked as a minister for the Lê dynasty, and his family did well during this time. However, Nguyen Du spent much of his life feeling guilty because he worked for a new ruler who took over, and he thought this was a betrayal of the true leaders of Viet Nam. He believed this brought dishonour to him and his family.",
         "questionIndices": [
           37,
           38,
@@ -576,7 +576,7 @@
         "id": "u1-q18",
         "index": 18,
         "sectionId": "sec-1-2",
-        "questionText": "Mark the letter A, B, C, or D to indicate the word(s) OPPOSITE in meaning: His achievements in cancer research were IMPRESSIVE and saved thousands of lives.",
+        "questionText": "Mark the letter A, B, C, or D to indicate the word(s) OPPOSITE in meaning: His achievements in cancer research were <u>IMPRESSIVE</u> and saved thousands of lives.",
         "options": [
           {
             "id": "A",
@@ -602,7 +602,7 @@
         "id": "u1-q19",
         "index": 19,
         "sectionId": "sec-1-2",
-        "questionText": "Mark the letter A, B, C, or D to indicate the word(s) OPPOSITE in meaning: Apple is well-known for its CUTTING-EDGE technology that transforms everyday life.",
+        "questionText": "Mark the letter A, B, C, or D to indicate the word(s) OPPOSITE in meaning: Apple is well-known for its <u>CUTTING-EDGE</u> technology that transforms everyday life.",
         "options": [
           {
             "id": "A",
@@ -628,7 +628,7 @@
         "id": "u1-q20",
         "index": 20,
         "sectionId": "sec-1-2",
-        "questionText": "Mark the letter A, B, C, or D to indicate the word(s) CLOSEST in meaning: Because her parents died in the war, a kind local family TOOK HIM AS THEIR OWN CHILD.",
+        "questionText": "Mark the letter A, B, C, or D to indicate the word(s) CLOSEST in meaning: Because her parents died in the war, a kind local family <u>TOOK HIM AS THEIR OWN CHILD</u>.",
         "options": [
           {
             "id": "A",
@@ -654,7 +654,7 @@
         "id": "u1-q21",
         "index": 21,
         "sectionId": "sec-1-2",
-        "questionText": "Mark the letter A, B, C, or D to indicate the word(s) CLOSEST in meaning: The RESISTANCE WAR against foreign invaders demanded immense sacrifices from the people.",
+        "questionText": "Mark the letter A, B, C, or D to indicate the word(s) CLOSEST in meaning: The <u>RESISTANCE WAR</u> against foreign invaders demanded immense sacrifices from the people.",
         "options": [
           {
             "id": "A",
@@ -992,7 +992,7 @@
         "id": "u1-q34",
         "index": 34,
         "sectionId": "sec-1-3-3",
-        "questionText": "Which of the following is NOT true according to the passage?",
+        "questionText": "The word <u>it</u> in paragraph 4 refers to:",
         "options": [
           {
             "id": "A",
@@ -1018,7 +1018,7 @@
         "id": "u1-q35",
         "index": 35,
         "sectionId": "sec-1-3-3",
-        "questionText": "The word \"diagnosed\" in paragraph 5 is closest in meaning to:",
+        "questionText": "The word <u>diagnosed</u> in paragraph 5 is closest in meaning to:",
         "options": [
           {
             "id": "A",
@@ -1096,7 +1096,7 @@
         "id": "u1-q38",
         "index": 38,
         "sectionId": "sec-1-3-4",
-        "questionText": "The word “masterpiece” in paragraph 1 is closest in meaning to ____________.",
+        "questionText": "The word <u>masterpiece</u> in paragraph 1 is closest in meaning to ____________.",
         "options": [
           {
             "id": "A",
@@ -1397,7 +1397,7 @@
         "title": "III. ĐỌC HIỂU - BÀI ĐỌC 3 (READING 3)",
         "instruction": "Read the following passage and mark the letter A, B, C or D to indicate the correct answer to each of the questions.",
         "passageTitle": "60th Birthday Celebrations Across Cultures (Tiếng Anh 12 Bright)",
-        "passage": "In many cultures around the world, turning sixty years old is a major milestone that represents wisdom, longevity, and a new stage of life. In countries like South Korea, Mexico, and India, people mark their 60th birthdays with special ceremonies, feasts, and family gatherings.\n\nIn South Korea, the 60th birthday, known as Hwangap, is highly significant. During this ceremony, children and younger relatives bow to their elders to show respect and wish them well. The birthday person shares a meal with family, including traditional dishes like rice cakes and miyeok guk (seaweed soup). They also receive blessings and good wishes.\n\nIn Mexico, turning sixty is called la fiesta de sesenta cumpleaños. The celebration often includes a religious blessing from a local priest, followed by the exchange of gifts and a festive meal. Traditional foods such as mole—a rich sauce made with chilli and chocolate—and pastel de tres leches, a soft cake soaked in three kinds of milk, are commonly served.\n\nIn India, many people celebrate their 60th birthday with a ceremony called Sashti Poorthi. It features prayer rituals to wish the person health and prosperity. Relatives and friends enjoy dishes like lentil soup and biryani, a flavorful rice and meat dish. Gifts of gold jewellery are often given to honour the elder.\n\nThese celebrations of longevity remind people of the wisdom and guidance of their elders. They bring families together to express gratitude, respect, and love toward parents and grandparents who have contributed greatly to their families and communities.\n\n[Tiếng Anh 12 Bright]",
+        "passage": "In many cultures around the world, turning sixty years old is a major milestone that represents wisdom, longevity, and a new stage of life. In countries like South Korea, Mexico, and India, people mark their 60th birthdays with special ceremonies, feasts, and family gatherings.\n\nIn South Korea, the 60th birthday, known as Hwangap, is highly significant. During this ceremony, children and younger relatives bow to their elders to show respect and wish them well. The birthday person shares a meal with family, including traditional dishes like rice cakes and miyeok guk (seaweed soup). <u>They</u> also receive blessings and good wishes.\n\nIn Mexico, turning sixty is called la fiesta de sesenta cumpleaños. The celebration often includes a religious blessing from a local priest, followed by the exchange of gifts and a festive meal. Traditional foods such as mole—a rich sauce made with chilli and chocolate—and pastel de tres leches, a soft cake soaked in three kinds of milk, are commonly served.\n\nIn India, many people celebrate their 60th birthday with a ceremony called Sashti Poorthi. It features prayer rituals to wish the person health and <u>prosperity</u>. Relatives and friends enjoy dishes like lentil soup and biryani, a flavorful rice and meat dish. Gifts of gold jewellery are often given to honour the elder.\n\nThese celebrations of longevity remind people of the wisdom and guidance of their elders. They bring families together to express gratitude, respect, and love toward parents and grandparents who have contributed greatly to their families and communities.\n\n[Tiếng Anh 12 Bright]",
         "questionIndices": [
           32,
           33,
@@ -1411,7 +1411,7 @@
         "title": "III. ĐỌC HIỂU - BÀI ĐỌC 4 (READING 4)",
         "instruction": "Read the following passage and mark the letter A, B, C or D to indicate the correct answer to each of the questions.",
         "passageTitle": "Chinese Gift-Giving Etiquette (Adapted from Regina Coeli)",
-        "passage": "When the British transport minister presented a watch to a Chinese official, her act was described by BBC as a “cultural gaffe”. So why is a “watch” not a good gift in Chinese eyes? And what are the right and wrong choices for gifts to Chinese business associates and friends? The answer lies in the Chinese language.\n\nGiving someone a clock or a watch as a present is traditionally a taboo in Chinese culture due to “giving a clock” and “attending a person’s funeral” having the same pronunciation, regardless of the different written characters. Therefore, avoiding presenting a gift which has “the same pronunciation of any unlucky meaning” is important in building relationships with Chinese people.\n\nGifts are presented with two hands in China. The receiving person may decline the gift at first (or even up to three times). It is part of the custom for Chinese to do so as they consider themselves not worthy of the gift. However, do not withdraw the gift as your persistent trying will persuade the Chinese into accepting your gift. If presenting organisational gifts, it is done during a toast or at the end of a meal, just prior to departure. In modern time China, sometimes a business meeting is planned on short notice and can be quite short. In this case, organisational gifts are exchanged after the first speaker of meeting parties or just before the end of the meeting.\n\n[Adapted from Regina Coeli]",
+        "passage": "When the British transport minister presented a watch to a Chinese official, her act was described by BBC as a “cultural <u>gaffe</u>”. So why is a “watch” not a good gift in Chinese eyes? And what are the right and wrong choices for gifts to Chinese business associates and friends? The answer lies in the Chinese language.\n\nGiving someone a clock or a watch as a present is traditionally a taboo in Chinese culture due to “giving a clock” and “attending a person’s funeral” having the same pronunciation, regardless of the different written characters. Therefore, avoiding presenting a gift <u>which</u> has “the same pronunciation of any unlucky meaning” is important in building relationships with Chinese people.\n\nGifts are presented with two hands in China. The receiving person may decline the gift at first (or even up to three times). It is part of the custom for Chinese to do so as they consider themselves not worthy of the gift. However, do not withdraw the gift as your persistent trying will persuade the Chinese into accepting your gift. If presenting organisational gifts, it is done during a toast or at the end of a meal, just prior to departure. In modern time China, sometimes a business meeting is planned on short notice and can be quite short. In this case, organisational gifts are exchanged after the first speaker of meeting parties or just before the end of the meeting.\n\n[Adapted from Regina Coeli]",
         "questionIndices": [
           37,
           38,
@@ -1879,7 +1879,7 @@
         "id": "u2-q18",
         "index": 18,
         "sectionId": "sec-2-2",
-        "questionText": "Mark the letter A, B, C, or D to indicate the word(s) OPPOSITE in meaning: K-pop has become POPULAR across various countries, showcasing how cross-cultural influences can shape global music trends.",
+        "questionText": "Mark the letter A, B, C, or D to indicate the word(s) OPPOSITE in meaning: K-pop has become <u>POPULAR</u> across various countries, showcasing how cross-cultural influences can shape global music trends.",
         "options": [
           {
             "id": "A",
@@ -1905,7 +1905,7 @@
         "id": "u2-q19",
         "index": 19,
         "sectionId": "sec-2-2",
-        "questionText": "Mark the letter A, B, C, or D to indicate the word(s) OPPOSITE in meaning: GLOBALISATION has made it easier for people to experience products and services from different countries.",
+        "questionText": "Mark the letter A, B, C, or D to indicate the word(s) OPPOSITE in meaning: <u>GLOBALISATION</u> has made it easier for people to experience products and services from different countries.",
         "options": [
           {
             "id": "A",
@@ -1931,7 +1931,7 @@
         "id": "u2-q20",
         "index": 20,
         "sectionId": "sec-2-2",
-        "questionText": "Mark the letter A, B, C, or D to indicate the word(s) CLOSEST in meaning: Experiencing UNFAMILIAR social norms and behaviors can lead to culture shock when moving to a different country.",
+        "questionText": "Mark the letter A, B, C, or D to indicate the word(s) CLOSEST in meaning: Experiencing <u>UNFAMILIAR</u> social norms and behaviors can lead to culture shock when moving to a different country.",
         "options": [
           {
             "id": "A",
@@ -1957,7 +1957,7 @@
         "id": "u2-q21",
         "index": 21,
         "sectionId": "sec-2-2",
-        "questionText": "Mark the letter A, B, C, or D to indicate the word(s) CLOSEST in meaning: The unexpected POPULARITY of the indie film surprised even the director, who had created it with a very limited budget.",
+        "questionText": "Mark the letter A, B, C, or D to indicate the word(s) CLOSEST in meaning: The unexpected <u>POPULARITY</u> of the indie film surprised even the director, who had created it with a very limited budget.",
         "options": [
           {
             "id": "A",
@@ -2295,7 +2295,7 @@
         "id": "u2-q34",
         "index": 34,
         "sectionId": "sec-2-3-3",
-        "questionText": "The word “prosperity” in the passage is closest in meaning to _____.",
+        "questionText": "The word <u>prosperity</u> in the passage is closest in meaning to _____.",
         "options": [
           {
             "id": "A",
@@ -2321,7 +2321,7 @@
         "id": "u2-q35",
         "index": 35,
         "sectionId": "sec-2-3-3",
-        "questionText": "What can be inferred about how these countries view the elderly?",
+        "questionText": "The word <u>they</u> in the second paragraph refers to _____.",
         "options": [
           {
             "id": "A",
@@ -2399,7 +2399,7 @@
         "id": "u2-q38",
         "index": 38,
         "sectionId": "sec-2-3-4",
-        "questionText": "The word “gaffe” in paragraph 1 is closest in meaning to _________.",
+        "questionText": "The word <u>gaffe</u> in paragraph 1 is closest in meaning to _________.",
         "options": [
           {
             "id": "A",
@@ -2425,7 +2425,7 @@
         "id": "u2-q39",
         "index": 39,
         "sectionId": "sec-2-3-4",
-        "questionText": "Why is a “watch” considered an inappropriate gift in Chinese culture?",
+        "questionText": "The word <u>which</u> in paragraph 2 refers to _________.",
         "options": [
           {
             "id": "A",
@@ -2709,7 +2709,7 @@
         "title": "PART 2: READING COMPREHENSION",
         "instruction": "Read the following passage and mark the letter A, B, C, or D on your answer sheet to indicate the correct answer to each of the questions.",
         "passageTitle": "Functions and Nutritional Value of Fats",
-        "passage": "Most human diets contain between 10 and 15 percent of their total calories as protein. The rest of the dietary energy comes from carbohydrates, fats, and in some people, alcohol. The proportion of calories from fats varies from 10 percent in poor communities to 40 percent or more in rich communities.\n\nIn addition to providing energy, fats have several other functions in the body. The fat-soluble vitamins, A, D, E, and K, are dissolved in fats, as their name implies. Good sources of these vitamins have high oil or fat content, and the vitamins are stored in the body’s fatty tissues. In the diet, fats cause food to remain longer in the stomach, thus increasing the feeling of fullness for some time after a meal is eaten. Fats add variety, taste, and texture to foods, which accounts for the popularity of fried foods. Fatty deposits in the body have an insulating and protective value. The curves of the female human body are due mostly to strategically located fat deposits.\n\nWhether a certain amount of fat in the diet is essential to human health is not definitely known. When rats are fed a fat-free diet, their growth eventually ceases, their skin becomes inflamed and scaly, and their reproductive systems are damaged. Two fatty acids, linoleic and arachidonic acids, prevent these abnormalities and hence are called essential fatty acids. They are required by a number of other animals, but their roles in human beings are debatable. Most nutritionists consider linoleic fatty acid an essential nutrient for humans.",
+        "passage": "Most human diets contain between 10 and 15 percent of their total calories as protein. The rest of the dietary energy comes from carbohydrates, fats, and in some people, alcohol. The proportion of calories from fats varies from 10 percent in poor communities to 40 percent or more in rich communities.\n\nIn addition to providing energy, fats have several other functions in the body. The fat-soluble vitamins, A, D, E, and K, are dissolved in fats, as their name implies. Good sources of these vitamins have high oil or fat content, and the vitamins are stored in the body’s fatty tissues. In the diet, fats cause food to remain longer in the stomach, thus increasing the feeling of fullness for some time after a meal is eaten. Fats add variety, taste, and texture to foods, which accounts for the popularity of fried foods. Fatty deposits in the body have an insulating and protective value. The curves of the female human body are due mostly to strategically located fat deposits.\n\nWhether a certain amount of fat in the diet is essential to human health is not definitely known. When rats are fed a fat-free diet, their growth eventually ceases, their skin becomes inflamed and scaly, and their reproductive systems are damaged. Two fatty acids, linoleic and arachidonic acids, prevent these abnormalities and hence are called essential fatty acids. They are required by a number of other animals, but their roles in human beings are debatable. Most nutritionists consider linoleic fatty acid an <u>essential</u> nutrient for humans.",
         "questionIndices": [
           36,
           37,
@@ -2735,7 +2735,7 @@
         "id": "l11-u1-q1",
         "index": 1,
         "sectionId": "sec-11-1-1",
-        "questionText": "",
+        "questionText": "Mark the letter A, B, C, or D on your answer sheet to indicate the word that differs from the other three in the position of primary stress.",
         "options": [
           {
             "id": "A",
@@ -2761,7 +2761,7 @@
         "id": "l11-u1-q2",
         "index": 2,
         "sectionId": "sec-11-1-1",
-        "questionText": "",
+        "questionText": "Mark the letter A, B, C, or D on your answer sheet to indicate the word that differs from the other three in the position of primary stress.",
         "options": [
           {
             "id": "A",
@@ -2787,7 +2787,7 @@
         "id": "l11-u1-q3",
         "index": 3,
         "sectionId": "sec-11-1-1",
-        "questionText": "",
+        "questionText": "Mark the letter A, B, C, or D on your answer sheet to indicate the word that differs from the other three in the position of primary stress.",
         "options": [
           {
             "id": "A",
@@ -2813,7 +2813,7 @@
         "id": "l11-u1-q4",
         "index": 4,
         "sectionId": "sec-11-1-1",
-        "questionText": "",
+        "questionText": "Mark the letter A, B, C, or D on your answer sheet to indicate the word that differs from the other three in the position of primary stress.",
         "options": [
           {
             "id": "A",
@@ -2839,7 +2839,7 @@
         "id": "l11-u1-q5",
         "index": 5,
         "sectionId": "sec-11-1-2",
-        "questionText": "If you want to maintain a healthy weight, it's advisable to cut down on fast foods and focus on nutritious meals.",
+        "questionText": "If you want to maintain a healthy weight, it's advisable to <u>cut down on</u> fast foods and focus on nutritious meals.",
         "options": [
           {
             "id": "A",
@@ -2865,11 +2865,11 @@
         "id": "l11-u1-q6",
         "index": 6,
         "sectionId": "sec-11-1-2",
-        "questionText": "",
+        "questionText": "A healthy lifestyle, including a balanced diet and regular physical activity, can lower the chances of developing various <u>diseases</u>.",
         "options": [
           {
             "id": "A",
-            "text": "healthy lifestyle, including a balanced diet and regular physical activity, can lower the chances of developing various diseases."
+            "text": "recipe"
           },
           {
             "id": "B",
@@ -2891,7 +2891,7 @@
         "id": "l11-u1-q7",
         "index": 7,
         "sectionId": "sec-11-1-2",
-        "questionText": "We should do exercise frequently and eat more fruits and vegetables to stay healthy.",
+        "questionText": "We should do exercise <u>frequently</u> and eat more fruits and vegetables to stay healthy.",
         "options": [
           {
             "id": "A",
@@ -2917,7 +2917,7 @@
         "id": "l11-u1-q8",
         "index": 8,
         "sectionId": "sec-11-1-2",
-        "questionText": "In Vietnam, life expectancy for both men and women has increased significantly over the last ten years.",
+        "questionText": "In Vietnam, <u>life expectancy</u> for both men and women has increased significantly over the last ten years.",
         "options": [
           {
             "id": "A",
@@ -2943,7 +2943,7 @@
         "id": "l11-u1-q9",
         "index": 9,
         "sectionId": "sec-11-1-3",
-        "questionText": "If you want to improve your health, it's important to give up unhealthy habits like staying up late.",
+        "questionText": "If you want to improve your health, it's important to <u>give up</u> unhealthy habits like staying up late.",
         "options": [
           {
             "id": "A",
@@ -2969,7 +2969,7 @@
         "id": "l11-u1-q10",
         "index": 10,
         "sectionId": "sec-11-1-3",
-        "questionText": "I try to work out at the gym three times a week to stay fit and maintain a healthy lifestyle.",
+        "questionText": "I try to <u>work out</u> at the gym three times a week to stay fit and maintain a healthy lifestyle.",
         "options": [
           {
             "id": "A",
@@ -2995,7 +2995,7 @@
         "id": "l11-u1-q11",
         "index": 11,
         "sectionId": "sec-11-1-3",
-        "questionText": "Having a balanced diet is the key to a healthy lifestyle.",
+        "questionText": "Having a <u>balanced</u> diet is the key to a healthy lifestyle.",
         "options": [
           {
             "id": "A",
@@ -3021,7 +3021,7 @@
         "id": "l11-u1-q12",
         "index": 12,
         "sectionId": "sec-11-1-3",
-        "questionText": "The balance between work and life helps people to protect themselves from the negative effects of stress.",
+        "questionText": "The balance between work and life helps people to protect themselves from the negative <u>effects</u> of stress.",
         "options": [
           {
             "id": "A",
@@ -3073,11 +3073,11 @@
         "id": "l11-u1-q14",
         "index": 14,
         "sectionId": "sec-11-1-4",
-        "questionText": "",
+        "questionText": "A ______ diet, consisting of nutritious foods from all food groups, is key to overall well-being.",
         "options": [
           {
             "id": "A",
-            "text": "______ diet, consisting of nutritious foods from all food groups, is key to overall well-being."
+            "text": "infectious"
           },
           {
             "id": "B",
@@ -3515,7 +3515,7 @@
         "id": "l11-u1-q31",
         "index": 31,
         "sectionId": "sec-11-1-5",
-        "questionText": "",
+        "questionText": "They believe that sleep (31)________ your energy and helps your brain work better.",
         "options": [
           {
             "id": "A",
@@ -3541,7 +3541,7 @@
         "id": "l11-u1-q32",
         "index": 32,
         "sectionId": "sec-11-1-5",
-        "questionText": "",
+        "questionText": "If you do not sleep enough, you cannot (32)_________on your work, and you feel tired all day.",
         "options": [
           {
             "id": "A",
@@ -3567,7 +3567,7 @@
         "id": "l11-u1-q33",
         "index": 33,
         "sectionId": "sec-11-1-5",
-        "questionText": "",
+        "questionText": "Sleep is important (33)_________ normal development.",
         "options": [
           {
             "id": "A",
@@ -3593,7 +3593,7 @@
         "id": "l11-u1-q34",
         "index": 34,
         "sectionId": "sec-11-1-5",
-        "questionText": "",
+        "questionText": "All animals, (34) _________ live in different environments, need sleep...",
         "options": [
           {
             "id": "A",
@@ -3619,7 +3619,7 @@
         "id": "l11-u1-q35",
         "index": 35,
         "sectionId": "sec-11-1-5",
-        "questionText": "",
+        "questionText": "All animals, which live in different environments, need sleep, (35) _________ there is great variation in how much they sleep.",
         "options": [
           {
             "id": "A",
@@ -3723,7 +3723,7 @@
         "id": "l11-u1-q39",
         "index": 39,
         "sectionId": "sec-11-1-6",
-        "questionText": "The word “essential” in paragraph 3 is CLOSEST in meaning to",
+        "questionText": "The word <u>essential</u> in paragraph 3 is CLOSEST in meaning to:",
         "options": [
           {
             "id": "A",
@@ -3985,7 +3985,7 @@
         "title": "READING 2: READING COMPREHENSION",
         "instruction": "Read the following passage and mark the letter A, B, C, or D to indicate the correct answer to each of the questions.",
         "passageTitle": "The Generation Gap in the Modern Business World",
-        "passage": "The generation gap in the business world is a fascinating phenomenon that highlights the differences in attitudes, values, and approaches to conducting business between different generations. One of the key areas where the generation gap is evident is in technology adoption. Younger generations, such as Millennials and Generation Z, have grown up in the digital age and are generally more comfortable with technology. They readily embrace new tools, platforms, and digital strategies, which can significantly impact business practices, marketing strategies, and communication methods.\n\nWorkforce expectations also play a crucial role in the generation gap. Each generation has its own set of expectations when it comes to work-life balance, career progression, and job satisfaction. Younger generations often prioritize flexibility, purpose-driven work, and a healthy work-life balance. Meanwhile, older generations may place more emphasis on job stability, loyalty, and traditional career paths.\n\nLeadership styles are another area where the generation gap becomes evident. Baby Boomers and Generation X typically favor hierarchical structures and a more top-down management style. They are used to a more authoritative approach to leadership. Conversely, younger generations often prefer collaborative and inclusive leadership styles, valuing input from all levels of the organization. They thrive in environments that encourage participation, teamwork, and innovation.\n\nCommunication preferences have also evolved with each generation. The way people communicate and consume information has drastically changed over the years. Younger generations are inclined towards instant messaging, social media, and other digital channels for communication.",
+        "passage": "The generation gap in the business world is a fascinating phenomenon that highlights the differences in attitudes, values, and approaches to conducting business between different generations. One of the key areas where the generation gap is evident is in technology adoption. Younger generations, such as Millennials and Generation Z, have grown up in the digital age and are generally more comfortable with technology. <u>They</u> readily embrace new tools, platforms, and digital strategies, which can significantly impact business practices, marketing strategies, and communication methods.\n\nWorkforce expectations also play a crucial role in the generation gap. Each generation has its own set of expectations when it comes to work-life balance, career progression, and job satisfaction. Younger generations often prioritize flexibility, purpose-driven work, and a healthy work-life balance. Meanwhile, older generations may place more emphasis on job stability, loyalty, and traditional career paths.\n\nLeadership styles are another area where the generation gap becomes evident. Baby Boomers and Generation X typically favor hierarchical structures and a more top-down management style. They are used to a more authoritative approach to leadership. Conversely, younger generations often prefer collaborative and inclusive leadership styles, valuing input from all levels of the organization. They <u>thrive</u> in environments that encourage participation, teamwork, and innovation.\n\nCommunication preferences have also evolved with each generation. The way people communicate and consume information has drastically changed over the years. Younger generations are inclined towards instant messaging, social media, and other digital channels for communication.",
         "questionIndices": [
           39,
           40,
@@ -4010,7 +4010,7 @@
         "id": "l11-u2-q1",
         "index": 1,
         "sectionId": "sec-11-2-1",
-        "questionText": "",
+        "questionText": "Mark the letter A, B, C, or D on your answer sheet to indicate the word that differs from the other three in the position of primary stress.",
         "options": [
           {
             "id": "A",
@@ -4036,7 +4036,7 @@
         "id": "l11-u2-q2",
         "index": 2,
         "sectionId": "sec-11-2-1",
-        "questionText": "",
+        "questionText": "Mark the letter A, B, C, or D on your answer sheet to indicate the word that differs from the other three in the position of primary stress.",
         "options": [
           {
             "id": "A",
@@ -4062,7 +4062,7 @@
         "id": "l11-u2-q3",
         "index": 3,
         "sectionId": "sec-11-2-1",
-        "questionText": "",
+        "questionText": "Mark the letter A, B, C, or D on your answer sheet to indicate the word that differs from the other three in the position of primary stress.",
         "options": [
           {
             "id": "A",
@@ -4088,7 +4088,7 @@
         "id": "l11-u2-q4",
         "index": 4,
         "sectionId": "sec-11-2-1",
-        "questionText": "",
+        "questionText": "Mark the letter A, B, C, or D on your answer sheet to indicate the word that differs from the other three in the position of primary stress.",
         "options": [
           {
             "id": "A",
@@ -4114,7 +4114,7 @@
         "id": "l11-u2-q5",
         "index": 5,
         "sectionId": "sec-11-2-2",
-        "questionText": "The argument about career choosing is a classic example of the generation gap.",
+        "questionText": "The <u>argument</u> about career choosing is a classic example of the generation gap.",
         "options": [
           {
             "id": "A",
@@ -4140,7 +4140,7 @@
         "id": "l11-u2-q6",
         "index": 6,
         "sectionId": "sec-11-2-2",
-        "questionText": "As each generation is strongly influenced by changes in society, parents and children may see the world differently.",
+        "questionText": "As each generation is strongly <u>influenced</u> by changes in society, parents and children may see the world differently.",
         "options": [
           {
             "id": "A",
@@ -4166,7 +4166,7 @@
         "id": "l11-u2-q7",
         "index": 7,
         "sectionId": "sec-11-2-2",
-        "questionText": "Parents should strictly limit their children’s screen time.",
+        "questionText": "Parents should strictly <u>limit</u> their children’s screen time.",
         "options": [
           {
             "id": "A",
@@ -4192,7 +4192,7 @@
         "id": "l11-u2-q8",
         "index": 8,
         "sectionId": "sec-11-2-2",
-        "questionText": "Having a large extended family makes a number of problems inevitable.",
+        "questionText": "Having a large extended family makes a number of <u>problems</u> inevitable.",
         "options": [
           {
             "id": "A",
@@ -4218,7 +4218,7 @@
         "id": "l11-u2-q9",
         "index": 9,
         "sectionId": "sec-11-2-3",
-        "questionText": "Nowadays, digital natives have different attitudes and approaches towards technology.",
+        "questionText": "Nowadays, <u>digital natives</u> have different attitudes and approaches towards technology.",
         "options": [
           {
             "id": "A",
@@ -4244,7 +4244,7 @@
         "id": "l11-u2-q10",
         "index": 10,
         "sectionId": "sec-11-2-3",
-        "questionText": "My grandfather dismisses my career ideas, saying I'm still too wet behind the ears to make such important life choices.",
+        "questionText": "My grandfather dismisses my career ideas, saying I'm still too <u>wet behind the ears</u> to make such important life choices.",
         "options": [
           {
             "id": "A",
@@ -4270,7 +4270,7 @@
         "id": "l11-u2-q11",
         "index": 11,
         "sectionId": "sec-11-2-3",
-        "questionText": "Minh is always curious as he is keen on trying new things especially those related to technology.",
+        "questionText": "Minh is always <u>curious</u> as he is keen on trying new things especially those related to technology.",
         "options": [
           {
             "id": "A",
@@ -4296,7 +4296,7 @@
         "id": "l11-u2-q12",
         "index": 12,
         "sectionId": "sec-11-2-3",
-        "questionText": "Younger generations now have more freedom in expressing their opinions in particular and themselves in general.",
+        "questionText": "Younger generations now have more <u>freedom</u> in expressing their opinions in particular and themselves in general.",
         "options": [
           {
             "id": "A",
@@ -4868,7 +4868,7 @@
         "id": "l11-u2-q34",
         "index": 34,
         "sectionId": "sec-11-2-5",
-        "questionText": "",
+        "questionText": "Conflict is a disagreement or (34) ______ between people.",
         "options": [
           {
             "id": "A",
@@ -4894,7 +4894,7 @@
         "id": "l11-u2-q35",
         "index": 35,
         "sectionId": "sec-11-2-5",
-        "questionText": "",
+        "questionText": "One way family (35) _______ can happen is when parents and children have different ideas about how things should be.",
         "options": [
           {
             "id": "A",
@@ -4920,7 +4920,7 @@
         "id": "l11-u2-q36",
         "index": 36,
         "sectionId": "sec-11-2-5",
-        "questionText": "",
+        "questionText": "This can lead (36) ______ arguments and disagreements.",
         "options": [
           {
             "id": "A",
@@ -4946,7 +4946,7 @@
         "id": "l11-u2-q37",
         "index": 37,
         "sectionId": "sec-11-2-5",
-        "questionText": "",
+        "questionText": "This can lead to stress and tension, (37) ______ can make it harder for family members to get along.",
         "options": [
           {
             "id": "A",
@@ -4972,7 +4972,7 @@
         "id": "l11-u2-q38",
         "index": 38,
         "sectionId": "sec-11-2-5",
-        "questionText": "",
+        "questionText": "(38) _____ there are disagreements, it's important to try to work things out and stay connected.",
         "options": [
           {
             "id": "A",
@@ -5050,7 +5050,7 @@
         "id": "l11-u2-q41",
         "index": 41,
         "sectionId": "sec-11-2-6",
-        "questionText": "The word \"they\" in the first paragraph refers to _________.",
+        "questionText": "The word <u>they</u> in the first paragraph refers to _________.",
         "options": [
           {
             "id": "A",
@@ -5076,7 +5076,7 @@
         "id": "l11-u2-q42",
         "index": 42,
         "sectionId": "sec-11-2-6",
-        "questionText": "The word \"thrive\" in paragraph 2 is closest in meaning to _________.",
+        "questionText": "The word <u>thrive</u> in paragraph 2 is closest in meaning to _________.",
         "options": [
           {
             "id": "A",
@@ -5207,7 +5207,7 @@
   {
     "id": "de-thi-thu-hsg-lop-12-test-01",
     "title": "Đề Thi Thử Học Sinh Giỏi & Tốt Nghiệp THPT Lớp 12 - Test 01 (Bộ Đề Chuẩn Cấu Trúc 2026)",
-    "description": "Đề thi chuẩn cấu trúc Bộ GD&ĐT gồm 40 câu hỏi phân hóa cao: Thông báo khuyết từ, Giao tiếp ngắn, Sắp xếp đoạn văn logic, Điền cụm từ vào bài đọc, và 2 Bài đọc hiểu chuyên sâu (Personalized Medicine & Post-Work Guarantees).",
+    "description": "Đề thi chuẩn cấu trúc Bộ GD&ĐT gồm 40 câu hỏi phân hóa cao: Thông báo khuyết từ (Join Our Volunteer Network), Giao tiếp ngắn (Running Towards Success), Sắp xếp đoạn văn logic, Điền cụm từ vào bài đọc (Data-Driven Culture), và 2 Bài đọc hiểu chuyên sâu (Personalized Medicine & Post-Work Guarantees).",
     "subject": "Tiếng Anh",
     "category": "Ôn thi HSG",
     "categories": [
@@ -5218,8 +5218,8 @@
     "durationMinutes": 50,
     "originalFileName": "TEST 01 HSG- A. ORIGINAL.docx",
     "status": "ready",
-    "createdAt": "2026-10-20T14:30:18.151Z",
-    "updatedAt": "2026-10-20T14:30:18.151Z",
+    "createdAt": "2026-10-20T23:14:11.266Z",
+    "updatedAt": "2026-10-20T23:14:11.267Z",
     "tags": [
       "Tiếng Anh 12",
       "Lớp 12",
@@ -5234,6 +5234,8 @@
         "id": "l12-hsg-01-sec-1",
         "title": "I. LEAFLET & ANNOUNCEMENT CLOZE (QUESTIONS 1 - 6)",
         "instruction": "Read the following announcement/leaflet and mark the letter A, B, C or D on your answer sheet to indicate the option that best fits each of the numbered blanks from 1 to 6.",
+        "passageTitle": "Join Our Volunteer Network",
+        "passage": "Join Our Volunteer Network\n\nEngaging in community service not only helps those in desperate need but also significantly boosts your personal growth. By generously dedicating your free time, you naturally become a highly (1) ________ member of society.\n\nWhile I (2) ________ as an enthusiastic volunteer at the local orphanage last summer, I learned how to be much more patient and understanding. The lovely kids (3) ________ in this small shelter need affection, proper care, and access to basic education.\n\nOur non-profit organization always strives to (4) ________ practical support and essential supplies to disadvantaged children across the country. We frequently (5) ________ up charity shows to collect funds and raise public awareness for them.\n\nYour generous financial (6) ________ can truly make a significant, long-lasting impact on their challenging lives. Reach out to us today to become a vital part of this deeply meaningful journey!\n\n(Adapted from Michael Chang, Community Builders)",
         "questionIndices": [
           1,
           2,
@@ -5247,6 +5249,8 @@
         "id": "l12-hsg-01-sec-2",
         "title": "II. SHORT COMMUNICATION & NOTICE (QUESTIONS 7 - 12)",
         "instruction": "Read the following announcement/leaflet and mark the letter A, B, C or D on your answer sheet to indicate the option that best fits each of the numbered blanks from 7 to 12.",
+        "passageTitle": "Running Towards Success",
+        "passage": "Running Towards Success\n\nDuring the global pandemic, millions of people turned to outdoor running to relieve boredom. A highly (7) ________ exercise application successfully capitalised on this massive trend by turning solo workouts into a social activity.\n\nUsers can easily share their daily routes and give virtual praise to their athletic friends. This particular platform has become the (8) ________ popular fitness network among enthusiastic runners globally.\n\n(9) ________ the company faces fierce competition from tech giants, it continues to sprint ahead in the digital market. To maintain its strong position, the business (10) ________ introduce more premium coaching features soon.\n\n(11) ________ using the app can track their health metrics and share achievements. This strategy helps the brand stay ahead of the (12) ________ effortlessly. Download the ultimate fitness tracker now to start your journey!\n\n(Adapted from Business Desk, The Economist)",
         "questionIndices": [
           7,
           8,
@@ -5259,7 +5263,7 @@
       {
         "id": "l12-hsg-01-sec-3",
         "title": "III. COHESION & COHERENCE - ARRANGEMENT (QUESTIONS 13 - 17)",
-        "instruction": "Mark the letter A, B, C or D on your answer sheet to indicate the best arrangement of utterances or sentences to make a cohesive and coherent exchange or text.",
+        "instruction": "Mark the letter A, B, C or D on your answer sheet to indicate the best arrangement of utterances or sentences to make a cohesive and coherent exchange or text in each of the following questions from 13 to 17.",
         "questionIndices": [
           13,
           14,
@@ -5272,6 +5276,8 @@
         "id": "l12-hsg-01-sec-4",
         "title": "IV. PASSAGE CLOZE (QUESTIONS 18 - 22)",
         "instruction": "Read the following passage and mark the letter A, B, C or D on your answer sheet to indicate the option that best fits each of the numbered blanks from 18 to 22.",
+        "passageTitle": "Passage Cloze",
+        "passage": "In the modern digital era, organizations harvest massive amounts of information daily, hoping to gain a competitive edge in the global market. (18) ________. Companies invest heavily in sophisticated algorithms and cloud infrastructure to process this raw material efficiently. However, raw data alone cannot magically solve complex business problems. It requires careful handling, validation, and interpretation by skilled professionals to truly make a difference.\n\nAnalysts must clean and organize the gathered information before drawing any meaningful conclusions. (19) ________. Despite the advanced technology available, many early AI projects fail to meet their initial expectations. Firms often implement countless automated systems across departments, (20) ________. The root cause usually lies in poor data quality rather than technical limitations or software bugs.\n\nTo maximize value, businesses have to transform these derived insights into actionable strategies immediately. (21) ________. This crucial step ensures that every department aligns with the overarching corporate goals and security standards. Organizations that embrace this data-driven culture typically achieve sustainable, long-term success. On the contrary, companies ignoring these fundamental steps and procedures (22) ________.\n\n(Adapted from various business technology journals)",
         "questionIndices": [
           18,
           19,
@@ -5283,7 +5289,9 @@
       {
         "id": "l12-hsg-01-sec-5",
         "title": "V. READING COMPREHENSION 1 (QUESTIONS 23 - 30)",
-        "instruction": "Read the passage and mark the letter A, B, C or D on your answer sheet to indicate the best answer to each of the questions from 23 to 30.",
+        "instruction": "Read the passage and mark the letter A, B, C or D on your answer sheet to indicate the best answer to each of the following questions from 23 to 30.",
+        "passageTitle": "Reading Comprehension 1",
+        "passage": "At cutting-edge facilities, scientists are delving into how the gut's microbial inhabitants influence cancer progression. By throwing mice's microbial balance out of whack using antibiotics, researchers have noted distinct changes in immune responses and how tumors spread. Rather than viewing the disease in isolation, the medical community considers the microbiome a crucial indicator of a patient's lifestyle. The ultimate goal is to translate these discoveries into gentler therapies that keep metastasis at bay while respecting individual physiological differences.\n\nThis shift represents the core of personalized medicine, which factors in a person's genetic blueprint and daily habits. Historically, oncology relied on a rigid approach, subjecting patients to <u>grueling</u> regimens. However, contemporary clinics are turning the corner by classifying tumors based on specific genetic mutations. Doctors can now prescribe highly targeted interventions, explaining the sharp drop in mortality for certain cancers. <u>Rather than relying on blanket protocols, modern oncology tailors strategies to the unique biological signature of each patient.</u>\n\nBeyond oncology, the burgeoning field of pharmacogenomics is making waves by matching prescriptions with a patient's inherited traits. A simple swab can bring to light genetic markers that warn of potential toxicity or indicate that a medication might fall flat. Crucially, <u>those</u> primarily dictate how the body processes drugs rather than predicting incurable diseases. While still in its infancy outside academic centers, this tailored approach is instrumental in dodging severe adverse reactions caused by minuscule dosing errors.\n\nDespite these strides, the path forward is not entirely clear-cut. Recent regulatory approvals for genetic tests hint at a promising future, backed by massive data initiatives. Nevertheless, glaring disparities throw a spanner in the works. A disproportionate number of genomic studies lean heavily on individuals of European descent, severely <u>undermining</u> the universal applicability of the findings. True progress will hinge on expanding research diversity and ensuring that state-of-the-art diagnostic tools are accessible across all communities.\n\n(Adapted from AAMC, “Making medicine personal: Moving away from a one-size-fits-all approach to health care,” Feb 22, 2024)",
         "questionIndices": [
           23,
           24,
@@ -5298,7 +5306,9 @@
       {
         "id": "l12-hsg-01-sec-6",
         "title": "VI. READING COMPREHENSION 2 (QUESTIONS 31 - 40)",
-        "instruction": "Read the passage and mark the letter A, B, C or D on your answer sheet to indicate the best answer to each of the questions from 31 to 40.",
+        "instruction": "Read the passage and mark the letter A, B, C or D on your answer sheet to indicate the best answer to each of the following questions from 31 to 40.",
+        "passageTitle": "Reading Comprehension 2",
+        "passage": "In the wake of recent economic upheaval, policymakers have begun re-evaluating the mechanisms used to underwrite decent livelihoods, particularly as traditional employment becomes increasingly precarious. [I] To prevent vulnerable demographics from falling through the cracks, advocates champion post-work guarantees – a synthesis of Participation Income and Universal Basic Services (UBS). Rather than dismantling the labor market, this paradigm seeks to establish an inviolable foundation, ensuring that no citizen endures conditions beneath a socially acceptable threshold.\n\nAt the heart of this framework lies the recalibration of financial assistance, steering away from the punitive conditionalities that plague conventional welfare. A universally distributed, tax-free stipend allows individuals to maintain a frugal yet dignified existence without the looming threat of the so-called benefit cliff. [II] When households can accept low-wage or intermittent work without abruptly losing state support, <u>they</u> are empowered to invest in skills rather than being trapped in a cycle of subsistence. Furthermore, Participation Income broadens the definition of productivity by adequately remunerating unpaid care and civic engagement, thereby validating contributions that traditional metrics often disregard.\n\nComplementing direct cash transfers, UBS advocates for the collective, unconditional provision of absolute necessities, spanning from healthcare to public transit. Historically, market-first ideologies have engendered artificial scarcities, rendering essential participation prohibitively expensive for marginalized communities. [III] By instituting high-quality public infrastructure, governments can drastically <u>alleviate</u> the financial burdens placed on individuals, subsequently reducing the requisite size of any basic income scheme. Sturdy public services essentially function as an anchor for living standards, cushioning society against macroeconomic volatility.\n\nBeyond mere fiscal mechanics, these guarantees serve profound civic and environmental objectives. Decoupling survival from coerced employment alleviates the relentless pressure to pursue perpetual economic growth at the expense of ecological stability. [IV] Consequently, individuals gain the autonomy to allocate their time across paid labor, volunteering, and restorative rest, fostering a more resilient and equitable societal fabric where human dignity is no longer contingent upon a wage slip.\n\n(Adapted from Social Justice Ireland, “Basic Income and UBS key to improving living standards after COVID-19”)",
         "questionIndices": [
           31,
           32,
@@ -5318,7 +5328,8 @@
         "id": "l12-hsg-01-q1",
         "index": 1,
         "sectionId": "l12-hsg-01-sec-1",
-        "questionText": "",
+        "questionText": "By generously dedicating your free time, you naturally become a highly (1) ________ member of society.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -5338,13 +5349,15 @@
           }
         ],
         "correctAnswer": "C",
-        "explanation": "Cần một tính từ đứng trước danh từ \"member\" để bổ nghĩa cho nó: \"valuable member\" (thành viên có giá trị của xã hội)."
+        "explanation": "Cần một tính từ đứng trước danh từ \"member\" để bổ nghĩa cho nó: \"valuable member\" (thành viên có giá trị của xã hội).",
+        "cognitiveLevel": "Nhận biết"
       },
       {
         "id": "l12-hsg-01-q2",
         "index": 2,
         "sectionId": "l12-hsg-01-sec-1",
-        "questionText": "",
+        "questionText": "While I (2) ________ as an enthusiastic volunteer at the local orphanage last summer, I learned how to be much more patient and understanding.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -5364,13 +5377,15 @@
           }
         ],
         "correctAnswer": "A",
-        "explanation": "Mệnh đề trạng ngữ chỉ thời gian với \"While\" diễn tả một hành động đang diễn ra trong quá khứ (\"last summer\"): \"While I was working...\"."
+        "explanation": "Mệnh đề trạng ngữ chỉ thời gian với \"While\" diễn tả một hành động đang diễn ra trong quá khứ (\"last summer\"): \"While I was working...\".",
+        "cognitiveLevel": "Nhận biết"
       },
       {
         "id": "l12-hsg-01-q3",
         "index": 3,
         "sectionId": "l12-hsg-01-sec-1",
-        "questionText": "",
+        "questionText": "The lovely kids (3) ________ in this small shelter need affection, proper care, and access to basic education.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -5390,13 +5405,15 @@
           }
         ],
         "correctAnswer": "C",
-        "explanation": "Rút gọn mệnh đề quan hệ dạng chủ động (who are living): \"The lovely kids living in this small shelter...\"."
+        "explanation": "Rút gọn mệnh đề quan hệ dạng chủ động (who are living): \"The lovely kids living in this small shelter...\".",
+        "cognitiveLevel": "Nhận biết"
       },
       {
         "id": "l12-hsg-01-q4",
         "index": 4,
         "sectionId": "l12-hsg-01-sec-1",
-        "questionText": "",
+        "questionText": "Our non-profit organization always strives to (4) ________ practical support and essential supplies to disadvantaged children across the country.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -5416,13 +5433,15 @@
           }
         ],
         "correctAnswer": "D",
-        "explanation": "Cụm từ \"provide sth to sb\" (cung cấp sự hỗ trợ thực tế và đồ dùng thiết yếu cho trẻ em)."
+        "explanation": "Cụm từ \"provide sth to sb\" (cung cấp sự hỗ trợ thực tế và đồ dùng thiết yếu cho trẻ em).",
+        "cognitiveLevel": "Nhận biết"
       },
       {
         "id": "l12-hsg-01-q5",
         "index": 5,
         "sectionId": "l12-hsg-01-sec-1",
-        "questionText": "",
+        "questionText": "We frequently (5) ________ up charity shows to collect funds and raise public awareness for them.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -5442,13 +5461,15 @@
           }
         ],
         "correctAnswer": "C",
-        "explanation": "Cụm động từ \"set up\" có nghĩa là tổ chức, thiết lập (set up charity shows: tổ chức các chương trình biểu diễn từ thiện)."
+        "explanation": "Cụm động từ \"set up\" có nghĩa là tổ chức, thiết lập (set up charity shows: tổ chức các chương trình biểu diễn từ thiện).",
+        "cognitiveLevel": "Nhận biết"
       },
       {
         "id": "l12-hsg-01-q6",
         "index": 6,
         "sectionId": "l12-hsg-01-sec-1",
-        "questionText": "",
+        "questionText": "Your generous financial (6) ________ can truly make a significant, long-lasting impact on their challenging lives.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -5468,13 +5489,15 @@
           }
         ],
         "correctAnswer": "A",
-        "explanation": "Cụm danh từ \"financial donations\" (khoản quyên góp tài chính hảo tâm)."
+        "explanation": "Cụm danh từ \"financial donations\" (khoản quyên góp tài chính hảo tâm).",
+        "cognitiveLevel": "Nhận biết"
       },
       {
         "id": "l12-hsg-01-q7",
         "index": 7,
         "sectionId": "l12-hsg-01-sec-2",
-        "questionText": "",
+        "questionText": "A highly (7) ________ exercise application successfully capitalised on this massive trend by turning solo workouts into a social activity.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -5494,13 +5517,15 @@
           }
         ],
         "correctAnswer": "C",
-        "explanation": "Cần tính từ miêu tả ứng dụng tập luyện: \"successful exercise application\" (ứng dụng thể thao thành công)."
+        "explanation": "Cần tính từ miêu tả ứng dụng tập luyện: \"successful exercise application\" (ứng dụng thể thao thành công).",
+        "cognitiveLevel": "Nhận biết"
       },
       {
         "id": "l12-hsg-01-q8",
         "index": 8,
         "sectionId": "l12-hsg-01-sec-2",
-        "questionText": "",
+        "questionText": "This particular platform has become the (8) ________ popular fitness network among enthusiastic runners globally.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -5520,13 +5545,15 @@
           }
         ],
         "correctAnswer": "A",
-        "explanation": "Cấu trúc so sánh nhất: \"the most popular fitness network\" (mạng lưới thể dục thể thao phổ biến nhất)."
+        "explanation": "Cấu trúc so sánh nhất: \"the most popular fitness network\" (mạng lưới thể dục thể thao phổ biến nhất).",
+        "cognitiveLevel": "Nhận biết"
       },
       {
         "id": "l12-hsg-01-q9",
         "index": 9,
         "sectionId": "l12-hsg-01-sec-2",
-        "questionText": "",
+        "questionText": "(9) ________ the company faces fierce competition from tech giants, it continues to sprint ahead in the digital market.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -5546,13 +5573,15 @@
           }
         ],
         "correctAnswer": "A",
-        "explanation": "Liên từ chỉ sự nhượng bộ phù hợp về ngữ nghĩa: \"Although the company faces fierce competition...\" (Mặc dù phải đối mặt với sự cạnh tranh khốc liệt...)."
+        "explanation": "Liên từ chỉ sự nhượng bộ phù hợp về ngữ nghĩa: \"Although the company faces fierce competition...\" (Mặc dù phải đối mặt với sự cạnh tranh khốc liệt...).",
+        "cognitiveLevel": "Nhận biết"
       },
       {
         "id": "l12-hsg-01-q10",
         "index": 10,
         "sectionId": "l12-hsg-01-sec-2",
-        "questionText": "",
+        "questionText": "To maintain its strong position, the business (10) ________ introduce more premium coaching features soon.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -5572,13 +5601,15 @@
           }
         ],
         "correctAnswer": "D",
-        "explanation": "Động từ khuyết thiếu diễn tả kế hoạch tương lai gần: \"the business will introduce...\" (doanh nghiệp sẽ sớm giới thiệu các tính năng mới)."
+        "explanation": "Động từ khuyết thiếu diễn tả kế hoạch tương lai gần: \"the business will introduce...\" (doanh nghiệp sẽ sớm giới thiệu các tính năng mới).",
+        "cognitiveLevel": "Nhận biết"
       },
       {
         "id": "l12-hsg-01-q11",
         "index": 11,
         "sectionId": "l12-hsg-01-sec-2",
-        "questionText": "",
+        "questionText": "(11) ________ using the app can track their health metrics and share achievements.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -5598,13 +5629,15 @@
           }
         ],
         "correctAnswer": "D",
-        "explanation": "Đại từ bất định chỉ người: \"Anyone using the app can track their health metrics...\" (Bất kỳ ai sử dụng ứng dụng đều có thể theo dõi...)."
+        "explanation": "Đại từ bất định chỉ người: \"Anyone using the app can track their health metrics...\" (Bất kỳ ai sử dụng ứng dụng đều có thể theo dõi...).",
+        "cognitiveLevel": "Nhận biết"
       },
       {
         "id": "l12-hsg-01-q12",
         "index": 12,
         "sectionId": "l12-hsg-01-sec-2",
-        "questionText": "",
+        "questionText": "This strategy helps the brand stay ahead of the (12) ________ effortlessly.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -5624,13 +5657,15 @@
           }
         ],
         "correctAnswer": "B",
-        "explanation": "Thành ngữ cố định: \"stay ahead of the pack\" (dẫn đầu đoàn đua, vượt lên trên các đối thủ cạnh tranh)."
+        "explanation": "Thành ngữ cố định: \"stay ahead of the pack\" (dẫn đầu đoàn đua, vượt lên trên các đối thủ cạnh tranh).",
+        "cognitiveLevel": "Nhận biết"
       },
       {
         "id": "l12-hsg-01-q13",
         "index": 13,
         "sectionId": "l12-hsg-01-sec-3",
         "questionText": "a. Matthew: It is really sad that rural farmers are freezing due to the coal ban. b. Matthew: We should definitely find a way to subsidise green energy for poorer families. c. Jennifer: I feel terrible for them. Clean air is important, but heating is essential.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -5650,13 +5685,15 @@
           }
         ],
         "correctAnswer": "A",
-        "explanation": "Trật tự hội thoại logic: a (Matthew nêu sự việc nông dân bị lạnh do cấm than đá) ➔ c (Jennifer đồng cảm nhưng nhấn mạnh sưởi ấm là thiết yếu) ➔ b (Matthew đề xuất trợ giá năng lượng xanh cho người nghèo). Đáp án A: a - c - b."
+        "explanation": "Trật tự hội thoại logic: a (Matthew nêu sự việc nông dân bị lạnh do cấm than đá) ➔ c (Jennifer đồng cảm nhưng nhấn mạnh sưởi ấm là thiết yếu) ➔ b (Matthew đề xuất trợ giá năng lượng xanh cho người nghèo). Đáp án A: a - c - b.",
+        "cognitiveLevel": "Thông hiểu"
       },
       {
         "id": "l12-hsg-01-q14",
         "index": 14,
         "sectionId": "l12-hsg-01-sec-3",
         "questionText": "Dear Mr. Elijah, a. By recycling fruit peels and cardboard boxes, we can produce nutrient-rich compost that will significantly benefit the beautiful vegetable gardens managed by the students. b. Over the past month, we have effectively reduced the consumption of single-use plastics and implemented a practical system for sorting household waste into categories. c. In order to sustain this positive environmental impact, we highly recommend establishing a dedicated composting area for organic food leftovers behind the school cafeteria. d. I have attached a detailed financial estimate for these new recycling facilities, and I look forward to discussing this green initiative with you soon. e. I am writing to submit a comprehensive report regarding our recent green campaign, which successfully encouraged students to adopt more eco-friendly daily lifestyle habits. Yours sincerely, Oliver",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -5676,13 +5713,15 @@
           }
         ],
         "correctAnswer": "B",
-        "explanation": "Trật tự bức thư báo cáo môi trường: e (Mục đích gửi báo cáo về chiến dịch xanh) ➔ b (Các hoạt động đã làm trong tháng qua) ➔ c (Đề xuất lập khu ủ phân hữu cơ phía sau căng tin) ➔ a (Lợi ích tạo phân bón cho vườn rau học sinh) ➔ d (Đính kèm dự toán tài chính và mong phản hồi). Đáp án B: e - b - c - a - d."
+        "explanation": "Trật tự bức thư báo cáo môi trường: e (Mục đích gửi báo cáo về chiến dịch xanh) ➔ b (Các hoạt động đã làm trong tháng qua) ➔ c (Đề xuất lập khu ủ phân hữu cơ phía sau căng tin) ➔ a (Lợi ích tạo phân bón cho vườn rau học sinh) ➔ d (Đính kèm dự toán tài chính và mong phản hồi). Đáp án B: e - b - c - a - d.",
+        "cognitiveLevel": "Thông hiểu"
       },
       {
         "id": "l12-hsg-01-q15",
         "index": 15,
         "sectionId": "l12-hsg-01-sec-3",
         "questionText": "a. Thus, policymakers must urgently address this massive and growing economic divide. b. Rising real estate prices create massive obstacles for young home buyers. c. Furthermore, high rental costs constantly drain their limited monthly income streams. d. Admittedly, older generations secured their family properties at much lower rates. e. However, young adults today must work longer hours just to survive.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -5702,13 +5741,15 @@
           }
         ],
         "correctAnswer": "A",
-        "explanation": "Trật tự đoạn văn về khoảng cách nhà ở: b (Giá bất động sản tăng gây rào cản cho người trẻ) ➔ d (Thừa nhận thế hệ trước mua nhà với giá thấp hơn nhiều) ➔ e (Tuy nhiên người trẻ ngày nay phải làm thêm nhiều giờ chỉ để sinh tồn) ➔ c (Hơn nữa chi phí thuê nhà cao bào mòn thu nhập) ➔ a (Do đó các nhà hoạch định chính sách cần khẩn trương giải quyết). Đáp án A: b - d - e - c - a."
+        "explanation": "Trật tự đoạn văn về khoảng cách nhà ở: b (Giá bất động sản tăng gây rào cản cho người trẻ) ➔ d (Thừa nhận thế hệ trước mua nhà với giá thấp hơn nhiều) ➔ e (Tuy nhiên người trẻ ngày nay phải làm thêm nhiều giờ chỉ để sinh tồn) ➔ c (Hơn nữa chi phí thuê nhà cao bào mòn thu nhập) ➔ a (Do đó các nhà hoạch định chính sách cần khẩn trương giải quyết). Đáp án A: b - d - e - c - a.",
+        "cognitiveLevel": "Thông hiểu"
       },
       {
         "id": "l12-hsg-01-q16",
         "index": 16,
         "sectionId": "l12-hsg-01-sec-3",
         "questionText": "a. When parents and children divide daily tasks evenly, they build mutual respect naturally. b. Consequently, children develop essential life skills while observing their parents as positive role models. c. Furthermore, this cooperative approach allows family members to spend more quality time together. d. Sharing household responsibilities plays a crucial role in maintaining harmony within modern families. e. In the long run, these shared routines significantly strengthen the emotional connections at home.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -5728,13 +5769,15 @@
           }
         ],
         "correctAnswer": "A",
-        "explanation": "Trật tự đoạn văn về chia sẻ việc nhà: d (Câu chủ đề: Chia sẻ trách nhiệm gia đình đóng vai trò thiết yếu duy trì sự hòa thuận) ➔ a (Khi cha mẹ và con cái chia đều công việc, họ xây dựng sự tôn trọng) ➔ c (Hơn nữa phương pháp này giúp gia đình dành nhiều thời gian bên nhau) ➔ b (Kết quả là con cái học được kỹ năng sống quan trọng) ➔ e (Về lâu dài các thói quen này củng cố sợi dây tình cảm). Đáp án A: d - a - c - b - e."
+        "explanation": "Trật tự đoạn văn về chia sẻ việc nhà: d (Câu chủ đề: Chia sẻ trách nhiệm gia đình đóng vai trò thiết yếu duy trì sự hòa thuận) ➔ a (Khi cha mẹ và con cái chia đều công việc, họ xây dựng sự tôn trọng) ➔ c (Hơn nữa phương pháp này giúp gia đình dành nhiều thời gian bên nhau) ➔ b (Kết quả là con cái học được kỹ năng sống quan trọng) ➔ e (Về lâu dài các thói quen này củng cố sợi dây tình cảm). Đáp án A: d - a - c - b - e.",
+        "cognitiveLevel": "Thông hiểu"
       },
       {
         "id": "l12-hsg-01-q17",
         "index": 17,
         "sectionId": "l12-hsg-01-sec-3",
         "questionText": "a. Dorothy: Seeing them work so hard to save old libraries shows how much they care about their past. b. Thomas: It's amazing how people are risking so much to save traditional books right now. c. Thomas: True. We should always value how much reading and writing can keep a nation's spirit alive. d. Thomas: I completely agree. Books help younger generations learn a lot about their own history and roots. e. Dorothy: Yeah, keeping those stories safe is really important for protecting their unique culture and history.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -5754,13 +5797,15 @@
           }
         ],
         "correctAnswer": "D",
-        "explanation": "Trật tự hội thoại về bảo tồn sách truyền thống: b (Thomas ngạc nhiên vì mọi người mạo hiểm cứu sách) ➔ e (Dorothy đồng tình việc bảo vệ câu chuyện giữ gìn văn hóa lịch sử) ➔ d (Thomas bổ sung sách giúp thế hệ trẻ hiểu về cội nguồn) ➔ a (Dorothy xúc động khi thấy họ nỗ lực bảo vệ thư viện cổ) ➔ c (Thomas kết luận việc đọc và viết giữ cho tinh thần dân tộc luôn sống mãi). Đáp án D: b - e - d - a - c."
+        "explanation": "Trật tự hội thoại về bảo tồn sách truyền thống: b (Thomas ngạc nhiên vì mọi người mạo hiểm cứu sách) ➔ e (Dorothy đồng tình việc bảo vệ câu chuyện giữ gìn văn hóa lịch sử) ➔ d (Thomas bổ sung sách giúp thế hệ trẻ hiểu về cội nguồn) ➔ a (Dorothy xúc động khi thấy họ nỗ lực bảo vệ thư viện cổ) ➔ c (Thomas kết luận việc đọc và viết giữ cho tinh thần dân tộc luôn sống mãi). Đáp án D: b - e - d - a - c.",
+        "cognitiveLevel": "Thông hiểu"
       },
       {
         "id": "l12-hsg-01-q18",
         "index": 18,
         "sectionId": "l12-hsg-01-sec-4",
-        "questionText": "",
+        "questionText": "In the modern digital era, organizations harvest massive amounts of information daily, hoping to gain a competitive edge in the global market. (18) ________. Companies invest heavily in sophisticated algorithms...",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -5780,13 +5825,15 @@
           }
         ],
         "correctAnswer": "B",
-        "explanation": "Cấu trúc đảo ngữ tương liên: \"As data volume expands, so do challenges.\" (Khi khối lượng dữ liệu mở rộng, những thách thức cũng gia tăng tương ứng)."
+        "explanation": "Cấu trúc đảo ngữ tương liên: \"As data volume expands, so do challenges.\" (Khi khối lượng dữ liệu mở rộng, những thách thức cũng gia tăng tương ứng).",
+        "cognitiveLevel": "Thông hiểu"
       },
       {
         "id": "l12-hsg-01-q19",
         "index": 19,
         "sectionId": "l12-hsg-01-sec-4",
-        "questionText": "",
+        "questionText": "Analysts must clean and organize the gathered information before drawing any meaningful conclusions. (19) ________. Despite the advanced technology available, many early AI projects fail to meet their initial expectations.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -5806,13 +5853,15 @@
           }
         ],
         "correctAnswer": "C",
-        "explanation": "Trật tự từ chuẩn ngữ pháp tiếng Anh: trạng từ đứng đầu bổ nghĩa cho cả mệnh đề: \"Subsequently, it enters into complex predictive models\"."
+        "explanation": "Trật tự từ chuẩn ngữ pháp tiếng Anh: trạng từ đứng đầu bổ nghĩa cho cả mệnh đề: \"Subsequently, it enters into complex predictive models\".",
+        "cognitiveLevel": "Thông hiểu"
       },
       {
         "id": "l12-hsg-01-q20",
         "index": 20,
         "sectionId": "l12-hsg-01-sec-4",
-        "questionText": "",
+        "questionText": "Firms often implement countless automated systems across departments, (20) ________. The root cause usually lies in poor data quality rather than technical limitations or software bugs.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -5832,13 +5881,15 @@
           }
         ],
         "correctAnswer": "A",
-        "explanation": "Mệnh đề quan hệ không xác định đi kèm từ chỉ lượng: \"most of which fall short of expectations\" (hầu hết trong số đó không đáp ứng được kỳ vọng ban đầu)."
+        "explanation": "Mệnh đề quan hệ không xác định đi kèm từ chỉ lượng: \"most of which fall short of expectations\" (hầu hết trong số đó không đáp ứng được kỳ vọng ban đầu).",
+        "cognitiveLevel": "Thông hiểu"
       },
       {
         "id": "l12-hsg-01-q21",
         "index": 21,
         "sectionId": "l12-hsg-01-sec-4",
-        "questionText": "",
+        "questionText": "To maximize value, businesses have to transform these derived insights into actionable strategies immediately. (21) ________. This crucial step ensures that every department aligns with overarching corporate goals.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -5858,13 +5909,15 @@
           }
         ],
         "correctAnswer": "B",
-        "explanation": "Cấu trúc chủ - vị chuẩn mực: \"They then establish strict data governance policies\" (Sau đó họ thiết lập các chính sách quản trị dữ liệu nghiêm ngặt)."
+        "explanation": "Cấu trúc chủ - vị chuẩn mực: \"They then establish strict data governance policies\" (Sau đó họ thiết lập các chính sách quản trị dữ liệu nghiêm ngặt).",
+        "cognitiveLevel": "Thông hiểu"
       },
       {
         "id": "l12-hsg-01-q22",
         "index": 22,
         "sectionId": "l12-hsg-01-sec-4",
-        "questionText": "",
+        "questionText": "On the contrary, companies ignoring these fundamental steps and procedures (22) ________.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -5884,13 +5937,15 @@
           }
         ],
         "correctAnswer": "C",
-        "explanation": "Trật tự từ chuẩn xác với trạng từ phủ định: \"can hardly maintain their competitive edge today\" (khó có thể duy trì được lợi thế cạnh tranh ngày nay)."
+        "explanation": "Trật tự từ chuẩn xác với trạng từ phủ định: \"can hardly maintain their competitive edge today\" (khó có thể duy trì được lợi thế cạnh tranh ngày nay).",
+        "cognitiveLevel": "Thông hiểu"
       },
       {
         "id": "l12-hsg-01-q23",
         "index": 23,
         "sectionId": "l12-hsg-01-sec-5",
-        "questionText": "The word grueling in paragraph 2 is CLOSEST in meaning to _____.",
+        "questionText": "The word <u>grueling</u> in paragraph 2 is CLOSEST in meaning to _____.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -5910,13 +5965,15 @@
           }
         ],
         "correctAnswer": "C",
-        "explanation": "Từ \"grueling\" ở đoạn 2 có nghĩa là cực kỳ gian khổ, nặng nhọc = Arduous."
+        "explanation": "Từ \"grueling\" ở đoạn 2 có nghĩa là cực kỳ gian khổ, nặng nhọc = Arduous.",
+        "cognitiveLevel": "Vận dụng"
       },
       {
         "id": "l12-hsg-01-q24",
         "index": 24,
         "sectionId": "l12-hsg-01-sec-5",
         "questionText": "Which of the following statements would the writer NOT agree with?",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -5936,13 +5993,15 @@
           }
         ],
         "correctAnswer": "D",
-        "explanation": "Tác giả KHÔNG đồng ý với nhận định D: y học cá nhân hóa không chỉ dựa vào dữ liệu gen để chữa khỏi hoàn toàn mà còn tính đến lối sống, hệ vi sinh vật và thói quen sinh hoạt hằng ngày."
+        "explanation": "Tác giả KHÔNG đồng ý với nhận định D: y học cá nhân hóa không chỉ dựa vào dữ liệu gen để chữa khỏi hoàn toàn mà còn tính đến lối sống, hệ vi sinh vật và thói quen sinh hoạt hằng ngày.",
+        "cognitiveLevel": "Vận dụng"
       },
       {
         "id": "l12-hsg-01-q25",
         "index": 25,
         "sectionId": "l12-hsg-01-sec-5",
-        "questionText": "The word undermining in paragraph 4 is OPPOSITE in meaning to _____.",
+        "questionText": "The word <u>undermining</u> in paragraph 4 is OPPOSITE in meaning to _____.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -5962,13 +6021,15 @@
           }
         ],
         "correctAnswer": "B",
-        "explanation": "Từ \"undermining\" (làm suy yếu, hủy hoại) có từ TRÁI NGHĨA là \"Bolstering\" (củng cố, tăng cường, gia cố sức mạnh)."
+        "explanation": "Từ \"undermining\" (làm suy yếu, hủy hoại) có từ TRÁI NGHĨA là \"Bolstering\" (củng cố, tăng cường, gia cố sức mạnh).",
+        "cognitiveLevel": "Vận dụng"
       },
       {
         "id": "l12-hsg-01-q26",
         "index": 26,
         "sectionId": "l12-hsg-01-sec-5",
         "questionText": "In which paragraph does the writer point out the demographic limitations of current genomic databases?",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -5988,13 +6049,15 @@
           }
         ],
         "correctAnswer": "B",
-        "explanation": "Ở đoạn 4 tác giả chỉ rõ hạn chế về dữ liệu chủng tộc: \"A disproportionate number of genomic studies lean heavily on individuals of European descent...\" (phần lớn nghiên cứu gen thiên lệch về người gốc châu Âu)."
+        "explanation": "Ở đoạn 4 tác giả chỉ rõ hạn chế về dữ liệu chủng tộc: \"A disproportionate number of genomic studies lean heavily on individuals of European descent...\" (phần lớn nghiên cứu gen thiên lệch về người gốc châu Âu).",
+        "cognitiveLevel": "Vận dụng"
       },
       {
         "id": "l12-hsg-01-q27",
         "index": 27,
         "sectionId": "l12-hsg-01-sec-5",
         "questionText": "In paragraph 1, the writer is ______.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -6014,13 +6077,15 @@
           }
         ],
         "correctAnswer": "D",
-        "explanation": "Ở đoạn 1, tác giả đang giải thích cách thức việc điều chỉnh vi khuẩn đường ruột cung cấp thông tin định hướng cho các phác đồ điều trị ung thư."
+        "explanation": "Ở đoạn 1, tác giả đang giải thích cách thức việc điều chỉnh vi khuẩn đường ruột cung cấp thông tin định hướng cho các phác đồ điều trị ung thư.",
+        "cognitiveLevel": "Vận dụng"
       },
       {
         "id": "l12-hsg-01-q28",
         "index": 28,
         "sectionId": "l12-hsg-01-sec-5",
-        "questionText": "Which of the following best paraphrases the underlined sentence in paragraph 2? Rather than relying on blanket protocols, modern oncology tailors strategies to the unique biological signature of each patient.",
+        "questionText": "Which of the following best paraphrases the underlined sentence in paragraph 2? <u>Rather than relying on blanket protocols, modern oncology tailors strategies to the unique biological signature of each patient.</u>",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -6040,13 +6105,15 @@
           }
         ],
         "correctAnswer": "C",
-        "explanation": "Câu gạch chân nhấn mạnh ung thư học hiện đại không dùng phác đồ đại trà mà điều chỉnh liệu pháp theo dấu ấn sinh học riêng của từng người ➔ Khớp hoàn toàn với C: \"Contemporary cancer care eschews generalized methods in favor of treatments customized to individual genetic profiles\"."
+        "explanation": "Câu gạch chân nhấn mạnh ung thư học hiện đại không dùng phác đồ đại trà mà điều chỉnh liệu pháp theo dấu ấn sinh học riêng của từng người ➔ Khớp hoàn toàn với C: \"Contemporary cancer care eschews generalized methods in favor of treatments customized to individual genetic profiles\".",
+        "cognitiveLevel": "Vận dụng"
       },
       {
         "id": "l12-hsg-01-q29",
         "index": 29,
         "sectionId": "l12-hsg-01-sec-5",
-        "questionText": "The word those in paragraph 3 refers to ______.",
+        "questionText": "The word <u>those</u> in paragraph 3 refers to ______.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -6066,13 +6133,15 @@
           }
         ],
         "correctAnswer": "B",
-        "explanation": "Từ \"those\" ở đoạn 3 thay thế cho \"Genetic markers\" (các dấu ấn di truyền cảnh báo độc tính của thuốc)."
+        "explanation": "Từ \"those\" ở đoạn 3 thay thế cho \"Genetic markers\" (các dấu ấn di truyền cảnh báo độc tính của thuốc).",
+        "cognitiveLevel": "Vận dụng"
       },
       {
         "id": "l12-hsg-01-q30",
         "index": 30,
         "sectionId": "l12-hsg-01-sec-5",
         "questionText": "In which paragraph does the writer mention the application of genetic testing to determine medication compatibility?",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -6092,13 +6161,15 @@
           }
         ],
         "correctAnswer": "D",
-        "explanation": "Ở đoạn 3, tác giả nói về lĩnh vực dược lý di truyền (pharmacogenomics) đối chiếu đơn thuốc với đặc điểm di truyền của bệnh nhân để kiểm tra độ tương thích."
+        "explanation": "Ở đoạn 3, tác giả nói về lĩnh vực dược lý di truyền (pharmacogenomics) đối chiếu đơn thuốc với đặc điểm di truyền của bệnh nhân để kiểm tra độ tương thích.",
+        "cognitiveLevel": "Vận dụng"
       },
       {
         "id": "l12-hsg-01-q31",
         "index": 31,
         "sectionId": "l12-hsg-01-sec-6",
         "questionText": "Which of the following is true according to the passage?",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -6118,13 +6189,15 @@
           }
         ],
         "correctAnswer": "A",
-        "explanation": "Thông tin A đúng theo đoạn 2: \"Participation Income broadens the definition of productivity by adequately remunerating unpaid care and civic engagement...\" (ghi nhận những đóng góp xã hội nằm ngoài các chỉ số việc làm truyền thống)."
+        "explanation": "Thông tin A đúng theo đoạn 2: \"Participation Income broadens the definition of productivity by adequately remunerating unpaid care and civic engagement...\" (ghi nhận những đóng góp xã hội nằm ngoài các chỉ số việc làm truyền thống).",
+        "cognitiveLevel": "Vận dụng"
       },
       {
         "id": "l12-hsg-01-q32",
         "index": 32,
         "sectionId": "l12-hsg-01-sec-6",
         "questionText": "Which of the following best summarises paragraph 3?",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -6144,13 +6217,15 @@
           }
         ],
         "correctAnswer": "B",
-        "explanation": "Đoạn 3 nhấn mạnh: Dịch vụ Cơ bản Phổ quát (UBS) vận động cung cấp tập thể các nhu yếu phẩm để giảm gánh nặng chi phí sinh hoạt cho người dân, từ đó giảm quy mô trợ cấp tiền mặt cần thiết. Đáp án B."
+        "explanation": "Đoạn 3 nhấn mạnh: Dịch vụ Cơ bản Phổ quát (UBS) vận động cung cấp tập thể các nhu yếu phẩm để giảm gánh nặng chi phí sinh hoạt cho người dân, từ đó giảm quy mô trợ cấp tiền mặt cần thiết. Đáp án B.",
+        "cognitiveLevel": "Vận dụng"
       },
       {
         "id": "l12-hsg-01-q33",
         "index": 33,
         "sectionId": "l12-hsg-01-sec-6",
-        "questionText": "The word they in paragraph 2 refers to _____.",
+        "questionText": "The word <u>they</u> in paragraph 2 refers to _____.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -6170,13 +6245,15 @@
           }
         ],
         "correctAnswer": "B",
-        "explanation": "Đại từ \"they\" ở đoạn 2 chỉ \"households\" (các hộ gia đình)."
+        "explanation": "Đại từ \"they\" ở đoạn 2 chỉ \"households\" (các hộ gia đình).",
+        "cognitiveLevel": "Vận dụng"
       },
       {
         "id": "l12-hsg-01-q34",
         "index": 34,
         "sectionId": "l12-hsg-01-sec-6",
         "questionText": "Which of the following would be the best title for the passage?",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -6196,13 +6273,15 @@
           }
         ],
         "correctAnswer": "C",
-        "explanation": "Tiêu đề toàn diện và sâu sắc nhất cho bài đọc: Rethinking Livelihoods: The Case for Post-Work Guarantees (Tái tư duy sinh kế: Lập luận cho các đảm bảo sau việc làm)."
+        "explanation": "Tiêu đề toàn diện và sâu sắc nhất cho bài đọc: Rethinking Livelihoods: The Case for Post-Work Guarantees (Tái tư duy sinh kế: Lập luận cho các đảm bảo sau việc làm).",
+        "cognitiveLevel": "Vận dụng"
       },
       {
         "id": "l12-hsg-01-q35",
         "index": 35,
         "sectionId": "l12-hsg-01-sec-6",
         "questionText": "Where in the passage does the following sentence best fit? By removing the punitive threat of sudden welfare withdrawal, the system encourages genuine economic mobility.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -6222,13 +6301,15 @@
           }
         ],
         "correctAnswer": "B",
-        "explanation": "Câu cần chèn nói về việc loại bỏ mối đe dọa đột ngột cắt trợ cấp để khuyến khích dịch chuyển kinh tế, phù hợp nhất với vị trí [II] ngay sau khi nhắc đến \"benefit cliff\"."
+        "explanation": "Câu cần chèn nói về việc loại bỏ mối đe dọa đột ngột cắt trợ cấp để khuyến khích dịch chuyển kinh tế, phù hợp nhất với vị trí [II] ngay sau khi nhắc đến \"benefit cliff\".",
+        "cognitiveLevel": "Vận dụng cao"
       },
       {
         "id": "l12-hsg-01-q36",
         "index": 36,
         "sectionId": "l12-hsg-01-sec-6",
         "questionText": "Which of the following can be inferred from the passage?",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -6248,13 +6329,15 @@
           }
         ],
         "correctAnswer": "D",
-        "explanation": "Suy luận từ đoạn 3: Tính khả thi tài chính của một khoản thu nhập cơ bản tỷ lệ nghịch với chất lượng và tính sẵn có của các dịch vụ công cộng. Đáp án D."
+        "explanation": "Suy luận từ đoạn 3: Tính khả thi tài chính của một khoản thu nhập cơ bản tỷ lệ nghịch với chất lượng và tính sẵn có của các dịch vụ công cộng. Đáp án D.",
+        "cognitiveLevel": "Vận dụng cao"
       },
       {
         "id": "l12-hsg-01-q37",
         "index": 37,
         "sectionId": "l12-hsg-01-sec-6",
         "questionText": "According to paragraph 1, the primary objective of post-work guarantees is to _____",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -6274,13 +6357,15 @@
           }
         ],
         "correctAnswer": "D",
-        "explanation": "Theo đoạn 1, mục tiêu cốt lõi của post-work guarantees là bảo đảm một nền tảng chuẩn mức sống không thể xâm phạm cho mọi công dân. Đáp án D."
+        "explanation": "Theo đoạn 1, mục tiêu cốt lõi của post-work guarantees là bảo đảm một nền tảng chuẩn mức sống không thể xâm phạm cho mọi công dân. Đáp án D.",
+        "cognitiveLevel": "Vận dụng cao"
       },
       {
         "id": "l12-hsg-01-q38",
         "index": 38,
         "sectionId": "l12-hsg-01-sec-6",
         "questionText": "What conclusion can be drawn from paragraph 2?",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -6300,13 +6385,15 @@
           }
         ],
         "correctAnswer": "A",
-        "explanation": "Kết luận từ đoạn 2: Loại bỏ các điều kiện ràng buộc khắt khe của phúc lợi truyền thống giúp giảm bớt bẫy nghèo đói và công nhận nhiều dạng giá trị cống hiến cho xã hội. Đáp án A."
+        "explanation": "Kết luận từ đoạn 2: Loại bỏ các điều kiện ràng buộc khắt khe của phúc lợi truyền thống giúp giảm bớt bẫy nghèo đói và công nhận nhiều dạng giá trị cống hiến cho xã hội. Đáp án A.",
+        "cognitiveLevel": "Vận dụng cao"
       },
       {
         "id": "l12-hsg-01-q39",
         "index": 39,
         "sectionId": "l12-hsg-01-sec-6",
-        "questionText": "The word alleviate in paragraph 3 is OPPOSITE in meaning to _____.",
+        "questionText": "The word <u>alleviate</u> in paragraph 3 is OPPOSITE in meaning to _____.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -6326,13 +6413,15 @@
           }
         ],
         "correctAnswer": "C",
-        "explanation": "Từ \"alleviate\" (làm giảm nhẹ bớt) có từ TRÁI NGHĨA là \"exacerbate\" (làm trầm trọng thêm, làm tồi tệ hơn)."
+        "explanation": "Từ \"alleviate\" (làm giảm nhẹ bớt) có từ TRÁI NGHĨA là \"exacerbate\" (làm trầm trọng thêm, làm tồi tệ hơn).",
+        "cognitiveLevel": "Vận dụng cao"
       },
       {
         "id": "l12-hsg-01-q40",
         "index": 40,
         "sectionId": "l12-hsg-01-sec-6",
         "questionText": "Which of the following is NOT implied in paragraph 4?",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -6352,14 +6441,15 @@
           }
         ],
         "correctAnswer": "D",
-        "explanation": "Đoạn 4 KHÔNG hề ngụ ý rằng các đảm bảo này sẽ dẫn đến sự sụt giảm nghiêm trọng năng suất quốc gia. Đáp án D."
+        "explanation": "Đoạn 4 KHÔNG hề ngụ ý rằng các đảm bảo này sẽ dẫn đến sự sụt giảm nghiêm trọng năng suất quốc gia. Đáp án D.",
+        "cognitiveLevel": "Vận dụng cao"
       }
     ]
   },
   {
     "id": "de-thi-thu-hsg-lop-12-test-02",
     "title": "Đề Thi Thử Học Sinh Giỏi & Tốt Nghiệp THPT Lớp 12 - Test 02 (Bộ Đề Chuẩn Cấu Trúc 2026)",
-    "description": "Đề thi chuẩn cấu trúc gồm 40 câu hỏi phân hóa cao: Lợi ích thiền định, Mua sắm smartphone, Sắp xếp câu/thư kiến nghị sinh thái, Mạng xã hội & Buồng vang số, và 2 Bài đọc hiểu chuyên sâu (Official Development Assistance & Robot Tax Dilemma).",
+    "description": "Đề thi chuẩn cấu trúc gồm 40 câu hỏi phân hóa cao: Lợi ích thiền định (Two-Minute Meditation), Mua sắm smartphone (Shop Smart), Sắp xếp câu/thư kiến nghị sinh thái, Mạng xã hội & Buồng vang số, và 2 Bài đọc hiểu chuyên sâu (Official Development Assistance & Robot Tax Dilemma).",
     "subject": "Tiếng Anh",
     "category": "Ôn thi HSG",
     "categories": [
@@ -6370,8 +6460,8 @@
     "durationMinutes": 50,
     "originalFileName": "TEST 02 HSG- A. ORIGINAL.docx",
     "status": "ready",
-    "createdAt": "2026-10-20T14:30:18.151Z",
-    "updatedAt": "2026-10-20T14:30:18.151Z",
+    "createdAt": "2026-10-20T23:14:11.267Z",
+    "updatedAt": "2026-10-20T23:14:11.267Z",
     "tags": [
       "Tiếng Anh 12",
       "Lớp 12",
@@ -6386,6 +6476,8 @@
         "id": "l12-hsg-02-sec-1",
         "title": "I. LEAFLET & ANNOUNCEMENT CLOZE (QUESTIONS 1 - 6)",
         "instruction": "Read the following announcement/leaflet and mark the letter A, B, C or D on your answer sheet to indicate the option that best fits each of the numbered blanks from 1 to 6.",
+        "passageTitle": "Benefits of a Two-Minute Meditation",
+        "passage": "Benefits of a Two-Minute Meditation\n\nMany people think meditation requires hours of silence. However, a recent study (1) ________ in a medical journal reveals that your brain begins to change after just a few minutes.\n\nOver the past year, experts (2) ________ that focusing on your breath helps reduce anxiety and improve sleep. Just seven minutes is enough to see meaningful results.\n\nWhen you meditate, your brain creates waves linked to relaxation. This calm state helps you to (3) ________ out negative thoughts and distractions.\n\nInstead of giving up immediately, you should (4) ________ to the practice. Consistency is more important than doing it perfectly on the first try.\n\nMeditation is not just about relaxation; it requires genuine (5) ________. It reallocates brain resources to better manage your stress and emotions.\n\nProtect your mental (6) ________ by starting a simple breathing habit today! Join our wellness community to access free guided meditation sessions!\n\n(Adapted from Jacqueline Howard, CNN)",
         "questionIndices": [
           1,
           2,
@@ -6399,6 +6491,8 @@
         "id": "l12-hsg-02-sec-2",
         "title": "II. SHORT COMMUNICATION & NOTICE (QUESTIONS 7 - 12)",
         "instruction": "Read the following announcement/leaflet and mark the letter A, B, C or D on your answer sheet to indicate the option that best fits each of the numbered blanks from 7 to 12.",
+        "passageTitle": "Upgrade Your Tech: Shop Smart for Your Next Smartphone!",
+        "passage": "Upgrade Your Tech: Shop Smart for Your Next Smartphone!\n\nIs your current smartphone too old to function properly? When replacing their devices, (7) ________ prefer ordering online, while others visit physical electronics stores. Online shopping offers a massive catalog of products to browse comfortably at home. (8) ________, you must wait several days for shipping and handle the setup yourself.\n\nOn the other hand, buying in-store is much (9) ________ than ordering online if you need a phone urgently. You can hold the device, test the camera, and experience the screen quality yourself. You (10) ________ be cautious, though, because sales staff might pressure you to upgrade or buy expensive accessories.\n\nTo avoid overspending, make up your (11) ________ about your budget before entering the shop. If you desire an (12) ________ shopping experience, weigh your personal needs carefully. Upgrade your tech smartly and confidently today!\n\n(Adapted from Phong Đỗ, https://thanhnien.vn/)",
         "questionIndices": [
           7,
           8,
@@ -6411,7 +6505,7 @@
       {
         "id": "l12-hsg-02-sec-3",
         "title": "III. COHESION & COHERENCE - ARRANGEMENT (QUESTIONS 13 - 17)",
-        "instruction": "Mark the letter A, B, C or D on your answer sheet to indicate the best arrangement of utterances or sentences to make a cohesive and coherent exchange or text.",
+        "instruction": "Mark the letter A, B, C or D on your answer sheet to indicate the best arrangement of utterances or sentences to make a cohesive and coherent exchange or text in each of the following questions from 13 to 17.",
         "questionIndices": [
           13,
           14,
@@ -6424,6 +6518,8 @@
         "id": "l12-hsg-02-sec-4",
         "title": "IV. PASSAGE CLOZE (QUESTIONS 18 - 22)",
         "instruction": "Read the following passage and mark the letter A, B, C or D on your answer sheet to indicate the option that best fits each of the numbered blanks from 18 to 22.",
+        "passageTitle": "Passage Cloze",
+        "passage": "Social media platforms have undeniably transformed global communication landscapes over the past decade. Initially, only a select few networks existed with relatively restricted outreach capabilities. (18) ________. Today, massive audiences interact consistently across various apps, creating an expansive framework of connected users. This unprecedented digital connectivity has fostered vibrant online communities, (19) ________.\n\nThe rapid expansion of these platforms brings formidable challenges alongside lucrative opportunities. When users engage with specific posts, sophisticated algorithms prioritize similar material in their customized feeds. (20) ________. Advertisers frequently exploit these patterns, funneling vast marketing budgets into highly targeted campaigns. To mitigate the adverse effects of digital echo chambers, specialists firmly (21) ________.\n\nAddressing these complex digital dilemmas requires a concerted effort from all stakeholders involved in the ecosystem. Platform designers are continually tweaking features to successfully strike a balance between user retention and mental well-being. (22) ________. When dialogue remains constructive, global communities can ultimately reap the immense benefits of diverse viewpoints while maintaining a healthy and respectful public discourse.\n\n(Adapted from Our World in Data, \"The Rise of Social Media\")",
         "questionIndices": [
           18,
           19,
@@ -6435,7 +6531,9 @@
       {
         "id": "l12-hsg-02-sec-5",
         "title": "V. READING COMPREHENSION 1 (QUESTIONS 23 - 30)",
-        "instruction": "Read the passage and mark the letter A, B, C or D on your answer sheet to indicate the best answer to each of the questions from 23 to 30.",
+        "instruction": "Read the passage and mark the letter A, B, C or D on your answer sheet to indicate the best answer to each of the following questions from 23 to 30.",
+        "passageTitle": "Reading Comprehension 1",
+        "passage": "As major economies feel the pinch of domestic inflation, official development assistance (ODA) frequently becomes an easy target for sweeping budget cuts. Politicians justify this <u>retrenchment</u> by claiming an urgent need for fiscal prudence at home, turning a blind eye to compounding global crises such as climate shocks and widespread conflicts. However, slashing these essential funds sacrifices long-term geopolitical stability for fleeting financial relief, ultimately leaving vulnerable regions to fend for themselves when disasters strike.\n\nBy definition, authentic ODA must focus squarely on economic development and human welfare in developing nations. It is typically distributed on highly <u>concessional</u> terms rather than as commercial, market-rate loans. When channeled effectively through multilateral institutions or targeted bilateral agreements, this vital financing empowers local communities to build resilient healthcare systems and equitable education infrastructures. Such strategic investments lay the groundwork for long-term self-sufficiency, ensuring that recipient nations do not perpetually rely on external lifelines to survive.\n\nInternational bodies have long established two main expectations: prioritizing extreme poverty and allocating a modest 0.7% of gross national income to overseas aid; unfortunately, <u>the latter</u> is rarely achieved in practice. Even when headline figures appear exceptionally robust, they often conceal a controversial accounting maneuver: classifying domestic spending on newly arrived refugees as foreign aid. <u>While supporting asylum seekers is undeniably vital, legally absorbing these internal expenses under the ODA umbrella drains capital from critical poverty-reduction programs abroad, effectively inflating donor generosity on paper.</u>\n\nRecent policy shifts bring this troubling reality into sharp focus. Several prominent European governments have drastically scaled back their external commitments, citing profound domestic economic turmoil as their primary justification. Conversely, Scandinavian nations like Norway continue to punch above their weight, maintaining their expansive aid budgets despite facing similar global headwinds. This stark divergence highlights that robust foreign assistance is not merely a matter of financial capacity; rather, it hinges entirely on a nation's political resolve to uphold international solidarity.\n\n(Adapted from Global Citizen: “The Global Safety Net Frays as European Countries Cut Aid,” and the supplied excerpt)",
         "questionIndices": [
           23,
           24,
@@ -6450,7 +6548,9 @@
       {
         "id": "l12-hsg-02-sec-6",
         "title": "VI. READING COMPREHENSION 2 (QUESTIONS 31 - 40)",
-        "instruction": "Read the passage and mark the letter A, B, C or D on your answer sheet to indicate the best answer to each of the questions from 31 to 40.",
+        "instruction": "Read the passage and mark the letter A, B, C or D on your answer sheet to indicate the best answer to each of the following questions from 31 to 40.",
+        "passageTitle": "Reading Comprehension 2",
+        "passage": "The ongoing integration of automated systems into daily commerce highlights a stark divide between maximizing corporate efficiency and preserving human employment. While some herald artificial intelligence as the catalyst for unprecedented growth, others warn that it wipes out traditional jobs, drastically reducing the income tax revenues that governments depend on. To bridge this gap, advocates have proposed a “robot tax” designed to recoup lost funds when machines take over human roles. [I] However, opponents argue this approach is inherently flawed, contrasting the desire to protect workers with the risk of stifling technological progress.\n\nOn one side of the debate, proponents assert that taxing automated labor could generate a crucial financial buffer. As the workforce transitions, the revenue gathered could bankroll extensive reskilling programs, essentially helping displaced workers keep the wolf from the door. [II] Furthermore, by imposing a financial cost on rapid automation, regulators could slow down the transition, granting communities the breathing space needed to adapt to structural economic shifts. From this perspective, the tax serves as a necessary intervention to stop societal inequality from widening further.\n\nConversely, critics point out that implementing such a levy might do more harm than good, comparing <u>it</u> to throwing the baby out with the bathwater. A primary hurdle lies in the ambiguous definition of a \"robot\" in the modern era. Identifying whether an invisible software algorithm should incur the same charges as a physical assembly-line machine creates a regulatory nightmare. [III] Moreover, imposing <u>stringent</u> financial penalties could drive multinational corporations to relocate their operations to more accommodating jurisdictions, thereby depriving the domestic economy of vital technological advancements.\n\nRather than relying on a bespoke robot levy, some economic strategists recommend adjusting existing fiscal frameworks to achieve similar goals. Proposals include bumping up general corporate tax rates or applying higher value-added taxes to the purchase of automation technology. [IV] These alternatives attempt to strike a balance, contrasting the urgent need to fund social safety nets with the imperative to maintain a competitive edge. Navigating this transition requires nuanced policies that support the workforce without driving away the very innovation that fuels economic resilience.\n\n(Adapted from https://taxfix.com/en-uk/blog/what-in-the-world-is-robot-tax/)",
         "questionIndices": [
           31,
           32,
@@ -6470,7 +6570,8 @@
         "id": "l12-hsg-02-q1",
         "index": 1,
         "sectionId": "l12-hsg-02-sec-1",
-        "questionText": "",
+        "questionText": "However, a recent study (1) ________ in a medical journal reveals that your brain begins to change after just a few minutes.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -6490,13 +6591,15 @@
           }
         ],
         "correctAnswer": "B",
-        "explanation": "Rút gọn mệnh đề quan hệ dạng bị động (which was published): \"a recent study published in a medical journal...\"."
+        "explanation": "Rút gọn mệnh đề quan hệ dạng bị động (which was published): \"a recent study published in a medical journal...\".",
+        "cognitiveLevel": "Nhận biết"
       },
       {
         "id": "l12-hsg-02-q2",
         "index": 2,
         "sectionId": "l12-hsg-02-sec-1",
-        "questionText": "",
+        "questionText": "Over the past year, experts (2) ________ that focusing on your breath helps reduce anxiety and improve sleep.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -6516,13 +6619,15 @@
           }
         ],
         "correctAnswer": "C",
-        "explanation": "Dấu hiệu \"Over the past year\" đi với thì Hiện tại hoàn thành: \"experts have found that...\"."
+        "explanation": "Dấu hiệu \"Over the past year\" đi với thì Hiện tại hoàn thành: \"experts have found that...\".",
+        "cognitiveLevel": "Nhận biết"
       },
       {
         "id": "l12-hsg-02-q3",
         "index": 3,
         "sectionId": "l12-hsg-02-sec-1",
-        "questionText": "",
+        "questionText": "This calm state helps you to (3) ________ out negative thoughts and distractions.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -6542,13 +6647,15 @@
           }
         ],
         "correctAnswer": "D",
-        "explanation": "Cụm động từ \"block out\" có nghĩa là chặn lại, ngăn không cho xâm nhập (block out negative thoughts: loại bỏ các suy nghĩ tiêu cực)."
+        "explanation": "Cụm động từ \"block out\" có nghĩa là chặn lại, ngăn không cho xâm nhập (block out negative thoughts: loại bỏ các suy nghĩ tiêu cực).",
+        "cognitiveLevel": "Nhận biết"
       },
       {
         "id": "l12-hsg-02-q4",
         "index": 4,
         "sectionId": "l12-hsg-02-sec-1",
-        "questionText": "",
+        "questionText": "Instead of giving up immediately, you should (4) ________ to the practice.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -6568,13 +6675,15 @@
           }
         ],
         "correctAnswer": "A",
-        "explanation": "Cấu trúc \"commit to sth\" (cam kết kiên trì gắn bó với việc thực hành thiền)."
+        "explanation": "Cấu trúc \"commit to sth\" (cam kết kiên trì gắn bó với việc thực hành thiền).",
+        "cognitiveLevel": "Nhận biết"
       },
       {
         "id": "l12-hsg-02-q5",
         "index": 5,
         "sectionId": "l12-hsg-02-sec-1",
-        "questionText": "",
+        "questionText": "Meditation is not just about relaxation; it requires genuine (5) ________.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -6594,13 +6703,15 @@
           }
         ],
         "correctAnswer": "C",
-        "explanation": "Cần danh từ: \"concentration\" (sự tập trung tinh thần thực thụ)."
+        "explanation": "Cần danh từ: \"concentration\" (sự tập trung tinh thần thực thụ).",
+        "cognitiveLevel": "Nhận biết"
       },
       {
         "id": "l12-hsg-02-q6",
         "index": 6,
         "sectionId": "l12-hsg-02-sec-1",
-        "questionText": "",
+        "questionText": "Protect your mental (6) ________ by starting a simple breathing habit today!",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -6620,13 +6731,15 @@
           }
         ],
         "correctAnswer": "D",
-        "explanation": "Cụm danh từ: \"mental health\" (sức khỏe tinh thần của bạn)."
+        "explanation": "Cụm danh từ: \"mental health\" (sức khỏe tinh thần của bạn).",
+        "cognitiveLevel": "Nhận biết"
       },
       {
         "id": "l12-hsg-02-q7",
         "index": 7,
         "sectionId": "l12-hsg-02-sec-2",
-        "questionText": "",
+        "questionText": "When replacing their devices, (7) ________ prefer ordering online, while others visit physical electronics stores.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -6646,13 +6759,15 @@
           }
         ],
         "correctAnswer": "D",
-        "explanation": "Cấu trúc đối chiếu: \"some prefer ... while others visit...\" (một số người thích ... trong khi những người khác lại...)."
+        "explanation": "Cấu trúc đối chiếu: \"some prefer ... while others visit...\" (một số người thích ... trong khi những người khác lại...).",
+        "cognitiveLevel": "Nhận biết"
       },
       {
         "id": "l12-hsg-02-q8",
         "index": 8,
         "sectionId": "l12-hsg-02-sec-2",
-        "questionText": "",
+        "questionText": "(8) ________, you must wait several days for shipping and handle the setup yourself.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -6672,13 +6787,15 @@
           }
         ],
         "correctAnswer": "D",
-        "explanation": "Liên từ trạng từ chỉ sự tương phản: \"However, you must wait several days for shipping...\" (Tuy nhiên, bạn phải chờ đợi vài ngày để giao hàng)."
+        "explanation": "Liên từ trạng từ chỉ sự tương phản: \"However, you must wait several days for shipping...\" (Tuy nhiên, bạn phải chờ đợi vài ngày để giao hàng).",
+        "cognitiveLevel": "Nhận biết"
       },
       {
         "id": "l12-hsg-02-q9",
         "index": 9,
         "sectionId": "l12-hsg-02-sec-2",
-        "questionText": "",
+        "questionText": "On the other hand, buying in-store is much (9) ________ than ordering online if you need a phone urgently.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -6698,13 +6815,15 @@
           }
         ],
         "correctAnswer": "D",
-        "explanation": "Cấu trúc so sánh hơn với tính từ ngắn được nhấn mạnh bởi \"much\": \"much faster than ordering online\"."
+        "explanation": "Cấu trúc so sánh hơn với tính từ ngắn được nhấn mạnh bởi \"much\": \"much faster than ordering online\".",
+        "cognitiveLevel": "Nhận biết"
       },
       {
         "id": "l12-hsg-02-q10",
         "index": 10,
         "sectionId": "l12-hsg-02-sec-2",
-        "questionText": "",
+        "questionText": "You (10) ________ be cautious, though, because sales staff might pressure you to upgrade or buy expensive accessories.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -6724,13 +6843,15 @@
           }
         ],
         "correctAnswer": "C",
-        "explanation": "Động từ khuyết thiếu đưa ra lời khuyên thận trọng: \"You should be cautious...\"."
+        "explanation": "Động từ khuyết thiếu đưa ra lời khuyên thận trọng: \"You should be cautious...\".",
+        "cognitiveLevel": "Nhận biết"
       },
       {
         "id": "l12-hsg-02-q11",
         "index": 11,
         "sectionId": "l12-hsg-02-sec-2",
-        "questionText": "",
+        "questionText": "To avoid overspending, make up your (11) ________ about your budget before entering the shop.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -6750,13 +6871,15 @@
           }
         ],
         "correctAnswer": "B",
-        "explanation": "Thành ngữ cố định: \"make up one's mind\" (đưa ra quyết định rõ ràng về ngân sách)."
+        "explanation": "Thành ngữ cố định: \"make up one's mind\" (đưa ra quyết định rõ ràng về ngân sách).",
+        "cognitiveLevel": "Nhận biết"
       },
       {
         "id": "l12-hsg-02-q12",
         "index": 12,
         "sectionId": "l12-hsg-02-sec-2",
-        "questionText": "",
+        "questionText": "If you desire an (12) ________ shopping experience, weigh your personal needs carefully.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -6776,13 +6899,15 @@
           }
         ],
         "correctAnswer": "D",
-        "explanation": "Tính từ miêu tả trải nghiệm tốt nhất: \"optimal shopping experience\" (trải nghiệm mua sắm tối ưu)."
+        "explanation": "Tính từ miêu tả trải nghiệm tốt nhất: \"optimal shopping experience\" (trải nghiệm mua sắm tối ưu).",
+        "cognitiveLevel": "Nhận biết"
       },
       {
         "id": "l12-hsg-02-q13",
         "index": 13,
         "sectionId": "l12-hsg-02-sec-3",
         "questionText": "a. Without a doubt, toxic plastic waste constantly puts numerous aquatic species in jeopardy. b. Conversely, ignoring this pressing environmental issue will inevitably lead to irreversible ecological disasters. c. Besides, the widespread adoption of eco-friendly alternatives undeniably reduces our daily carbon footprint. d. Eliminating single-use plastics is absolutely essential to prevent the destruction of marine ecosystems. e. Hence, society must take immediate action to adopt a greener and cleaner lifestyle.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -6802,13 +6927,15 @@
           }
         ],
         "correctAnswer": "D",
-        "explanation": "Trật tự đoạn văn về rác thải nhựa đại dương: d (Câu chủ đề: Loại bỏ nhựa dùng 1 lần là thiết yếu bảo vệ đại dương) ➔ a (Chất thải nhựa nguy hại đe dọa sinh vật biển) ➔ c (Ứng dụng giải pháp thay thế giảm lượng khí thải) ➔ b (Ngược lại phớt lờ sẽ dẫn đến thảm họa sinh thái) ➔ e (Kết luận kêu gọi hành động sống xanh). Đáp án D: d - a - c - b - e."
+        "explanation": "Trật tự đoạn văn về rác thải nhựa đại dương: d (Câu chủ đề: Loại bỏ nhựa dùng 1 lần là thiết yếu bảo vệ đại dương) ➔ a (Chất thải nhựa nguy hại đe dọa sinh vật biển) ➔ c (Ứng dụng giải pháp thay thế giảm lượng khí thải) ➔ b (Ngược lại phớt lờ sẽ dẫn đến thảm họa sinh thái) ➔ e (Kết luận kêu gọi hành động sống xanh). Đáp án D: d - a - c - b - e.",
+        "cognitiveLevel": "Thông hiểu"
       },
       {
         "id": "l12-hsg-02-q14",
         "index": 14,
         "sectionId": "l12-hsg-02-sec-3",
         "questionText": "a. Charlotte: Yes, they are using new AI tools to help machines process what they see, just like we do. b. Charlotte: Right. If robots can recognize objects faster, they will be much more helpful in our daily lives. c. Oliver: Have you heard about how researchers are trying to give robots better vision? It sounds pretty cool. d. Oliver: It will be exciting to see how soon these smart machines become a normal part of our homes. e. Oliver: That makes sense. I guess better vision helps them move around safely without bumping into things.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -6828,13 +6955,15 @@
           }
         ],
         "correctAnswer": "C",
-        "explanation": "Trật tự hội thoại về thị giác robot: c (Oliver hỏi về việc nghiên cứu thị giác robot) ➔ a (Charlotte giải thích dùng AI xử lý hình ảnh như mắt người) ➔ e (Oliver hiểu ra điều đó giúp robot di chuyển an toàn không va chạm) ➔ b (Charlotte bổ sung robot nhận diện vật thể nhanh sẽ hữu ích hơn) ➔ d (Oliver háo hức chờ ngày robot vào đời sống). Đáp án C: c - a - e - b - d."
+        "explanation": "Trật tự hội thoại về thị giác robot: c (Oliver hỏi về việc nghiên cứu thị giác robot) ➔ a (Charlotte giải thích dùng AI xử lý hình ảnh như mắt người) ➔ e (Oliver hiểu ra điều đó giúp robot di chuyển an toàn không va chạm) ➔ b (Charlotte bổ sung robot nhận diện vật thể nhanh sẽ hữu ích hơn) ➔ d (Oliver háo hức chờ ngày robot vào đời sống). Đáp án C: c - a - e - b - d.",
+        "cognitiveLevel": "Thông hiểu"
       },
       {
         "id": "l12-hsg-02-q15",
         "index": 15,
         "sectionId": "l12-hsg-02-sec-3",
         "questionText": "Dear Ms. Clara, a. We also plan to buy some handmade souvenirs from local craftsmen, which is a great way to support the local economy and respect traditional cultures. b. This famous destination offers an amazing opportunity for us to explore rich biodiversity and learn how to protect rare animal species from illegal hunting activities. c. During the trip, students can walk along the forest trails to enjoy the fresh air and see the thousand-year-old trees without damaging the natural environment. d. I am writing to propose an exciting ecotour to Cuc Phuong National Park for our upcoming class field trip at the end of this month. e. I would be incredibly grateful if you could approve this meaningful journey so we can learn practical lessons about nature conservation outside the classroom. Yours sincerely, River",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -6854,13 +6983,15 @@
           }
         ],
         "correctAnswer": "A",
-        "explanation": "Trật tự bức thư đề xuất chuyến đi Cúc Phương: d (Mục đích đề xuất tour sinh thái đi Rừng Cúc Phương cuối tháng) ➔ b (Cơ hội khám phá đa dạng sinh học và bảo vệ động vật quý) ➔ c (Học sinh đi bộ đường rừng ngắm cây cổ thụ ngàn năm) ➔ a (Kế hoạch mua quà thủ công ủng hộ kinh tế địa phương) ➔ e (Mong cô phê duyệt chuyến đi bổ ích). Đáp án A: d - b - c - a - e."
+        "explanation": "Trật tự bức thư đề xuất chuyến đi Cúc Phương: d (Mục đích đề xuất tour sinh thái đi Rừng Cúc Phương cuối tháng) ➔ b (Cơ hội khám phá đa dạng sinh học và bảo vệ động vật quý) ➔ c (Học sinh đi bộ đường rừng ngắm cây cổ thụ ngàn năm) ➔ a (Kế hoạch mua quà thủ công ủng hộ kinh tế địa phương) ➔ e (Mong cô phê duyệt chuyến đi bổ ích). Đáp án A: d - b - c - a - e.",
+        "cognitiveLevel": "Thông hiểu"
       },
       {
         "id": "l12-hsg-02-q16",
         "index": 16,
         "sectionId": "l12-hsg-02-sec-3",
         "questionText": "a. Thus, tech companies must carefully manage their high operational expenses. b. Yet, the immense cost of computing power remains a huge challenge. c. Admittedly, these smart inventions offer great solutions for complex business problems. d. Furthermore, many AI startups currently struggle to generate sustainable profits. e. Developing cutting-edge artificial intelligence models demands massive amounts of capital investment.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -6880,13 +7011,15 @@
           }
         ],
         "correctAnswer": "B",
-        "explanation": "Trật tự đoạn văn về chi phí phát triển AI: e (Phát triển mô hình AI đòi hỏi nguồn vốn khổng lồ) ➔ c (Thừa nhận các sáng chế AI giải quyết bài toán kinh doanh phức tạp) ➔ b (Tuy nhiên chi phí điện toán khổng lồ vẫn là rào cản) ➔ d (Hơn nữa nhiều startup AI chật vật tìm kiếm lợi nhuận) ➔ a (Vì thế công ty công nghệ phải quản trị chi phí chặt chẽ). Đáp án B: e - c - b - d - a."
+        "explanation": "Trật tự đoạn văn về chi phí phát triển AI: e (Phát triển mô hình AI đòi hỏi nguồn vốn khổng lồ) ➔ c (Thừa nhận các sáng chế AI giải quyết bài toán kinh doanh phức tạp) ➔ b (Tuy nhiên chi phí điện toán khổng lồ vẫn là rào cản) ➔ d (Hơn nữa nhiều startup AI chật vật tìm kiếm lợi nhuận) ➔ a (Vì thế công ty công nghệ phải quản trị chi phí chặt chẽ). Đáp án B: e - c - b - d - a.",
+        "cognitiveLevel": "Thông hiểu"
       },
       {
         "id": "l12-hsg-02-q17",
         "index": 17,
         "sectionId": "l12-hsg-02-sec-3",
         "questionText": "a. Liam: It is such an exciting and innovative way to prepare the next generation of hitmakers! b. Liam: Have you heard about the new pop training academy in Singapore? It sounds absolutely incredible! c. Olivia: Yes! Students learn choreography and collaborate with international artists instead of taking traditional classroom studies.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -6906,13 +7039,15 @@
           }
         ],
         "correctAnswer": "C",
-        "explanation": "Trật tự hội thoại về học viện đào tạo ngôi sao nhạc pop: b (Liam hỏi về học viện pop mới tại Singapore) ➔ c (Olivia hào hứng kể học sinh được học vũ đạo và hợp tác nghệ sĩ quốc tế) ➔ a (Liam khen ngợi cách chuẩn bị đầy sáng tạo cho thế hệ hitmaker). Đáp án C: b - c - a."
+        "explanation": "Trật tự hội thoại về học viện đào tạo ngôi sao nhạc pop: b (Liam hỏi về học viện pop mới tại Singapore) ➔ c (Olivia hào hứng kể học sinh được học vũ đạo và hợp tác nghệ sĩ quốc tế) ➔ a (Liam khen ngợi cách chuẩn bị đầy sáng tạo cho thế hệ hitmaker). Đáp án C: b - c - a.",
+        "cognitiveLevel": "Thông hiểu"
       },
       {
         "id": "l12-hsg-02-q18",
         "index": 18,
         "sectionId": "l12-hsg-02-sec-4",
-        "questionText": "",
+        "questionText": "Initially, only a select few networks existed with relatively restricted outreach capabilities. (18) ________. Today, massive audiences interact consistently across various apps...",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -6932,13 +7067,15 @@
           }
         ],
         "correctAnswer": "B",
-        "explanation": "Cấu trúc đảo ngữ nhấn mạnh tính từ: \"Equally significant was the widespread availability of affordable smartphones globally\"."
+        "explanation": "Cấu trúc đảo ngữ nhấn mạnh tính từ: \"Equally significant was the widespread availability of affordable smartphones globally\".",
+        "cognitiveLevel": "Thông hiểu"
       },
       {
         "id": "l12-hsg-02-q19",
         "index": 19,
         "sectionId": "l12-hsg-02-sec-4",
-        "questionText": "",
+        "questionText": "This unprecedented digital connectivity has fostered vibrant online communities, (19) ________.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -6958,13 +7095,15 @@
           }
         ],
         "correctAnswer": "D",
-        "explanation": "Mệnh đề quan hệ không xác định bổ nghĩa cho cả sự việc: \"which naturally gives rise to new forms of cultural expression\"."
+        "explanation": "Mệnh đề quan hệ không xác định bổ nghĩa cho cả sự việc: \"which naturally gives rise to new forms of cultural expression\".",
+        "cognitiveLevel": "Thông hiểu"
       },
       {
         "id": "l12-hsg-02-q20",
         "index": 20,
         "sectionId": "l12-hsg-02-sec-4",
-        "questionText": "",
+        "questionText": "When users engage with specific posts, sophisticated algorithms prioritize similar material in their customized feeds. (20) ________. Advertisers frequently exploit these patterns...",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -6984,13 +7123,15 @@
           }
         ],
         "correctAnswer": "A",
-        "explanation": "Trật tự từ chuẩn ngữ pháp: \"This mechanism highlights compelling content that broadens our intellectual horizons daily\". (Các phương án B, C, D đều bị đảo lộn trật tự từ vô nghĩa)."
+        "explanation": "Trật tự từ chuẩn ngữ pháp: \"This mechanism highlights compelling content that broadens our intellectual horizons daily\". (Các phương án B, C, D đều bị đảo lộn trật tự từ vô nghĩa).",
+        "cognitiveLevel": "Thông hiểu"
       },
       {
         "id": "l12-hsg-02-q21",
         "index": 21,
         "sectionId": "l12-hsg-02-sec-4",
-        "questionText": "",
+        "questionText": "To mitigate the adverse effects of digital echo chambers, specialists firmly (21) ________.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -7010,13 +7151,15 @@
           }
         ],
         "correctAnswer": "B",
-        "explanation": "Cấu trúc giả định với recommend: \"recommend that schools should implement comprehensive media literacy programs\"."
+        "explanation": "Cấu trúc giả định với recommend: \"recommend that schools should implement comprehensive media literacy programs\".",
+        "cognitiveLevel": "Thông hiểu"
       },
       {
         "id": "l12-hsg-02-q22",
         "index": 22,
         "sectionId": "l12-hsg-02-sec-4",
-        "questionText": "",
+        "questionText": "Platform designers are continually tweaking features to successfully strike a balance between user retention and mental well-being. (22) ________. When dialogue remains constructive, global communities can reap the benefits.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -7036,13 +7179,15 @@
           }
         ],
         "correctAnswer": "A",
-        "explanation": "Trật tự từ chuẩn xác: \"In addition to this, both users and policymakers must remain exceptionally vigilant\"."
+        "explanation": "Trật tự từ chuẩn xác: \"In addition to this, both users and policymakers must remain exceptionally vigilant\".",
+        "cognitiveLevel": "Thông hiểu"
       },
       {
         "id": "l12-hsg-02-q23",
         "index": 23,
         "sectionId": "l12-hsg-02-sec-5",
         "questionText": "In which paragraph does the writer mention the discrepancy between reported aid figures and actual overseas impact?",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -7062,13 +7207,15 @@
           }
         ],
         "correctAnswer": "D",
-        "explanation": "Ở đoạn 3, tác giả vạch trần chiêu trò kế toán khai báo chi tiêu nội bộ cho người tị nạn như viện trợ nước ngoài để thổi phồng số liệu trên giấy tờ: Paragraph 3."
+        "explanation": "Ở đoạn 3, tác giả vạch trần chiêu trò kế toán khai báo chi tiêu nội bộ cho người tị nạn như viện trợ nước ngoài để thổi phồng số liệu trên giấy tờ: Paragraph 3.",
+        "cognitiveLevel": "Vận dụng"
       },
       {
         "id": "l12-hsg-02-q24",
         "index": 24,
         "sectionId": "l12-hsg-02-sec-5",
         "questionText": "In which paragraph does the writer cite specific regional examples to illustrate differing political commitments to global solidarity?",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -7088,13 +7235,15 @@
           }
         ],
         "correctAnswer": "B",
-        "explanation": "Ở đoạn 4, tác giả nêu các ví dụ cụ thể của các nước châu Âu cắt giảm viện trợ đối lập với các nước Bắc Âu như Na Uy duy trì ngân sách viện trợ: Paragraph 4."
+        "explanation": "Ở đoạn 4, tác giả nêu các ví dụ cụ thể của các nước châu Âu cắt giảm viện trợ đối lập với các nước Bắc Âu như Na Uy duy trì ngân sách viện trợ: Paragraph 4.",
+        "cognitiveLevel": "Vận dụng"
       },
       {
         "id": "l12-hsg-02-q25",
         "index": 25,
         "sectionId": "l12-hsg-02-sec-5",
         "questionText": "In paragraph 1, the writer is ______.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -7114,13 +7263,15 @@
           }
         ],
         "correctAnswer": "A",
-        "explanation": "Ở đoạn 1, tác giả chỉ trích sự thiển cận khi cắt giảm ngân sách ODA chỉ để thu lợi ích tài chính tạm thời trước mắt: Đáp án A."
+        "explanation": "Ở đoạn 1, tác giả chỉ trích sự thiển cận khi cắt giảm ngân sách ODA chỉ để thu lợi ích tài chính tạm thời trước mắt: Đáp án A.",
+        "cognitiveLevel": "Vận dụng"
       },
       {
         "id": "l12-hsg-02-q26",
         "index": 26,
         "sectionId": "l12-hsg-02-sec-5",
-        "questionText": "The word retrenchment in paragraph 1 is OPPOSITE in meaning to _____.",
+        "questionText": "The word <u>retrenchment</u> in paragraph 1 is OPPOSITE in meaning to _____.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -7140,13 +7291,15 @@
           }
         ],
         "correctAnswer": "C",
-        "explanation": "Từ \"retrenchment\" (sự cắt giảm chi tiêu, thu hẹp ngân sách) có từ TRÁI NGHĨA là \"Expansion\" (sự mở rộng, gia tăng quy mô)."
+        "explanation": "Từ \"retrenchment\" (sự cắt giảm chi tiêu, thu hẹp ngân sách) có từ TRÁI NGHĨA là \"Expansion\" (sự mở rộng, gia tăng quy mô).",
+        "cognitiveLevel": "Vận dụng"
       },
       {
         "id": "l12-hsg-02-q27",
         "index": 27,
         "sectionId": "l12-hsg-02-sec-5",
-        "questionText": "The word concessional in paragraph 2 is CLOSEST in meaning to _____.",
+        "questionText": "The word <u>concessional</u> in paragraph 2 is CLOSEST in meaning to _____.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -7166,13 +7319,15 @@
           }
         ],
         "correctAnswer": "C",
-        "explanation": "Từ \"concessional\" (ưu đãi, lãi suất thấp hơn thị trường) có nghĩa GẦN NHẤT với \"Advantageous\" (có lợi, ưu đãi)."
+        "explanation": "Từ \"concessional\" (ưu đãi, lãi suất thấp hơn thị trường) có nghĩa GẦN NHẤT với \"Advantageous\" (có lợi, ưu đãi).",
+        "cognitiveLevel": "Vận dụng"
       },
       {
         "id": "l12-hsg-02-q28",
         "index": 28,
         "sectionId": "l12-hsg-02-sec-5",
         "questionText": "Which of the following statements would the writer NOT agree with?",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -7192,13 +7347,15 @@
           }
         ],
         "correctAnswer": "A",
-        "explanation": "Tác giả KHÔNG đồng ý với nhận định A vì ở đoạn 4 tác giả khẳng định việc viện trợ không chỉ phụ thuộc vào quy mô giàu nghèo kinh tế mà phụ thuộc vào ý chí chính trị đoàn kết quốc tế."
+        "explanation": "Tác giả KHÔNG đồng ý với nhận định A vì ở đoạn 4 tác giả khẳng định việc viện trợ không chỉ phụ thuộc vào quy mô giàu nghèo kinh tế mà phụ thuộc vào ý chí chính trị đoàn kết quốc tế.",
+        "cognitiveLevel": "Vận dụng"
       },
       {
         "id": "l12-hsg-02-q29",
         "index": 29,
         "sectionId": "l12-hsg-02-sec-5",
-        "questionText": "The phrase the latter in paragraph 3 refers to ______.",
+        "questionText": "The phrase <u>the latter</u> in paragraph 3 refers to ______.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -7218,13 +7375,15 @@
           }
         ],
         "correctAnswer": "C",
-        "explanation": "Cụm từ \"the latter\" ở đoạn 3 đề cập đến vế thứ hai được nhắc đến: \"Allocating 0.7 percent of gross national income\" (mức phân bổ 0.7% thu nhập quốc dân cho viện trợ)."
+        "explanation": "Cụm từ \"the latter\" ở đoạn 3 đề cập đến vế thứ hai được nhắc đến: \"Allocating 0.7 percent of gross national income\" (mức phân bổ 0.7% thu nhập quốc dân cho viện trợ).",
+        "cognitiveLevel": "Vận dụng"
       },
       {
         "id": "l12-hsg-02-q30",
         "index": 30,
         "sectionId": "l12-hsg-02-sec-5",
-        "questionText": "Which of the following best paraphrases the underlined sentence in paragraph 3? While supporting asylum seekers is undeniably vital, legally absorbing these internal expenses under the ODA umbrella drains capital from critical poverty-reduction programs abroad, effectively inflating donor generosity on paper.",
+        "questionText": "Which of the following best paraphrases the underlined sentence in paragraph 3? <u>While supporting asylum seekers is undeniably vital, legally absorbing these internal expenses under the ODA umbrella drains capital from critical poverty-reduction programs abroad, effectively inflating donor generosity on paper.</u>",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -7244,13 +7403,15 @@
           }
         ],
         "correctAnswer": "B",
-        "explanation": "Câu gạch chân diễn đạt: Dù hỗ trợ người tị nạn là quan trọng, nhưng việc tính chi tiêu nội bộ này vào ODA làm cạn kiệt ngân sách xóa đói giảm nghèo ở nước ngoài và thổi phồng mức độ hào phóng của nhà tài trợ ➔ Khớp hoàn toàn với B."
+        "explanation": "Câu gạch chân diễn đạt: Dù hỗ trợ người tị nạn là quan trọng, nhưng việc tính chi tiêu nội bộ này vào ODA làm cạn kiệt ngân sách xóa đói giảm nghèo ở nước ngoài và thổi phồng mức độ hào phóng của nhà tài trợ ➔ Khớp hoàn toàn với B.",
+        "cognitiveLevel": "Vận dụng"
       },
       {
         "id": "l12-hsg-02-q31",
         "index": 31,
         "sectionId": "l12-hsg-02-sec-6",
-        "questionText": "The word it in paragraph 3 refers to _____.",
+        "questionText": "The word <u>it</u> in paragraph 3 refers to _____.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -7270,13 +7431,15 @@
           }
         ],
         "correctAnswer": "A",
-        "explanation": "Từ \"it\" ở đoạn 3 thay thế cho \"Such a levy\" (chính sách đánh thuế lao động robot)."
+        "explanation": "Từ \"it\" ở đoạn 3 thay thế cho \"Such a levy\" (chính sách đánh thuế lao động robot).",
+        "cognitiveLevel": "Vận dụng"
       },
       {
         "id": "l12-hsg-02-q32",
         "index": 32,
         "sectionId": "l12-hsg-02-sec-6",
         "questionText": "Which of the following is NOT implied in paragraph 4?",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -7296,13 +7459,15 @@
           }
         ],
         "correctAnswer": "C",
-        "explanation": "Đoạn 4 KHÔNG hề ngụ ý rằng khả năng phục hồi kinh tế hoàn toàn phụ thuộc vào việc áp dụng thuế robot. Đáp án C."
+        "explanation": "Đoạn 4 KHÔNG hề ngụ ý rằng khả năng phục hồi kinh tế hoàn toàn phụ thuộc vào việc áp dụng thuế robot. Đáp án C.",
+        "cognitiveLevel": "Vận dụng"
       },
       {
         "id": "l12-hsg-02-q33",
         "index": 33,
         "sectionId": "l12-hsg-02-sec-6",
         "questionText": "According to paragraph 2, proponents believe that a robot tax would _____",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -7322,13 +7487,15 @@
           }
         ],
         "correctAnswer": "D",
-        "explanation": "Theo đoạn 2, những người ủng hộ tin rằng thuế robot sẽ tạo nguồn lực tài chính hỗ trợ đào tạo lại người lao động và làm chậm lại các cú sốc chuyển dịch công nghệ đột ngột. Đáp án D."
+        "explanation": "Theo đoạn 2, những người ủng hộ tin rằng thuế robot sẽ tạo nguồn lực tài chính hỗ trợ đào tạo lại người lao động và làm chậm lại các cú sốc chuyển dịch công nghệ đột ngột. Đáp án D.",
+        "cognitiveLevel": "Vận dụng"
       },
       {
         "id": "l12-hsg-02-q34",
         "index": 34,
         "sectionId": "l12-hsg-02-sec-6",
         "questionText": "Which of the following is TRUE according to the passage?",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -7348,13 +7515,15 @@
           }
         ],
         "correctAnswer": "B",
-        "explanation": "Thông tin B đúng theo đoạn 4: Điều chỉnh các mức thuế doanh nghiệp hiện hành được xem là giải pháp tiềm năng thay thế cho sắc thuế riêng đánh vào máy móc."
+        "explanation": "Thông tin B đúng theo đoạn 4: Điều chỉnh các mức thuế doanh nghiệp hiện hành được xem là giải pháp tiềm năng thay thế cho sắc thuế riêng đánh vào máy móc.",
+        "cognitiveLevel": "Vận dụng"
       },
       {
         "id": "l12-hsg-02-q35",
         "index": 35,
         "sectionId": "l12-hsg-02-sec-6",
         "questionText": "Which of the following would be the best title for the passage?",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -7374,13 +7543,15 @@
           }
         ],
         "correctAnswer": "A",
-        "explanation": "Tiêu đề toàn diện nhất: The Automation Dilemma: Weighing the Costs and Alternatives of a Robot Tax (Thế tiến thoái lưỡng nan của tự động hóa: Cân nhắc chi phí và giải pháp thay thế thuế robot)."
+        "explanation": "Tiêu đề toàn diện nhất: The Automation Dilemma: Weighing the Costs and Alternatives of a Robot Tax (Thế tiến thoái lưỡng nan của tự động hóa: Cân nhắc chi phí và giải pháp thay thế thuế robot).",
+        "cognitiveLevel": "Vận dụng cao"
       },
       {
         "id": "l12-hsg-02-q36",
         "index": 36,
         "sectionId": "l12-hsg-02-sec-6",
         "questionText": "Which of the following can be inferred from the passage?",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -7400,13 +7571,15 @@
           }
         ],
         "correctAnswer": "B",
-        "explanation": "Suy luận từ bài: Việc thiết kế thuế tự động hóa hiệu quả đòi hỏi phải giải quyết được những mơ hồ về định nghĩa để tránh tác dụng phụ tiêu cực cho nền kinh tế. Đáp án B."
+        "explanation": "Suy luận từ bài: Việc thiết kế thuế tự động hóa hiệu quả đòi hỏi phải giải quyết được những mơ hồ về định nghĩa để tránh tác dụng phụ tiêu cực cho nền kinh tế. Đáp án B.",
+        "cognitiveLevel": "Vận dụng cao"
       },
       {
         "id": "l12-hsg-02-q37",
         "index": 37,
         "sectionId": "l12-hsg-02-sec-6",
         "questionText": "Where in the passage does the following sentence best fit? Without clear guidelines, tax authorities would struggle to enforce compliance fairly.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -7426,13 +7599,15 @@
           }
         ],
         "correctAnswer": "C",
-        "explanation": "Câu cần chèn (\"Without clear guidelines, tax authorities would struggle...\") bổ nghĩa trực tiếp cho việc định nghĩa robot mơ hồ tạo nên ác mộng pháp lý ở vị trí [III]."
+        "explanation": "Câu cần chèn (\"Without clear guidelines, tax authorities would struggle...\") bổ nghĩa trực tiếp cho việc định nghĩa robot mơ hồ tạo nên ác mộng pháp lý ở vị trí [III].",
+        "cognitiveLevel": "Vận dụng cao"
       },
       {
         "id": "l12-hsg-02-q38",
         "index": 38,
         "sectionId": "l12-hsg-02-sec-6",
         "questionText": "Which of the following best summarises paragraph 3?",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -7452,13 +7627,15 @@
           }
         ],
         "correctAnswer": "B",
-        "explanation": "Tóm tắt chuẩn xác đoạn 3: Những người phản đối chỉ ra thách thức trong việc định nghĩa tự động hóa và cảnh báo thuế quá nặng sẽ đẩy doanh nghiệp dời đi nơi khác. Đáp án B."
+        "explanation": "Tóm tắt chuẩn xác đoạn 3: Những người phản đối chỉ ra thách thức trong việc định nghĩa tự động hóa và cảnh báo thuế quá nặng sẽ đẩy doanh nghiệp dời đi nơi khác. Đáp án B.",
+        "cognitiveLevel": "Vận dụng cao"
       },
       {
         "id": "l12-hsg-02-q39",
         "index": 39,
         "sectionId": "l12-hsg-02-sec-6",
         "questionText": "What conclusion can be drawn from paragraph 2?",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -7478,13 +7655,15 @@
           }
         ],
         "correctAnswer": "A",
-        "explanation": "Kết luận từ đoạn 2: Thuế tự động hóa nếu áp dụng khéo léo có thể xoa dịu sự xáo trộn lực lượng lao động nhờ cung cấp cả nguồn lực tài chính lẫn thời gian thích nghi. Đáp án A."
+        "explanation": "Kết luận từ đoạn 2: Thuế tự động hóa nếu áp dụng khéo léo có thể xoa dịu sự xáo trộn lực lượng lao động nhờ cung cấp cả nguồn lực tài chính lẫn thời gian thích nghi. Đáp án A.",
+        "cognitiveLevel": "Vận dụng cao"
       },
       {
         "id": "l12-hsg-02-q40",
         "index": 40,
         "sectionId": "l12-hsg-02-sec-6",
-        "questionText": "The word stringent in paragraph 3 is OPPOSITE in meaning to _____.",
+        "questionText": "The word <u>stringent</u> in paragraph 3 is OPPOSITE in meaning to _____.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -7504,14 +7683,15 @@
           }
         ],
         "correctAnswer": "A",
-        "explanation": "Từ \"stringent\" (nghiêm ngặt, khắt khe) có từ TRÁI NGHĨA là \"Relaxed\" (nới lỏng, thoải mái). Đáp án A."
+        "explanation": "Từ \"stringent\" (nghiêm ngặt, khắt khe) có từ TRÁI NGHĨA là \"Relaxed\" (nới lỏng, thoải mái). Đáp án A.",
+        "cognitiveLevel": "Vận dụng cao"
       }
     ]
   },
   {
     "id": "de-thi-thu-hsg-lop-12-test-03",
     "title": "Đề Thi Thử Học Sinh Giỏi & Tốt Nghiệp THPT Lớp 12 - Test 03 (Bộ Đề Chuẩn Cấu Trúc 2026)",
-    "description": "Đề thi chuẩn cấu trúc gồm 40 câu hỏi phân hóa cao: Học tập suốt đời, Hiến tạng nhân đạo, Sắp xếp văn bản học thuật/văn học tiểu sử, Tranh khắc gỗ thời Phục Hưng, và 2 Bài đọc hiểu chuyên sâu (Nông nghiệp chính xác SSM & Digital Twin Urban Governance).",
+    "description": "Đề thi chuẩn cấu trúc gồm 40 câu hỏi phân hóa cao: Học tập suốt đời (Never Stop Learning), Hiến tạng nhân đạo (Organ Donation Rules), Sắp xếp văn bản học thuật/văn học tiểu sử, Tranh khắc gỗ thời Phục Hưng, và 2 Bài đọc hiểu chuyên sâu (Nông nghiệp chính xác SSM & Digital Twin Urban Governance).",
     "subject": "Tiếng Anh",
     "category": "Ôn thi HSG",
     "categories": [
@@ -7522,8 +7702,8 @@
     "durationMinutes": 50,
     "originalFileName": "TEST 03 HSG- A. ORIGINAL.docx",
     "status": "ready",
-    "createdAt": "2026-10-20T14:30:18.151Z",
-    "updatedAt": "2026-10-20T14:30:18.151Z",
+    "createdAt": "2026-10-20T23:14:11.267Z",
+    "updatedAt": "2026-10-20T23:14:11.267Z",
     "tags": [
       "Tiếng Anh 12",
       "Lớp 12",
@@ -7538,6 +7718,8 @@
         "id": "l12-hsg-03-sec-1",
         "title": "I. LEAFLET & ANNOUNCEMENT CLOZE (QUESTIONS 1 - 6)",
         "instruction": "Read the following announcement/leaflet and mark the letter A, B, C or D on your answer sheet to indicate the option that best fits each of the numbered blanks from 1 to 6.",
+        "passageTitle": "Never Stop Learning",
+        "passage": "Never Stop Learning\n\nThe modern job market constantly requires ambitious professionals to continuously upgrade their practical knowledge. While I (1) ________ a fascinating seminar on digital marketing last month, I truly realized the critical importance of professional adaptability.\n\nHigh-quality online courses (2) ________ by top-tier global universities offer extremely flexible schedules for busy working adults. This incredible flexibility allows eager learners to easily overcome geographical (3) ________ and study effectively from anywhere in the world.\n\nYou should actively (4) ________ your interpersonal communication skills to collaborate much better with diverse international teams. If you frequently find studying alone boring, you can easily (5) ________ up a new hobby class to meet like-minded people.\n\nBecoming a highly (6) ________ lifelong learner opens up endless golden opportunities for your personal and professional growth. Register for our premium courses today and unlock your full hidden potential!\n\n(Adapted from David Lee, Education Today)",
         "questionIndices": [
           1,
           2,
@@ -7551,6 +7733,8 @@
         "id": "l12-hsg-03-sec-2",
         "title": "II. SHORT COMMUNICATION & NOTICE (QUESTIONS 7 - 12)",
         "instruction": "Read the following announcement/leaflet and mark the letter A, B, C or D on your answer sheet to indicate the option that best fits each of the numbered blanks from 7 to 12.",
+        "passageTitle": "Proposed Organ Donation Rules: Protecting the Youth",
+        "passage": "Proposed Organ Donation Rules: Protecting the Youth\n\nThe Ministry of Health has recently proposed new regulations on living organ donations. Illegal organ trading is just the (7) ________ of the iceberg when it comes to this complex issue.\n\nMedical experts warn that the younger the donor is, the (8) ________ severe the long-term health risks become, especially for kidney functions.\n\nUnder the new draft, (9) ________ strict rules will be applied to living donors. Individuals aged 18 to 24 are restricted to donating only to direct family members.\n\nGenerous individuals (10) ________ also enjoy free lifetime health insurance and regular check-ups after their noble donation.\n\nThe government plans to offer these (11) ________ healthcare benefits to honor their incredible sacrifice for society.\n\nThese changes are essential (12) ________ they aim to expand the organ source safely without exploiting vulnerable young adults.\n\nRead the full legal draft online to understand these crucial medical policies!\n\n(Adapted from Như Loan - VTC News)",
         "questionIndices": [
           7,
           8,
@@ -7563,7 +7747,7 @@
       {
         "id": "l12-hsg-03-sec-3",
         "title": "III. COHESION & COHERENCE - ARRANGEMENT (QUESTIONS 13 - 17)",
-        "instruction": "Mark the letter A, B, C or D on your answer sheet to indicate the best arrangement of utterances or sentences to make a cohesive and coherent exchange or text.",
+        "instruction": "Mark the letter A, B, C or D on your answer sheet to indicate the best arrangement of utterances or sentences to make a cohesive and coherent exchange or text in each of the following questions from 13 to 17.",
         "questionIndices": [
           13,
           14,
@@ -7576,6 +7760,8 @@
         "id": "l12-hsg-03-sec-4",
         "title": "IV. PASSAGE CLOZE (QUESTIONS 18 - 22)",
         "instruction": "Read the following passage and mark the letter A, B, C or D on your answer sheet to indicate the option that best fits each of the numbered blanks from 18 to 22.",
+        "passageTitle": "Passage Cloze",
+        "passage": "Woodcut printing emerged as a groundbreaking technique in fifteenth-century Europe, bringing vivid images to the general public. Initially, producing intricate texts and illustrations manually was a painstaking endeavor. (18) ________. As paper became more affordable, artisans began carving detailed illustrations directly into wooden blocks. (19) ________. These early prints circulated widely, acting as both standalone artworks and compelling book illustrations.\n\nThe overall quality of these early woodcuts fluctuated significantly over the subsequent decades. Michael Wolgemut played a vital role in reviving the medium when artistic standards began to slip. His bustling workshop produced remarkable pieces, setting a high benchmark for apprentices like Albrecht Dürer. Dürer eventually outshone his master, creating incredibly detailed works that caught everyone's eye and elevated the medium to fine art. (20) ________. They firmly believed that true art could only be created through unique, irreproducible paintings.\n\nBy the late fifteenth century, the public demand for visual and written materials skyrocketed across Europe. Creating every single document by hand was no longer a viable option, (21) ________. Imagine if society had simply ignored these printing advancements; knowledge would have remained tightly confined to the wealthy. If brilliant innovators hadn't experimented with new presses, the Renaissance might have stalled entirely. (22) ________.\n\n(Adapted from \"The Art Book: Big Ideas Simply Explained\", DK)",
         "questionIndices": [
           18,
           19,
@@ -7587,7 +7773,9 @@
       {
         "id": "l12-hsg-03-sec-5",
         "title": "V. READING COMPREHENSION 1 (QUESTIONS 23 - 30)",
-        "instruction": "Read the passage and mark the letter A, B, C or D on your answer sheet to indicate the best answer to each of the questions from 23 to 30.",
+        "instruction": "Read the passage and mark the letter A, B, C or D on your answer sheet to indicate the best answer to each of the following questions from 23 to 30.",
+        "passageTitle": "Reading Comprehension 1",
+        "passage": "Historically, mechanized farming relied on a one-size-fits-all approach, treating vast arable lands as if they were perfectly <u>uniform</u>. Farmers applied fertilizers based on a hypothetical average, inevitably leading to misallocations. This blanket strategy took a heavy toll on ecological integrity through chemical runoff, while also burning a hole in their pockets due to wasted resources. In stark contrast, site-specific crop management (SSM) recognizes the inherent variations throughout every field, addressing each sector as a unique micro-environment with distinct requirements.\n\nTo pull this off, modern agricultural practices marry pinpoint satellite navigation with rigorous ground-level assessments. Agronomists gather precise data on soil chemistry and moisture levels, blending these insights with remote signals captured by drones. This wealth of information translates into detailed management-zone maps serving as blueprints for tractors. Consequently, application rates seamlessly fluctuate the moment machinery crosses invisible borders. <u>Decision-making is firmly rooted in hard evidence rather than guesswork, ensuring interventions are perfectly in sync with the equipment's exact location.</u>\n\nPushing the envelope further, the latest wave of precision technology can <u>gauge</u> microsite conditions and tweak chemical inputs on the fly. <u>These</u> advanced systems dispense with the need for pre-existing maps, as sensing and treatment occur simultaneously. By embedding sophisticated sensors directly onto farming implements, the machinery translates raw perception into immediate physical action without pausing for offline analysis. Such innovations replace outdated assumptions with real-time feedback, allowing agricultural prescriptions to evolve continuously alongside the crop's actual biological signals.\n\nIronically, this high-tech revolution brings back an intimate sensibility once characteristic of small-scale traditional farming, where cultivators knew every furrow. While early mechanization drastically cut labor costs, it severely compromised input efficiency. Today, as agrochemical prices skyrocket and environmental impacts are brought to light, producers eagerly embrace variable-rate systems to tighten their belts and mitigate ecological harm. Ultimately, the underlying ethos is highly pragmatic: treating natural diversity as a fundamental principle, thereby empowering technology to revive meticulous agricultural care on an industrial scale.\n\n(Adapted from https://www.nifa.usda.gov/grants/programs/precision-geospatial-sensor-technologies-programs/precision-agriculture-crop-production)",
         "questionIndices": [
           23,
           24,
@@ -7602,7 +7790,9 @@
       {
         "id": "l12-hsg-03-sec-6",
         "title": "VI. READING COMPREHENSION 2 (QUESTIONS 31 - 40)",
-        "instruction": "Read the passage and mark the letter A, B, C or D on your answer sheet to indicate the best answer to each of the questions from 31 to 40.",
+        "instruction": "Read the passage and mark the letter A, B, C or D on your answer sheet to indicate the best answer to each of the following questions from 31 to 40.",
+        "passageTitle": "Reading Comprehension 2",
+        "passage": "Urban administration fundamentally requires balancing finite resources against fluctuating demands, often resulting in opaque trade-offs. To untangle this knot, municipal authorities are increasingly bringing digital twins into play – dynamic, virtual replicas of physical infrastructure. When configured properly, these simulations do not merely predict maintenance needs; they allow stakeholders to weigh up policy outcomes before a single brick is laid. From this macro perspective, city planners can deduce the most equitable resource distribution. [I]\n\nHowever, the efficacy of these virtual models hinges on active civic engagement, giving rise to the 'Digital Twin Citizen'. Rather than treating residents as passive data points, this paradigm incorporates their lived experiences to ground-truth simulations. [II] By throwing light on potential bottlenecks and distributive impacts, interactive dashboards enable communities to scrutinize proposed interventions. Consequently, anomalies such as traffic snarl-ups or power surges are ironed out long before they escalate into full-blown crises. [III]\n\nThe implications for public accountability are profound. If a city’s digital twin ingests real-time sensor data and overlays it with public feedback, administrators can no longer rely on gut feeling or aftermarket rationalizations. <u>They</u> are compelled to justify their decisions with empirical evidence, thereby keeping <u>reckless</u> impulses in check. For example, when running flood evacuation drills or retiming traffic lights, the integration of community input guarantees that the models reflect on-the-ground realities rather than abstract assumptions. [IV]\n\nTherefore, it stands to reason that when evidence-based planning goes hand in hand with public deliberation, mutual trust inevitably thickens. Cities that open their digital doors to residents effectively co-produce governance, allowing locals to flag blind spots and call the shots on pressing investments. By making the mechanics of urban management completely transparent, this approach ensures that decisions are debated in the cold light of day, ultimately transforming a technological marvel into a cornerstone of civic stability.\n\n(Adapted from GovPilot, “The Rise of Digital Twins: How Cities Are Creating Virtual Models for Real-World Impact”)",
         "questionIndices": [
           31,
           32,
@@ -7622,7 +7812,8 @@
         "id": "l12-hsg-03-q1",
         "index": 1,
         "sectionId": "l12-hsg-03-sec-1",
-        "questionText": "",
+        "questionText": "While I (1) ________ a fascinating seminar on digital marketing last month, I truly realized the critical importance of professional adaptability.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -7642,13 +7833,15 @@
           }
         ],
         "correctAnswer": "A",
-        "explanation": "Hành động đang diễn ra trong quá khứ (\"last month\"): \"While I was attending a fascinating seminar...\"."
+        "explanation": "Hành động đang diễn ra trong quá khứ (\"last month\"): \"While I was attending a fascinating seminar...\".",
+        "cognitiveLevel": "Nhận biết"
       },
       {
         "id": "l12-hsg-03-q2",
         "index": 2,
         "sectionId": "l12-hsg-03-sec-1",
-        "questionText": "",
+        "questionText": "High-quality online courses (2) ________ by top-tier global universities offer extremely flexible schedules for busy working adults.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -7668,13 +7861,15 @@
           }
         ],
         "correctAnswer": "D",
-        "explanation": "Rút gọn mệnh đề quan hệ dạng bị động (which are provided): \"online courses provided by top-tier global universities...\"."
+        "explanation": "Rút gọn mệnh đề quan hệ dạng bị động (which are provided): \"online courses provided by top-tier global universities...\".",
+        "cognitiveLevel": "Nhận biết"
       },
       {
         "id": "l12-hsg-03-q3",
         "index": 3,
         "sectionId": "l12-hsg-03-sec-1",
-        "questionText": "",
+        "questionText": "This incredible flexibility allows eager learners to easily overcome geographical (3) ________ and study effectively from anywhere in the world.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -7694,13 +7889,15 @@
           }
         ],
         "correctAnswer": "D",
-        "explanation": "Cụm danh từ: \"overcome geographical barriers\" (vượt qua các rào cản địa lý)."
+        "explanation": "Cụm danh từ: \"overcome geographical barriers\" (vượt qua các rào cản địa lý).",
+        "cognitiveLevel": "Nhận biết"
       },
       {
         "id": "l12-hsg-03-q4",
         "index": 4,
         "sectionId": "l12-hsg-03-sec-1",
-        "questionText": "",
+        "questionText": "You should actively (4) ________ your interpersonal communication skills to collaborate much better with diverse international teams.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -7720,13 +7917,15 @@
           }
         ],
         "correctAnswer": "D",
-        "explanation": "Động từ mang nghĩa nâng cao, cải thiện: \"improve your interpersonal communication skills\"."
+        "explanation": "Động từ mang nghĩa nâng cao, cải thiện: \"improve your interpersonal communication skills\".",
+        "cognitiveLevel": "Nhận biết"
       },
       {
         "id": "l12-hsg-03-q5",
         "index": 5,
         "sectionId": "l12-hsg-03-sec-1",
-        "questionText": "",
+        "questionText": "If you frequently find studying alone boring, you can easily (5) ________ up a new hobby class to meet like-minded people.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -7746,13 +7945,15 @@
           }
         ],
         "correctAnswer": "C",
-        "explanation": "Cụm động từ \"take up\" có nghĩa là bắt đầu tham gia một sở thích/lớp học mới (\"take up a new hobby class\")."
+        "explanation": "Cụm động từ \"take up\" có nghĩa là bắt đầu tham gia một sở thích/lớp học mới (\"take up a new hobby class\").",
+        "cognitiveLevel": "Nhận biết"
       },
       {
         "id": "l12-hsg-03-q6",
         "index": 6,
         "sectionId": "l12-hsg-03-sec-1",
-        "questionText": "",
+        "questionText": "Becoming a highly (6) ________ lifelong learner opens up endless golden opportunities for your personal and professional growth.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -7772,13 +7973,15 @@
           }
         ],
         "correctAnswer": "C",
-        "explanation": "Cần tính từ bổ nghĩa cho danh từ \"learner\": \"highly successful lifelong learner\" (người học tập suốt đời thành công)."
+        "explanation": "Cần tính từ bổ nghĩa cho danh từ \"learner\": \"highly successful lifelong learner\" (người học tập suốt đời thành công).",
+        "cognitiveLevel": "Nhận biết"
       },
       {
         "id": "l12-hsg-03-q7",
         "index": 7,
         "sectionId": "l12-hsg-03-sec-2",
-        "questionText": "",
+        "questionText": "Illegal organ trading is just the (7) ________ of the iceberg when it comes to this complex issue.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -7798,13 +8001,15 @@
           }
         ],
         "correctAnswer": "C",
-        "explanation": "Thành ngữ cố định: \"tip of the iceberg\" (phần nổi của tảng băng chìm)."
+        "explanation": "Thành ngữ cố định: \"tip of the iceberg\" (phần nổi của tảng băng chìm).",
+        "cognitiveLevel": "Nhận biết"
       },
       {
         "id": "l12-hsg-03-q8",
         "index": 8,
         "sectionId": "l12-hsg-03-sec-2",
-        "questionText": "",
+        "questionText": "Medical experts warn that the younger the donor is, the (8) ________ severe the long-term health risks become, especially for kidney functions.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -7824,13 +8029,15 @@
           }
         ],
         "correctAnswer": "A",
-        "explanation": "Cấu trúc so sánh kép: \"the younger the donor is, the more severe the long-term health risks become...\"."
+        "explanation": "Cấu trúc so sánh kép: \"the younger the donor is, the more severe the long-term health risks become...\".",
+        "cognitiveLevel": "Nhận biết"
       },
       {
         "id": "l12-hsg-03-q9",
         "index": 9,
         "sectionId": "l12-hsg-03-sec-2",
-        "questionText": "",
+        "questionText": "Under the new draft, (9) ________ strict rules will be applied to living donors.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -7850,13 +8057,15 @@
           }
         ],
         "correctAnswer": "D",
-        "explanation": "Đi với danh từ số nhiều đếm được \"strict rules\": \"many strict rules\"."
+        "explanation": "Đi với danh từ số nhiều đếm được \"strict rules\": \"many strict rules\".",
+        "cognitiveLevel": "Nhận biết"
       },
       {
         "id": "l12-hsg-03-q10",
         "index": 10,
         "sectionId": "l12-hsg-03-sec-2",
-        "questionText": "",
+        "questionText": "Generous individuals (10) ________ also enjoy free lifetime health insurance and regular check-ups after their noble donation.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -7876,13 +8085,15 @@
           }
         ],
         "correctAnswer": "C",
-        "explanation": "Động từ khuyết thiếu diễn đạt quyền lợi có thể nhận được: \"can also enjoy free lifetime health insurance...\"."
+        "explanation": "Động từ khuyết thiếu diễn đạt quyền lợi có thể nhận được: \"can also enjoy free lifetime health insurance...\".",
+        "cognitiveLevel": "Nhận biết"
       },
       {
         "id": "l12-hsg-03-q11",
         "index": 11,
         "sectionId": "l12-hsg-03-sec-2",
-        "questionText": "",
+        "questionText": "The government plans to offer these (11) ________ healthcare benefits to honor their incredible sacrifice for society.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -7902,13 +8113,15 @@
           }
         ],
         "correctAnswer": "D",
-        "explanation": "Tính từ miêu tả chế độ phúc lợi hào phóng, chu đáo: \"generous healthcare benefits\"."
+        "explanation": "Tính từ miêu tả chế độ phúc lợi hào phóng, chu đáo: \"generous healthcare benefits\".",
+        "cognitiveLevel": "Nhận biết"
       },
       {
         "id": "l12-hsg-03-q12",
         "index": 12,
         "sectionId": "l12-hsg-03-sec-2",
-        "questionText": "",
+        "questionText": "These changes are essential (12) ________ they aim to expand the organ source safely without exploiting vulnerable young adults.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -7928,13 +8141,15 @@
           }
         ],
         "correctAnswer": "A",
-        "explanation": "Liên từ chỉ nguyên nhân: \"These changes are essential since they aim to expand...\" (bởi vì chúng hướng tới...)."
+        "explanation": "Liên từ chỉ nguyên nhân: \"These changes are essential since they aim to expand...\" (bởi vì chúng hướng tới...).",
+        "cognitiveLevel": "Nhận biết"
       },
       {
         "id": "l12-hsg-03-q13",
         "index": 13,
         "sectionId": "l12-hsg-03-sec-3",
         "questionText": "a. Jacob: Job seekers today should know that companies use AI to screen resumes initially. b. Jacob: Precisely. Understanding these digital hiring tools is now essential for advancing your professional career. c. Emily: That means applicants must carefully tailor their keywords to pass the automated software.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -7954,13 +8169,15 @@
           }
         ],
         "correctAnswer": "B",
-        "explanation": "Trật tự hội thoại tuyển dụng AI: a (Jacob lưu ý nhà tuyển dụng dùng AI sàng lọc hồ sơ) ➔ c (Emily suy ra ứng viên phải chọn lọc từ khóa chuẩn để vượt qua phần mềm) ➔ b (Jacob khẳng định hiểu công cụ tuyển dụng số là thiết yếu để thăng tiến). Đáp án B: a - c - b."
+        "explanation": "Trật tự hội thoại tuyển dụng AI: a (Jacob lưu ý nhà tuyển dụng dùng AI sàng lọc hồ sơ) ➔ c (Emily suy ra ứng viên phải chọn lọc từ khóa chuẩn để vượt qua phần mềm) ➔ b (Jacob khẳng định hiểu công cụ tuyển dụng số là thiết yếu để thăng tiến). Đáp án B: a - c - b.",
+        "cognitiveLevel": "Thông hiểu"
       },
       {
         "id": "l12-hsg-03-q14",
         "index": 14,
         "sectionId": "l12-hsg-03-sec-3",
         "questionText": "Dear Student Council, a. Many students are still using disposable plastic cups and bags instead of eco-friendly alternatives, which creates a huge environmental problem for our local community. b. If we do not take quick action to stop this harmful habit, we will contribute to severe pollution that destroys the natural habitats of wildlife. c. I strongly suggest that we start a green campaign next week to encourage everyone to bring their own reusable water bottles and food containers. d. I am writing to draw your immediate attention to the alarming amount of plastic waste that is being thrown away daily in our school cafeteria. e. We must act right now to set up more recycling bins and educate our friends about the practical ways to protect our beautiful planet. Yours faithfully, Beau",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -7980,13 +8197,15 @@
           }
         ],
         "correctAnswer": "D",
-        "explanation": "Trật tự bức thư gửi Hội đồng học sinh: d (Báo động về lượng rác thải nhựa ở căng tin trường) ➔ a (Nêu thực trạng học sinh dùng cốc túi nhựa dùng 1 lần) ➔ b (Cảnh báo hậu quả ô nhiễm và phá hủy môi trường sống) ➔ c (Đề xuất chiến dịch xanh mang bình nước hộp cơm cá nhân) ➔ e (Kêu gọi hành động đặt thêm thùng rác tái chế). Đáp án D: d - a - b - c - e."
+        "explanation": "Trật tự bức thư gửi Hội đồng học sinh: d (Báo động về lượng rác thải nhựa ở căng tin trường) ➔ a (Nêu thực trạng học sinh dùng cốc túi nhựa dùng 1 lần) ➔ b (Cảnh báo hậu quả ô nhiễm và phá hủy môi trường sống) ➔ c (Đề xuất chiến dịch xanh mang bình nước hộp cơm cá nhân) ➔ e (Kêu gọi hành động đặt thêm thùng rác tái chế). Đáp án D: d - a - b - c - e.",
+        "cognitiveLevel": "Thông hiểu"
       },
       {
         "id": "l12-hsg-03-q15",
         "index": 15,
         "sectionId": "l12-hsg-03-sec-3",
         "questionText": "a. In addition, we must put out forest fires quickly to protect rare local ecosystems. b. Consequently, countries should take action now before the global climate becomes completely unstable. c. If global temperatures continue to rise, severe droughts and floods will occur more frequently. d. Many vulnerable communities are bound to suffer from these devastating environmental disasters. e. First of all, global warming has caused many extreme weather events around the world.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -8006,13 +8225,15 @@
           }
         ],
         "correctAnswer": "B",
-        "explanation": "Trật tự đoạn văn về biến đổi khí hậu: e (Mở đầu: Trái Đất ấm lên gây ra nhiều hiện tượng thời tiết cực đoan) ➔ c (Nếu nhiệt độ tiếp tục tăng thì hạn hán lũ lụt sẽ xảy ra thường xuyên hơn) ➔ d (Nhiều cộng đồng dễ bị tổn thương sẽ phải gánh chịu hậu quả) ➔ a (Bổ sung việc cần nhanh chóng dập tắt cháy rừng) ➔ b (Kết luận các quốc gia cần hành động ngay). Đáp án B: e - c - d - a - b."
+        "explanation": "Trật tự đoạn văn về biến đổi khí hậu: e (Mở đầu: Trái Đất ấm lên gây ra nhiều hiện tượng thời tiết cực đoan) ➔ c (Nếu nhiệt độ tiếp tục tăng thì hạn hán lũ lụt sẽ xảy ra thường xuyên hơn) ➔ d (Nhiều cộng đồng dễ bị tổn thương sẽ phải gánh chịu hậu quả) ➔ a (Bổ sung việc cần nhanh chóng dập tắt cháy rừng) ➔ b (Kết luận các quốc gia cần hành động ngay). Đáp án B: e - c - d - a - b.",
+        "cognitiveLevel": "Thông hiểu"
       },
       {
         "id": "l12-hsg-03-q16",
         "index": 16,
         "sectionId": "l12-hsg-03-sec-3",
         "questionText": "a. In addition, learning about national heroes helps teenagers build a strong cultural identity. b. Furthermore, these life stories serve as a guiding light during challenging educational journeys. c. Studying the remarkable achievements of historical figures objectively provides youth with profound motivation. d. By analyzing their struggles, students can clearly understand the true value of perseverance. e. Therefore, integrating biographical literature into the curriculum yields significant benefits for personal development.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -8032,13 +8253,15 @@
           }
         ],
         "correctAnswer": "A",
-        "explanation": "Trật tự đoạn văn về văn học tiểu sử lịch sử: c (Câu chủ đề: Tìm hiểu thành tựu của danh nhân mang lại động lực sâu sắc cho giới trẻ) ➔ d (Phân tích khó khăn của họ giúp học sinh hiểu giá trị của sự kiên trì) ➔ b (Những câu chuyện đời này là ngọn đèn soi sáng con đường học tập) ➔ a (Hơn nữa giúp thanh thiếu niên xây dựng bản sắc văn hóa) ➔ e (Kết luận đưa văn học tiểu sử vào chương trình giảng dạy mang lại lợi ích to lớn). Đáp án A: c - d - b - a - e."
+        "explanation": "Trật tự đoạn văn về văn học tiểu sử lịch sử: c (Câu chủ đề: Tìm hiểu thành tựu của danh nhân mang lại động lực sâu sắc cho giới trẻ) ➔ d (Phân tích khó khăn của họ giúp học sinh hiểu giá trị của sự kiên trì) ➔ b (Những câu chuyện đời này là ngọn đèn soi sáng con đường học tập) ➔ a (Hơn nữa giúp thanh thiếu niên xây dựng bản sắc văn hóa) ➔ e (Kết luận đưa văn học tiểu sử vào chương trình giảng dạy mang lại lợi ích to lớn). Đáp án A: c - d - b - a - e.",
+        "cognitiveLevel": "Thông hiểu"
       },
       {
         "id": "l12-hsg-03-q17",
         "index": 17,
         "sectionId": "l12-hsg-03-sec-3",
         "questionText": "a. Evelyn: That is probably true. You have to be deeply passionate about opera to dedicate your whole life to it. b. Levi: I suppose many young singers choose pop music instead because it offers faster fame and better money. c. Levi: I read a magazine article about the lack of tenors in opera. It seems like a really tough career path. d. Levi: It makes you wonder how the classical music industry will find new talent to keep the art alive. e. Evelyn: Yeah, classical singing takes years of hard training, and it is not easy to make a good living.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -8058,13 +8281,15 @@
           }
         ],
         "correctAnswer": "A",
-        "explanation": "Trật tự hội thoại về nghề hát Opera: c (Levi đọc bài báo về việc thiếu giọng nam cao trong opera và thấy nghề này quá khó) ➔ e (Evelyn đồng tình opera đòi hỏi nhiều năm khổ luyện mà khó kiếm sống) ➔ b (Levi đoán ca sĩ trẻ chọn nhạc pop vì mau nổi tiếng và kiếm nhiều tiền hơn) ➔ a (Evelyn công nhận phải cực kỳ đam mê mới theo trọn đời) ➔ d (Levi băn khoăn làm sao ngành cổ điển tìm kiếm tài năng mới). Đáp án A: c - e - b - a - d."
+        "explanation": "Trật tự hội thoại về nghề hát Opera: c (Levi đọc bài báo về việc thiếu giọng nam cao trong opera và thấy nghề này quá khó) ➔ e (Evelyn đồng tình opera đòi hỏi nhiều năm khổ luyện mà khó kiếm sống) ➔ b (Levi đoán ca sĩ trẻ chọn nhạc pop vì mau nổi tiếng và kiếm nhiều tiền hơn) ➔ a (Evelyn công nhận phải cực kỳ đam mê mới theo trọn đời) ➔ d (Levi băn khoăn làm sao ngành cổ điển tìm kiếm tài năng mới). Đáp án A: c - e - b - a - d.",
+        "cognitiveLevel": "Thông hiểu"
       },
       {
         "id": "l12-hsg-03-q18",
         "index": 18,
         "sectionId": "l12-hsg-03-sec-4",
-        "questionText": "",
+        "questionText": "Initially, producing intricate texts and illustrations manually was a painstaking endeavor. (18) ________. As paper became more affordable, artisans began carving detailed illustrations...",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -8084,13 +8309,15 @@
           }
         ],
         "correctAnswer": "A",
-        "explanation": "Cấu trúc chuẩn chủ ngữ giả định: \"It is fascinating to examine how this craft evolved\"."
+        "explanation": "Cấu trúc chuẩn chủ ngữ giả định: \"It is fascinating to examine how this craft evolved\".",
+        "cognitiveLevel": "Thông hiểu"
       },
       {
         "id": "l12-hsg-03-q19",
         "index": 19,
         "sectionId": "l12-hsg-03-sec-4",
-        "questionText": "",
+        "questionText": "As paper became more affordable, artisans began carving detailed illustrations directly into wooden blocks. (19) ________. These early prints circulated widely, acting as both standalone artworks and book illustrations.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -8110,13 +8337,15 @@
           }
         ],
         "correctAnswer": "B",
-        "explanation": "Cấu trúc câu hoàn chỉnh SVO với mệnh đề quan hệ: \"The dedicated artists who committed their time to this profession thrived\"."
+        "explanation": "Cấu trúc câu hoàn chỉnh SVO với mệnh đề quan hệ: \"The dedicated artists who committed their time to this profession thrived\".",
+        "cognitiveLevel": "Thông hiểu"
       },
       {
         "id": "l12-hsg-03-q20",
         "index": 20,
         "sectionId": "l12-hsg-03-sec-4",
-        "questionText": "",
+        "questionText": "Dürer eventually outshone his master, creating incredibly detailed works that caught everyone's eye and elevated the medium to fine art. (20) ________. They firmly believed that true art could only be created through unique paintings.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -8136,13 +8365,15 @@
           }
         ],
         "correctAnswer": "B",
-        "explanation": "Mệnh đề đối lập chuẩn ngữ pháp: \"However, the traditional elite initially dismissed these prints as cheap novelties\" (Tuy nhiên tầng lớp tinh hoa truyền thống ban đầu bác bỏ tranh khắc gỗ như đồ chơi rẻ tiền)."
+        "explanation": "Mệnh đề đối lập chuẩn ngữ pháp: \"However, the traditional elite initially dismissed these prints as cheap novelties\" (Tuy nhiên tầng lớp tinh hoa truyền thống ban đầu bác bỏ tranh khắc gỗ như đồ chơi rẻ tiền).",
+        "cognitiveLevel": "Thông hiểu"
       },
       {
         "id": "l12-hsg-03-q21",
         "index": 21,
         "sectionId": "l12-hsg-03-sec-4",
-        "questionText": "",
+        "questionText": "Creating every single document by hand was no longer a viable option, (21) ________.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -8162,13 +8393,15 @@
           }
         ],
         "correctAnswer": "C",
-        "explanation": "Mệnh đề nguyên nhân kết quả chuẩn ngữ pháp: \"so we instead embraced mechanical reproduction to meet this need\"."
+        "explanation": "Mệnh đề nguyên nhân kết quả chuẩn ngữ pháp: \"so we instead embraced mechanical reproduction to meet this need\".",
+        "cognitiveLevel": "Thông hiểu"
       },
       {
         "id": "l12-hsg-03-q22",
         "index": 22,
         "sectionId": "l12-hsg-03-sec-4",
-        "questionText": "",
+        "questionText": "If brilliant innovators hadn't experimented with new presses, the Renaissance might have stalled entirely. (22) ________.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -8188,13 +8421,15 @@
           }
         ],
         "correctAnswer": "A",
-        "explanation": "Câu kết luận mạch lạc chuẩn ngữ pháp: \"Therefore, this technological leap successfully democratized education across the continent\"."
+        "explanation": "Câu kết luận mạch lạc chuẩn ngữ pháp: \"Therefore, this technological leap successfully democratized education across the continent\".",
+        "cognitiveLevel": "Thông hiểu"
       },
       {
         "id": "l12-hsg-03-q23",
         "index": 23,
         "sectionId": "l12-hsg-03-sec-5",
         "questionText": "In which paragraph does the writer mention the financial motivation behind adopting variable-rate systems?",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -8214,13 +8449,15 @@
           }
         ],
         "correctAnswer": "B",
-        "explanation": "Ở đoạn 4 tác giả chỉ ra động lực tài chính khi chi phí nông dược tăng vọt khiến nông dân phải áp dụng hệ thống bón phân biến thiên để thắt lưng buộc bụng: Paragraph 4."
+        "explanation": "Ở đoạn 4 tác giả chỉ ra động lực tài chính khi chi phí nông dược tăng vọt khiến nông dân phải áp dụng hệ thống bón phân biến thiên để thắt lưng buộc bụng: Paragraph 4.",
+        "cognitiveLevel": "Vận dụng"
       },
       {
         "id": "l12-hsg-03-q24",
         "index": 24,
         "sectionId": "l12-hsg-03-sec-5",
         "questionText": "In which paragraph does the writer describe systems that apply treatments without needing pre-programmed digital boundaries?",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -8240,13 +8477,15 @@
           }
         ],
         "correctAnswer": "C",
-        "explanation": "Ở đoạn 3 tác giả mô tả công nghệ thế hệ mới gắn cảm biến trực tiếp vào máy móc để đo đạc và xử lý ngay tại chỗ mà không cần bản đồ số lập trình sẵn: Paragraph 3."
+        "explanation": "Ở đoạn 3 tác giả mô tả công nghệ thế hệ mới gắn cảm biến trực tiếp vào máy móc để đo đạc và xử lý ngay tại chỗ mà không cần bản đồ số lập trình sẵn: Paragraph 3.",
+        "cognitiveLevel": "Vận dụng"
       },
       {
         "id": "l12-hsg-03-q25",
         "index": 25,
         "sectionId": "l12-hsg-03-sec-5",
-        "questionText": "The word These in paragraph 3 refers to ______.",
+        "questionText": "The word <u>These</u> in paragraph 3 refers to ______.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -8266,13 +8505,15 @@
           }
         ],
         "correctAnswer": "C",
-        "explanation": "Từ \"These\" ở đoạn 3 thay thế cho các hệ thống công nghệ chính xác tiên tiến: \"Advanced precision technologies\"."
+        "explanation": "Từ \"These\" ở đoạn 3 thay thế cho các hệ thống công nghệ chính xác tiên tiến: \"Advanced precision technologies\".",
+        "cognitiveLevel": "Vận dụng"
       },
       {
         "id": "l12-hsg-03-q26",
         "index": 26,
         "sectionId": "l12-hsg-03-sec-5",
-        "questionText": "The word uniform in paragraph 1 is OPPOSITE in meaning to _____.",
+        "questionText": "The word <u>uniform</u> in paragraph 1 is OPPOSITE in meaning to _____.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -8292,13 +8533,15 @@
           }
         ],
         "correctAnswer": "D",
-        "explanation": "Từ \"uniform\" (đồng nhất, đơn điệu, giống nhau một khuôn) có từ TRÁI NGHĨA là \"Heterogeneous\" (đa dạng, không đồng nhất, hỗn hợp nhiều thành phần)."
+        "explanation": "Từ \"uniform\" (đồng nhất, đơn điệu, giống nhau một khuôn) có từ TRÁI NGHĨA là \"Heterogeneous\" (đa dạng, không đồng nhất, hỗn hợp nhiều thành phần).",
+        "cognitiveLevel": "Vận dụng"
       },
       {
         "id": "l12-hsg-03-q27",
         "index": 27,
         "sectionId": "l12-hsg-03-sec-5",
         "questionText": "Which of the following statements would the writer NOT agree with?",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -8318,13 +8561,15 @@
           }
         ],
         "correctAnswer": "A",
-        "explanation": "Tác giả KHÔNG đồng ý với nhận định A vì đoạn 4 nêu rõ: cơ giới hóa ban đầu tuy giảm chi phí nhân công nhưng làm tổn hại nghiêm trọng đến hiệu quả sử dụng vật tư đầu vào."
+        "explanation": "Tác giả KHÔNG đồng ý với nhận định A vì đoạn 4 nêu rõ: cơ giới hóa ban đầu tuy giảm chi phí nhân công nhưng làm tổn hại nghiêm trọng đến hiệu quả sử dụng vật tư đầu vào.",
+        "cognitiveLevel": "Vận dụng"
       },
       {
         "id": "l12-hsg-03-q28",
         "index": 28,
         "sectionId": "l12-hsg-03-sec-5",
-        "questionText": "Which of the following best paraphrases the underlined sentence in paragraph 2? Question. Decision-making is firmly rooted in hard evidence rather than guesswork, ensuring interventions are perfectly in sync with the equipment's exact location.",
+        "questionText": "Which of the following best paraphrases the underlined sentence in paragraph 2? <u>Decision-making is firmly rooted in hard evidence rather than guesswork, ensuring interventions are perfectly in sync with the equipment's exact location.</u>",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -8344,13 +8589,15 @@
           }
         ],
         "correctAnswer": "C",
-        "explanation": "Câu gạch chân khẳng định: Việc ra quyết định dựa chắc chắn vào dữ liệu thực nghiệm thay vì phỏng đoán, bảo đảm các biện pháp can thiệp đồng bộ chính xác với vị trí máy móc ➔ Khớp hoàn toàn với C."
+        "explanation": "Câu gạch chân khẳng định: Việc ra quyết định dựa chắc chắn vào dữ liệu thực nghiệm thay vì phỏng đoán, bảo đảm các biện pháp can thiệp đồng bộ chính xác với vị trí máy móc ➔ Khớp hoàn toàn với C.",
+        "cognitiveLevel": "Vận dụng"
       },
       {
         "id": "l12-hsg-03-q29",
         "index": 29,
         "sectionId": "l12-hsg-03-sec-5",
-        "questionText": "The word gauge in paragraph 3 is CLOSEST in meaning to _____.",
+        "questionText": "The word <u>gauge</u> in paragraph 3 is CLOSEST in meaning to _____.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -8370,13 +8617,15 @@
           }
         ],
         "correctAnswer": "C",
-        "explanation": "Từ \"gauge\" (đo đạc, định lượng, đánh giá) có nghĩa GẦN NHẤT với \"Evaluate\" (đánh giá)."
+        "explanation": "Từ \"gauge\" (đo đạc, định lượng, đánh giá) có nghĩa GẦN NHẤT với \"Evaluate\" (đánh giá).",
+        "cognitiveLevel": "Vận dụng"
       },
       {
         "id": "l12-hsg-03-q30",
         "index": 30,
         "sectionId": "l12-hsg-03-sec-5",
         "questionText": "In paragraph 1, the writer is ______.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -8396,13 +8645,15 @@
           }
         ],
         "correctAnswer": "B",
-        "explanation": "Ở đoạn 1, tác giả nêu bật các nhược điểm về sinh thái và tài chính của phương pháp canh tác đồng loạt truyền thống: Đáp án B."
+        "explanation": "Ở đoạn 1, tác giả nêu bật các nhược điểm về sinh thái và tài chính của phương pháp canh tác đồng loạt truyền thống: Đáp án B.",
+        "cognitiveLevel": "Vận dụng"
       },
       {
         "id": "l12-hsg-03-q31",
         "index": 31,
         "sectionId": "l12-hsg-03-sec-6",
         "questionText": "Which of the following is true according to the passage?",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -8422,13 +8673,15 @@
           }
         ],
         "correctAnswer": "D",
-        "explanation": "Thông tin D đúng theo đoạn 3: Việc tích hợp phản hồi của người dân vào mô hình số chuyển đổi việc ra quyết định quản trị đô thị từ trực giác cảm tính sang các căn cứ thực nghiệm nghiêm ngặt."
+        "explanation": "Thông tin D đúng theo đoạn 3: Việc tích hợp phản hồi của người dân vào mô hình số chuyển đổi việc ra quyết định quản trị đô thị từ trực giác cảm tính sang các căn cứ thực nghiệm nghiêm ngặt.",
+        "cognitiveLevel": "Vận dụng"
       },
       {
         "id": "l12-hsg-03-q32",
         "index": 32,
         "sectionId": "l12-hsg-03-sec-6",
-        "questionText": "The word they refers to _____.",
+        "questionText": "The word <u>they</u> refers to _____.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -8448,13 +8701,15 @@
           }
         ],
         "correctAnswer": "B",
-        "explanation": "Đại từ \"they\" ở đoạn 3 thay thế cho \"Administrators\" (các nhà quản lý đô thị)."
+        "explanation": "Đại từ \"they\" ở đoạn 3 thay thế cho \"Administrators\" (các nhà quản lý đô thị).",
+        "cognitiveLevel": "Vận dụng"
       },
       {
         "id": "l12-hsg-03-q33",
         "index": 33,
         "sectionId": "l12-hsg-03-sec-6",
         "questionText": "Which of the following best summarises paragraph 3?",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -8474,13 +8729,15 @@
           }
         ],
         "correctAnswer": "D",
-        "explanation": "Tóm tắt đoạn 3: Nhờ dựa vào chứng cứ thực nghiệm và ý kiến cộng đồng, bản sao số nâng cao trách nhiệm giải trình và đảm bảo các mô hình phản ánh sát thực tế. Đáp án D."
+        "explanation": "Tóm tắt đoạn 3: Nhờ dựa vào chứng cứ thực nghiệm và ý kiến cộng đồng, bản sao số nâng cao trách nhiệm giải trình và đảm bảo các mô hình phản ánh sát thực tế. Đáp án D.",
+        "cognitiveLevel": "Vận dụng"
       },
       {
         "id": "l12-hsg-03-q34",
         "index": 34,
         "sectionId": "l12-hsg-03-sec-6",
         "questionText": "Which of the following can be inferred from the passage?",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -8500,13 +8757,15 @@
           }
         ],
         "correctAnswer": "D",
-        "explanation": "Suy luận từ bài đọc: Việc mở rộng tiếp cận các mô hình mô phỏng đô thị thúc đẩy cơ chế đồng quản trị, giảm thiểu đáng kể nguy cơ ra quyết định đơn phương. Đáp án D."
+        "explanation": "Suy luận từ bài đọc: Việc mở rộng tiếp cận các mô hình mô phỏng đô thị thúc đẩy cơ chế đồng quản trị, giảm thiểu đáng kể nguy cơ ra quyết định đơn phương. Đáp án D.",
+        "cognitiveLevel": "Vận dụng"
       },
       {
         "id": "l12-hsg-03-q35",
         "index": 35,
         "sectionId": "l12-hsg-03-sec-6",
         "questionText": "According to paragraph 1, digital twins allow stakeholders to _____",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -8526,13 +8785,15 @@
           }
         ],
         "correctAnswer": "B",
-        "explanation": "Theo đoạn 1, digital twins cho phép các bên liên quan đánh giá trước tác động của các chính sách đô thị trước khi tiến hành xây dựng trên thực tế. Đáp án B."
+        "explanation": "Theo đoạn 1, digital twins cho phép các bên liên quan đánh giá trước tác động của các chính sách đô thị trước khi tiến hành xây dựng trên thực tế. Đáp án B.",
+        "cognitiveLevel": "Vận dụng cao"
       },
       {
         "id": "l12-hsg-03-q36",
         "index": 36,
         "sectionId": "l12-hsg-03-sec-6",
         "questionText": "Which of the following would be the best title for the passage?",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -8552,13 +8813,15 @@
           }
         ],
         "correctAnswer": "A",
-        "explanation": "Tiêu đề phù hợp và giàu tính học thuật nhất: Virtual Replicas and Civic Voices: Deducting New Eras of Urban Governance (Bản sao ảo và tiếng nói công dân: Định hình kỷ nguyên mới của quản trị đô thị)."
+        "explanation": "Tiêu đề phù hợp và giàu tính học thuật nhất: Virtual Replicas and Civic Voices: Deducting New Eras of Urban Governance (Bản sao ảo và tiếng nói công dân: Định hình kỷ nguyên mới của quản trị đô thị).",
+        "cognitiveLevel": "Vận dụng cao"
       },
       {
         "id": "l12-hsg-03-q37",
         "index": 37,
         "sectionId": "l12-hsg-03-sec-6",
-        "questionText": "The word reckless in paragraph 3 is OPPOSITE in meaning to _____.",
+        "questionText": "The word <u>reckless</u> in paragraph 3 is OPPOSITE in meaning to _____.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -8578,13 +8841,15 @@
           }
         ],
         "correctAnswer": "B",
-        "explanation": "Từ \"reckless\" (bốc đồng, liều lĩnh, thiếu cân nhắc) có từ TRÁI NGHĨA là \"Prudent\" (thận trọng, cẩn trọng, khôn ngoan). Đáp án B."
+        "explanation": "Từ \"reckless\" (bốc đồng, liều lĩnh, thiếu cân nhắc) có từ TRÁI NGHĨA là \"Prudent\" (thận trọng, cẩn trọng, khôn ngoan). Đáp án B.",
+        "cognitiveLevel": "Vận dụng cao"
       },
       {
         "id": "l12-hsg-03-q38",
         "index": 38,
         "sectionId": "l12-hsg-03-sec-6",
         "questionText": "Where in the passage does the following sentence best fit? This localized insight acts as a vital corrective mechanism, ensuring that top-down strategies do not overlook neighborhood-level nuances.",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -8604,13 +8869,15 @@
           }
         ],
         "correctAnswer": "B",
-        "explanation": "Câu cần chèn (\"This localized insight acts as a vital corrective mechanism...\") bổ nghĩa trực tiếp cho việc đưa trải nghiệm sống của người dân vào mô hình tại vị trí [II]."
+        "explanation": "Câu cần chèn (\"This localized insight acts as a vital corrective mechanism...\") bổ nghĩa trực tiếp cho việc đưa trải nghiệm sống của người dân vào mô hình tại vị trí [II].",
+        "cognitiveLevel": "Vận dụng cao"
       },
       {
         "id": "l12-hsg-03-q39",
         "index": 39,
         "sectionId": "l12-hsg-03-sec-6",
         "questionText": "What conclusion can be drawn from paragraph 4?",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -8630,13 +8897,15 @@
           }
         ],
         "correctAnswer": "A",
-        "explanation": "Kết luận từ đoạn 4: Quy hoạch đô thị minh bạch dựa trên bằng chứng củng cố mạnh mẽ sự gắn kết xã hội và niềm tin giữa chính quyền thành phố và người dân. Đáp án A."
+        "explanation": "Kết luận từ đoạn 4: Quy hoạch đô thị minh bạch dựa trên bằng chứng củng cố mạnh mẽ sự gắn kết xã hội và niềm tin giữa chính quyền thành phố và người dân. Đáp án A.",
+        "cognitiveLevel": "Vận dụng cao"
       },
       {
         "id": "l12-hsg-03-q40",
         "index": 40,
         "sectionId": "l12-hsg-03-sec-6",
         "questionText": "Which of the following is NOT implied in paragraph 2?",
+        "type": "single_choice",
         "options": [
           {
             "id": "A",
@@ -8656,7 +8925,8 @@
           }
         ],
         "correctAnswer": "C",
-        "explanation": "Đoạn 2 KHÔNG hề ngụ ý rằng người dân phải sở hữu kỹ năng kỹ thuật nâng cao mới có thể tham gia vào bảng điều khiển tương tác. Đáp án C."
+        "explanation": "Đoạn 2 KHÔNG hề ngụ ý rằng người dân phải sở hữu kỹ năng kỹ thuật nâng cao mới có thể tham gia vào bảng điều khiển tương tác. Đáp án C.",
+        "cognitiveLevel": "Vận dụng cao"
       }
     ]
   }

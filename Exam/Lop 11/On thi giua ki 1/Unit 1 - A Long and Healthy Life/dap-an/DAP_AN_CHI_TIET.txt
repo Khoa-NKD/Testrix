@@ -1,8 +1,8 @@
-BẢNG ĐÁP ÁN VÀ HƯỚNG DẪN GIẢI CHI TIẾT
+BẢNG ĐÁP ÁN VÀ HƯỚNG DẪN GIẢI CHI TIẾT ĐẦY ĐỦ
 Môn: Tiếng Anh - Lớp 11
 Tên đề: Đề Cương Ôn Tập Giữa Kỳ 1 Lớp 11 - Unit 1: A Long and Healthy Life (Năm học 2026-2027)
 Thời gian làm bài: 60 phút | Tổng số câu: 44 câu
-Trích xuất từ: de-cuong-tieng-anh-11-unit-1-azota.docx
+Tệp gốc: de-cuong-tieng-anh-11-unit-1-azota.docx
 ================================================================================
 
 I. BẢNG TỔNG HỢP ĐÁP ÁN
@@ -18,11 +18,36 @@ Câu 36: D    |    Câu 37: D    |    Câu 38: D    |    Câu 39: B    |    Câu
 Câu 41: C    |    Câu 42: A    |    Câu 43: C    |    Câu 44: A
 --------------------------------------------------------------------------------
 
-II. HƯỚNG DẪN GIẢI CHI TIẾT TỪNG CÂU
+II. NỘI DUNG CHI TIẾT CÁC BÀI ĐỌC HIỂU & ĐỌC ĐỤC LỖ (READING & CLOZE PASSAGES)
+================================================================================
+
+[PHẦN: II. READING - PART 1: CLOZE READING]
+Tiêu đề: The Importance and Purpose of Sleep
+Hướng dẫn: Read the following passage carefully and then choose the best option to fit each numbered blank.
+Áp dụng cho các câu hỏi: 31, 32, 33, 34, 35
+
+--- VĂN BẢN ĐOẠN VĂN ---
+For about one third of your life, your eyes will be closed. You will not move very much. You will breathe very slowly. You will be quiet. In other words, for about one third of your life, you will be asleep. Why do we sleep so much? What is the purpose? Scientists do not have a complete answer. They believe that sleep (31)________ your energy and helps your brain work better. If you do not sleep enough, you cannot (32)_________on your work, and you feel tired all day. Without enough sleep, you are also more likely to get sick. Sleep is important (33)_________ normal development. This means that children need a lot of sleep in order to grow up strong and healthy. During the first two weeks of life, babies sleep for about 16 hours every day. This changes as they grow and need less sleep. Teenagers still need about 9 hours of sleep every night, but most adults need less – only about 8 hours. After about the age of 70, they only sleep for about 6 hours every night. All animals, (34) _________ live in different environments, need sleep, (35) _________ there is great variation in how much they sleep. For example, some big snakes sleep for more than 18 hours a day. Sheep only sleep for about 4 hours, and giraffes sleep less than 2 hours a day! Pigs sleep for 8 hours a day just like adult humans.
+--------------------------------------------------------------------------------
+
+[PHẦN: PART 2: READING COMPREHENSION]
+Tiêu đề: Functions and Nutritional Value of Fats
+Hướng dẫn: Read the following passage and mark the letter A, B, C, or D on your answer sheet to indicate the correct answer to each of the questions.
+Áp dụng cho các câu hỏi: 36, 37, 38, 39, 40
+
+--- VĂN BẢN ĐOẠN VĂN ---
+Most human diets contain between 10 and 15 percent of their total calories as protein. The rest of the dietary energy comes from carbohydrates, fats, and in some people, alcohol. The proportion of calories from fats varies from 10 percent in poor communities to 40 percent or more in rich communities.
+
+In addition to providing energy, fats have several other functions in the body. The fat-soluble vitamins, A, D, E, and K, are dissolved in fats, as their name implies. Good sources of these vitamins have high oil or fat content, and the vitamins are stored in the body’s fatty tissues. In the diet, fats cause food to remain longer in the stomach, thus increasing the feeling of fullness for some time after a meal is eaten. Fats add variety, taste, and texture to foods, which accounts for the popularity of fried foods. Fatty deposits in the body have an insulating and protective value. The curves of the female human body are due mostly to strategically located fat deposits.
+
+Whether a certain amount of fat in the diet is essential to human health is not definitely known. When rats are fed a fat-free diet, their growth eventually ceases, their skin becomes inflamed and scaly, and their reproductive systems are damaged. Two fatty acids, linoleic and arachidonic acids, prevent these abnormalities and hence are called essential fatty acids. They are required by a number of other animals, but their roles in human beings are debatable. Most nutritionists consider linoleic fatty acid an <u>essential</u> nutrient for humans.
+--------------------------------------------------------------------------------
+
+III. HƯỚNG DẪN GIẢI CHI TIẾT TỪNG CÂU HỎI
 ================================================================================
 
 Câu 1: [Đáp án đúng: D]
-Nội dung: 
+Nội dung: Mark the letter A, B, C, or D on your answer sheet to indicate the word that differs from the other three in the position of primary stress.
       A. conflict
       B. fitness
       C. value
@@ -31,7 +56,7 @@ Giải thích: adapt /əˈdæpt/ trọng âm rơi vào âm tiết thứ 2, các 
 --------------------------------------------------------------------------------
 
 Câu 2: [Đáp án đúng: B]
-Nội dung: 
+Nội dung: Mark the letter A, B, C, or D on your answer sheet to indicate the word that differs from the other three in the position of primary stress.
       A. virus
   (*) B. respect
       C. habit
@@ -40,7 +65,7 @@ Giải thích: respect /rɪˈspekt/ trọng âm rơi vào âm tiết thứ 2, c�
 --------------------------------------------------------------------------------
 
 Câu 3: [Đáp án đúng: D]
-Nội dung: 
+Nội dung: Mark the letter A, B, C, or D on your answer sheet to indicate the word that differs from the other three in the position of primary stress.
       A. habit
       B. diet
       C. balance
@@ -49,7 +74,7 @@ Giải thích: routine /ruːˈtiːn/ trọng âm rơi vào âm tiết thứ 2, c
 --------------------------------------------------------------------------------
 
 Câu 4: [Đáp án đúng: C]
-Nội dung: 
+Nội dung: Mark the letter A, B, C, or D on your answer sheet to indicate the word that differs from the other three in the position of primary stress.
       A. expectancy
       B. longevity
   (*) C. vegetable
@@ -58,7 +83,7 @@ Giải thích: vegetable /ˈvedʒtəbl/ trọng âm rơi vào âm tiết thứ 1
 --------------------------------------------------------------------------------
 
 Câu 5: [Đáp án đúng: B]
-Nội dung: If you want to maintain a healthy weight, it's advisable to cut down on fast foods and focus on nutritious meals.
+Nội dung: If you want to maintain a healthy weight, it's advisable to <u>cut down on</u> fast foods and focus on nutritious meals.
       A. increase
   (*) B. decrease
       C. balance
@@ -67,8 +92,8 @@ Giải thích: cut down on = decrease (cắt giảm thức ăn nhanh).
 --------------------------------------------------------------------------------
 
 Câu 6: [Đáp án đúng: C]
-Nội dung: 
-      A. healthy lifestyle, including a balanced diet and regular physical activity, can lower the chances of developing various diseases.
+Nội dung: A healthy lifestyle, including a balanced diet and regular physical activity, can lower the chances of developing various <u>diseases</u>.
+      A. recipe
       B. fitness
   (*) C. illness
       D. spread
@@ -76,7 +101,7 @@ Giải thích: diseases = illness (bệnh tật).
 --------------------------------------------------------------------------------
 
 Câu 7: [Đáp án đúng: C]
-Nội dung: We should do exercise frequently and eat more fruits and vegetables to stay healthy.
+Nội dung: We should do exercise <u>frequently</u> and eat more fruits and vegetables to stay healthy.
       A. rarely
       B. daily
   (*) C. regularly
@@ -85,7 +110,7 @@ Giải thích: frequently = regularly (thường xuyên).
 --------------------------------------------------------------------------------
 
 Câu 8: [Đáp án đúng: B]
-Nội dung: In Vietnam, life expectancy for both men and women has increased significantly over the last ten years.
+Nội dung: In Vietnam, <u>life expectancy</u> for both men and women has increased significantly over the last ten years.
       A. living standard
   (*) B. longevity
       C. life skills
@@ -94,7 +119,7 @@ Giải thích: life expectancy = longevity (tuổi thọ trung bình).
 --------------------------------------------------------------------------------
 
 Câu 9: [Đáp án đúng: D]
-Nội dung: If you want to improve your health, it's important to give up unhealthy habits like staying up late.
+Nội dung: If you want to improve your health, it's important to <u>give up</u> unhealthy habits like staying up late.
       A. quit
       B. agree
       C. prevent
@@ -103,7 +128,7 @@ Giải thích: give up = từ bỏ; từ trái nghĩa là continue (tiếp tục
 --------------------------------------------------------------------------------
 
 Câu 10: [Đáp án đúng: C]
-Nội dung: I try to work out at the gym three times a week to stay fit and maintain a healthy lifestyle.
+Nội dung: I try to <u>work out</u> at the gym three times a week to stay fit and maintain a healthy lifestyle.
       A. press-up
       B. exercise
   (*) C. relax
@@ -112,7 +137,7 @@ Giải thích: work out = tập luyện thể dục thể thao; từ trái nghĩ
 --------------------------------------------------------------------------------
 
 Câu 11: [Đáp án đúng: A]
-Nội dung: Having a balanced diet is the key to a healthy lifestyle.
+Nội dung: Having a <u>balanced</u> diet is the key to a healthy lifestyle.
   (*) A. unreasonable
       B. fair
       C. equivalent
@@ -121,7 +146,7 @@ Giải thích: balanced = cân đối, hợp lý; từ trái nghĩa là unreason
 --------------------------------------------------------------------------------
 
 Câu 12: [Đáp án đúng: C]
-Nội dung: The balance between work and life helps people to protect themselves from the negative effects of stress.
+Nội dung: The balance between work and life helps people to protect themselves from the negative <u>effects</u> of stress.
       A. reasons
       B. impacts
   (*) C. causes
@@ -139,8 +164,8 @@ Giải thích: antibiotics = thuốc kháng sinh (chỉ dùng khi cần thiết 
 --------------------------------------------------------------------------------
 
 Câu 14: [Đáp án đúng: C]
-Nội dung: 
-      A. ______ diet, consisting of nutritious foods from all food groups, is key to overall well-being.
+Nội dung: A ______ diet, consisting of nutritious foods from all food groups, is key to overall well-being.
+      A. infectious
       B. regular
   (*) C. balanced
       D. fit
@@ -292,7 +317,7 @@ Giải thích: Cấu trúc Hiện tại hoàn thành + since + Quá khứ đơn:
 --------------------------------------------------------------------------------
 
 Câu 31: [Đáp án đúng: C]
-Nội dung: 
+Nội dung: They believe that sleep (31)________ your energy and helps your brain work better.
       A. restoration
       B. restorative
   (*) C. restores
@@ -301,7 +326,7 @@ Giải thích: Chủ ngữ không đếm được "sleep" chia động từ số
 --------------------------------------------------------------------------------
 
 Câu 32: [Đáp án đúng: D]
-Nội dung: 
+Nội dung: If you do not sleep enough, you cannot (32)_________on your work, and you feel tired all day.
       A. treat
       B. relax
       C. vaccinate
@@ -310,7 +335,7 @@ Giải thích: concentrate on = tập trung vào công việc.
 --------------------------------------------------------------------------------
 
 Câu 33: [Đáp án đúng: A]
-Nội dung: 
+Nội dung: Sleep is important (33)_________ normal development.
   (*) A. for
       B. of
       C. with
@@ -319,7 +344,7 @@ Giải thích: important for = quan trọng đối với sự phát triển bìn
 --------------------------------------------------------------------------------
 
 Câu 34: [Đáp án đúng: A]
-Nội dung: 
+Nội dung: All animals, (34) _________ live in different environments, need sleep...
   (*) A. which
       B. that
       C. who
@@ -328,7 +353,7 @@ Giải thích: Đại từ quan hệ "which" thay thế cho danh từ chỉ loà
 --------------------------------------------------------------------------------
 
 Câu 35: [Đáp án đúng: A]
-Nội dung: 
+Nội dung: All animals, which live in different environments, need sleep, (35) _________ there is great variation in how much they sleep.
   (*) A. but
       B. so
       C. because
@@ -364,7 +389,7 @@ Giải thích: Chuột thí nghiệm ăn khẩu phần không có chất béo th
 --------------------------------------------------------------------------------
 
 Câu 39: [Đáp án đúng: B]
-Nội dung: The word “essential” in paragraph 3 is CLOSEST in meaning to
+Nội dung: The word <u>essential</u> in paragraph 3 is CLOSEST in meaning to:
       A. curious
   (*) B. necessary
       C. sustainable

@@ -1,8 +1,8 @@
-BẢNG ĐÁP ÁN VÀ HƯỚNG DẪN GIẢI CHI TIẾT
+BẢNG ĐÁP ÁN VÀ HƯỚNG DẪN GIẢI CHI TIẾT ĐẦY ĐỦ
 Môn: Tiếng Anh - Lớp 12
 Tên đề: Đề Thi Thử Học Sinh Giỏi & Tốt Nghiệp THPT Lớp 12 - Test 02 (Bộ Đề Chuẩn Cấu Trúc 2026)
 Thời gian làm bài: 50 phút | Tổng số câu: 40 câu
-Trích xuất từ: TEST 02 HSG- A. ORIGINAL.docx
+Tệp gốc: TEST 02 HSG- A. ORIGINAL.docx
 ================================================================================
 
 I. BẢNG TỔNG HỢP ĐÁP ÁN
@@ -17,11 +17,103 @@ Câu 31: A    |    Câu 32: C    |    Câu 33: D    |    Câu 34: B    |    Câu
 Câu 36: B    |    Câu 37: C    |    Câu 38: B    |    Câu 39: A    |    Câu 40: A
 --------------------------------------------------------------------------------
 
-II. HƯỚNG DẪN GIẢI CHI TIẾT TỪNG CÂU
+II. NỘI DUNG CHI TIẾT CÁC BÀI ĐỌC HIỂU & ĐỌC ĐỤC LỖ (READING & CLOZE PASSAGES)
+================================================================================
+
+[PHẦN: I. LEAFLET & ANNOUNCEMENT CLOZE (QUESTIONS 1 - 6)]
+Tiêu đề: Benefits of a Two-Minute Meditation
+Hướng dẫn: Read the following announcement/leaflet and mark the letter A, B, C or D on your answer sheet to indicate the option that best fits each of the numbered blanks from 1 to 6.
+Áp dụng cho các câu hỏi: 1, 2, 3, 4, 5, 6
+
+--- VĂN BẢN ĐOẠN VĂN ---
+Benefits of a Two-Minute Meditation
+
+Many people think meditation requires hours of silence. However, a recent study (1) ________ in a medical journal reveals that your brain begins to change after just a few minutes.
+
+Over the past year, experts (2) ________ that focusing on your breath helps reduce anxiety and improve sleep. Just seven minutes is enough to see meaningful results.
+
+When you meditate, your brain creates waves linked to relaxation. This calm state helps you to (3) ________ out negative thoughts and distractions.
+
+Instead of giving up immediately, you should (4) ________ to the practice. Consistency is more important than doing it perfectly on the first try.
+
+Meditation is not just about relaxation; it requires genuine (5) ________. It reallocates brain resources to better manage your stress and emotions.
+
+Protect your mental (6) ________ by starting a simple breathing habit today! Join our wellness community to access free guided meditation sessions!
+
+(Adapted from Jacqueline Howard, CNN)
+--------------------------------------------------------------------------------
+
+[PHẦN: II. SHORT COMMUNICATION & NOTICE (QUESTIONS 7 - 12)]
+Tiêu đề: Upgrade Your Tech: Shop Smart for Your Next Smartphone!
+Hướng dẫn: Read the following announcement/leaflet and mark the letter A, B, C or D on your answer sheet to indicate the option that best fits each of the numbered blanks from 7 to 12.
+Áp dụng cho các câu hỏi: 7, 8, 9, 10, 11, 12
+
+--- VĂN BẢN ĐOẠN VĂN ---
+Upgrade Your Tech: Shop Smart for Your Next Smartphone!
+
+Is your current smartphone too old to function properly? When replacing their devices, (7) ________ prefer ordering online, while others visit physical electronics stores. Online shopping offers a massive catalog of products to browse comfortably at home. (8) ________, you must wait several days for shipping and handle the setup yourself.
+
+On the other hand, buying in-store is much (9) ________ than ordering online if you need a phone urgently. You can hold the device, test the camera, and experience the screen quality yourself. You (10) ________ be cautious, though, because sales staff might pressure you to upgrade or buy expensive accessories.
+
+To avoid overspending, make up your (11) ________ about your budget before entering the shop. If you desire an (12) ________ shopping experience, weigh your personal needs carefully. Upgrade your tech smartly and confidently today!
+
+(Adapted from Phong Đỗ, https://thanhnien.vn/)
+--------------------------------------------------------------------------------
+
+[PHẦN: IV. PASSAGE CLOZE (QUESTIONS 18 - 22)]
+Tiêu đề: Passage Cloze
+Hướng dẫn: Read the following passage and mark the letter A, B, C or D on your answer sheet to indicate the option that best fits each of the numbered blanks from 18 to 22.
+Áp dụng cho các câu hỏi: 18, 19, 20, 21, 22
+
+--- VĂN BẢN ĐOẠN VĂN ---
+Social media platforms have undeniably transformed global communication landscapes over the past decade. Initially, only a select few networks existed with relatively restricted outreach capabilities. (18) ________. Today, massive audiences interact consistently across various apps, creating an expansive framework of connected users. This unprecedented digital connectivity has fostered vibrant online communities, (19) ________.
+
+The rapid expansion of these platforms brings formidable challenges alongside lucrative opportunities. When users engage with specific posts, sophisticated algorithms prioritize similar material in their customized feeds. (20) ________. Advertisers frequently exploit these patterns, funneling vast marketing budgets into highly targeted campaigns. To mitigate the adverse effects of digital echo chambers, specialists firmly (21) ________.
+
+Addressing these complex digital dilemmas requires a concerted effort from all stakeholders involved in the ecosystem. Platform designers are continually tweaking features to successfully strike a balance between user retention and mental well-being. (22) ________. When dialogue remains constructive, global communities can ultimately reap the immense benefits of diverse viewpoints while maintaining a healthy and respectful public discourse.
+
+(Adapted from Our World in Data, "The Rise of Social Media")
+--------------------------------------------------------------------------------
+
+[PHẦN: V. READING COMPREHENSION 1 (QUESTIONS 23 - 30)]
+Tiêu đề: Reading Comprehension 1
+Hướng dẫn: Read the passage and mark the letter A, B, C or D on your answer sheet to indicate the best answer to each of the following questions from 23 to 30.
+Áp dụng cho các câu hỏi: 23, 24, 25, 26, 27, 28, 29, 30
+
+--- VĂN BẢN ĐOẠN VĂN ---
+As major economies feel the pinch of domestic inflation, official development assistance (ODA) frequently becomes an easy target for sweeping budget cuts. Politicians justify this <u>retrenchment</u> by claiming an urgent need for fiscal prudence at home, turning a blind eye to compounding global crises such as climate shocks and widespread conflicts. However, slashing these essential funds sacrifices long-term geopolitical stability for fleeting financial relief, ultimately leaving vulnerable regions to fend for themselves when disasters strike.
+
+By definition, authentic ODA must focus squarely on economic development and human welfare in developing nations. It is typically distributed on highly <u>concessional</u> terms rather than as commercial, market-rate loans. When channeled effectively through multilateral institutions or targeted bilateral agreements, this vital financing empowers local communities to build resilient healthcare systems and equitable education infrastructures. Such strategic investments lay the groundwork for long-term self-sufficiency, ensuring that recipient nations do not perpetually rely on external lifelines to survive.
+
+International bodies have long established two main expectations: prioritizing extreme poverty and allocating a modest 0.7% of gross national income to overseas aid; unfortunately, <u>the latter</u> is rarely achieved in practice. Even when headline figures appear exceptionally robust, they often conceal a controversial accounting maneuver: classifying domestic spending on newly arrived refugees as foreign aid. <u>While supporting asylum seekers is undeniably vital, legally absorbing these internal expenses under the ODA umbrella drains capital from critical poverty-reduction programs abroad, effectively inflating donor generosity on paper.</u>
+
+Recent policy shifts bring this troubling reality into sharp focus. Several prominent European governments have drastically scaled back their external commitments, citing profound domestic economic turmoil as their primary justification. Conversely, Scandinavian nations like Norway continue to punch above their weight, maintaining their expansive aid budgets despite facing similar global headwinds. This stark divergence highlights that robust foreign assistance is not merely a matter of financial capacity; rather, it hinges entirely on a nation's political resolve to uphold international solidarity.
+
+(Adapted from Global Citizen: “The Global Safety Net Frays as European Countries Cut Aid,” and the supplied excerpt)
+--------------------------------------------------------------------------------
+
+[PHẦN: VI. READING COMPREHENSION 2 (QUESTIONS 31 - 40)]
+Tiêu đề: Reading Comprehension 2
+Hướng dẫn: Read the passage and mark the letter A, B, C or D on your answer sheet to indicate the best answer to each of the following questions from 31 to 40.
+Áp dụng cho các câu hỏi: 31, 32, 33, 34, 35, 36, 37, 38, 39, 40
+
+--- VĂN BẢN ĐOẠN VĂN ---
+The ongoing integration of automated systems into daily commerce highlights a stark divide between maximizing corporate efficiency and preserving human employment. While some herald artificial intelligence as the catalyst for unprecedented growth, others warn that it wipes out traditional jobs, drastically reducing the income tax revenues that governments depend on. To bridge this gap, advocates have proposed a “robot tax” designed to recoup lost funds when machines take over human roles. [I] However, opponents argue this approach is inherently flawed, contrasting the desire to protect workers with the risk of stifling technological progress.
+
+On one side of the debate, proponents assert that taxing automated labor could generate a crucial financial buffer. As the workforce transitions, the revenue gathered could bankroll extensive reskilling programs, essentially helping displaced workers keep the wolf from the door. [II] Furthermore, by imposing a financial cost on rapid automation, regulators could slow down the transition, granting communities the breathing space needed to adapt to structural economic shifts. From this perspective, the tax serves as a necessary intervention to stop societal inequality from widening further.
+
+Conversely, critics point out that implementing such a levy might do more harm than good, comparing <u>it</u> to throwing the baby out with the bathwater. A primary hurdle lies in the ambiguous definition of a "robot" in the modern era. Identifying whether an invisible software algorithm should incur the same charges as a physical assembly-line machine creates a regulatory nightmare. [III] Moreover, imposing <u>stringent</u> financial penalties could drive multinational corporations to relocate their operations to more accommodating jurisdictions, thereby depriving the domestic economy of vital technological advancements.
+
+Rather than relying on a bespoke robot levy, some economic strategists recommend adjusting existing fiscal frameworks to achieve similar goals. Proposals include bumping up general corporate tax rates or applying higher value-added taxes to the purchase of automation technology. [IV] These alternatives attempt to strike a balance, contrasting the urgent need to fund social safety nets with the imperative to maintain a competitive edge. Navigating this transition requires nuanced policies that support the workforce without driving away the very innovation that fuels economic resilience.
+
+(Adapted from https://taxfix.com/en-uk/blog/what-in-the-world-is-robot-tax/)
+--------------------------------------------------------------------------------
+
+III. HƯỚNG DẪN GIẢI CHI TIẾT TỪNG CÂU HỎI
 ================================================================================
 
 Câu 1: [Đáp án đúng: B]
-Nội dung: 
+Nội dung: However, a recent study (1) ________ in a medical journal reveals that your brain begins to change after just a few minutes.
       A. to publish
   (*) B. published
       C. publish
@@ -30,7 +122,7 @@ Giải thích: Rút gọn mệnh đề quan hệ dạng bị động (which was 
 --------------------------------------------------------------------------------
 
 Câu 2: [Đáp án đúng: C]
-Nội dung: 
+Nội dung: Over the past year, experts (2) ________ that focusing on your breath helps reduce anxiety and improve sleep.
       A. will find
       B. found
   (*) C. have found
@@ -39,7 +131,7 @@ Giải thích: Dấu hiệu "Over the past year" đi với thì Hiện tại ho�
 --------------------------------------------------------------------------------
 
 Câu 3: [Đáp án đúng: D]
-Nội dung: 
+Nội dung: This calm state helps you to (3) ________ out negative thoughts and distractions.
       A. figure
       B. point
       C. hand
@@ -48,7 +140,7 @@ Giải thích: Cụm động từ "block out" có nghĩa là chặn lại, ngăn
 --------------------------------------------------------------------------------
 
 Câu 4: [Đáp án đúng: A]
-Nội dung: 
+Nội dung: Instead of giving up immediately, you should (4) ________ to the practice.
   (*) A. commit
       B. object
       C. react
@@ -57,7 +149,7 @@ Giải thích: Cấu trúc "commit to sth" (cam kết kiên trì gắn bó với
 --------------------------------------------------------------------------------
 
 Câu 5: [Đáp án đúng: C]
-Nội dung: 
+Nội dung: Meditation is not just about relaxation; it requires genuine (5) ________.
       A. evolution
       B. instruction
   (*) C. concentration
@@ -66,7 +158,7 @@ Giải thích: Cần danh từ: "concentration" (sự tập trung tinh thần th
 --------------------------------------------------------------------------------
 
 Câu 6: [Đáp án đúng: D]
-Nội dung: 
+Nội dung: Protect your mental (6) ________ by starting a simple breathing habit today!
       A. healthy
       B. heal
       C. healthily
@@ -75,7 +167,7 @@ Giải thích: Cụm danh từ: "mental health" (sức khỏe tinh thần của 
 --------------------------------------------------------------------------------
 
 Câu 7: [Đáp án đúng: D]
-Nội dung: 
+Nội dung: When replacing their devices, (7) ________ prefer ordering online, while others visit physical electronics stores.
       A. much
       B. another
       C. any
@@ -84,7 +176,7 @@ Giải thích: Cấu trúc đối chiếu: "some prefer ... while others visit..
 --------------------------------------------------------------------------------
 
 Câu 8: [Đáp án đúng: D]
-Nội dung: 
+Nội dung: (8) ________, you must wait several days for shipping and handle the setup yourself.
       A. Furthermore
       B. Therefore
       C. Because
@@ -93,7 +185,7 @@ Giải thích: Liên từ trạng từ chỉ sự tương phản: "However, you 
 --------------------------------------------------------------------------------
 
 Câu 9: [Đáp án đúng: D]
-Nội dung: 
+Nội dung: On the other hand, buying in-store is much (9) ________ than ordering online if you need a phone urgently.
       A. fastest
       B. fast
       C. as fast
@@ -102,7 +194,7 @@ Giải thích: Cấu trúc so sánh hơn với tính từ ngắn được nhấn
 --------------------------------------------------------------------------------
 
 Câu 10: [Đáp án đúng: C]
-Nội dung: 
+Nội dung: You (10) ________ be cautious, though, because sales staff might pressure you to upgrade or buy expensive accessories.
       A. daren't
       B. needn't
   (*) C. should
@@ -111,7 +203,7 @@ Giải thích: Động từ khuyết thiếu đưa ra lời khuyên thận trọ
 --------------------------------------------------------------------------------
 
 Câu 11: [Đáp án đúng: B]
-Nội dung: 
+Nội dung: To avoid overspending, make up your (11) ________ about your budget before entering the shop.
       A. thought
   (*) B. mind
       C. head
@@ -120,7 +212,7 @@ Giải thích: Thành ngữ cố định: "make up one's mind" (đưa ra quyết
 --------------------------------------------------------------------------------
 
 Câu 12: [Đáp án đúng: D]
-Nội dung: 
+Nội dung: If you desire an (12) ________ shopping experience, weigh your personal needs carefully.
       A. reluctant
       B. obsolete
       C. apathetic
@@ -174,7 +266,7 @@ Giải thích: Trật tự hội thoại về học viện đào tạo ngôi sao
 --------------------------------------------------------------------------------
 
 Câu 18: [Đáp án đúng: B]
-Nội dung: 
+Nội dung: Initially, only a select few networks existed with relatively restricted outreach capabilities. (18) ________. Today, massive audiences interact consistently across various apps...
       A. the availability significant equally was globally of smartphones affordable widespread
   (*) B. Equally significant was the widespread availability of affordable smartphones globally
       C. affordable smartphones globally was widespread availability of the significant equally
@@ -183,7 +275,7 @@ Giải thích: Cấu trúc đảo ngữ nhấn mạnh tính từ: "Equally signi
 --------------------------------------------------------------------------------
 
 Câu 19: [Đáp án đúng: D]
-Nội dung: 
+Nội dung: This unprecedented digital connectivity has fostered vibrant online communities, (19) ________.
       A. which cultural expression naturally rise gives to of new forms
       B. forms new of cultural expression which to rise gives naturally
       C. naturally gives which to rise new cultural expression of forms
@@ -192,7 +284,7 @@ Giải thích: Mệnh đề quan hệ không xác định bổ nghĩa cho cả s
 --------------------------------------------------------------------------------
 
 Câu 20: [Đáp án đúng: A]
-Nội dung: 
+Nội dung: When users engage with specific posts, sophisticated algorithms prioritize similar material in their customized feeds. (20) ________. Advertisers frequently exploit these patterns...
   (*) A. This mechanism highlights compelling content that broadens our intellectual horizons daily
       B. Compelling content this mechanism highlights does not broaden that daily our intellectual horizons
       C. This mechanism highlights content compelling that our horizons intellectual does not daily broaden
@@ -201,7 +293,7 @@ Giải thích: Trật tự từ chuẩn ngữ pháp: "This mechanism highlights 
 --------------------------------------------------------------------------------
 
 Câu 21: [Đáp án đúng: B]
-Nội dung: 
+Nội dung: To mitigate the adverse effects of digital echo chambers, specialists firmly (21) ________.
       A. recommend comprehensive media literacy programs that implement should schools
   (*) B. recommend that schools should implement comprehensive media literacy programs
       C. that schools implement should recommend programs comprehensive media literacy
@@ -210,7 +302,7 @@ Giải thích: Cấu trúc giả định với recommend: "recommend that school
 --------------------------------------------------------------------------------
 
 Câu 22: [Đáp án đúng: A]
-Nội dung: 
+Nội dung: Platform designers are continually tweaking features to successfully strike a balance between user retention and mental well-being. (22) ________. When dialogue remains constructive, global communities can reap the benefits.
   (*) A. In addition to this, both users and policymakers must remain exceptionally vigilant
       B. Must remain vigilant exceptionally both users and policymakers in addition this to
       C. Both users and policymakers exceptionally must vigilant remain this to in addition
@@ -246,7 +338,7 @@ Giải thích: Ở đoạn 1, tác giả chỉ trích sự thiển cận khi c�
 --------------------------------------------------------------------------------
 
 Câu 26: [Đáp án đúng: C]
-Nội dung: The word retrenchment in paragraph 1 is OPPOSITE in meaning to _____.
+Nội dung: The word <u>retrenchment</u> in paragraph 1 is OPPOSITE in meaning to _____.
       A. Stagnation
       B. Curtailment
   (*) C. Expansion
@@ -255,7 +347,7 @@ Giải thích: Từ "retrenchment" (sự cắt giảm chi tiêu, thu hẹp ngân
 --------------------------------------------------------------------------------
 
 Câu 27: [Đáp án đúng: C]
-Nội dung: The word concessional in paragraph 2 is CLOSEST in meaning to _____.
+Nội dung: The word <u>concessional</u> in paragraph 2 is CLOSEST in meaning to _____.
       A. Exorbitant
       B. Mandatory
   (*) C. Advantageous
@@ -273,7 +365,7 @@ Giải thích: Tác giả KHÔNG đồng ý với nhận định A vì ở đo�
 --------------------------------------------------------------------------------
 
 Câu 29: [Đáp án đúng: C]
-Nội dung: The phrase the latter in paragraph 3 refers to ______.
+Nội dung: The phrase <u>the latter</u> in paragraph 3 refers to ______.
       A. Prioritizing extreme poverty in developing areas
       B. Concealing a controversial accounting maneuver
   (*) C. Allocating 0.7 percent of gross national income
@@ -282,7 +374,7 @@ Giải thích: Cụm từ "the latter" ở đoạn 3 đề cập đến vế th�
 --------------------------------------------------------------------------------
 
 Câu 30: [Đáp án đúng: B]
-Nội dung: Which of the following best paraphrases the underlined sentence in paragraph 3? While supporting asylum seekers is undeniably vital, legally absorbing these internal expenses under the ODA umbrella drains capital from critical poverty-reduction programs abroad, effectively inflating donor generosity on paper.
+Nội dung: Which of the following best paraphrases the underlined sentence in paragraph 3? <u>While supporting asylum seekers is undeniably vital, legally absorbing these internal expenses under the ODA umbrella drains capital from critical poverty-reduction programs abroad, effectively inflating donor generosity on paper.</u>
       A. The crucial task of supporting refugees is severely hampered when governments falsely claim domestic expenses as ODA, leading to significantly reduced budgets for international poverty reduction
   (*) B. Although aiding refugees is important, counting domestic refugee spending as foreign aid depletes funds for overseas development and artificially exaggerates a country's charitable contributions
       C. Supporting asylum seekers requires significant funding, which forces donor countries to legally divert money from foreign poverty-reduction programs to domestic charities and facilities
@@ -291,7 +383,7 @@ Giải thích: Câu gạch chân diễn đạt: Dù hỗ trợ người tị n�
 --------------------------------------------------------------------------------
 
 Câu 31: [Đáp án đúng: A]
-Nội dung: The word it in paragraph 3 refers to _____.
+Nội dung: The word <u>it</u> in paragraph 3 refers to _____.
   (*) A. Such a levy
       B. The workforce
       C. The debate
@@ -372,7 +464,7 @@ Giải thích: Kết luận từ đoạn 2: Thuế tự động hóa nếu áp d
 --------------------------------------------------------------------------------
 
 Câu 40: [Đáp án đúng: A]
-Nội dung: The word stringent in paragraph 3 is OPPOSITE in meaning to _____.
+Nội dung: The word <u>stringent</u> in paragraph 3 is OPPOSITE in meaning to _____.
   (*) A. Relaxed
       B. Exacting
       C. Severe

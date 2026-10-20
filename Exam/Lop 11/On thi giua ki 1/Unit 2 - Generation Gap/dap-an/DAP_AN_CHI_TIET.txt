@@ -1,8 +1,8 @@
-BẢNG ĐÁP ÁN VÀ HƯỚNG DẪN GIẢI CHI TIẾT
+BẢNG ĐÁP ÁN VÀ HƯỚNG DẪN GIẢI CHI TIẾT ĐẦY ĐỦ
 Môn: Tiếng Anh - Lớp 11
 Tên đề: Đề Cương Ôn Tập Giữa Kỳ 1 Lớp 11 - Unit 2: Generation Gap (Năm học 2026-2027)
 Thời gian làm bài: 60 phút | Tổng số câu: 46 câu
-Trích xuất từ: de-cuong-tieng-anh-11-unit-2-azota.docx
+Tệp gốc: de-cuong-tieng-anh-11-unit-2-azota.docx
 ================================================================================
 
 I. BẢNG TỔNG HỢP ĐÁP ÁN
@@ -19,11 +19,44 @@ Câu 41: A    |    Câu 42: C    |    Câu 43: B    |    Câu 44: B    |    Câu
 Câu 46: C
 --------------------------------------------------------------------------------
 
-II. HƯỚNG DẪN GIẢI CHI TIẾT TỪNG CÂU
+II. NỘI DUNG CHI TIẾT CÁC BÀI ĐỌC HIỂU & ĐỌC ĐỤC LỖ (READING & CLOZE PASSAGES)
+================================================================================
+
+[PHẦN: II. READING - READING 1: CLOZE READING]
+Tiêu đề: Family Conflicts and Solutions
+Hướng dẫn: Read the following passage and mark the letter A, B, C or D to indicate the correct word or phrase for each of the blanks.
+Áp dụng cho các câu hỏi: 34, 35, 36, 37, 38
+
+--- VĂN BẢN ĐOẠN VĂN ---
+Families can be a source of great joy and love, but they can also be a source of conflict. Conflict is a disagreement or (34) ______ between people. Sometimes, family members don't agree on things, and this can lead to arguments. These arguments can be about small things, like what to watch on TV, or big things, like what kind of life you want to live.
+
+One way family (35) _______ can happen is when parents and children have different ideas about how things should be. Parents might have rules that their children don't like, or they might not agree with their children's choices. This can lead (36) ______ arguments and disagreements.
+
+Sometimes, family conflicts can be caused by things that happen outside the family. For example, if a family member is going through a difficult time, it can affect the whole family. This can lead to stress and tension, (37) ______ can make it harder for family members to get along.
+
+Even though family conflicts can be difficult, it's important to remember that families are important. Families provide love, support, and a sense of belonging. (38) _____ there are disagreements, it's important to try to work things out and stay connected. Families can be a source of strength and support, even when things are tough.
+--------------------------------------------------------------------------------
+
+[PHẦN: READING 2: READING COMPREHENSION]
+Tiêu đề: The Generation Gap in the Modern Business World
+Hướng dẫn: Read the following passage and mark the letter A, B, C, or D to indicate the correct answer to each of the questions.
+Áp dụng cho các câu hỏi: 39, 40, 41, 42, 43
+
+--- VĂN BẢN ĐOẠN VĂN ---
+The generation gap in the business world is a fascinating phenomenon that highlights the differences in attitudes, values, and approaches to conducting business between different generations. One of the key areas where the generation gap is evident is in technology adoption. Younger generations, such as Millennials and Generation Z, have grown up in the digital age and are generally more comfortable with technology. <u>They</u> readily embrace new tools, platforms, and digital strategies, which can significantly impact business practices, marketing strategies, and communication methods.
+
+Workforce expectations also play a crucial role in the generation gap. Each generation has its own set of expectations when it comes to work-life balance, career progression, and job satisfaction. Younger generations often prioritize flexibility, purpose-driven work, and a healthy work-life balance. Meanwhile, older generations may place more emphasis on job stability, loyalty, and traditional career paths.
+
+Leadership styles are another area where the generation gap becomes evident. Baby Boomers and Generation X typically favor hierarchical structures and a more top-down management style. They are used to a more authoritative approach to leadership. Conversely, younger generations often prefer collaborative and inclusive leadership styles, valuing input from all levels of the organization. They <u>thrive</u> in environments that encourage participation, teamwork, and innovation.
+
+Communication preferences have also evolved with each generation. The way people communicate and consume information has drastically changed over the years. Younger generations are inclined towards instant messaging, social media, and other digital channels for communication.
+--------------------------------------------------------------------------------
+
+III. HƯỚNG DẪN GIẢI CHI TIẾT TỪNG CÂU HỎI
 ================================================================================
 
 Câu 1: [Đáp án đúng: C]
-Nội dung: 
+Nội dung: Mark the letter A, B, C, or D on your answer sheet to indicate the word that differs from the other three in the position of primary stress.
       A. generation
       B. economic
   (*) C. behaviour
@@ -32,7 +65,7 @@ Giải thích: behaviour /bɪˈheɪvjər/ trọng âm rơi vào âm tiết thứ
 --------------------------------------------------------------------------------
 
 Câu 2: [Đáp án đúng: B]
-Nội dung: 
+Nội dung: Mark the letter A, B, C, or D on your answer sheet to indicate the word that differs from the other three in the position of primary stress.
       A. difference
   (*) B. musician
       C. character
@@ -41,7 +74,7 @@ Giải thích: musician /mjuˈzɪʃn/ trọng âm rơi vào âm tiết thứ 2, 
 --------------------------------------------------------------------------------
 
 Câu 3: [Đáp án đúng: D]
-Nội dung: 
+Nội dung: Mark the letter A, B, C, or D on your answer sheet to indicate the word that differs from the other three in the position of primary stress.
       A. argument
       B. digital
       C. family
@@ -50,7 +83,7 @@ Giải thích: extended /ɪkˈstendɪd/ trọng âm rơi vào âm tiết thứ 2
 --------------------------------------------------------------------------------
 
 Câu 4: [Đáp án đúng: C]
-Nội dung: 
+Nội dung: Mark the letter A, B, C, or D on your answer sheet to indicate the word that differs from the other three in the position of primary stress.
       A. eyesight
       B. worry
   (*) C. respect
@@ -59,7 +92,7 @@ Giải thích: respect /rɪˈspekt/ trọng âm rơi vào âm tiết thứ 2, c�
 --------------------------------------------------------------------------------
 
 Câu 5: [Đáp án đúng: B]
-Nội dung: The argument about career choosing is a classic example of the generation gap.
+Nội dung: The <u>argument</u> about career choosing is a classic example of the generation gap.
       A. culture
   (*) B. conflict
       C. difference
@@ -68,7 +101,7 @@ Giải thích: argument = conflict (sự tranh cãi, xung đột quan điểm).
 --------------------------------------------------------------------------------
 
 Câu 6: [Đáp án đúng: B]
-Nội dung: As each generation is strongly influenced by changes in society, parents and children may see the world differently.
+Nội dung: As each generation is strongly <u>influenced</u> by changes in society, parents and children may see the world differently.
       A. provided
   (*) B. affected
       C. suffered
@@ -77,7 +110,7 @@ Giải thích: influenced = affected (chịu ảnh hưởng bởi).
 --------------------------------------------------------------------------------
 
 Câu 7: [Đáp án đúng: A]
-Nội dung: Parents should strictly limit their children’s screen time.
+Nội dung: Parents should strictly <u>limit</u> their children’s screen time.
   (*) A. control
       B. allow
       C. rest
@@ -86,7 +119,7 @@ Giải thích: limit = control (giới hạn, kiểm soát thời gian sử dụ
 --------------------------------------------------------------------------------
 
 Câu 8: [Đáp án đúng: B]
-Nội dung: Having a large extended family makes a number of problems inevitable.
+Nội dung: Having a large extended family makes a number of <u>problems</u> inevitable.
       A. profits
   (*) B. issues
       C. views
@@ -95,7 +128,7 @@ Giải thích: problems = issues (các vấn đề nảy sinh trong gia đình).
 --------------------------------------------------------------------------------
 
 Câu 9: [Đáp án đúng: B]
-Nội dung: Nowadays, digital natives have different attitudes and approaches towards technology.
+Nội dung: Nowadays, <u>digital natives</u> have different attitudes and approaches towards technology.
       A. newborn generations
   (*) B. old generations
       C. modern generations
@@ -104,7 +137,7 @@ Giải thích: digital natives = thế hệ trẻ sinh ra trong thời đại s�
 --------------------------------------------------------------------------------
 
 Câu 10: [Đáp án đúng: B]
-Nội dung: My grandfather dismisses my career ideas, saying I'm still too wet behind the ears to make such important life choices.
+Nội dung: My grandfather dismisses my career ideas, saying I'm still too <u>wet behind the ears</u> to make such important life choices.
       A. full of confidence
   (*) B. full of experience
       C. full of enthusiasm
@@ -113,7 +146,7 @@ Giải thích: wet behind the ears = non nớt, chưa có kinh nghiệm; từ tr
 --------------------------------------------------------------------------------
 
 Câu 11: [Đáp án đúng: A]
-Nội dung: Minh is always curious as he is keen on trying new things especially those related to technology.
+Nội dung: Minh is always <u>curious</u> as he is keen on trying new things especially those related to technology.
   (*) A. indifferent
       B. interested
       C. uninformed
@@ -122,7 +155,7 @@ Giải thích: curious = tò mò, ham học hỏi; từ trái nghĩa là indiffe
 --------------------------------------------------------------------------------
 
 Câu 12: [Đáp án đúng: B]
-Nội dung: Younger generations now have more freedom in expressing their opinions in particular and themselves in general.
+Nội dung: Younger generations now have more <u>freedom</u> in expressing their opinions in particular and themselves in general.
       A. improvement
   (*) B. restriction
       C. attitude
@@ -320,7 +353,7 @@ Giải thích: mustn't = cấm không được dẫm chân lên bãi cỏ.
 --------------------------------------------------------------------------------
 
 Câu 34: [Đáp án đúng: B]
-Nội dung: 
+Nội dung: Conflict is a disagreement or (34) ______ between people.
       A. argue
   (*) B. argument
       C. argumentative
@@ -329,7 +362,7 @@ Giải thích: disagreement or argument = sự bất đồng hoặc tranh cãi g
 --------------------------------------------------------------------------------
 
 Câu 35: [Đáp án đúng: A]
-Nội dung: 
+Nội dung: One way family (35) _______ can happen is when parents and children have different ideas about how things should be.
   (*) A. conflicts
       B. arguments
       C. experiences
@@ -338,7 +371,7 @@ Giải thích: family conflicts = những mâu thuẫn, xung đột trong gia đ
 --------------------------------------------------------------------------------
 
 Câu 36: [Đáp án đúng: B]
-Nội dung: 
+Nội dung: This can lead (36) ______ arguments and disagreements.
       A. into
   (*) B. to
       C. by
@@ -347,7 +380,7 @@ Giải thích: lead to = dẫn đến tranh cãi.
 --------------------------------------------------------------------------------
 
 Câu 37: [Đáp án đúng: C]
-Nội dung: 
+Nội dung: This can lead to stress and tension, (37) ______ can make it harder for family members to get along.
       A. who
       B. when
   (*) C. which
@@ -356,7 +389,7 @@ Giải thích: Đại từ quan hệ "which" thay cho cả mệnh đề phía tr
 --------------------------------------------------------------------------------
 
 Câu 38: [Đáp án đúng: D]
-Nội dung: 
+Nội dung: (38) _____ there are disagreements, it's important to try to work things out and stay connected.
       A. For example
       B. For instance
       C. Because of
@@ -383,7 +416,7 @@ Giải thích: Thông tin ở đoạn 3: thế hệ trẻ ưa chuộng phong cá
 --------------------------------------------------------------------------------
 
 Câu 41: [Đáp án đúng: A]
-Nội dung: The word "they" in the first paragraph refers to _________.
+Nội dung: The word <u>they</u> in the first paragraph refers to _________.
   (*) A. younger generations
       B. Gen Z
       C. technology
@@ -392,7 +425,7 @@ Giải thích: "they" ở đoạn 1 thay thế cho "Younger generations".
 --------------------------------------------------------------------------------
 
 Câu 42: [Đáp án đúng: C]
-Nội dung: The word "thrive" in paragraph 2 is closest in meaning to _________.
+Nội dung: The word <u>thrive</u> in paragraph 2 is closest in meaning to _________.
       A. explode
       B. shrink
   (*) C. succeed

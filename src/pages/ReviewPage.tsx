@@ -5,6 +5,7 @@ import { QuizAttempt } from "@/types/exam";
 import Navbar from "@/components/common/Navbar";
 import GradeTabs from "@/components/common/GradeTabs";
 import Footer from "@/components/common/Footer";
+import FormattedText from "@/components/common/FormattedText";
 import {
   Trophy,
   CheckCircle2,
@@ -231,7 +232,7 @@ export default function ReviewPage() {
 
                 {/* Content */}
                 <p className="text-slate-800 text-base sm:text-lg font-medium leading-relaxed mb-4">
-                  {rev.questionText}
+                  <FormattedText text={rev.questionText} />
                 </p>
 
                 {/* Options List */}
