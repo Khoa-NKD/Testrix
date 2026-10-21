@@ -795,6 +795,8 @@ async function main() {
   const examL12Hsg2 = parseHsgExamFromText(hsg2Raw, hsg2_meta, hsg2_cloze_sentences, hsg2_question_fixes, 2);
   const examL12Hsg3 = parseHsgExamFromText(hsg3Raw, hsg3_meta, hsg3_cloze_sentences, hsg3_question_fixes, 3);
 
+  const { newExam: examL12U2_100Q } = require('./build_unit2_100q.cjs');
+
   const allExams = [
     examL12U1,
     examL12U2,
@@ -802,13 +804,17 @@ async function main() {
     examL11U2,
     examL12Hsg1,
     examL12Hsg2,
-    examL12Hsg3
+    examL12Hsg3,
+    examL12U2_100Q
   ];
 
   // ============================================================================
   // 5. GHI FILE ĐÁP ÁN VÀ VĂN BẢN ĐẦY ĐỦ VÀO TỪNG THƯ MỤC dap-an/
   // ============================================================================
   function exportAnswerKeyFile(examObj, targetDir) {
+    if (!fs.existsSync(targetDir)) {
+      fs.mkdirSync(targetDir, { recursive: true });
+    }
     let content = `BẢNG ĐÁP ÁN VÀ HƯỚNG DẪN GIẢI CHI TIẾT ĐẦY ĐỦ\n`;
     content += `Môn: ${examObj.subject} - ${examObj.grade}\n`;
     content += `Tên đề: ${examObj.title}\n`;
@@ -866,7 +872,7 @@ async function main() {
     console.log(`Đã xuất file đáp án & giải thích chi tiết: ${outFilePath}`);
   }
 
-  // Xuất đáp án cho 7 đề vào đúng folder
+  // Xuất đáp án cho các đề vào đúng folder
   exportAnswerKeyFile(examL12U1, path.join(EXAM_BASE, 'Lop 12', 'On thi giua ki 1', 'Unit 1 - Life Stories', 'dap-an'));
   exportAnswerKeyFile(examL12U2, path.join(EXAM_BASE, 'Lop 12', 'On thi giua ki 1', 'Unit 2 - A Multicultural World', 'dap-an'));
   exportAnswerKeyFile(examL11U1, path.join(EXAM_BASE, 'Lop 11', 'On thi giua ki 1', 'Unit 1 - A Long and Healthy Life', 'dap-an'));
@@ -874,6 +880,8 @@ async function main() {
   exportAnswerKeyFile(examL12Hsg1, path.join(EXAM_BASE, 'Lop 12', 'On thi HSG', 'Test 01 - Bo de chuan cau truc', 'dap-an'));
   exportAnswerKeyFile(examL12Hsg2, path.join(EXAM_BASE, 'Lop 12', 'On thi HSG', 'Test 02 - Bo de chuan cau truc', 'dap-an'));
   exportAnswerKeyFile(examL12Hsg3, path.join(EXAM_BASE, 'Lop 12', 'On thi HSG', 'Test 03 - Bo de chuan cau truc', 'dap-an'));
+  exportAnswerKeyFile(examL12U2_100Q, path.join(EXAM_BASE, 'Lop 12', 'On theo unit', 'Unit 2 - A Multicultural World', 'dap-an'));
+  exportAnswerKeyFile(examL12U2_100Q, path.join(EXAM_BASE, 'Lop 12', 'On theo unit', 'dap-an'));
 
   // ============================================================================
   // 6. GHI VÀO SRC/DATA/EXAMS.JSON VÀ DATA/EXAMS.JSON
@@ -885,7 +893,7 @@ async function main() {
   fs.writeFileSync(examsJsonRootPath, JSON.stringify(allExams, null, 2), 'utf8');
   console.log(`\nĐã xuất bản thành công ${allExams.length} đề thi vào ${examsJsonSrcPath} và ${examsJsonRootPath}`);
 
-  console.log('\nDANH SÁCH 7 ĐỀ THI ĐÃ NẠP VÀO HỆ THỐNG:');
+  console.log(`\nDANH SÁCH ${allExams.length} ĐỀ THI ĐÃ NẠP VÀO HỆ THỐNG:`);
   allExams.forEach((e, i) => {
     const passagesCount = e.sections ? e.sections.filter(s => s.passage).length : 0;
     const underlineQuestionsCount = e.questions.filter(q => q.questionText && q.questionText.includes('<u>')).length;
