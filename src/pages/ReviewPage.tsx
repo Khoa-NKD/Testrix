@@ -216,59 +216,82 @@ export default function ReviewPage() {
                     </span>
                   </div>
 
-                  <div className="text-xs text-slate-500 font-medium">
-                    <span>
-                      Bạn chọn:{" "}
-                      <strong className={isCorrect ? "text-emerald-700" : "text-rose-700"}>
-                        {rev.selectedOption || "Trống"}
-                      </strong>
-                    </span>
-                    <span className="mx-2">•</span>
-                    <span>
-                      Đáp án đúng: <strong className="text-emerald-700">{rev.correctOption}</strong>
-                    </span>
-                  </div>
+                  {rev.options && rev.options.length > 0 && (
+                    <div className="text-xs text-slate-500 font-medium">
+                      <span>
+                        Bạn chọn:{" "}
+                        <strong className={isCorrect ? "text-emerald-700" : "text-rose-700"}>
+                          {rev.selectedOption || "Trống"}
+                        </strong>
+                      </span>
+                      <span className="mx-2">•</span>
+                      <span>
+                        Đáp án đúng: <strong className="text-emerald-700">{rev.correctOption}</strong>
+                      </span>
+                    </div>
+                  )}
                 </div>
 
                 {/* Content */}
-                <p className="text-slate-800 text-base sm:text-lg font-medium leading-relaxed mb-4">
+                <div className="text-slate-800 text-base sm:text-lg font-medium leading-relaxed mb-4">
                   <FormattedText text={rev.questionText} />
-                </p>
-
-                {/* Options List */}
-                <div className="space-y-2 mb-4">
-                  {rev.options.map((opt) => {
-                    const isKey = rev.correctOption === opt.id;
-                    const isSelected = rev.selectedOption === opt.id;
-
-                    let optStyle = "bg-slate-50 border-slate-200 text-slate-600";
-                    if (isKey) {
-                      optStyle = "bg-emerald-50 border-emerald-500 text-emerald-950 font-bold ring-1 ring-emerald-500";
-                    } else if (isSelected && !isKey) {
-                      optStyle = "bg-rose-50 border-rose-400 text-rose-950 line-through opacity-80";
-                    }
-
-                    return (
-                      <div
-                        key={opt.id}
-                        className={`p-3 sm:p-3.5 rounded-xl border text-sm sm:text-base flex items-start gap-3 ${optStyle}`}
-                      >
-                        <span
-                          className={`w-6 h-6 rounded-md flex items-center justify-center text-xs font-bold shrink-0 ${
-                            isKey
-                              ? "bg-emerald-600 text-white"
-                              : isSelected
-                              ? "bg-rose-500 text-white"
-                              : "bg-slate-200 text-slate-600"
-                          }`}
-                        >
-                          {opt.id}
-                        </span>
-                        <span className="leading-snug pt-0.5">{opt.text}</span>
-                      </div>
-                    );
-                  })}
                 </div>
+
+                {/* Options List OR Typed Essay Answer */}
+                {rev.options && rev.options.length > 0 ? (
+                  <div className="space-y-2 mb-4">
+                    {rev.options.map((opt) => {
+                      const isKey = rev.correctOption === opt.id;
+                      const isSelected = rev.selectedOption === opt.id;
+
+                      let optStyle = "bg-slate-50 border-slate-200 text-slate-600";
+                      if (isKey) {
+                        optStyle = "bg-emerald-50 border-emerald-500 text-emerald-950 font-bold ring-1 ring-emerald-500";
+                      } else if (isSelected && !isKey) {
+                        optStyle = "bg-rose-50 border-rose-400 text-rose-950 line-through opacity-80";
+                      }
+
+                      return (
+                        <div
+                          key={opt.id}
+                          className={`p-3 sm:p-3.5 rounded-xl border text-sm sm:text-base flex items-start gap-3 ${optStyle}`}
+                        >
+                          <span
+                            className={`w-6 h-6 rounded-md flex items-center justify-center text-xs font-bold shrink-0 ${
+                              isKey
+                                ? "bg-emerald-600 text-white"
+                                : isSelected
+                                ? "bg-rose-500 text-white"
+                                : "bg-slate-200 text-slate-600"
+                            }`}
+                          >
+                            {opt.id}
+                          </span>
+                          <span className="leading-snug pt-0.5">{opt.text}</span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                ) : (
+                  <div className="space-y-3 mb-4 p-4 sm:p-5 rounded-2xl bg-slate-50 border border-slate-200">
+                    <div>
+                      <span className="text-xs font-bold text-slate-500 uppercase tracking-wider block mb-1">
+                        Câu trả lời của bạn:
+                      </span>
+                      <p className={`text-sm sm:text-base font-semibold leading-relaxed ${isCorrect ? "text-emerald-700" : isUnanswered ? "text-slate-500 italic" : "text-rose-700"}`}>
+                        {rev.selectedOption || "— (Chưa trả lời)"}
+                      </p>
+                    </div>
+                    <div className="pt-2.5 border-t border-slate-200/80">
+                      <span className="text-xs font-bold text-slate-500 uppercase tracking-wider block mb-1">
+                        Đáp án chuẩn:
+                      </span>
+                      <p className="text-sm sm:text-base font-bold text-emerald-800 leading-relaxed select-text">
+                        {rev.correctOption}
+                      </p>
+                    </div>
+                  </div>
+                )}
 
                 {/* Pedagogical Explanation Box */}
                 {rev.explanation && (
