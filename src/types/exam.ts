@@ -7,9 +7,11 @@ export interface Question {
   id: string;
   index: number;
   questionText: string;
-  type: "single_choice" | "multiple_choice" | "true_false";
+  type: "single_choice" | "multiple_choice" | "true_false" | "text_input";
   options: QuestionOption[];
-  correctAnswer: string; // "A", "B", "C", "D"
+  correctAnswer: string; // "A", "B", "C", "D" hoặc câu đáp án tự luận mẫu
+  acceptableAnswers?: string[]; // Các phương án viết đúng tương đương cho câu tự luận
+  inputPrompt?: string; // Gợi ý từ đầu câu cho câu viết lại
   explanation: string; // Lời giải chi tiết
   difficulty?: "easy" | "medium" | "hard";
   cognitiveLevel?: "Nhận biết" | "Thông hiểu" | "Vận dụng" | "Vận dụng cao" | string;

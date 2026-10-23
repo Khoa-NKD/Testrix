@@ -20,6 +20,7 @@ import AnswerSheet from "@/components/exam/AnswerSheet";
 import SubmitConfirmModal from "@/components/exam/SubmitConfirmModal";
 import ResultModal from "@/components/exam/ResultModal";
 import { resolveExamSections } from "@/lib/exam-section-helper";
+import { isAnswerCorrect } from "@/lib/answer-checker";
 import { ArrowLeft, BookOpen, RotateCcw } from "lucide-react";
 
 export default function ExamPage() {
@@ -113,8 +114,9 @@ export default function ExamPage() {
     const reviews: UserAnswerReview[] = [];
 
     exam.questions.forEach((q, idx) => {
-      const selected = answers[q.id] || null;
-      const isCorrect = selected === q.correctAnswer;
+      const rawAns = answers[q.id];
+      const selected = rawAns && rawAns.trim().length > 0 ? rawAns.trim() : null;
+      const isCorrect = isAnswerCorrect(q, selected);
       if (isCorrect) correctCount++;
 
       reviews.push({
@@ -125,14 +127,15 @@ export default function ExamPage() {
         isCorrect,
         explanation: q.explanation,
         questionText: q.questionText,
-        options: q.options,
+        options: q.options || [],
         cognitiveLevel: q.cognitiveLevel,
       });
     });
 
     const totalQ = exam.questions.length;
-    const wrongCount = Object.keys(answers).length - correctCount;
-    const unansweredCount = totalQ - Object.keys(answers).length;
+    const answeredCount = Object.values(answers).filter((v) => v && v.trim().length > 0).length;
+    const wrongCount = answeredCount - correctCount;
+    const unansweredCount = totalQ - answeredCount;
     const score = Math.round((correctCount / totalQ) * 10 * 10) / 10;
     const percentage = Math.round((correctCount / totalQ) * 100);
 
@@ -206,7 +209,7 @@ export default function ExamPage() {
     );
   }
 
-  const answeredCount = Object.keys(answers).length;
+  const answeredCount = Object.values(answers).filter((v) => v && v.trim().length > 0).length;
   const flaggedCount = Object.keys(flags).filter((k) => flags[k]).length;
   const resolvedSections = resolveExamSections(exam);
 

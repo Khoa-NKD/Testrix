@@ -3,6 +3,7 @@ import { Question } from "@/types/exam";
 import { Bookmark, Sparkles, Check, X } from "lucide-react";
 
 import FormattedText from "@/components/common/FormattedText";
+import { isAnswerCorrect } from "@/lib/answer-checker";
 
 interface ExamQuestionItemProps {
   question: Question;
@@ -25,9 +26,11 @@ export default function ExamQuestionItem({
   isSubmitted = false,
   showExplanation = false,
 }: ExamQuestionItemProps) {
-  const isCorrect = isSubmitted && selectedOption === question.correctAnswer;
-  const isWrong = isSubmitted && selectedOption !== null && selectedOption !== question.correctAnswer;
-  const isUnanswered = isSubmitted && selectedOption === null;
+  const isTextInput = question.type === "text_input" || !question.options || question.options.length === 0;
+  const isAnswered = selectedOption !== null && selectedOption.trim().length > 0;
+  const isCorrect = isSubmitted && isAnswerCorrect(question, selectedOption);
+  const isWrong = isSubmitted && isAnswered && !isCorrect;
+  const isUnanswered = isSubmitted && !isAnswered;
 
   // Level badge (defaulting to "Nhận biết" if not provided)
   const levelText = question.cognitiveLevel || (questionNumber <= 15 ? "Nhận biết" : questionNumber <= 30 ? "Thông hiểu" : "Vận dụng");
@@ -112,57 +115,103 @@ export default function ExamQuestionItem({
         <FormattedText text={question.questionText} />
       </div>
 
-      {/* Options List */}
-      <div className="space-y-2.5">
-        {question.options.map((option) => {
-          const isSelected = selectedOption === option.id;
-          const isKey = isSubmitted && question.correctAnswer === option.id;
-          const isWrongSelected = isSubmitted && isSelected && !isKey;
-
-          let containerClass =
-            "border-slate-200 hover:border-indigo-300 hover:bg-indigo-50/30 text-slate-700 bg-slate-50/50";
-          let radioCircleClass = "border-slate-300 text-transparent";
-
-          if (isSubmitted) {
-            if (isKey) {
-              containerClass = "border-emerald-500 bg-emerald-50 text-emerald-950 font-semibold ring-1 ring-emerald-500";
-              radioCircleClass = "border-emerald-600 bg-emerald-600 text-white";
-            } else if (isWrongSelected) {
-              containerClass = "border-rose-400 bg-rose-50 text-rose-950 line-through opacity-85";
-              radioCircleClass = "border-rose-500 bg-rose-500 text-white";
-            } else {
-              containerClass = "border-slate-200 bg-slate-50/40 text-slate-400 opacity-60";
-              radioCircleClass = "border-slate-300 text-transparent";
-            }
-          } else if (isSelected) {
-            containerClass = "border-indigo-600 bg-indigo-50/70 text-indigo-950 font-semibold ring-2 ring-indigo-500/30 shadow-xs";
-            radioCircleClass = "border-indigo-600 bg-indigo-600 text-white";
-          }
-
-          return (
-            <button
-              key={option.id}
-              type="button"
+      {/* Answer Area: Text Input for Essay / Sentence Transformation OR Radio Options for Multiple Choice */}
+      {isTextInput ? (
+        <div className="space-y-3.5">
+          <div className="p-4 sm:p-5 rounded-2xl bg-slate-50 border border-slate-200/90 shadow-2xs">
+            <label className="flex items-center gap-2 text-xs font-bold text-slate-700 uppercase tracking-wider mb-2.5">
+              <span>✍️ Phần tự luận - Nhập câu trả lời của bạn:</span>
+            </label>
+            <textarea
+              value={selectedOption || ""}
+              onChange={(e) => onSelectOption(e.target.value)}
               disabled={isSubmitted}
-              onClick={() => onSelectOption(option.id)}
-              className={`w-full text-left p-3.5 sm:p-4 rounded-xl border transition-all flex items-start gap-3.5 cursor-pointer disabled:cursor-default ${containerClass}`}
-            >
-              {/* Radio Indicator */}
-              <div
-                className={`w-5 h-5 rounded-full border-2 flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5 transition-colors ${radioCircleClass}`}
-              >
-                {isSelected || isKey ? "●" : ""}
-              </div>
+              rows={2}
+              placeholder="Gõ câu viết lại của bạn vào đây..."
+              className={`w-full p-3.5 sm:p-4 rounded-xl border text-sm sm:text-base font-medium transition-all outline-none resize-none leading-relaxed ${
+                isSubmitted
+                  ? isCorrect
+                    ? "border-emerald-500 bg-emerald-50/70 text-emerald-950 font-semibold ring-1 ring-emerald-500"
+                    : isWrong
+                    ? "border-rose-400 bg-rose-50/70 text-rose-950"
+                    : "border-slate-300 bg-slate-100/70 text-slate-500"
+                  : "border-slate-300 focus:border-indigo-600 focus:ring-2 focus:ring-indigo-100 bg-white text-slate-900 placeholder:text-slate-400 shadow-2xs"
+              }`}
+            />
+          </div>
 
-              {/* Option Letter & Text */}
-              <div className="flex-1 text-sm sm:text-base leading-relaxed">
-                <span className="font-bold mr-1.5">{option.id}.</span>
-                <span>{option.text}</span>
+          {/* Post-Submission Feedback for Essay Questions */}
+          {isSubmitted && (
+            <div className="p-4 sm:p-5 rounded-2xl bg-slate-50/90 border border-slate-200 text-xs sm:text-sm space-y-2.5 animate-in fade-in">
+              <div className="flex flex-col sm:flex-row sm:items-baseline gap-1.5 sm:gap-2">
+                <span className="font-bold text-slate-800 shrink-0">Đáp án chính xác:</span>
+                <span className="font-extrabold text-emerald-700 text-sm sm:text-base select-text">
+                  {question.correctAnswer}
+                </span>
               </div>
-            </button>
-          );
-        })}
-      </div>
+              {question.acceptableAnswers && question.acceptableAnswers.length > 0 && (
+                <div className="text-slate-600 pt-2 border-t border-slate-200/70">
+                  <span className="font-semibold text-slate-700">Các phương án viết được chấp nhận: </span>
+                  <span className="italic text-slate-700">
+                    {question.acceptableAnswers.slice(0, 4).join("  •  ")}
+                  </span>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      ) : (
+        <div className="space-y-2.5">
+          {question.options.map((option) => {
+            const isSelected = selectedOption === option.id;
+            const isKey = isSubmitted && question.correctAnswer === option.id;
+            const isWrongSelected = isSubmitted && isSelected && !isKey;
+
+            let containerClass =
+              "border-slate-200 hover:border-indigo-300 hover:bg-indigo-50/30 text-slate-700 bg-slate-50/50";
+            let radioCircleClass = "border-slate-300 text-transparent";
+
+            if (isSubmitted) {
+              if (isKey) {
+                containerClass = "border-emerald-500 bg-emerald-50 text-emerald-950 font-semibold ring-1 ring-emerald-500";
+                radioCircleClass = "border-emerald-600 bg-emerald-600 text-white";
+              } else if (isWrongSelected) {
+                containerClass = "border-rose-400 bg-rose-50 text-rose-950 line-through opacity-85";
+                radioCircleClass = "border-rose-500 bg-rose-500 text-white";
+              } else {
+                containerClass = "border-slate-200 bg-slate-50/40 text-slate-400 opacity-60";
+                radioCircleClass = "border-slate-300 text-transparent";
+              }
+            } else if (isSelected) {
+              containerClass = "border-indigo-600 bg-indigo-50/70 text-indigo-950 font-semibold ring-2 ring-indigo-500/30 shadow-xs";
+              radioCircleClass = "border-indigo-600 bg-indigo-600 text-white";
+            }
+
+            return (
+              <button
+                key={option.id}
+                type="button"
+                disabled={isSubmitted}
+                onClick={() => onSelectOption(option.id)}
+                className={`w-full text-left p-3.5 sm:p-4 rounded-xl border transition-all flex items-start gap-3.5 cursor-pointer disabled:cursor-default ${containerClass}`}
+              >
+                {/* Radio Indicator */}
+                <div
+                  className={`w-5 h-5 rounded-full border-2 flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5 transition-colors ${radioCircleClass}`}
+                >
+                  {isSelected || isKey ? "●" : ""}
+                </div>
+
+                {/* Option Letter & Text */}
+                <div className="flex-1 text-sm sm:text-base leading-relaxed">
+                  <span className="font-bold mr-1.5">{option.id}.</span>
+                  <span>{option.text}</span>
+                </div>
+              </button>
+            );
+          })}
+        </div>
+      )}
 
       {/* Detailed Pedagogical Explanation Box */}
       {showExplanation && question.explanation && (

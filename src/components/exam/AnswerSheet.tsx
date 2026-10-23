@@ -1,6 +1,7 @@
 import React from "react";
 import { Question, ExamSection } from "@/types/exam";
 import { Send, RotateCcw } from "lucide-react";
+import { isAnswerCorrect } from "@/lib/answer-checker";
 
 interface AnswerSheetProps {
   questions: Question[];
@@ -28,7 +29,9 @@ export default function AnswerSheet({
   isSubmitted = false,
 }: AnswerSheetProps) {
   const totalCount = questions.length;
-  const answeredCount = Object.keys(answers).filter((k) => answers[k] !== undefined && answers[k] !== null).length;
+  const answeredCount = Object.keys(answers).filter(
+    (k) => answers[k] !== undefined && answers[k] !== null && answers[k].trim().length > 0
+  ).length;
 
   // Format time as HH:MM:SS or MM:SS
   const formatTime = (seconds: number) => {
@@ -45,11 +48,11 @@ export default function AnswerSheet({
   const renderQuestionCircle = (q: Question) => {
     const originalIndex = questions.findIndex((item) => item.id === q.id);
     const qNum = q.index !== undefined ? q.index : originalIndex + 1;
-    const isAnswered = answers[q.id] !== undefined && answers[q.id] !== null;
+    const isAnswered = answers[q.id] !== undefined && answers[q.id] !== null && answers[q.id].trim().length > 0;
     const isFlagged = flags[q.id] === true;
 
     // Result states if submitted
-    const isKey = isSubmitted && answers[q.id] === q.correctAnswer;
+    const isKey = isSubmitted && isAnswerCorrect(q, answers[q.id]);
     const isWrong = isSubmitted && isAnswered && !isKey;
 
     let badgeStyle = "bg-white border border-slate-300 text-slate-700 hover:border-slate-400";

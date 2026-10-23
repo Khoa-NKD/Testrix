@@ -796,6 +796,7 @@ async function main() {
   const examL12Hsg3 = parseHsgExamFromText(hsg3Raw, hsg3_meta, hsg3_cloze_sentences, hsg3_question_fixes, 3);
 
   const { newExam: examL12U2_100Q } = require('./build_unit2_100q.cjs');
+  const { examL10T1, examL10T2 } = require('./build_lop10_gk1.cjs');
 
   const allExams = [
     examL12U1,
@@ -805,7 +806,9 @@ async function main() {
     examL12Hsg1,
     examL12Hsg2,
     examL12Hsg3,
-    examL12U2_100Q
+    examL12U2_100Q,
+    examL10T1,
+    examL10T2
   ];
 
   // ============================================================================
@@ -826,7 +829,10 @@ async function main() {
     content += `--------------------------------------------------------------------------------\n`;
     for (let i = 0; i < examObj.questions.length; i += 5) {
       const chunk = examObj.questions.slice(i, i + 5);
-      content += chunk.map(q => `Câu ${String(q.index).padStart(2, ' ')}: ${q.correctAnswer}`).join('    |    ') + '\n';
+      content += chunk.map(q => {
+        const val = q.type === 'text_input' ? '[Tự luận]' : q.correctAnswer;
+        return `Câu ${String(q.index).padStart(2, ' ')}: ${val}`;
+      }).join('    |    ') + '\n';
     }
     content += `--------------------------------------------------------------------------------\n\n`;
 
@@ -855,15 +861,28 @@ async function main() {
     content += `III. HƯỚNG DẪN GIẢI CHI TIẾT TỪNG CÂU HỎI\n`;
     content += `================================================================================\n\n`;
     examObj.questions.forEach(q => {
-      content += `Câu ${q.index}: [Đáp án đúng: ${q.correctAnswer}]\n`;
-      content += `Nội dung: ${q.questionText}\n`;
-      if (q.options && q.options.length > 0) {
-        q.options.forEach(opt => {
-          const marker = (opt.id === q.correctAnswer) ? '(*)' : '   ';
-          content += `  ${marker} ${opt.id}. ${opt.text}\n`;
-        });
+      if (q.type === 'text_input') {
+        content += `Câu ${q.index} [PHẦN TỰ LUẬN - HỌC SINH TỰ GÕ CÂU VIẾT LẠI]:\n`;
+        content += `Nội dung: ${q.questionText}\n`;
+        content += `Đáp án chính xác: ${q.correctAnswer}\n`;
+        if (q.acceptableAnswers && q.acceptableAnswers.length > 0) {
+          content += `Các cách viết được chấp nhận:\n`;
+          q.acceptableAnswers.forEach(ans => {
+            content += `  • ${ans}\n`;
+          });
+        }
+        content += `Giải thích: ${q.explanation}\n`;
+      } else {
+        content += `Câu ${q.index}: [Đáp án đúng: ${q.correctAnswer}]\n`;
+        content += `Nội dung: ${q.questionText}\n`;
+        if (q.options && q.options.length > 0) {
+          q.options.forEach(opt => {
+            const marker = (opt.id === q.correctAnswer) ? '(*)' : '   ';
+            content += `  ${marker} ${opt.id}. ${opt.text}\n`;
+          });
+        }
+        content += `Giải thích: ${q.explanation}\n`;
       }
-      content += `Giải thích: ${q.explanation}\n`;
       content += `--------------------------------------------------------------------------------\n\n`;
     });
 
@@ -882,6 +901,18 @@ async function main() {
   exportAnswerKeyFile(examL12Hsg3, path.join(EXAM_BASE, 'Lop 12', 'On thi HSG', 'Test 03 - Bo de chuan cau truc', 'dap-an'));
   exportAnswerKeyFile(examL12U2_100Q, path.join(EXAM_BASE, 'Lop 12', 'On theo unit', 'Unit 2 - A Multicultural World', 'dap-an'));
   exportAnswerKeyFile(examL12U2_100Q, path.join(EXAM_BASE, 'Lop 12', 'On theo unit', 'dap-an'));
+  exportAnswerKeyFile(examL10T1, path.join(EXAM_BASE, 'Lop 10', 'On thi giua ki 1', 'Test 1 - Unit 1 Family Life', 'dap-an'));
+  exportAnswerKeyFile(examL10T2, path.join(EXAM_BASE, 'Lop 10', 'On thi giua ki 1', 'Test 2 - Unit 1 Family Life', 'dap-an'));
+
+  // Xuất file đáp án vào folder chung Exam/Lop 10/On thi giua ki 1/dap-an/
+  const l10DapAnGeneralDir = path.join(EXAM_BASE, 'Lop 10', 'On thi giua ki 1', 'dap-an');
+  if (!fs.existsSync(l10DapAnGeneralDir)) {
+    fs.mkdirSync(l10DapAnGeneralDir, { recursive: true });
+  }
+  const t1Content = fs.readFileSync(path.join(EXAM_BASE, 'Lop 10', 'On thi giua ki 1', 'Test 1 - Unit 1 Family Life', 'dap-an', 'DAP_AN_CHI_TIET.txt'), 'utf8');
+  fs.writeFileSync(path.join(l10DapAnGeneralDir, 'DAP_AN_CHI_TIET_TEST_1.txt'), t1Content, 'utf8');
+  const t2Content = fs.readFileSync(path.join(EXAM_BASE, 'Lop 10', 'On thi giua ki 1', 'Test 2 - Unit 1 Family Life', 'dap-an', 'DAP_AN_CHI_TIET.txt'), 'utf8');
+  fs.writeFileSync(path.join(l10DapAnGeneralDir, 'DAP_AN_CHI_TIET_TEST_2.txt'), t2Content, 'utf8');
 
   // ============================================================================
   // 6. GHI VÀO SRC/DATA/EXAMS.JSON VÀ DATA/EXAMS.JSON
