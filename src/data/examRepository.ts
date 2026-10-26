@@ -1,7 +1,13 @@
 import { Exam } from "@/types/exam";
 import rawExams from "./exams.json";
 
-export const defaultExams: Exam[] = rawExams as Exam[];
+export const defaultExams: Exam[] = (rawExams as Exam[]).map((exam) => ({
+  ...exam,
+  questions: (exam.questions || []).map((q, idx) => ({
+    ...q,
+    id: q.id || `${exam.id}-q${q.index !== undefined ? q.index : idx + 1}`,
+  })),
+}));
 
 export function getAllExams(): Exam[] {
   return defaultExams;
