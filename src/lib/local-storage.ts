@@ -8,7 +8,13 @@ const ATTEMPTS_KEY = "testrix_local_attempts";
 export function saveDraftAnswers(examId: string, answers: Record<string, string>): void {
   if (typeof window === "undefined") return;
   try {
-    localStorage.setItem(`${DRAFT_PREFIX}${examId}`, JSON.stringify(answers));
+    const clean: Record<string, string> = {};
+    for (const [k, v] of Object.entries(answers)) {
+      if (k && k !== "undefined" && k !== "null" && v !== undefined && v !== null) {
+        clean[k] = v;
+      }
+    }
+    localStorage.setItem(`${DRAFT_PREFIX}${examId}`, JSON.stringify(clean));
   } catch (err) {
     console.error("Lỗi lưu nháp bài thi:", err);
   }
@@ -18,7 +24,15 @@ export function loadDraftAnswers(examId: string): Record<string, string> {
   if (typeof window === "undefined") return {};
   try {
     const raw = localStorage.getItem(`${DRAFT_PREFIX}${examId}`);
-    return raw ? JSON.parse(raw) : {};
+    if (!raw) return {};
+    const parsed = JSON.parse(raw);
+    const clean: Record<string, string> = {};
+    for (const [k, v] of Object.entries(parsed)) {
+      if (k && k !== "undefined" && k !== "null" && typeof v === "string") {
+        clean[k] = v;
+      }
+    }
+    return clean;
   } catch {
     return {};
   }
@@ -37,7 +51,13 @@ export function clearDraftAnswers(examId: string): void {
 export function saveDraftFlags(examId: string, flags: Record<string, boolean>): void {
   if (typeof window === "undefined") return;
   try {
-    localStorage.setItem(`${FLAGS_PREFIX}${examId}`, JSON.stringify(flags));
+    const clean: Record<string, boolean> = {};
+    for (const [k, v] of Object.entries(flags)) {
+      if (k && k !== "undefined" && k !== "null") {
+        clean[k] = Boolean(v);
+      }
+    }
+    localStorage.setItem(`${FLAGS_PREFIX}${examId}`, JSON.stringify(clean));
   } catch (err) {
     console.error("Lỗi lưu câu hỏi phân vân:", err);
   }
@@ -47,7 +67,15 @@ export function loadDraftFlags(examId: string): Record<string, boolean> {
   if (typeof window === "undefined") return {};
   try {
     const raw = localStorage.getItem(`${FLAGS_PREFIX}${examId}`);
-    return raw ? JSON.parse(raw) : {};
+    if (!raw) return {};
+    const parsed = JSON.parse(raw);
+    const clean: Record<string, boolean> = {};
+    for (const [k, v] of Object.entries(parsed)) {
+      if (k && k !== "undefined" && k !== "null") {
+        clean[k] = Boolean(v);
+      }
+    }
+    return clean;
   } catch {
     return {};
   }

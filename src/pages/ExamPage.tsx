@@ -76,16 +76,20 @@ export default function ExamPage() {
 
   // Select Option handler
   const handleSelectOption = (questionId: string, optionId: string) => {
-    if (isSubmitted || !id) return;
+    if (isSubmitted || !id || !questionId || questionId === "undefined" || questionId === "null") return;
     const newAnswers = { ...answers, [questionId]: optionId };
+    delete newAnswers["undefined"];
+    delete newAnswers["null"];
     setAnswers(newAnswers);
     saveDraftAnswers(id, newAnswers);
   };
 
   // Toggle Flag handler (Purple flag for questions to review)
   const handleToggleFlag = (questionId: string) => {
-    if (isSubmitted || !id) return;
+    if (isSubmitted || !id || !questionId || questionId === "undefined" || questionId === "null") return;
     const newFlags = { ...flags, [questionId]: !flags[questionId] };
+    delete newFlags["undefined"];
+    delete newFlags["null"];
     setFlags(newFlags);
     saveDraftFlags(id, newFlags);
   };
@@ -95,7 +99,8 @@ export default function ExamPage() {
     if (!exam) return;
     const targetQ = exam.questions[index];
     if (targetQ) {
-      const el = document.getElementById(`q-item-${targetQ.id}`);
+      const qKey = targetQ.id || `${exam.id}-q${targetQ.index !== undefined ? targetQ.index : index + 1}`;
+      const el = document.getElementById(`q-item-${qKey}`);
       if (el) {
         el.scrollIntoView({ behavior: "smooth", block: "center" });
       }
@@ -114,13 +119,14 @@ export default function ExamPage() {
     const reviews: UserAnswerReview[] = [];
 
     exam.questions.forEach((q, idx) => {
-      const rawAns = answers[q.id];
+      const qId = q.id || `${exam.id}-q${q.index !== undefined ? q.index : idx + 1}`;
+      const rawAns = answers[qId];
       const selected = rawAns && rawAns.trim().length > 0 ? rawAns.trim() : null;
       const isCorrect = isAnswerCorrect(q, selected);
       if (isCorrect) correctCount++;
 
       reviews.push({
-        questionId: q.id,
+        questionId: qId,
         questionIndex: idx,
         selectedOption: selected,
         correctOption: q.correctAnswer,
@@ -239,18 +245,19 @@ export default function ExamPage() {
                   rangeText={resSec.rangeText}
                 />
                 <div className="space-y-4">
-                  {resSec.questions.map((q) => {
-                    const qNum = q.index !== undefined ? q.index : exam.questions.findIndex((item) => item.id === q.id) + 1;
+                  {resSec.questions.map((q, qLocalIdx) => {
+                    const qId = q.id || `${exam.id}-q${q.index !== undefined ? q.index : qLocalIdx + 1}`;
+                    const qNum = q.index !== undefined ? q.index : exam.questions.findIndex((item) => (item.id || `${exam.id}-q${item.index}`) === qId) + 1;
 
                     return (
                       <ExamQuestionItem
-                        key={q.id}
-                        question={q}
+                        key={qId}
+                        question={{ ...q, id: qId }}
                         questionNumber={qNum}
-                        selectedOption={answers[q.id] || null}
-                        isFlagged={!!flags[q.id]}
-                        onSelectOption={(optId) => handleSelectOption(q.id, optId)}
-                        onToggleFlag={() => handleToggleFlag(q.id)}
+                        selectedOption={answers[qId] || null}
+                        isFlagged={!!flags[qId]}
+                        onSelectOption={(optId) => handleSelectOption(qId, optId)}
+                        onToggleFlag={() => handleToggleFlag(qId)}
                         isSubmitted={isSubmitted}
                         showExplanation={isSubmitted}
                       />

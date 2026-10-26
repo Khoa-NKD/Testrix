@@ -797,6 +797,7 @@ async function main() {
 
   const { newExam: examL12U2_100Q } = require('./build_unit2_100q.cjs');
   const { examL10T1, examL10T2 } = require('./build_lop10_gk1.cjs');
+  const { examL10U2T1, examL10U2T2 } = require('./build_lop10_gk1_u2.cjs');
 
   const allExams = [
     examL12U1,
@@ -808,8 +809,18 @@ async function main() {
     examL12Hsg3,
     examL12U2_100Q,
     examL10T1,
-    examL10T2
+    examL10T2,
+    examL10U2T1,
+    examL10U2T2
   ];
+
+  // Đảm bảo tuyệt đối 100% câu hỏi ở TẤT CẢ các đề đều có id duy nhất
+  allExams.forEach(e => {
+    e.questions = e.questions.map((q, idx) => ({
+      ...q,
+      id: q.id || `${e.id}-q${q.index !== undefined ? q.index : idx + 1}`
+    }));
+  });
 
   // ============================================================================
   // 5. GHI FILE ĐÁP ÁN VÀ VĂN BẢN ĐẦY ĐỦ VÀO TỪNG THƯ MỤC dap-an/
@@ -903,6 +914,8 @@ async function main() {
   exportAnswerKeyFile(examL12U2_100Q, path.join(EXAM_BASE, 'Lop 12', 'On theo unit', 'dap-an'));
   exportAnswerKeyFile(examL10T1, path.join(EXAM_BASE, 'Lop 10', 'On thi giua ki 1', 'Test 1 - Unit 1 Family Life', 'dap-an'));
   exportAnswerKeyFile(examL10T2, path.join(EXAM_BASE, 'Lop 10', 'On thi giua ki 1', 'Test 2 - Unit 1 Family Life', 'dap-an'));
+  exportAnswerKeyFile(examL10U2T1, path.join(EXAM_BASE, 'Lop 10', 'On thi giua ki 1', 'Test 1 - Unit 2 Humans and the Environment', 'dap-an'));
+  exportAnswerKeyFile(examL10U2T2, path.join(EXAM_BASE, 'Lop 10', 'On thi giua ki 1', 'Test 2 - Unit 2 Humans and the Environment', 'dap-an'));
 
   // Xuất file đáp án vào folder chung Exam/Lop 10/On thi giua ki 1/dap-an/
   const l10DapAnGeneralDir = path.join(EXAM_BASE, 'Lop 10', 'On thi giua ki 1', 'dap-an');
@@ -911,8 +924,14 @@ async function main() {
   }
   const t1Content = fs.readFileSync(path.join(EXAM_BASE, 'Lop 10', 'On thi giua ki 1', 'Test 1 - Unit 1 Family Life', 'dap-an', 'DAP_AN_CHI_TIET.txt'), 'utf8');
   fs.writeFileSync(path.join(l10DapAnGeneralDir, 'DAP_AN_CHI_TIET_TEST_1.txt'), t1Content, 'utf8');
+  fs.writeFileSync(path.join(l10DapAnGeneralDir, 'DAP_AN_CHI_TIET_UNIT_1_TEST_1.txt'), t1Content, 'utf8');
   const t2Content = fs.readFileSync(path.join(EXAM_BASE, 'Lop 10', 'On thi giua ki 1', 'Test 2 - Unit 1 Family Life', 'dap-an', 'DAP_AN_CHI_TIET.txt'), 'utf8');
   fs.writeFileSync(path.join(l10DapAnGeneralDir, 'DAP_AN_CHI_TIET_TEST_2.txt'), t2Content, 'utf8');
+  fs.writeFileSync(path.join(l10DapAnGeneralDir, 'DAP_AN_CHI_TIET_UNIT_1_TEST_2.txt'), t2Content, 'utf8');
+  const u2t1Content = fs.readFileSync(path.join(EXAM_BASE, 'Lop 10', 'On thi giua ki 1', 'Test 1 - Unit 2 Humans and the Environment', 'dap-an', 'DAP_AN_CHI_TIET.txt'), 'utf8');
+  fs.writeFileSync(path.join(l10DapAnGeneralDir, 'DAP_AN_CHI_TIET_UNIT_2_TEST_1.txt'), u2t1Content, 'utf8');
+  const u2t2Content = fs.readFileSync(path.join(EXAM_BASE, 'Lop 10', 'On thi giua ki 1', 'Test 2 - Unit 2 Humans and the Environment', 'dap-an', 'DAP_AN_CHI_TIET.txt'), 'utf8');
+  fs.writeFileSync(path.join(l10DapAnGeneralDir, 'DAP_AN_CHI_TIET_UNIT_2_TEST_2.txt'), u2t2Content, 'utf8');
 
   // ============================================================================
   // 6. GHI VÀO SRC/DATA/EXAMS.JSON VÀ DATA/EXAMS.JSON

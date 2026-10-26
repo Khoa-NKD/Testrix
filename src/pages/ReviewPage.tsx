@@ -188,7 +188,7 @@ export default function ReviewPage() {
 
             return (
               <div
-                key={rev.questionId}
+                key={rev.questionId || `rev-${rev.questionIndex}`}
                 className={`bg-white rounded-2xl border p-5 sm:p-6 shadow-xs transition-all ${
                   isCorrect
                     ? "border-emerald-300"

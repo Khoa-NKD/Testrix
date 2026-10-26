@@ -45,14 +45,16 @@ export default function AnswerSheet({
   const isTimeLow = timeLeftSeconds <= 300 && !isSubmitted; // Dưới 5 phút
 
   // Helper to render a question circle button
-  const renderQuestionCircle = (q: Question) => {
-    const originalIndex = questions.findIndex((item) => item.id === q.id);
-    const qNum = q.index !== undefined ? q.index : originalIndex + 1;
-    const isAnswered = answers[q.id] !== undefined && answers[q.id] !== null && answers[q.id].trim().length > 0;
-    const isFlagged = flags[q.id] === true;
+  const renderQuestionCircle = (q: Question, idx?: number) => {
+    const qKey = q.id || `q-${q.index !== undefined ? q.index : idx}`;
+    const originalIndex = questions.findIndex((item) => (item.id || `q-${item.index}`) === qKey);
+    const resolvedIndex = originalIndex >= 0 ? originalIndex : (idx ?? 0);
+    const qNum = q.index !== undefined ? q.index : resolvedIndex + 1;
+    const isAnswered = answers[qKey] !== undefined && answers[qKey] !== null && answers[qKey].trim().length > 0;
+    const isFlagged = flags[qKey] === true;
 
     // Result states if submitted
-    const isKey = isSubmitted && isAnswerCorrect(q, answers[q.id]);
+    const isKey = isSubmitted && isAnswerCorrect(q, answers[qKey]);
     const isWrong = isSubmitted && isAnswered && !isKey;
 
     let badgeStyle = "bg-white border border-slate-300 text-slate-700 hover:border-slate-400";
@@ -75,9 +77,9 @@ export default function AnswerSheet({
 
     return (
       <button
-        key={q.id}
+        key={qKey}
         type="button"
-        onClick={() => onSelectQuestion(originalIndex)}
+        onClick={() => onSelectQuestion(resolvedIndex)}
         className={`w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-full flex items-center justify-center text-xs font-bold transition-all cursor-pointer ${badgeStyle}`}
         title={`Câu ${qNum} ${isAnswered ? "(Đã làm)" : "(Chưa làm)"} ${isFlagged ? "- Cần kiểm tra lại" : ""}`}
       >
